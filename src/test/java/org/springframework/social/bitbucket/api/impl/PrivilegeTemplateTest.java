@@ -29,50 +29,110 @@ import static org.springframework.test.web.client.response.MockRestResponseCreat
 import static org.springframework.test.web.client.response.MockRestResponseCreators.withSuccess;
 
 public class PrivilegeTemplateTest extends BaseTemplateTest {
-    @Test
-    public void testGetRepoPrivileges() {
+	@Test
+	public void testGetRepoPrivileges() {
+		mockServer
+				.expect(requestTo("https://api.bitbucket.org/1.0/privileges/evzijst/test"))
+				.andExpect(method(GET))
+				.andRespond(
+						withSuccess(jsonResource("get-repo-privileges"),
+								MediaType.APPLICATION_JSON));
 
-        mockServer
-                .expect(requestTo("https://api.bitbucket.org/1.0/privileges/evzijst/test"))
-                .andExpect(method(GET))
-                .andRespond(
-                        withSuccess(jsonResource("get-repo-privileges"),
-                                MediaType.APPLICATION_JSON));
+		List<RepoPrivilege> privs = bitBucket.privelegesOperations()
+				.getRepoPrivileges("evzijst", "test");
 
-        List<RepoPrivilege> privs = bitBucket.privelegesOperations()
-                .getRepoPrivileges("evzijst", "test");
+		assertEquals(4, privs.size());
+		assertEquals("evzijst/test", privs.get(0).getRepository());
+		assertEquals("jespern", privs.get(0).getUser().getUsername());
+		assertEquals(BitBucketPrivilege.read, privs.get(0).getPrivilege());
 
-        assertEquals(4, privs.size());
-        assertEquals("evzijst/test", privs.get(0).getRepository());
-        assertEquals("jespern", privs.get(0).getUser().getUsername());
-        assertEquals(BitBucketPrivilege.read, privs.get(0).getPrivilege());
+	}
 
-    }
+	@Test
+	public void testDeletePrivilege() {
+		mockServer
+				.expect(requestTo("https://api.bitbucket.org/1.0/privileges/evzijst/test/jespern"))
+				.andExpect(method(DELETE)).andRespond(withNoContent());
 
-    @Test
-    public void testDeletePrivilege() {
-        mockServer
-                .expect(requestTo("https://api.bitbucket.org/1.0/privileges/evzijst/test/jespern"))
-                .andExpect(method(DELETE)).andRespond(withNoContent());
+		bitBucket.privelegesOperations().removePrivilege("evzijst", "test",
+				"jespern");
+	}
 
-        bitBucket.privelegesOperations().removePrivilege("evzijst", "test",
-                "jespern");
-    }
+	@Test
+	public void testSetPrivilege() {
+		mockServer
+				.expect(requestTo("https://api.bitbucket.org/1.0/privileges/tutorials/mydvcsproject/atlassian_tutorial"))
+				.andExpect(method(PUT))
+				.andExpect(content().string("write"))
+				.andRespond(
+						withSuccess(jsonResource("set-repo-privilege"),
+								MediaType.APPLICATION_JSON));
 
-    @Test
-    public void testSetPrivilege() {
-        mockServer
-                .expect(requestTo("https://api.bitbucket.org/1.0/privileges/tutorials/mydvcsproject/atlassian_tutorial"))
-                .andExpect(method(PUT))
-                .andExpect(content().string("write"))
-                .andRespond(
-                        withSuccess(jsonResource("set-repo-privilege"),
-                                MediaType.APPLICATION_JSON));
+		RepoPrivilege priv = bitBucket.privelegesOperations().setPrivilege(
+				"tutorials", "mydvcsproject", "atlassian_tutorial",
+				BitBucketPrivilege.write);
 
-        RepoPrivilege priv = bitBucket.privelegesOperations().setPrivilege(
-                "tutorials", "mydvcsproject", "atlassian_tutorial",
-                BitBucketPrivilege.write);
+		assertEquals("Atlassian Tutorials", priv.getUser().getFirstName());
+	}
 
-        assertEquals("Atlassian Tutorials", priv.getUser().getFirstName());
-    }
+	@Test
+	public void testGetPrivilegesForAnIndividual() throws Exception {
+		//given
+		mockServer
+				.expect(requestTo("https://api.bitbucket.org/1.0/privileges/evzijst/test"))
+				.andExpect(method(GET))
+				.andRespond(withSuccess(jsonResource("get-privileges-for-an-individual"),
+						MediaType.APPLICATION_JSON));
+		//when
+		List<RepoPrivilege> privs = bitBucket.privelegesOperations()
+				.getPrivilegesForAnIndividual("evzijst", "test", "privaccountname");
+		//then
+		assertEquals(4, privs.size());
+		assertEquals("evzijst/test", privs.get(0).getRepository());
+		assertEquals("jespern", privs.get(0).getUser().getUsername());
+		assertEquals(BitBucketPrivilege.read, privs.get(0).getPrivilege());
+	}
+
+	@Test
+	public void testGetPrivilegesAcrossAllRepositories() throws Exception {
+		//given
+		mockServer
+				.expect(requestTo("https://api.bitbucket.org/1.0/privileges/evzijst"))
+				.andExpect(method(GET))
+				.andRespond(
+						withSuccess(jsonResource("get-privileges-across-all-repositories"),
+								MediaType.APPLICATION_JSON));
+		//when
+		List<RepoPrivilege> privs = bitBucket.privelegesOperations()
+				.getPrivilegesAcrossAllRepositories("evzijst");
+		//then
+		assertEquals(4, privs.size());
+		assertEquals("evzijst/test", privs.get(0).getRepository());
+		assertEquals("jespern", privs.get(0).getUser().getUsername());
+		assertEquals(BitBucketPrivilege.read, privs.get(0).getPrivilege());
+	}
+
+	@Test
+	public void testRemoveAllPrivilegesFromARepository() throws Exception {
+		//given
+		mockServer
+				.expect(requestTo("https://api.bitbucket.org/1.0/privileges/evzijst/test"))
+				.andExpect(method(DELETE)).andRespond(withNoContent());
+		//when
+		bitBucket.privelegesOperations().removeAllPrivilegesFromARepository("evzijst", "test");
+		//then
+		// no content
+	}
+
+	@Test
+	public void testRemoveAllPrivilegesFromAllRepositories() throws Exception {
+		//given
+		mockServer
+				.expect(requestTo("https://api.bitbucket.org/1.0/privileges/evzijst"))
+				.andExpect(method(DELETE)).andRespond(withNoContent());
+		//when
+		bitBucket.privelegesOperations().removeAllPrivilegesFromAllRepositories("evzijst");
+		//then
+		// no content
+	}
 }

@@ -32,15 +32,15 @@ public final class BitBucketEmailAddress implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @JsonProperty("active")
-    private Boolean active;
+    private boolean active;
 
     @JsonProperty("email")
     private String email;
 
     @JsonProperty("primary")
-    private Boolean primary;
+    private boolean primary;
 
-    public Boolean getActive() {
+    public boolean getActive() {
         return active;
     }
 
@@ -48,7 +48,7 @@ public final class BitBucketEmailAddress implements Serializable {
         return email;
     }
 
-    public Boolean getPrimary() {
+    public boolean getPrimary() {
         return primary;
     }
 }

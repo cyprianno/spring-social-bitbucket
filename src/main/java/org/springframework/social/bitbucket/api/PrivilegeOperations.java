@@ -21,31 +21,75 @@ public interface PrivilegeOperations {
 
     /**
      * Get the privileges on a given repository.
+     * GET https://bitbucket.org/api/1.0/privileges/{accountname}/{repo_slug}
      *
-     * @param user     repository owner
+     * @param accountName     repository owner
      * @param repoSlug name of the repository
      */
-    List<RepoPrivilege> getRepoPrivileges(String user, String repoSlug);
+    List<RepoPrivilege> getRepoPrivileges(String accountName, String repoSlug);
+
+    /**
+     * Get a list of privileges for an individual account.
+     * Only the repository owner, a team account administrator, or an account with administrative rights on the repository can make this call.
+     * GET https://api.bitbucket.org/1.0/privileges/{accountname}/{repo_slug}/{privilege_account}
+     *
+     * @param accountName  username
+     * @param repoSlug repo_slug
+     * @param privilegeAccount privilege_account
+     * @return list of privileges
+     */
+    List<RepoPrivilege> getPrivilegesForAnIndividual(String accountName, String repoSlug, String privilegeAccount);
+
+    /**
+     * Gets a list of all the privilege across all an account's repositories.
+     * If a repository has no individual users with privileges, it does not appear in this list.
+     * Only the repository owner, a team account administrator, or an account with administrative rights on the repository can make this call.
+     * GET https://api.bitbucket.org/1.0/privileges/{accountname}
+     * GET https://api.bitbucket.org/1.0/privileges/{accountname}?filter={filter}
+     *
+     * @param accountName account_name
+     * @return list of privileges
+     */
+    List<RepoPrivilege> getPrivilegesAcrossAllRepositories(String accountName);
 
     /**
      * Set or change the privilege for the given recipient on some repository.
+     * PUT  https://api.bitbucket.org/1.0/privileges/{accountname}/{repo_slug}/{privilege_account} --data {read}
      *
-     * @param owner     the repository owner
+     * @param accountName     the repository owner
      * @param repoSlug  the repository name
      * @param recipient user for which to set the privilege
      * @param privilege new privilege value to set
      */
-    RepoPrivilege setPrivilege(String owner, String repoSlug,
-                               String recipient, BitBucketPrivilege privilege);
+    RepoPrivilege setPrivilege(String accountName, String repoSlug, String recipient, BitBucketPrivilege privilege);
 
     /**
      * Removes the current privilege of the given recipient from some
      * repository.
+     * DELETE  https://bitbucket.org/api/1.0/privileges/{accountname}/{repo_slug}/{privilege_account}
      *
-     * @param owner     the repository owner
+     * @param accountName     the repository owner
      * @param repoSlug  the repository name
      * @param recipient user for which to remove the privilege
      */
-    void removePrivilege(String owner, String repoSlug, String recipient);
+    void removePrivilege(String accountName, String repoSlug, String recipient);
 
+    /**
+     * Delete all privileges from a repository.
+     * Only the repository owner, a team account administrator, or an account with administrative rights on the repository can make this call.
+     * DELETE  https://bitbucket.org/api/1.0/privileges/{accountname}/{repo_slug}
+     *
+     * @param accountName Owner of the repository.
+     * @param repoSlug Repository identifier.
+     */
+    void removeAllPrivilegesFromARepository(String accountName, String repoSlug);
+
+    /**
+     * DELETE an privileges from all repositories.
+     * Only the repository owner, a team account administrator, or an account with administrative rights on the repository can make this call.
+     * DELETE  https://bitbucket.org/api/1.0/privileges/{accountname}
+     *
+     * @param accountName Owner of the repositories.
+     */
+    void removeAllPrivilegesFromAllRepositories(String accountName);
 }

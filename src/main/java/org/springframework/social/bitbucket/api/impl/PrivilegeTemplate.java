@@ -36,25 +36,46 @@ public class PrivilegeTemplate extends AbstractBitBucketOperations implements
     @Override
     public final List<RepoPrivilege> getRepoPrivileges(String user, String repoSlug) {
         return asList(getRestTemplate().getForObject(
-                buildUrl("/privileges/{user}/{repo_slug}"),
+                buildUrl("/privileges/{accountname}/{repo_slug}"),
                 RepoPrivilege[].class, user, repoSlug));
     }
 
     @Override
-    public final RepoPrivilege setPrivilege(String owner, String repoSlug,
-                                            String recipient, BitBucketPrivilege privilege) {
-
-        return getRestTemplate().exchange(
-                buildUrl("/privileges/{user}/{repo_slug}/{recipient}"),
-                HttpMethod.PUT, new HttpEntity<String>(privilege.toString()),
-                RepoPrivilege[].class, owner, repoSlug, recipient).getBody()[0];
+    public final List<RepoPrivilege> getPrivilegesForAnIndividual(String accountName, String repoSlug, String privilegeAccount) {
+        return asList(getRestTemplate().getForObject(
+                buildUrl("/privileges/{accountname}/{repo_slug}"),
+                RepoPrivilege[].class, accountName, repoSlug));
     }
 
     @Override
-    public final void removePrivilege(String owner, String repoSlug, String recipient) {
-        getRestTemplate().delete(
-                buildUrl("/privileges/{user}/{repo_slug}/{recipient}"), owner,
+    public final List<RepoPrivilege> getPrivilegesAcrossAllRepositories(String accountName) {
+        return asList(getRestTemplate().getForObject(buildUrl("/privileges/{accountname}"),
+                RepoPrivilege[].class, accountName));
+    }
+
+    @Override
+    public final RepoPrivilege setPrivilege(String accountName, String repoSlug,
+                                            String recipient, BitBucketPrivilege privilege) {
+        return getRestTemplate().exchange(
+                buildUrl("/privileges/{accountname}/{repo_slug}/{recipient}"),
+                HttpMethod.PUT, new HttpEntity<String>(privilege.toString()),
+                RepoPrivilege[].class, accountName, repoSlug, recipient).getBody()[0];
+    }
+
+    @Override
+    public final void removePrivilege(String accountName, String repoSlug, String recipient) {
+        getRestTemplate().delete(buildUrl("/privileges/{accountname}/{repo_slug}/{recipient}"), accountName,
                 repoSlug, recipient);
+    }
+
+    @Override
+    public final void removeAllPrivilegesFromARepository(String accountName, String repoSlug) {
+        getRestTemplate().delete(buildUrl("/privileges/{accountname}/{repo_slug}"), accountName, repoSlug);
+    }
+
+    @Override
+    public final void removeAllPrivilegesFromAllRepositories(String accountName) {
+        getRestTemplate().delete(buildUrl("/privileges/{accountname}"), accountName);
     }
 
 }
