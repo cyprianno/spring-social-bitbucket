@@ -16,6 +16,7 @@
 package org.springframework.social.bitbucket.api.impl;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Getter;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -97,29 +98,17 @@ public class GroupsTemplate extends AbstractBitBucketOperations implements Group
 
     private static final class GroupUpdate {
 
-        @JsonProperty
+        @JsonProperty @Getter
         private final String name;
-        @JsonProperty
+        @JsonProperty @Getter
         private final BitBucketPrivilege permission;
-        @JsonProperty(value = "auto_add")
+        @JsonProperty(value = "auto_add") @Getter
         private final Boolean autoAdd;
 
         public GroupUpdate(String nameParam, BitBucketPrivilege permissionParam, Boolean autoAddParam) {
             this.name = nameParam;
             this.permission = permissionParam;
             this.autoAdd = autoAddParam;
-        }
-
-        public String getName() {
-            return name;
-        }
-
-        public BitBucketPrivilege getPermission() {
-            return permission;
-        }
-
-        public Boolean getAutoAdd() {
-            return autoAdd;
         }
     }
 

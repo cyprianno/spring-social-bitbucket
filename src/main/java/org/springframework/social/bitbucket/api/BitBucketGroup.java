@@ -17,6 +17,7 @@ package org.springframework.social.bitbucket.api;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Getter;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -30,45 +31,22 @@ import java.util.List;
 public class BitBucketGroup implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    @JsonProperty
+    @JsonProperty @Getter
     private String name;
 
-    @JsonProperty
+    @JsonProperty @Getter
     private BitBucketPrivilege permission;
 
-    @JsonProperty("auto_add")
+    @JsonProperty("auto_add") @Getter
     private boolean autoAdd;
 
-    @JsonProperty
+    @JsonProperty @Getter
     private String slug;
 
-    @JsonProperty
+    @JsonProperty @Getter
     private List<BitBucketUser> members = new ArrayList<>();
 
-    @JsonProperty
+    @JsonProperty @Getter
     private BitBucketUser owner;
 
-    public final String getName() {
-        return name;
-    }
-
-    public final BitBucketPrivilege getPermission() {
-        return permission;
-    }
-
-    public final boolean isAutoAdd() {
-        return autoAdd;
-    }
-
-    public final String getSlug() {
-        return slug;
-    }
-
-    public final List<BitBucketUser> getMembers() {
-        return members;
-    }
-
-    public final BitBucketUser getOwner() {
-        return owner;
-    }
 }
