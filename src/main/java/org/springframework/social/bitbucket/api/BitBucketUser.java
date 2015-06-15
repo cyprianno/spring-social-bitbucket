@@ -43,7 +43,7 @@ public class BitBucketUser implements Serializable {
     @JsonProperty("is_team") @Getter
     private boolean team;
 
-    @JsonProperty("avatar")
+    @JsonProperty("avatar") @Getter
     private String avatarImageUrl;
 
 }
