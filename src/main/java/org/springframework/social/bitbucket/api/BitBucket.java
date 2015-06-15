@@ -31,6 +31,13 @@ public interface BitBucket extends ApiBinding {
     RepoOperations repoOperations();
 
     /**
+     * Groups management operations
+     *
+     * @return groups management API
+     */
+    GroupsOperations groupsOperations();
+
+    /**
      * Returns the portion of the BitBucket API that allow interaction with user
      * accounts.
      */

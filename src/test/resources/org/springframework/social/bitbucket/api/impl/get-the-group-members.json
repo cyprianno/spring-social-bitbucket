@@ -1,0 +1,16 @@
+[
+  {
+    "username": "jstepka",
+    "first_name": "Justen",
+    "last_name": "Stepka",
+    "avatar": "https://secure.gravatar.com/avatar/12e5043280f67465b68ac42985082498?d=identicon&s=32",
+    "resource_uri": "/1.0/users/jstepka"
+  },
+  {
+    "username": "detkin",
+    "first_name": "Dylan",
+    "last_name": "Etkin",
+    "avatar": "https://secure.gravatar.com/avatar/e1ef8ef737e394a17ffbc27c889c2b22?d=identicon&s=32",
+    "resource_uri": "/1.0/users/detkin"
+  }
+]

@@ -29,6 +29,8 @@ public class BitBucketTemplate extends AbstractOAuth1ApiBinding implements
 
     private UsersOperations usersOperations;
 
+    private GroupsOperations groupsOperations;
+
     public BitBucketTemplate(String consumerKey, String consumerSecret,
                              String accessToken, String accessTokenSecret) {
         super(consumerKey, consumerSecret, accessToken, accessTokenSecret);
@@ -46,11 +48,17 @@ public class BitBucketTemplate extends AbstractOAuth1ApiBinding implements
         privilegeOperations = new PrivilegeTemplate(getRestTemplate(),
                 isAuthorized());
         usersOperations = new UsersTemplate(getRestTemplate(), isAuthorized());
+        groupsOperations = new GroupsTemplate(getRestTemplate(), isAuthorized());
     }
 
     @Override
     public final RepoOperations repoOperations() {
         return repoOperations;
+    }
+
+    @Override
+    public final GroupsOperations groupsOperations() {
+        return groupsOperations;
     }
 
     @Override

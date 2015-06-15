@@ -19,50 +19,56 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
- * A BitBucket user account.
- *
- * @author Eric Bottard
+ * @author Cyprian Śniegota
+ * @since 2.0.0
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class BitBucketUser implements Serializable {
-
+public class BitBucketGroup implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @JsonProperty
-    private String username;
+    private String name;
 
-    @JsonProperty("first_name")
-    private String firstName;
+    @JsonProperty
+    private BitBucketPrivilege permission;
 
-    @JsonProperty("last_name")
-    private String lastName;
+    @JsonProperty("auto_add")
+    private boolean autoAdd;
 
-    @JsonProperty("is_team")
-    private boolean team;
+    @JsonProperty
+    private String slug;
 
-    @JsonProperty("avatar")
-    private String avatarImageUrl;
+    @JsonProperty
+    private List<BitBucketUser> members = new ArrayList<>();
 
-    public final String getUsername() {
-        return username;
+    @JsonProperty
+    private BitBucketUser owner;
+
+    public final String getName() {
+        return name;
     }
 
-    public final String getFirstName() {
-        return firstName;
+    public final BitBucketPrivilege getPermission() {
+        return permission;
     }
 
-    public final String getLastName() {
-        return lastName;
+    public final boolean isAutoAdd() {
+        return autoAdd;
     }
 
-    public final boolean isTeam() {
-        return team;
+    public final String getSlug() {
+        return slug;
     }
 
-    public final String getAvatarImageUrl() {
-        return avatarImageUrl;
+    public final List<BitBucketUser> getMembers() {
+        return members;
     }
 
+    public final BitBucketUser getOwner() {
+        return owner;
+    }
 }

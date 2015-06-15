@@ -1,0 +1,15 @@
+{
+  "name": "the designers",
+  "permission": null,
+  "auto_add": false,
+  "members": [],
+  "owner": {
+    "username": "2team",
+    "first_name": "2 Team",
+    "last_name": "",
+    "is_team": true,
+    "avatar": "https://secure.gravatar.com/avatar/15827007bdb707832ded90a612750cfb?d=https%3A%2F%2Fdwz7u9t8u8usb.cloudfront.net%2Fm%2F90cccbaebb4e%2Fimg%2Fteam_no_avatar_32.png&s=32",
+    "resource_uri": "/1.0/users/2team"
+  },
+  "slug": "the-designers"
+}
