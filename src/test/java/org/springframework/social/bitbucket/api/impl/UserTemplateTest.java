@@ -150,26 +150,26 @@ public class UserTemplateTest extends BaseTemplateTest {
         assertEquals(utcLastUpdated, firstRepository.getLastUpdatedOn());
         assertEquals(utcCreatedOn, firstRepository.getCreatedAt());
         assertEquals("1team", firstRepository.getOwner());
-//        assertNull(firstRepository.getLogo());
-//        assertEquals("", firstRepository.getEmailMailingList());
-//        assertFalse(firstRepository.isMq());
+        assertNull(firstRepository.getLogo());
+        assertEquals("", firstRepository.getEmailMailingList());
+        assertFalse(firstRepository.isMq());
         assertEquals(580L, firstRepository.getSize());
         assertEquals(false, firstRepository.isReadOnly());
-//        assertNull(firstRepository.getForkOf());//repo
-//        assertNull(firstRepository.isMqOf());
-//        assertEquals(2, firstRepository.followersCount());
-//        assertEquals("available", firstRepository.getState());
-//        assertEquals("", firstRepository.getWebsite());
+        assertNull(firstRepository.getForkOf());//repo
+        assertNull(firstRepository.getMqOf());
+        assertEquals(2L, firstRepository.getFollowersCount());
+        assertEquals("available", firstRepository.getState());
+        assertEquals("", firstRepository.getWebsite());
         assertEquals("", firstRepository.getDescription());
-//        assertFalse(firstRepository.isHasIssues());
-//        assertFalse(firstRepository.isFork());
+        assertFalse(firstRepository.isHasIssues());
+        assertFalse(firstRepository.isFork());
         assertEquals("justdirectteam", firstRepository.getSlug());
         assertTrue(firstRepository.isPrivate());
         assertEquals("justdirectteam", firstRepository.getName());
-//        assertEquals("", firstRepository.getLanguage());
-//        assertTrue(firstRepository.isEmailWritters());
-//        assertTrue(firstRepository.isNoPublicForks());
-//        assertEquals("/1.0/repositories/1team/justdirectteam", firstRepository.getResourceUrl());
+        assertEquals("", firstRepository.getLanguage());
+        assertTrue(firstRepository.isEmailWriters());
+        assertFalse(firstRepository.isNoPublicForks());
+        assertEquals("/1.0/repositories/1team/justdirectteam", firstRepository.getResourceUri());
     }
 
     @Test
