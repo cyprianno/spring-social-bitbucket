@@ -41,6 +41,9 @@ public class BitBucketRepository implements Serializable {
     @JsonDeserialize(using = UTCDateDeserializer.class)
     private Date createdAt;
 
+    @JsonProperty @Getter
+    private String website;
+
     /** A description of the repository, as entered by its creator. */
     @JsonProperty @Getter
     private String description;

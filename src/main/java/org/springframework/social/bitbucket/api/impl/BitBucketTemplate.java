@@ -31,6 +31,8 @@ public class BitBucketTemplate extends AbstractOAuth1ApiBinding implements
 
     private GroupsOperations groupsOperations;
 
+    private InvitationsOperations invitationsOperations;
+
     private GroupPrivilegesOperations groupPrivilegesOperations;
 
     public BitBucketTemplate(String consumerKey, String consumerSecret,
@@ -52,6 +54,7 @@ public class BitBucketTemplate extends AbstractOAuth1ApiBinding implements
         usersOperations = new UsersTemplate(getRestTemplate(), isAuthorized());
         groupsOperations = new GroupsTemplate(getRestTemplate(), isAuthorized());
         groupPrivilegesOperations = new GroupPrivilegesTemplate(getRestTemplate(), isAuthorized());
+        invitationsOperations = new InvitationsTemplate(getRestTemplate(), isAuthorized());
     }
 
     @Override
@@ -82,5 +85,10 @@ public class BitBucketTemplate extends AbstractOAuth1ApiBinding implements
     @Override
     public final GroupPrivilegesOperations groupPrivilegesOperations() {
         return groupPrivilegesOperations;
+    }
+
+    @Override
+    public final InvitationsOperations invitationsOperations() {
+        return invitationsOperations;
     }
 }

@@ -1,0 +1,35 @@
+{
+  "sent_on": "2011-01-11 01:03:31",
+  "permission": "write",
+  "invited_by": {
+    "username": "roger",
+    "first_name": "Roger",
+    "last_name": "Ramjet",
+    "avatar": "https://secure.gravatar.com/avatar/55a1369161d3a648729b59cabf160e70?d=identicon&s=32",
+    "resource_uri": "/1.0/users/roger/"
+  },
+  "repository": {
+    "website": "",
+    "read_only": false,
+    "has_wiki": true,
+    "last_updated": "2010-12-24 05:26:20",
+    "name": "ramjet",
+    "language": "",
+    "deleted": false,
+    "is_mq": false,
+    "mq_of": null,
+    "created_on": "2010-12-24 05:26:20",
+    "fork_of": null,
+    "email_writers": true,
+    "size": 4096,
+    "owner": "roger",
+    "has_issues": true,
+    "no_public_forks": false,
+    "email_mailinglist": "",
+    "is_fork": false,
+    "slug": "ramjet",
+    "is_private": true,
+    "description": ""
+  },
+  "email": "john@example.com"
+}
