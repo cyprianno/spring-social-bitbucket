@@ -1,0 +1,70 @@
+[
+  {
+    "repo": "mcatalbas/test",
+    "privilege": "write",
+    "group": {
+      "owner": {
+        "username": "mcatalbas",
+        "first_name": "Mehmet",
+        "last_name": "Catalbas"
+      },
+      "name": "developers",
+      "members": [
+        {
+          "username": "nvenegas",
+          "first_name": "Nicolas",
+          "last_name": "Venegas"
+        },
+        {
+          "username": "brao",
+          "first_name": "Brodie",
+          "last_name": "Rao"
+        }
+      ],
+      "slug": "developers"
+    },
+    "repository": {
+      "owner": {
+        "username": "mcatalbas",
+        "first_name": "Mehmet",
+        "last_name": "Catalbas"
+      },
+      "name": "test",
+      "slug": "test"
+    }
+  },
+  {
+    "repo": "mcatalbas/test",
+    "privilege": "admin",
+    "group": {
+      "owner": {
+        "username": "mcatalbas",
+        "first_name": "Mehmet",
+        "last_name": "Catalbas"
+      },
+      "name": "managers",
+      "members": [
+        {
+          "username": "detkin",
+          "first_name": "Dylan",
+          "last_name": "Etkin"
+        },
+        {
+          "username": "jnoehr",
+          "first_name": "Jesper",
+          "last_name": "Noehr"
+        }
+      ],
+      "slug": "managers"
+    },
+    "repository": {
+      "owner": {
+        "username": "mcatalbas",
+        "first_name": "Mehmet",
+        "last_name": "Catalbas"
+      },
+      "name": "test",
+      "slug": "test"
+    }
+  }
+]

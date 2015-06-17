@@ -38,6 +38,13 @@ public interface BitBucket extends ApiBinding {
     GroupsOperations groupsOperations();
 
     /**
+     * Group privileges management operations
+     *
+     * @return group privileges management API
+     */
+    GroupPrivilegesOperations groupPrivilegesOperations();
+
+    /**
      * Returns the portion of the BitBucket API that allow interaction with user
      * accounts.
      */

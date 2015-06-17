@@ -1,0 +1,142 @@
+[
+  {
+    "repo": "2team/public2teamrepo",
+    "privilege": "write",
+    "group": {
+      "owner": {
+        "username": "2team",
+        "first_name": "2 Team",
+        "last_name": "",
+        "avatar": "https://secure.gravatar.com/avatar/15827007bdb707832ded90a612750cfb?d=https%3A%2F%2Fdwz7u9t8u8usb.cloudfront.net%2Fm%2F6bc30a724121%2Fimg%2Fteam_no_avatar_32.png&s=32",
+        "is_team": true
+      },
+      "name": "Developers",
+      "members": [
+        {
+          "username": "buserbb",
+          "first_name": "B",
+          "last_name": "userbb",
+          "avatar": "https://secure.gravatar.com/avatar/b677e1e3bf1c781f852b288fd4b68480?d=identicon&s=32",
+          "is_team": false
+        }
+      ],
+      "slug": "developers"
+    },
+    "repository": {
+      "owner": {
+        "username": "2team",
+        "first_name": "2 Team",
+        "last_name": "",
+        "avatar": "https://secure.gravatar.com/avatar/15827007bdb707832ded90a612750cfb?d=https%3A%2F%2Fdwz7u9t8u8usb.cloudfront.net%2Fm%2F6bc30a724121%2Fimg%2Fteam_no_avatar_32.png&s=32",
+        "is_team": true
+      },
+      "name": "public2teamrepo",
+      "slug": "public2teamrepo"
+    }
+  },
+  {
+    "repo": "2team/createdbyteamacct",
+    "privilege": "write",
+    "group": {
+      "owner": {
+        "username": "2team",
+        "first_name": "2 Team",
+        "last_name": "",
+        "avatar": "https://secure.gravatar.com/avatar/15827007bdb707832ded90a612750cfb?d=https%3A%2F%2Fdwz7u9t8u8usb.cloudfront.net%2Fm%2F6bc30a724121%2Fimg%2Fteam_no_avatar_32.png&s=32",
+        "is_team": true
+      },
+      "name": "Developers",
+      "members": [
+        {
+          "username": "buserbb",
+          "first_name": "B",
+          "last_name": "userbb",
+          "avatar": "https://secure.gravatar.com/avatar/b677e1e3bf1c781f852b288fd4b68480?d=identicon&s=32",
+          "is_team": false
+        }
+      ],
+      "slug": "developers"
+    },
+    "repository": {
+      "owner": {
+        "username": "2team",
+        "first_name": "2 Team",
+        "last_name": "",
+        "avatar": "https://secure.gravatar.com/avatar/15827007bdb707832ded90a612750cfb?d=https%3A%2F%2Fdwz7u9t8u8usb.cloudfront.net%2Fm%2F6bc30a724121%2Fimg%2Fteam_no_avatar_32.png&s=32",
+        "is_team": true
+      },
+      "name": "createdbyteamacct",
+      "slug": "createdbyteamacct"
+    }
+  },
+  {
+    "repo": "2team/teamproject",
+    "privilege": "write",
+    "group": {
+      "owner": {
+        "username": "2team",
+        "first_name": "2 Team",
+        "last_name": "",
+        "avatar": "https://secure.gravatar.com/avatar/15827007bdb707832ded90a612750cfb?d=https%3A%2F%2Fdwz7u9t8u8usb.cloudfront.net%2Fm%2F6bc30a724121%2Fimg%2Fteam_no_avatar_32.png&s=32",
+        "is_team": true
+      },
+      "name": "Developers",
+      "members": [
+        {
+          "username": "buserbb",
+          "first_name": "B",
+          "last_name": "userbb",
+          "avatar": "https://secure.gravatar.com/avatar/b677e1e3bf1c781f852b288fd4b68480?d=identicon&s=32",
+          "is_team": false
+        }
+      ],
+      "slug": "developers"
+    },
+    "repository": {
+      "owner": {
+        "username": "2team",
+        "first_name": "2 Team",
+        "last_name": "",
+        "avatar": "https://secure.gravatar.com/avatar/15827007bdb707832ded90a612750cfb?d=https%3A%2F%2Fdwz7u9t8u8usb.cloudfront.net%2Fm%2F6bc30a724121%2Fimg%2Fteam_no_avatar_32.png&s=32",
+        "is_team": true
+      },
+      "name": "teamproject",
+      "slug": "teamproject"
+    }
+  },
+  {
+    "repo": "2team/grouptest",
+    "privilege": "write",
+    "group": {
+      "owner": {
+        "username": "2team",
+        "first_name": "2 Team",
+        "last_name": "",
+        "avatar": "https://secure.gravatar.com/avatar/15827007bdb707832ded90a612750cfb?d=https%3A%2F%2Fdwz7u9t8u8usb.cloudfront.net%2Fm%2F6bc30a724121%2Fimg%2Fteam_no_avatar_32.png&s=32",
+        "is_team": true
+      },
+      "name": "Developers",
+      "members": [
+        {
+          "username": "buserbb",
+          "first_name": "B",
+          "last_name": "userbb",
+          "avatar": "https://secure.gravatar.com/avatar/b677e1e3bf1c781f852b288fd4b68480?d=identicon&s=32",
+          "is_team": false
+        }
+      ],
+      "slug": "developers"
+    },
+    "repository": {
+      "owner": {
+        "username": "2team",
+        "first_name": "2 Team",
+        "last_name": "",
+        "avatar": "https://secure.gravatar.com/avatar/15827007bdb707832ded90a612750cfb?d=https%3A%2F%2Fdwz7u9t8u8usb.cloudfront.net%2Fm%2F6bc30a724121%2Fimg%2Fteam_no_avatar_32.png&s=32",
+        "is_team": true
+      },
+      "name": "grouptest",
+      "slug": "grouptest"
+    }
+  }
+]
