@@ -17,13 +17,24 @@ package org.springframework.social.bitbucket.api.impl;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import org.springframework.social.bitbucket.api.BitBucketUser;
-import org.springframework.social.bitbucket.api.UserOperations;
-import org.springframework.social.bitbucket.api.UserWithRepositories;
+import com.google.common.base.Joiner;
+import lombok.Getter;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpMethod;
+import org.springframework.social.bitbucket.api.*;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import static java.util.Arrays.asList;
+
+/**
+ * @author ericbottard
+ * @author Cyprian Śniegota
+ */
 class UserTemplate extends AbstractBitBucketOperations implements
         UserOperations {
 
@@ -38,15 +49,70 @@ class UserTemplate extends AbstractBitBucketOperations implements
     }
 
     @Override
+    public BitBucketUser updateUser(BitBucketUser userProfileDataToUpdate) {
+        return getRestTemplate().exchange(buildUrl("/user"), HttpMethod.PUT,
+                createUpdateUserEntityfromBitBucketUser(userProfileDataToUpdate), BitBucketUser.class).getBody();
+    }
+
+    @Override
+    public Map<String, String> getUserPrivileges() {
+        return getRestTemplate().getForObject(buildUrl("/user/privileges"), PrivilegesHolder.class).getTeams();
+    }
+
+    @Override
+    public List<BitBucketRepository> getRepositoriesAccountFollows() {
+        return asList(getRestTemplate().getForObject(
+                buildUrl("/user/follows"), BitBucketRepository[].class));
+    }
+
+    @Override
+    public List<BitBucketRepository> getRepositoriesVisible() {
+        return asList(getRestTemplate().getForObject(
+                buildUrl("/user/repositories"), BitBucketRepository[].class));
+    }
+
+    @Override
+    public BitBucketFollowingRepositories getRepositoriesFollowing() {
+        return getRestTemplate().getForObject(
+                buildUrl("/user/repositories/overview"), BitBucketFollowingRepositories.class);
+    }
+
+    @Override
+    public List<BitBucketRepository> getRepositoriesOnDashboard() {
+        throw new UnsupportedOperationException(
+                "Get repositories on dashboard is not implemented. Json source is not readable.");
+    }
+
+    @Override
     public List<BitBucketUser> getFollowers(String user) {
         return getRestTemplate().getForObject(buildUrl("/users/{user}/followers"),
                 FollowersHolder.class, user).followers;
+    }
+
+    private HttpEntity<String> createUpdateUserEntityfromBitBucketUser(BitBucketUser user) {
+        List<String> params = new ArrayList<>();
+        if (user.getAvatarImageUrl() != null) {
+            params.add("avatar_image_url=" + user.getAvatarImageUrl());
+        }
+        if (user.getFirstName() != null) {
+            params.add("first_name=" + user.getFirstName());
+        }
+        if (user.getLastName() != null) {
+            params.add("last_name=" + user.getLastName());
+        }
+        return new HttpEntity<>(Joiner.on('&').join(params));
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     private static class FollowersHolder {
         @JsonProperty
         private List<BitBucketUser> followers;
+    }
+
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    private static class PrivilegesHolder {
+        @JsonProperty @Getter
+        private Map<String, String> teams = new HashMap<>();
     }
 
 }

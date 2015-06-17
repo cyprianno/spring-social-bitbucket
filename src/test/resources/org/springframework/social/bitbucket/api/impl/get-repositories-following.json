@@ -1,0 +1,26 @@
+{
+  "updated": [
+    {
+      "owner": "auserbb",
+      "name": "auser-justdirectteam",
+      "slug": "auser-justdirectteam",
+      "is_private": true,
+      "avatar": "https://secure.gravatar.com/avatar/49bd0ee69e520e8bc250adb95710bbb8?d=identicon&s=16"
+    },
+    {
+      "owner": "auserbb",
+      "name": "myowncode",
+      "slug": "myowncode",
+      "is_private": true,
+      "avatar": "https://secure.gravatar.com/avatar/49bd0ee69e520e8bc250adb95710bbb8?d=identicon&s=16"
+    },
+    {
+      "owner": "1team",
+      "name": "justdirectteam",
+      "slug": "justdirectteam",
+      "is_private": true,
+      "avatar": "https://secure.gravatar.com/avatar/24b6be68b53e383c5d42bab4fe0bde2b?d=https%3A%2F%2Fdwz7u9t8u8usb.cloudfront.net%2Fm%2Fe7650dc4b9dd%2Fimg%2Fteam_no_avatar.png&s=16"
+    }
+  ],
+  "viewed": []
+}

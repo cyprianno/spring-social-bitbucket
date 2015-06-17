@@ -15,34 +15,34 @@
  */
 package org.springframework.social.bitbucket.api.impl;
 
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Test;
+import org.springframework.format.datetime.DateFormatter;
 import org.springframework.http.MediaType;
-import org.springframework.social.bitbucket.api.BitBucketRepository;
-import org.springframework.social.bitbucket.api.BitBucketSCM;
-import org.springframework.social.bitbucket.api.BitBucketUser;
-import org.springframework.social.bitbucket.api.UserWithRepositories;
+import org.springframework.social.bitbucket.api.*;
 
 import java.text.SimpleDateFormat;
-import java.util.List;
-import java.util.TimeZone;
+import java.util.*;
 
 import static org.junit.Assert.*;
 import static org.springframework.http.HttpMethod.GET;
+import static org.springframework.http.HttpMethod.PUT;
+import static org.springframework.test.web.client.match.MockRestRequestMatchers.content;
 import static org.springframework.test.web.client.match.MockRestRequestMatchers.method;
 import static org.springframework.test.web.client.match.MockRestRequestMatchers.requestTo;
 import static org.springframework.test.web.client.response.MockRestResponseCreators.withSuccess;
 
+/**
+ * @author ericbottard
+ * @author Cyprian Śniegota
+ */
 public class UserTemplateTest extends BaseTemplateTest {
 
     @Test
     public void testGetUser() throws Exception {
-
-        mockServer
-                .expect(requestTo("https://api.bitbucket.org/1.0/user"))
-                .andExpect(method(GET))
-                .andRespond(
-                        withSuccess(jsonResource("get-user"),
-                                MediaType.APPLICATION_JSON));
+        mockServer.expect(requestTo("https://api.bitbucket.org/1.0/user")).andExpect(method(GET))
+                .andRespond(withSuccess(jsonResource("get-user"), MediaType.APPLICATION_JSON));
 
         UserWithRepositories profile = bitBucket.userOperations()
                 .getUserWithRepositories();
@@ -74,13 +74,9 @@ public class UserTemplateTest extends BaseTemplateTest {
 
     @Test
     public void testGetUserFollowers() throws Exception {
-
-        mockServer
-                .expect(requestTo("https://api.bitbucket.org/1.0/users/cleonello/followers"))
+        mockServer.expect(requestTo("https://api.bitbucket.org/1.0/users/cleonello/followers"))
                 .andExpect(method(GET))
-                .andRespond(
-                        withSuccess(jsonResource("user-followers"),
-                                MediaType.APPLICATION_JSON));
+                .andRespond(withSuccess(jsonResource("user-followers"), MediaType.APPLICATION_JSON));
 
         List<BitBucketUser> followers = bitBucket.userOperations()
                 .getFollowers("cleonello");
@@ -93,5 +89,140 @@ public class UserTemplateTest extends BaseTemplateTest {
         assertEquals(
                 "https://secure.gravatar.com/avatar/a804ab4bb149c5c612a087e75d2c656c?d=identicon&s=32",
                 follower.getAvatarImageUrl());
+    }
+
+    @Test
+    public void testUpdateUser() throws Exception {
+        //given
+        mockServer.expect(requestTo("https://api.bitbucket.org/1.0/user"))
+                .andExpect(method(PUT)).andExpect(content().string("first_name=fname&last_name=lname"))
+                .andRespond(withSuccess(jsonResource("update-user"), MediaType.APPLICATION_JSON));
+        BitBucketUser testUserProfile = new ObjectMapper().readValue(
+                "{\"username\":\"testuser\",\"first_name\":\"fname\",\"last_name\":\"lname\"}", BitBucketUser.class);
+        //when
+        BitBucketUser result = bitBucket.userOperations().updateUser(testUserProfile);
+        //then
+        mockServer.verify();
+        assertEquals("auserbb", result.getUsername());
+        assertEquals("foo", result.getFirstName());
+        assertEquals("User", result.getLastName());
+        assertFalse(result.isTeam());
+        assertEquals("https://secure.gravatar.com/avatar/49bd0ee69e520e8bc250adb95710bbb8?d=identicon&s=32", result.getAvatarImageUrl());
+//        assertEquals("/1.0/users/auserbb", result.getResourceURI());
+    }
+
+    @Test
+    public void testGetUserPrivileges() throws Exception {
+        //given
+        mockServer.expect(requestTo("https://api.bitbucket.org/1.0/user/privileges"))
+                .andExpect(method(GET))
+                .andRespond(withSuccess(jsonResource("get-user-privileges"), MediaType.APPLICATION_JSON));
+        //when
+        Map<String, String> result = bitBucket.userOperations().getUserPrivileges();
+        //then
+        mockServer.verify();
+        assertEquals(3, result.size());
+        assertTrue(result.containsKey("auserbb"));
+        assertTrue(result.containsKey("1team"));
+        assertTrue(result.containsKey("2team"));
+        assertTrue(result.containsValue("admin"));
+        assertTrue(result.containsValue("collaborator"));
+        assertTrue(result.containsValue("admin"));
+    }
+
+    @Test
+    public void testGetRepositoriesAccountFollows() throws Exception {
+        //given
+        mockServer.expect(requestTo("https://api.bitbucket.org/1.0/user/follows"))
+                .andExpect(method(GET))
+                .andRespond(withSuccess(jsonResource("get-repositories-account-follows"), MediaType.APPLICATION_JSON));
+        //when
+        List<BitBucketRepository> result = bitBucket.userOperations().getRepositoriesAccountFollows();
+        //then
+        mockServer.verify();
+        assertEquals(3, result.size());
+        BitBucketRepository firstRepository = result.iterator().next();
+        assertEquals(BitBucketSCM.git, firstRepository.getScm());
+        assertFalse(firstRepository.isHasWiki());
+        DateFormatter dateFormatter = new DateFormatter("yyyy-MM-dd HH:mm:ssZ");
+        Date utcCreatedOn = dateFormatter.parse("2012-06-26 22:22:15+0000", Locale.getDefault());
+        Date utcLastUpdated = dateFormatter.parse("2012-06-26 22:22:15+0000", Locale.getDefault());
+        assertEquals(utcLastUpdated, firstRepository.getLastUpdatedOn());
+        assertEquals(utcCreatedOn, firstRepository.getCreatedAt());
+        assertEquals("1team", firstRepository.getOwner());
+//        assertNull(firstRepository.getLogo());
+//        assertEquals("", firstRepository.getEmailMailingList());
+//        assertFalse(firstRepository.isMq());
+        assertEquals(580L, firstRepository.getSize());
+        assertEquals(false, firstRepository.isReadOnly());
+//        assertNull(firstRepository.getForkOf());//repo
+//        assertNull(firstRepository.isMqOf());
+//        assertEquals(2, firstRepository.followersCount());
+//        assertEquals("available", firstRepository.getState());
+//        assertEquals("", firstRepository.getWebsite());
+        assertEquals("", firstRepository.getDescription());
+//        assertFalse(firstRepository.isHasIssues());
+//        assertFalse(firstRepository.isFork());
+        assertEquals("justdirectteam", firstRepository.getSlug());
+        assertTrue(firstRepository.isPrivate());
+        assertEquals("justdirectteam", firstRepository.getName());
+//        assertEquals("", firstRepository.getLanguage());
+//        assertTrue(firstRepository.isEmailWritters());
+//        assertTrue(firstRepository.isNoPublicForks());
+//        assertEquals("/1.0/repositories/1team/justdirectteam", firstRepository.getResourceUrl());
+    }
+
+    @Test
+    public void testGetRepositoriesVisible() throws Exception {
+        //given
+        mockServer.expect(requestTo("https://api.bitbucket.org/1.0/user/repositories"))
+                .andExpect(method(GET))
+                .andRespond(withSuccess(jsonResource("get-repositories-visible"), MediaType.APPLICATION_JSON));
+        //when
+        List<BitBucketRepository> result = bitBucket.userOperations().getRepositoriesVisible();
+        //then
+        mockServer.verify();
+        assertEquals(3, result.size());
+        BitBucketRepository firstRepository = result.iterator().next();
+        assertEquals(BitBucketSCM.git, firstRepository.getScm());
+        assertFalse(firstRepository.isHasWiki());
+        DateFormatter dateFormatter = new DateFormatter("yyyy-MM-dd HH:mm:ssZ");
+        Date utcCreatedOn = dateFormatter.parse("2012-06-26 22:22:15+0000", Locale.getDefault());
+        Date utcLastUpdated = dateFormatter.parse("2012-06-26 22:22:15+0000", Locale.getDefault());
+        assertEquals(utcLastUpdated, firstRepository.getLastUpdatedOn());
+        assertEquals(utcCreatedOn, firstRepository.getCreatedAt());
+        assertEquals("1team", firstRepository.getOwner());
+    }
+
+    @Test
+    public void testGetRepositoriesFollowing() throws Exception {
+        //given
+        mockServer.expect(requestTo("https://api.bitbucket.org/1.0/user/repositories/overview"))
+                .andExpect(method(GET))
+                .andRespond(withSuccess(jsonResource("get-repositories-following"), MediaType.APPLICATION_JSON));
+        //when
+        BitBucketFollowingRepositories result = bitBucket.userOperations().getRepositoriesFollowing();
+        //then
+        mockServer.verify();
+//        assertEquals(3, result.size());
+        BitBucketRepository firstRepository = result.getUpdated().iterator().next();//result.iterator().next();
+        assertNull(firstRepository.getScm());
+//        assertNull(firstRepository.isHasWiki());
+        assertTrue(firstRepository.isPrivate());
+        assertEquals("auserbb", firstRepository.getOwner());
+        assertEquals("auser-justdirectteam", firstRepository.getName());
+        assertEquals("auser-justdirectteam", firstRepository.getSlug());
+    }
+
+    @Test(expected = UnsupportedOperationException.class)
+    public void testGetRepositoriesOnDashboard() throws Exception {
+        //given
+        mockServer.expect(requestTo("https://api.bitbucket.org/1.0/user/repositories/dashboard"))
+                .andExpect(method(GET))
+                .andRespond(withSuccess(jsonResource("get-repositories-on-dashboard"), MediaType.APPLICATION_JSON));
+        //when
+        List<BitBucketRepository> result = bitBucket.userOperations().getRepositoriesOnDashboard();
+        //then
+        mockServer.verify();
     }
 }

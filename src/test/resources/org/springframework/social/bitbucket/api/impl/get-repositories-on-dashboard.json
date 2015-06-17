@@ -1,0 +1,70 @@
+[
+  [
+    {
+      "username": "buserbb",
+      "first_name": "B",
+      "last_name": "userbb",
+      "is_team": false,
+      "avatar": "https://secure.gravatar.com/avatar/b677e1e3bf1c781f852b288fd4b68480?d=https%3A%2F%2Fdwz7u9t8u8usb.cloudfront.net%2Fm%2F33b98326237f%2Fimg%2Fdefault_avatar%2F32%2Fuser_blue.png&s=32",
+      "resource_uri": "/1.0/users/buserbb"
+    },
+    [
+      {
+        "website": "",
+        "fork": false,
+        "name": "mybuserrepo",
+        "scm": "git",
+        "absolute_url": "/buserbb/mybuserrepo/",
+        "_pk": 1046047,
+        "owner": "buserbb",
+        "slug": "mybuserrepo",
+        "is_private": true
+      },
+      {
+        "website": null,
+        "fork": "/tutorials/tutorials.bitbucket.org",
+        "name": "myquotefork",
+        "scm": "hg",
+        "absolute_url": "/buserbb/myquotefork/",
+        "_pk": 1446971,
+        "owner": "buserbb",
+        "slug": "myquotefork",
+        "is_private": false
+      }
+    ]
+  ],
+  [
+    {
+      "username": "2team",
+      "first_name": "2 Team",
+      "last_name": "",
+      "is_team": true,
+      "avatar": "https://secure.gravatar.com/avatar/15827007bdb707832ded90a612750cfb?d=https%3A%2F%2Fdwz7u9t8u8usb.cloudfront.net%2Fm%2F33b98326237f%2Fimg%2Fdefault_team_avatar%2F32%2Fteam_blue.png&s=32",
+      "resource_uri": "/1.0/users/2team"
+    },
+    [
+      {
+        "website": "",
+        "fork": false,
+        "name": "teamproject",
+        "scm": "git",
+        "absolute_url": "/2team/teamproject/",
+        "_pk": 1088776,
+        "owner": "2team",
+        "slug": "teamproject",
+        "is_private": true
+      },
+      {
+        "website": "",
+        "fork": false,
+        "name": "public2teamrepo",
+        "scm": "hg",
+        "absolute_url": "/2team/public2teamrepo/",
+        "_pk": 1181363,
+        "owner": "2team",
+        "slug": "public2teamrepo",
+        "is_private": false
+      }
+    ]
+  ]
+]
