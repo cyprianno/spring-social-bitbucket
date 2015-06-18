@@ -26,7 +26,7 @@ package org.springframework.social.bitbucket.api;
  * @see "https://confluence.atlassian.com/display/BITBUCKET/invitations+Endpoint"
  * @since 2.0.0
  */
-public interface InvitationsOperations {
+public interface InvitationOperations {
 
     /**
      * Invites a user to a repository.

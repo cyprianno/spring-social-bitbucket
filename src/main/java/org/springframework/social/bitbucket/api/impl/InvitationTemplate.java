@@ -17,7 +17,7 @@ package org.springframework.social.bitbucket.api.impl;
 
 import org.springframework.social.bitbucket.api.BitBucketInvitation;
 import org.springframework.social.bitbucket.api.BitBucketPrivilege;
-import org.springframework.social.bitbucket.api.InvitationsOperations;
+import org.springframework.social.bitbucket.api.InvitationOperations;
 import org.springframework.social.support.ParameterMap;
 import org.springframework.web.client.RestTemplate;
 
@@ -25,9 +25,9 @@ import org.springframework.web.client.RestTemplate;
  * @author Cyprian Śniegota
  * @since 2.0.0
  */
-public class InvitationsTemplate extends AbstractBitBucketOperations implements InvitationsOperations {
+public class InvitationTemplate extends AbstractBitBucketOperations implements InvitationOperations {
 
-    public InvitationsTemplate(RestTemplate restTemplate, boolean authorized) {
+    public InvitationTemplate(RestTemplate restTemplate, boolean authorized) {
         super(restTemplate, authorized, V1);
     }
 
