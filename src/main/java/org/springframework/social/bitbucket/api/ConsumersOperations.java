@@ -28,4 +28,15 @@ getConsumers
 getConsumer
 updateConsumer
 removeConsumer
+
+1. create interface
+2. update javadoc (description + url from docs)
+3. model (if necessary)
+4. create empty implementation
+5. optional - connect new operations class to base template
+6. create tests
+7. template implementation
+8. file headers
+9. real test (on connection with all permissions)
+
 */
