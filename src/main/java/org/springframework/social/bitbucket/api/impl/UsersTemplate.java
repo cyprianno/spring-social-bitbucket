@@ -15,8 +15,13 @@
  */
 package org.springframework.social.bitbucket.api.impl;
 
+import org.springframework.social.bitbucket.api.UsersAccountOperations;
+import org.springframework.social.bitbucket.api.UsersConsumersOperations;
 import org.springframework.social.bitbucket.api.UsersEmailsOperations;
+import org.springframework.social.bitbucket.api.UsersInvitationsOperations;
 import org.springframework.social.bitbucket.api.UsersOperations;
+import org.springframework.social.bitbucket.api.UsersPrivilegesOperations;
+import org.springframework.social.bitbucket.api.UsersSshKeysOperations;
 import org.springframework.web.client.RestTemplate;
 
 /**
@@ -26,10 +31,45 @@ import org.springframework.web.client.RestTemplate;
 public class UsersTemplate extends AbstractBitBucketOperations implements UsersOperations {
 
     private final UsersEmailsOperations usersEmailsOperations;
+    private final UsersAccountOperations usersAccountOperations;
+    private final UsersConsumersOperations usersConsumersOperations;
+    private final UsersInvitationsOperations usersInvitationsOperations;
+    private final UsersPrivilegesOperations usersPrivilegesOperations;
+    private final UsersSshKeysOperations usersSshKeysOperations;
 
     public UsersTemplate(RestTemplate restTemplate, boolean authorized) {
         super(restTemplate, authorized, V1);
         usersEmailsOperations = new UsersEmailsTemplate(getRestTemplate(), isAuthorized());
+        usersAccountOperations = new UsersAccountTemplate(getRestTemplate(), isAuthorized());
+        usersConsumersOperations = new UsersConsumersTemplate(getRestTemplate(), isAuthorized());
+       usersInvitationsOperations = new UsersInvitationsTemplate(getRestTemplate(), isAuthorized());
+        usersPrivilegesOperations = new UsersPrivilegesTemplate(getRestTemplate(), isAuthorized());
+        usersSshKeysOperations = new UsersSshKeysTemplate(getRestTemplate(), isAuthorized());
+    }
+
+    @Override
+    public UsersAccountOperations usersAccountOperations() {
+        return usersAccountOperations;
+    }
+
+    @Override
+    public UsersConsumersOperations usersConsumersOperations() {
+        return usersConsumersOperations;
+    }
+
+    @Override
+    public UsersInvitationsOperations usersInvitationsOperations() {
+        return usersInvitationsOperations;
+    }
+
+    @Override
+    public UsersPrivilegesOperations usersPrivilegesOperations() {
+        return usersPrivilegesOperations;
+    }
+
+    @Override
+    public UsersSshKeysOperations usersSshKeysOperations() {
+        return usersSshKeysOperations;
     }
 
     @Override

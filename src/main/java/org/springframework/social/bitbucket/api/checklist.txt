@@ -84,10 +84,10 @@ DELETE https://bitbucket.org/api/1.0/users/{accountname}/ssh-keys/{key_id}
 
 X1. create interface
 X2. update javadoc (description + url from docs)
-3. return types + javadoc
-4. model (if necessary)
-5. create empty implementation
-6. optional - connect new operations class to base template
+X3. return types + javadoc
+X4. model (if necessary)
+X5. create empty implementation
+X6. optional - connect new operations class to base template
 7. create tests
 8. template implementation
 9. file headers
