@@ -5,8 +5,8 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
- * @author Cyprian Śniegota <cyprian.sniegota@asseco.pl>
- * @since 2015-06-19
+ * @author Cyprian Śniegota
+ * @since 2.0.0
  */
 public class UsersSshKeysTemplateTest {
 
