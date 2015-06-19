@@ -13,6 +13,7 @@ public class UsersPrivilegesTemplateTest {
     @Test
     public void testGetPrigilegeGroupOnTeamAccount() throws Exception {
         assertTrue(false);
+        //get-privilege-group-on-team-account
         //given
         //when
         //then
@@ -21,6 +22,7 @@ public class UsersPrivilegesTemplateTest {
     @Test
     public void testGetPrivilegesAssociatedWithGroup() throws Exception {
         assertTrue(false);
+        //get-privilege-group-associated-with-group
         //given
         //when
         //then
@@ -29,6 +31,7 @@ public class UsersPrivilegesTemplateTest {
     @Test
     public void testUpdateGroupPrivilegesOnTeamAccount() throws Exception {
         assertTrue(false);
+        //update-group-privileges-on-team-account
         //given
         //when
         //then
@@ -37,6 +40,7 @@ public class UsersPrivilegesTemplateTest {
     @Test
     public void testPostNewPrivilege() throws Exception {
         assertTrue(false);
+        //post-new-privilege
         //given
         //when
         //then
