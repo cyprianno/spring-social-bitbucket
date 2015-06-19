@@ -14,7 +14,7 @@ public interface UsersInvitationsOperations {
     /**
      * Gets a list of pending invitations on a team or individual account.
      * This call requires authorization and the caller must have administrative rights on the account.
-     * GET https://bitbucket.org/api/1.0/users/{accountname}
+     * GET https://bitbucket.org/api/1.0/users/{accountname}/invitations
      *
      * @param accountName The name of an individual or team account.
      */

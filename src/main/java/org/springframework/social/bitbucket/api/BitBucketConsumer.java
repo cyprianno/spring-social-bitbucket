@@ -17,7 +17,7 @@ public class BitBucketConsumer {
      */
     @JsonProperty
     @Getter
-    private String id;
+    private long id;
 
     /**
      * Description of this integration. This can be null.

@@ -1,14 +1,21 @@
 package org.springframework.social.bitbucket.api.impl;
 
 import org.junit.Test;
+import org.springframework.format.datetime.DateFormatter;
 import org.springframework.http.MediaType;
 import org.springframework.social.bitbucket.api.BitBucketInvitation;
 
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import static org.springframework.http.HttpMethod.DELETE;
 import static org.springframework.http.HttpMethod.GET;
+import static org.springframework.http.HttpMethod.PUT;
 import static org.springframework.test.web.client.match.MockRestRequestMatchers.method;
 import static org.springframework.test.web.client.match.MockRestRequestMatchers.requestTo;
 import static org.springframework.test.web.client.response.MockRestResponseCreators.withNoContent;
@@ -27,80 +34,89 @@ public class UsersInvitationsTemplateTest extends BaseTemplateTest {
 
     @Test
     public void testGetPendingInvitations() throws Exception {
-        assertTrue(false);
         //given
-        mockServer
-                .expect(requestTo("https://api.bitbucket.org/1.0/repositories/tortoisehg/thg/followers/"))
-                .andExpect(method(GET))
-                .andRespond(
-                        withSuccess(jsonResource("get-pending-invitations"),
-                                MediaType.APPLICATION_JSON));
+        mockServer.expect(requestTo("https://api.bitbucket.org/1.0/users/testaccount/invitations")).andExpect(method(GET)).andRespond(
+                withSuccess(jsonResource("get-pending-invitations"), MediaType.APPLICATION_JSON));
         //when
         List<BitBucketInvitation> result = bitBucket.usersOperations().usersInvitationsOperations().getPendingInvitations(TEST_ACCOUNTNAME);
         //then
         mockServer.verify();
+        assertEquals(2, result.size());
+        BitBucketInvitation firstInvitation = result.iterator().next();
+        BitBucketInvitation secondInvitation = result.iterator().next();
+        assertEquals(1, firstInvitation.getGroups().size());
+        assertNotNull(firstInvitation.getInvitedBy());
+        assertEquals("buserbb", firstInvitation.getInvitedBy().getUsername());
+        DateFormatter dateFormatter = new DateFormatter("yyyy-MM-dd HH:mm:ssZ");
+        Date expectedDate = dateFormatter.parse("2012-07-19 16:22:51+0000", Locale.getDefault());
+        assertEquals(expectedDate, firstInvitation.getUtcSentOn());
+        assertEquals("joe789@yahoo.com", firstInvitation.getEmail());
+        assertEquals(2, secondInvitation.getGroups().size());
+        assertEquals("buserbb/testgroup", secondInvitation.getGroups().iterator().next());
+        assertEquals("sally_jones@gmail.com", secondInvitation.getEmail());
     }
 
     @Test
     public void testGetPendingInvitationsForEmail() throws Exception {
-        assertTrue(false);
         //given
-        mockServer
-                .expect(requestTo("https://api.bitbucket.org/1.0/repositories/tortoisehg/thg/followers/"))
-                .andExpect(method(GET))
-                .andRespond(
-                        withSuccess(jsonResource("get-pending-invitations-for-email"),
-                                MediaType.APPLICATION_JSON));
+        mockServer.expect(requestTo("https://api.bitbucket.org/1.0/users/testaccount/invitations/test@email.tld")).andExpect(method(GET)).andRespond(
+                withSuccess(jsonResource("get-pending-invitations-for-email"), MediaType.APPLICATION_JSON));
         //when
-        List<BitBucketInvitation> result = bitBucket.usersOperations().usersInvitationsOperations()
-                .getPendingInvitationsForEmail(TEST_ACCOUNTNAME, TEST_EMAIL);
+        List<BitBucketInvitation> result = bitBucket.usersOperations().usersInvitationsOperations().getPendingInvitationsForEmail(TEST_ACCOUNTNAME, TEST_EMAIL);
         //then
         mockServer.verify();
+        assertEquals(1, result.size());
+        BitBucketInvitation firstInvitation = result.iterator().next();
+        assertEquals(2, firstInvitation.getGroups().size());
+        assertEquals("buserbb/testgroup", firstInvitation.getGroups().iterator().next());
+        assertEquals("sally_jones@gmail.com", firstInvitation.getEmail());
+        assertEquals("B", firstInvitation.getInvitedBy().getFirstName());
     }
 
     @Test
-    public void testGetPendingInvitationForGroupMembership() throws Exception {
-        assertTrue(false);
-        //xxx
+    public void testGetPendingInvitationForGroupMembershipPositive() throws Exception {
         //given
-        mockServer
-                .expect(requestTo("https://api.bitbucket.org/1.0/repositories/tortoisehg/thg/followers/"))
-                .andExpect(method(GET))
-                .andRespond(
-                        withSuccess(jsonResource("repo-followers"),
-                                MediaType.APPLICATION_JSON));
+        mockServer.expect(requestTo("https://api.bitbucket.org/1.0/users/testaccount/invitations/test@email.tld/testgroupowner/testgroupslug")).andExpect(
+                method(GET)).andRespond(withSuccess("OK", MediaType.APPLICATION_JSON));
         //when
         boolean result = bitBucket.usersOperations().usersInvitationsOperations()
                 .getPendingInvitationForGroupMembership(TEST_ACCOUNTNAME, TEST_GROUPOWNER, TEST_GROUPSLUG, TEST_EMAIL);
         //then
         mockServer.verify();
+        assertTrue(result);
+    }
+
+    @Test
+    public void testGetPendingInvitationForGroupMembershipNegative() throws Exception {
+        //given
+        mockServer.expect(requestTo("https://api.bitbucket.org/1.0/users/testaccount/invitations/test@email.tld/testgroupowner/testgroupslug")).andExpect(
+                method(GET)).andRespond(withSuccess("Not found", MediaType.APPLICATION_JSON));
+        //when
+        boolean result = bitBucket.usersOperations().usersInvitationsOperations()
+                .getPendingInvitationForGroupMembership(TEST_ACCOUNTNAME, TEST_GROUPOWNER, TEST_GROUPSLUG, TEST_EMAIL);
+        //then
+        mockServer.verify();
+        assertFalse(result);
     }
 
     @Test
     public void testIssueInvitationToGroup() throws Exception {
-        assertTrue(false);
-        //xxx
         //given
-        mockServer
-                .expect(requestTo("https://api.bitbucket.org/1.0/repositories/tortoisehg/thg/followers/"))
-                .andExpect(method(GET))
-                .andRespond(
-                        withSuccess(jsonResource("repo-followers"),
-                                MediaType.APPLICATION_JSON));
+        mockServer.expect(requestTo("https://api.bitbucket.org/1.0/users/testaccount/invitations/test@email.tld/testgroupowner/testgroupslug")).andExpect(
+                method(PUT)).andRespond(withSuccess("Not found", MediaType.APPLICATION_JSON));
         //when
         boolean result = bitBucket.usersOperations().usersInvitationsOperations()
                 .issueInvitationToGroup(TEST_ACCOUNTNAME, TEST_GROUPOWNER, TEST_GROUPSLUG, TEST_EMAIL);
         //then
         mockServer.verify();
+        assertFalse(result);
     }
 
     @Test
     public void testRemoveInitationByEmail() throws Exception {
-        assertTrue(false);
         //given
-        mockServer
-                .expect(requestTo("https://api.bitbucket.org/1.0/privileges/evzijst/test/jespern"))
-                .andExpect(method(DELETE)).andRespond(withNoContent());
+        mockServer.expect(requestTo("https://api.bitbucket.org/1.0/users/testaccount/invitations/test@email.tld")).andExpect(method(DELETE))
+                .andRespond(withNoContent());
         //when
         bitBucket.usersOperations().usersInvitationsOperations().removeInitationByEmail(TEST_ACCOUNTNAME, TEST_EMAIL);
         //then
@@ -109,11 +125,9 @@ public class UsersInvitationsTemplateTest extends BaseTemplateTest {
 
     @Test
     public void testRemoveInvitationByGroup() throws Exception {
-        assertTrue(false);
         //given
-        mockServer
-                .expect(requestTo("https://api.bitbucket.org/1.0/privileges/evzijst/test/jespern"))
-                .andExpect(method(DELETE)).andRespond(withNoContent());
+        mockServer.expect(requestTo("https://api.bitbucket.org/1.0/users/testaccount/invitations/test@email.tld/testgroupowner/testgroupslug")).andExpect(
+                method(DELETE)).andRespond(withNoContent());
         //when
         bitBucket.usersOperations().usersInvitationsOperations().removeInvitationByGroup(TEST_ACCOUNTNAME, TEST_GROUPOWNER, TEST_GROUPSLUG, TEST_EMAIL);
         //then

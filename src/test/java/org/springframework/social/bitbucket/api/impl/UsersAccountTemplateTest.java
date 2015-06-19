@@ -102,11 +102,10 @@ public class UsersAccountTemplateTest extends BaseTemplateTest {
         assertNull(firstEvent.getUser());
         assertNull(firstEvent.getRepository());
         assertEquals("pullrequest_fulfilled", firstEvent.getEvent());
-        //dates
         DateFormatter dateFormatter = new DateFormatter("yyyy-MM-dd HH:mm:ssZ");
-        Date expectedDate = dateFormatter.parse("2013-02-20 00:15:53", Locale.getDefault());
+        Date expectedDate = dateFormatter.parse("2013-02-20 00:15:53+0000", Locale.getDefault());
         assertEquals(expectedDate, firstEvent.getCreatedOn());
-        Date expectedDateUtc = dateFormatter.parse("2013-02-20 00:15:53", Locale.getDefault());
+        Date expectedDateUtc = dateFormatter.parse("2013-02-19 23:15:08+0000", Locale.getDefault());
         assertEquals(expectedDateUtc, firstEvent.getUtcCreatedOn());
     }
 }

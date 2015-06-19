@@ -31,7 +31,7 @@ public interface UsersConsumersOperations {
      * @param id          Identifier for the key
      * @return Consumer
      */
-    BitBucketConsumer getConsumer(String accountName, String id);
+    BitBucketConsumer getConsumer(String accountName, long id);
 
     /**
      * Updates an individual consumer for an account.  You must supply the consumer's name parameter.
@@ -44,7 +44,7 @@ public interface UsersConsumersOperations {
      * @param url         The url
      * @return Updated Consumer.
      */
-    BitBucketConsumer updateConsumer(String accountName, String id, String name, String description, String url);
+    BitBucketConsumer updateConsumer(String accountName, long id, String name, String description, String url);
 
     /**
      * Deletes an individual consumer from an account.
@@ -53,6 +53,6 @@ public interface UsersConsumersOperations {
      * @param accountName The team or individual account name.
      * @param id          Identifier for the key
      */
-    void removeConsumer(String accountName, String id);
+    void removeConsumer(String accountName, long id);
 }
 
