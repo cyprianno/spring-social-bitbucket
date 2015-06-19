@@ -13,6 +13,7 @@ public class UsersConsumersTemplateTest {
     @Test
     public void testGetConsumers() throws Exception {
         assertTrue(false);
+        //get-consumers
         //given
         //when
         //then
@@ -21,6 +22,7 @@ public class UsersConsumersTemplateTest {
     @Test
     public void testGetConsumer() throws Exception {
         assertTrue(false);
+        //get-consumer
         //given
         //when
         //then
@@ -29,6 +31,7 @@ public class UsersConsumersTemplateTest {
     @Test
     public void testUpdateConsumer() throws Exception {
         assertTrue(false);
+        //update-consumer
         //given
         //when
         //then
