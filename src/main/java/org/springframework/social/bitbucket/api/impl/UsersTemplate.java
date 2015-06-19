@@ -73,7 +73,7 @@ public class UsersTemplate extends AbstractBitBucketOperations implements UsersO
     }
 
     @Override
-    public final UsersEmailsOperations emailsOperations() {
+    public final UsersEmailsOperations usersEmailsOperations() {
         return usersEmailsOperations;
     }
 }
