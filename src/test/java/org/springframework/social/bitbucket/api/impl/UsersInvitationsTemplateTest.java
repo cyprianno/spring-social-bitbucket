@@ -1,6 +1,9 @@
 package org.springframework.social.bitbucket.api.impl;
 
 import org.junit.Test;
+import org.springframework.social.bitbucket.api.BitBucketInvitation;
+
+import java.util.List;
 
 import static org.junit.Assert.assertTrue;
 
@@ -8,7 +11,12 @@ import static org.junit.Assert.assertTrue;
  * @author Cyprian Śniegota
  * @since 2.0.0
  */
-public class UsersInvitationsTemplateTest {
+public class UsersInvitationsTemplateTest extends BaseTemplateTest {
+
+    private static final String TEST_ACCOUNTNAME = "testaccount";
+    private static final String TEST_EMAIL = "test@email.tld";
+    private static final String TEST_GROUPOWNER = "testgroupowner";
+    private static final String TEST_GROUPSLUG = "testgroupslug";
 
     @Test
     public void testGetPendingInvitations() throws Exception {
@@ -16,6 +24,7 @@ public class UsersInvitationsTemplateTest {
         //get-pending-invitations
         //given
         //when
+        List<BitBucketInvitation> result = bitBucket.usersOperations().usersInvitationsOperations().getPendingInvitations(TEST_ACCOUNTNAME);
         //then
     }
 
@@ -25,6 +34,8 @@ public class UsersInvitationsTemplateTest {
 //        get-pending-invitations-for-email
         //given
         //when
+        List<BitBucketInvitation> result = bitBucket.usersOperations().usersInvitationsOperations()
+                .getPendingInvitationsForEmail(TEST_ACCOUNTNAME, TEST_EMAIL);
         //then
     }
 
@@ -34,6 +45,8 @@ public class UsersInvitationsTemplateTest {
         //
         //given
         //when
+        boolean result = bitBucket.usersOperations().usersInvitationsOperations()
+                .getPendingInvitationForGroupMembership(TEST_ACCOUNTNAME, TEST_GROUPOWNER, TEST_GROUPSLUG, TEST_EMAIL);
         //then
     }
 
@@ -43,6 +56,8 @@ public class UsersInvitationsTemplateTest {
         //
         //given
         //when
+        boolean result = bitBucket.usersOperations().usersInvitationsOperations()
+                .issueInvitationToGroup(TEST_ACCOUNTNAME, TEST_GROUPOWNER, TEST_GROUPSLUG, TEST_EMAIL);
         //then
     }
 
@@ -51,6 +66,7 @@ public class UsersInvitationsTemplateTest {
         assertTrue(false);
         //given
         //when
+        bitBucket.usersOperations().usersInvitationsOperations().removeInitationByEmail(TEST_ACCOUNTNAME, TEST_EMAIL);
         //then
     }
 
@@ -59,6 +75,7 @@ public class UsersInvitationsTemplateTest {
         assertTrue(false);
         //given
         //when
+        bitBucket.usersOperations().usersInvitationsOperations().removeInvitationByGroup(TEST_ACCOUNTNAME, TEST_GROUPOWNER, TEST_GROUPSLUG, TEST_EMAIL);
         //then
     }
 }

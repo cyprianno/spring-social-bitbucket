@@ -31,6 +31,9 @@ import static org.springframework.test.web.client.response.MockRestResponseCreat
  */
 public class UsersEmailsTemplateTest extends BaseTemplateTest {
 
+    private static final String TEST_ACCOUNTNAME = "testaccount";
+    private static final String TEST_EMAIL = "test@email.tld";
+
     @Test
     public void testGetListOfUserEmailAddresses() throws Exception {
         //given
@@ -71,6 +74,8 @@ public class UsersEmailsTemplateTest extends BaseTemplateTest {
         //post-new-email-address
         //given
         //when
+        List<BitBucketEmailAddress> result = bitBucket.usersOperations().usersEmailsOperations()
+                .postNewEmailAddress(TEST_ACCOUNTNAME, TEST_EMAIL);
         //then
     }
 
@@ -80,6 +85,7 @@ public class UsersEmailsTemplateTest extends BaseTemplateTest {
         //update-email-address
         //given
         //when
+        BitBucketEmailAddress result = bitBucket.usersOperations().usersEmailsOperations().updateEmailAddress(TEST_ACCOUNTNAME, TEST_EMAIL);
         //then
     }
 }

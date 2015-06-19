@@ -1,6 +1,9 @@
 package org.springframework.social.bitbucket.api.impl;
 
 import org.junit.Test;
+import org.springframework.social.bitbucket.api.BitBucketTeamPrivilege;
+
+import java.util.Map;
 
 import static org.junit.Assert.assertTrue;
 
@@ -8,14 +11,18 @@ import static org.junit.Assert.assertTrue;
  * @author Cyprian Śniegota
  * @since 2.0.0
  */
-public class UsersPrivilegesTemplateTest {
-
+public class UsersPrivilegesTemplateTest extends BaseTemplateTest {
+    private static final String TEST_ACCOUNTNAME = "testaccount";
+    private static final String TEST_OWNER = "testowner";
+    private static final String TEST_GROUPSLUG = "testgroupslug";
     @Test
     public void testGetPrigilegeGroupOnTeamAccount() throws Exception {
         assertTrue(false);
         //get-privilege-group-on-team-account
         //given
         //when
+        Map<String, BitBucketTeamPrivilege> result = bitBucket.usersOperations().usersPrivilegesOperations()
+                .getPrigilegeGroupOnTeamAccount(TEST_ACCOUNTNAME, TEST_GROUPSLUG);
         //then
     }
 
@@ -25,6 +32,8 @@ public class UsersPrivilegesTemplateTest {
         //get-privilege-group-associated-with-group
         //given
         //when
+        BitBucketTeamPrivilege result = bitBucket.usersOperations().usersPrivilegesOperations()
+                .getPrivilegesAssociatedWithGroup(TEST_ACCOUNTNAME, TEST_OWNER, TEST_GROUPSLUG);
         //then
     }
 
@@ -34,6 +43,8 @@ public class UsersPrivilegesTemplateTest {
         //update-group-privileges-on-team-account
         //given
         //when
+        Map<String, BitBucketTeamPrivilege> result = bitBucket.usersOperations().usersPrivilegesOperations()
+                .updateGroupPrivilegesOnTeamAccount(TEST_ACCOUNTNAME, TEST_OWNER, TEST_GROUPSLUG, BitBucketTeamPrivilege.collaborator);
         //then
     }
 
@@ -43,6 +54,8 @@ public class UsersPrivilegesTemplateTest {
         //post-new-privilege
         //given
         //when
+        Map<String, BitBucketTeamPrivilege> result = bitBucket.usersOperations().usersPrivilegesOperations()
+                .postNewPrivilege(TEST_ACCOUNTNAME, TEST_OWNER, TEST_GROUPSLUG, BitBucketTeamPrivilege.admin);
         //then
     }
 
@@ -51,6 +64,7 @@ public class UsersPrivilegesTemplateTest {
         assertTrue(false);
         //given
         //when
+        bitBucket.usersOperations().usersPrivilegesOperations().removePrivilegeGroup(TEST_ACCOUNTNAME, TEST_OWNER, TEST_GROUPSLUG);
         //then
     }
 }

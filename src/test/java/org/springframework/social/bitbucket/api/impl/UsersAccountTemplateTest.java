@@ -1,6 +1,11 @@
 package org.springframework.social.bitbucket.api.impl;
 
 import org.junit.Test;
+import org.springframework.social.bitbucket.api.BitBucketEvent;
+import org.springframework.social.bitbucket.api.BitBucketUser;
+import org.springframework.social.bitbucket.api.UserWithRepositories;
+
+import java.util.List;
 
 import static org.junit.Assert.assertTrue;
 
@@ -8,7 +13,9 @@ import static org.junit.Assert.assertTrue;
  * @author Cyprian Śniegota
  * @since 2.0.0
  */
-public class UsersAccountTemplateTest {
+public class UsersAccountTemplateTest extends BaseTemplateTest {
+
+    private static final String TEST_USERNAME = "username";
 
     @Test
     public void testGetProfileUnauthenticated() throws Exception {
@@ -16,6 +23,7 @@ public class UsersAccountTemplateTest {
         //get-profile-unauthenticated
         //given
         //when
+        UserWithRepositories result = bitBucket.usersOperations().usersAccountOperations().getProfile(TEST_USERNAME);
         //then
     }
 
@@ -25,6 +33,7 @@ public class UsersAccountTemplateTest {
         //get-profile-authenticated
         //given
         //when
+        UserWithRepositories result = bitBucket.usersOperations().usersAccountOperations().getProfile(TEST_USERNAME);
         //then
     }
 
@@ -34,6 +43,7 @@ public class UsersAccountTemplateTest {
         //get-plan
         //given
         //when
+        Long result = bitBucket.usersOperations().usersAccountOperations().getPlan(TEST_USERNAME);
         //then
     }
 
@@ -43,6 +53,7 @@ public class UsersAccountTemplateTest {
         //get-followers
         //given
         //when
+        List<BitBucketUser> result = bitBucket.usersOperations().usersAccountOperations().getFollowers(TEST_USERNAME);
         //then
     }
 
@@ -52,6 +63,7 @@ public class UsersAccountTemplateTest {
         //get-events
         //given
         //when
+        List<BitBucketEvent> result = bitBucket.usersOperations().usersAccountOperations().getEvents(TEST_USERNAME);
         //then
     }
 }

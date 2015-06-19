@@ -56,7 +56,7 @@ public interface UsersPrivilegesOperations {
      * @param privilege   Either admin or collaborator.
      * @return upated privilege as key: group, value: privilege
      */
-    Map<String, BitBucketTeamPrivilege> updateGroupPrivilegesOnTeamAccount(String accountName, String owner, String groupSlug, String privilege);
+    Map<String, BitBucketTeamPrivilege> updateGroupPrivilegesOnTeamAccount(String accountName, String owner, String groupSlug, BitBucketTeamPrivilege privilege);
 
     /**
      * Adds a privilege to a group without any. The caller must authenticate.
@@ -70,7 +70,7 @@ public interface UsersPrivilegesOperations {
      * @param privilege   Either admin or collaborator.
      * @return Created privilege as key: group, value: privilege
      */
-    Map<String, BitBucketTeamPrivilege> postNewPrivilege(String accountName, String owner, String groupSlug, String privilege);
+    Map<String, BitBucketTeamPrivilege> postNewPrivilege(String accountName, String owner, String groupSlug, BitBucketTeamPrivilege privilege);
 
     /**
      * Deletes a privilege. The caller must authenticate.
