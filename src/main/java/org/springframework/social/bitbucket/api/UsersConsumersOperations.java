@@ -1,5 +1,7 @@
 package org.springframework.social.bitbucket.api;
 
+import java.util.List;
+
 /**
  * A consumer is an application authorized to integrate with a Bitbucket account.
  * Account owners or team administrators can give third-party web applications access to a Bitbucket individual account or a team.
@@ -17,8 +19,9 @@ public interface UsersConsumersOperations {
      * GET https://api.bitbucket.org/1.0/users/{accountname}/consumers
      *
      * @param accountName The team or individual account name.
+     * @return list of Consumers
      */
-    void getConsumers(String accountName);
+    List<BitBucketConsumer> getConsumers(String accountName);
 
     /**
      * Gets an individual consumer for an account.
@@ -26,8 +29,9 @@ public interface UsersConsumersOperations {
      *
      * @param accountName The team or individual account name.
      * @param id          Identifier for the key
+     * @return Consumer
      */
-    void getConsumer(String accountName, String id);
+    BitBucketConsumer getConsumer(String accountName, String id);
 
     /**
      * Updates an individual consumer for an account.  You must supply the consumer's name parameter.
@@ -38,8 +42,9 @@ public interface UsersConsumersOperations {
      * @param name        Name of the consumer.
      * @param description Description for the consumer.
      * @param url         The url
+     * @return Updated Consumer.
      */
-    void updateConsumer(String accountName, String id, String name, String description, String url);
+    BitBucketConsumer updateConsumer(String accountName, String id, String name, String description, String url);
 
     /**
      * Deletes an individual consumer from an account.

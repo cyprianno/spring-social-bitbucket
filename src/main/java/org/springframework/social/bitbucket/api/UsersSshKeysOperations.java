@@ -1,5 +1,7 @@
 package org.springframework.social.bitbucket.api;
 
+import java.util.List;
+
 /**
  * Use the ssh-keys resource to manipulate the ssh-keys on an individual or team account.
  *
@@ -14,8 +16,9 @@ public interface UsersSshKeysOperations {
      * GET https://bitbucket.org/api/1.0/users/{accountname}/ssh-keys
      *
      * @param accountName The name of an individual or team account.
+     * @return A list of ssh keys.
      */
-    void getKeys(String accountName);
+    List<BitBucketSshKey> getKeys(String accountName);
 
     /**
      * Creates a key on the specified account.
@@ -27,8 +30,9 @@ public interface UsersSshKeysOperations {
      * @param accountName The name of an individual or team account.
      * @param label       A label for the key.
      * @param key         The key value.
+     * @return Ssh key.
      */
-    void postKey(String accountName, String label, String key);
+    BitBucketSshKey postKey(String accountName, String label, String key);
 
     /**
      * Gets the content of the specified key_id. This call requires authentication. This call requires authentication.
@@ -37,8 +41,9 @@ public interface UsersSshKeysOperations {
      * @param accountName The name of an individual or team account.
      * @param keyId       The key identifier. This is an internal value created by Bitbucket when the key is added.
      * @param label       A label for the key.
+     * @return Ssh key.
      */
-    void getKey(String accountName, String keyId, String label);
+    BitBucketSshKey getKey(String accountName, String keyId, String label);
 
     /**
      * Deletes the key specified by the key_id value. This call requires authentication.

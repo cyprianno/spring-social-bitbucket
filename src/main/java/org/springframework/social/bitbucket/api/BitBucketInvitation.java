@@ -22,7 +22,9 @@ import lombok.Getter;
 import org.springframework.social.bitbucket.api.impl.UTCDateDeserializer;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * BitBucket invitation data
@@ -37,6 +39,10 @@ public class BitBucketInvitation implements Serializable {
     @JsonProperty("sent_on")
     @JsonDeserialize(using = UTCDateDeserializer.class)
     private Date sentOn;
+
+    @JsonProperty("utc_sent_on")
+    @JsonDeserialize(using = UTCDateDeserializer.class)
+    private Date utcSentOn;
 
     @JsonProperty
     @Getter
@@ -54,11 +60,22 @@ public class BitBucketInvitation implements Serializable {
     @Getter
     private String email;
 
+    @JsonProperty
+    @Getter
+    private List<String> groups = new ArrayList<>();
+
     public final Date getSentOn() {
         if (sentOn == null) {
             return null;
         }
         return (Date) sentOn.clone();
+    }
+
+    public final Date getUtcSentOn() {
+        if (utcSentOn == null) {
+            return null;
+        }
+        return (Date) utcSentOn.clone();
     }
 
 }

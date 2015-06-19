@@ -1,5 +1,7 @@
 package org.springframework.social.bitbucket.api;
 
+import java.util.List;
+
 /**
  * Account Resource
  * This resource returns a user structure and the repositories array associated with an existing account
@@ -18,16 +20,18 @@ public interface UsersAccountOperations {
      * GET https://bitbucket.org/api/1.0/users/{emailaddress}
      *
      * @param accountName The name of an individual or team account. You can also use a validated email address in place of the accountname value.
+     * @return User with repositories
      */
-    void getProfile(String accountName);
+    UserWithRepositories getProfile(String accountName);
 
     /**
      * Gets the number of users counted against an account's plan. This call requires authentication.
      * GET https://bitbucket.org/api/1.0/users/{accountname}/plan
      *
      * @param accountName The name of an individual or team account. You can also use a validated email address in place of the accountname value.
+     * @return The number of users.
      */
-    void getPlan(String accountName);
+    Long getPlan(String accountName);
 
     /**
      * Gets a count and the list of accounts following an account.
@@ -38,15 +42,17 @@ public interface UsersAccountOperations {
      * GET https://bitbucket.org/api/1.0/users/{accountname}/followers
      *
      * @param accountName The name of an individual or team account. You can also use a validated email address in place of the accountname value.
+     * @return List of followers.
      */
-    void getFollowers(String accountName);
+    List<BitBucketUser> getFollowers(String accountName);
 
     /**
      * Gets a count and the list of events associated with an account. This call requires authentication.
      * GET https://bitbucket.org/api/1.0/users/{accountname}/events
      *
      * @param accountName The name of an individual or team account. You can also use a validated email address in place of the accountname value.
+     * @return List of events.
      */
-    void getEvents(String accountName);
+    List<BitBucketEvent> getEvents(String accountName);
 
 }

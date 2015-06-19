@@ -1,5 +1,7 @@
 package org.springframework.social.bitbucket.api;
 
+import java.util.Map;
+
 /**
  * Use this resource to manage privilege settings for a team account.
  * Team accounts can grant groups account privileges as well as repository access.
@@ -22,8 +24,9 @@ public interface UsersPrivilegesOperations {
      *
      * @param accountName The team or individual account name.
      * @param groupSlug   The group's slug.
+     * @return a map with group as a key, privilege as a value
      */
-    void getPrigilegeGroupOnTeamAccount(String accountName, String groupSlug);
+    Map<String, BitBucketTeamPrivilege> getPrigilegeGroupOnTeamAccount(String accountName, String groupSlug);
 
     /**
      * Gets the privilege associated with the specified groupname.
@@ -35,8 +38,9 @@ public interface UsersPrivilegesOperations {
      * @param accountName The team or individual account name.
      * @param owner       The account that owns the group.
      * @param groupSlug   The group's slug.
+     * @return Associated privilege.
      */
-    void getPrivilegesAssociatedWithGroup(String accountName, String owner, String groupSlug);
+    BitBucketTeamPrivilege getPrivilegesAssociatedWithGroup(String accountName, String owner, String groupSlug);
 
     /**
      * Updates an existing group's privileges for a team account.
@@ -50,8 +54,9 @@ public interface UsersPrivilegesOperations {
      * @param owner       The account that owns the group.
      * @param groupSlug   The group's slug.
      * @param privilege   Either admin or collaborator.
+     * @return upated privilege as key: group, value: privilege
      */
-    void updateGroupPrivilegesOnTeamAccount(String accountName, String owner, String groupSlug, String privilege);
+    Map<String, BitBucketTeamPrivilege> updateGroupPrivilegesOnTeamAccount(String accountName, String owner, String groupSlug, String privilege);
 
     /**
      * Adds a privilege to a group without any. The caller must authenticate.
@@ -63,8 +68,9 @@ public interface UsersPrivilegesOperations {
      * @param owner       The account that owns the group.
      * @param groupSlug   The group's slug.
      * @param privilege   Either admin or collaborator.
+     * @return Created privilege as key: group, value: privilege
      */
-    void postNewPrivilege(String accountName, String owner, String groupSlug, String privilege);
+    Map<String, BitBucketTeamPrivilege> postNewPrivilege(String accountName, String owner, String groupSlug, String privilege);
 
     /**
      * Deletes a privilege. The caller must authenticate.

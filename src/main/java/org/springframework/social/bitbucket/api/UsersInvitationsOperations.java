@@ -1,5 +1,7 @@
 package org.springframework.social.bitbucket.api;
 
+import java.util.List;
+
 /**
  * An invitation is a request sent to an external email address to participate one or more of an account's groups.
  * Any user with admin access to the account can invite someone to a group.
@@ -16,7 +18,7 @@ public interface UsersInvitationsOperations {
      *
      * @param accountName The name of an individual or team account.
      */
-    void getPendingInvitations(String accountName);
+    List<BitBucketInvitation> getPendingInvitations(String accountName);
 
     /**
      * Gets any pending invitations on a team or individual account for a particular email address.
@@ -30,7 +32,7 @@ public interface UsersInvitationsOperations {
      * @param accountName  The name of an individual or team account.
      * @param emailAddress The email address to get.
      */
-    void getPendingInvitationsForEmail(String accountName, String emailAddress);
+    List<BitBucketInvitation> getPendingInvitationsForEmail(String accountName, String emailAddress);
 
     /**
      * Tests whether there is a pending invitation for a particular email on account's group.
@@ -44,8 +46,9 @@ public interface UsersInvitationsOperations {
      * @param groupSlug    An identifier for the group. The  slug  is an identifier constructed by the Bitbucket service.
      *                     Bitbucket creates a  slug  by converting spaces to dashes and making all text lower case.
      * @param emailAddress The email address.
+     * @return true if invitation exists, false otherwise.
      */
-    void getPendingInvitationForGroupMembership(String accountName, String groupOwner, String groupSlug, String emailAddress);
+    boolean getPendingInvitationForGroupMembership(String accountName, String groupOwner, String groupSlug, String emailAddress);
 
     /**
      * Issues an invitation to the specified account group.
@@ -61,8 +64,9 @@ public interface UsersInvitationsOperations {
      * @param groupSlug    An identifier for the group. The  slug  is an identifier constructed by the Bitbucket service.
      *                     Bitbucket creates a  slug  by converting spaces to dashes and making all text lower case.
      * @param emailAddress The email address.
+     * @return true if the invitation succeeds, false otherwise.
      */
-    void issueInvitationToGroup(String accountName, String groupOwner, String groupSlug, String emailAddress);
+    boolean issueInvitationToGroup(String accountName, String groupOwner, String groupSlug, String emailAddress);
 
     /**
      * Deletes any pending invitations on a team or individual account for a particular email address.
