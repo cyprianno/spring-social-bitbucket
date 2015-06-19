@@ -31,8 +31,9 @@ public interface UsersInvitationsOperations {
      *
      * @param accountName  The name of an individual or team account.
      * @param emailAddress The email address to get.
+     * @return pending invitation
      */
-    List<BitBucketInvitation> getPendingInvitationsForEmail(String accountName, String emailAddress);
+    BitBucketInvitation getPendingInvitationsForEmail(String accountName, String emailAddress);
 
     /**
      * Tests whether there is a pending invitation for a particular email on account's group.

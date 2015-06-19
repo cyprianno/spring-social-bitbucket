@@ -6,6 +6,7 @@ import org.springframework.http.MediaType;
 import org.springframework.social.bitbucket.api.BitBucketInvitation;
 
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 
@@ -42,8 +43,9 @@ public class UsersInvitationsTemplateTest extends BaseTemplateTest {
         //then
         mockServer.verify();
         assertEquals(2, result.size());
-        BitBucketInvitation firstInvitation = result.iterator().next();
-        BitBucketInvitation secondInvitation = result.iterator().next();
+        Iterator<BitBucketInvitation> iterator = result.iterator();
+        BitBucketInvitation firstInvitation = iterator.next();
+        BitBucketInvitation secondInvitation = iterator.next();
         assertEquals(1, firstInvitation.getGroups().size());
         assertNotNull(firstInvitation.getInvitedBy());
         assertEquals("buserbb", firstInvitation.getInvitedBy().getUsername());
@@ -62,15 +64,13 @@ public class UsersInvitationsTemplateTest extends BaseTemplateTest {
         mockServer.expect(requestTo("https://api.bitbucket.org/1.0/users/testaccount/invitations/test@email.tld")).andExpect(method(GET)).andRespond(
                 withSuccess(jsonResource("get-pending-invitations-for-email"), MediaType.APPLICATION_JSON));
         //when
-        List<BitBucketInvitation> result = bitBucket.usersOperations().usersInvitationsOperations().getPendingInvitationsForEmail(TEST_ACCOUNTNAME, TEST_EMAIL);
+        BitBucketInvitation result = bitBucket.usersOperations().usersInvitationsOperations().getPendingInvitationsForEmail(TEST_ACCOUNTNAME, TEST_EMAIL);
         //then
         mockServer.verify();
-        assertEquals(1, result.size());
-        BitBucketInvitation firstInvitation = result.iterator().next();
-        assertEquals(2, firstInvitation.getGroups().size());
-        assertEquals("buserbb/testgroup", firstInvitation.getGroups().iterator().next());
-        assertEquals("sally_jones@gmail.com", firstInvitation.getEmail());
-        assertEquals("B", firstInvitation.getInvitedBy().getFirstName());
+        assertEquals(2, result.getGroups().size());
+        assertEquals("buserbb/testgroup", result.getGroups().iterator().next());
+        assertEquals("sally_jones@gmail.com", result.getEmail());
+        assertEquals("B", result.getInvitedBy().getFirstName());
     }
 
     @Test

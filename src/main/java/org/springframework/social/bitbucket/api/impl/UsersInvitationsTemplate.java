@@ -1,10 +1,14 @@
 package org.springframework.social.bitbucket.api.impl;
 
+import org.springframework.http.HttpMethod;
+import org.springframework.social.bitbucket.api.BitBucketConsumer;
 import org.springframework.social.bitbucket.api.BitBucketInvitation;
 import org.springframework.social.bitbucket.api.UsersInvitationsOperations;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
+
+import static java.util.Arrays.asList;
 
 /**
  * @author Cyprian Śniegota
@@ -17,22 +21,25 @@ public class UsersInvitationsTemplate extends AbstractBitBucketOperations implem
 
     @Override
     public final List<BitBucketInvitation> getPendingInvitations(String accountName) {
-        return null;
+        return asList(getRestTemplate().getForObject(buildUrl("/users/{accountname}/invitations"), BitBucketInvitation[].class, accountName));
     }
 
     @Override
-    public final List<BitBucketInvitation> getPendingInvitationsForEmail(String accountName, String emailAddress) {
-        return null;
+    public final BitBucketInvitation getPendingInvitationsForEmail(String accountName, String emailAddress) {
+        return getRestTemplate().getForObject(buildUrl("/users/{accountname}/invitations/{email}"), BitBucketInvitation.class, accountName, emailAddress);
     }
 
     @Override
     public final boolean getPendingInvitationForGroupMembership(String accountName, String groupOwner, String groupSlug, String emailAddress) {
-        return false;
+        return getRestTemplate()
+                .getForObject(buildUrl("/users/{accountname}/invitations/{email_address}/{group_owner}/{group_slug}"), String.class, accountName, emailAddress,
+                        groupOwner, groupSlug).equals("OK");
     }
 
     @Override
     public final boolean issueInvitationToGroup(String accountName, String groupOwner, String groupSlug, String emailAddress) {
-        return false;
+        return getRestTemplate().exchange(buildUrl("/users/{accountname}/invitations/{email_address}/{group_owner}/{group_slug}"), HttpMethod.PUT, null,
+                String.class, accountName, emailAddress, groupOwner, groupSlug).getBody().equals("OK");
     }
 
     @Override
