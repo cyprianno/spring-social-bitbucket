@@ -1,0 +1,16 @@
+{
+  "groups": [
+    "buserbb/testgroup",
+    "buserbb/newgroup"
+  ],
+  "invited_by": {
+    "username": "buserbb",
+    "first_name": "B",
+    "last_name": "userbb",
+    "is_team": false,
+    "avatar": "https://secure.gravatar.com/avatar/b677e1e3bf1c781f852b288fd4b68480?d=identicon&s=32",
+    "resource_uri": "/1.0/users/buserbb"
+  },
+  "utc_sent_on": "2012-07-19 16:20:04+00:00",
+  "email": "sally_jones@gmail.com"
+}

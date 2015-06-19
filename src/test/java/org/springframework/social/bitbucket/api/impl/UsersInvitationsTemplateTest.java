@@ -13,6 +13,7 @@ public class UsersInvitationsTemplateTest {
     @Test
     public void testGetPendingInvitations() throws Exception {
         assertTrue(false);
+        //get-pending-invitations
         //given
         //when
         //then
@@ -21,6 +22,7 @@ public class UsersInvitationsTemplateTest {
     @Test
     public void testGetPendingInvitationsForEmail() throws Exception {
         assertTrue(false);
+//        get-pending-invitations-for-email
         //given
         //when
         //then
@@ -29,6 +31,7 @@ public class UsersInvitationsTemplateTest {
     @Test
     public void testGetPendingInvitationForGroupMembership() throws Exception {
         assertTrue(false);
+        //
         //given
         //when
         //then
@@ -37,6 +40,7 @@ public class UsersInvitationsTemplateTest {
     @Test
     public void testIssueInvitationToGroup() throws Exception {
         assertTrue(false);
+        //
         //given
         //when
         //then
