@@ -1,0 +1,26 @@
+{
+  "count": 3,
+  "followers": [
+    {
+      "username": "BitLasso",
+      "first_name": "richard",
+      "last_name": "howard",
+      "avatar": "https://secure.gravatar.com/avatar/25324c0f7832ae4dc58548f1d9287881?d=identicon&s=32",
+      "resource_uri": "/1.0/users/BitLasso"
+    },
+    {
+      "username": "rmanalan",
+      "first_name": "Rich",
+      "last_name": "Manalang",
+      "avatar": "https://secure.gravatar.com/avatar/7696e50d0dfde6995d3e09d9d8809d21?d=identicon&s=32",
+      "resource_uri": "/1.0/users/rmanalan"
+    },
+    {
+      "username": "sherif",
+      "first_name": "Sherif",
+      "last_name": "Mansour",
+      "avatar": "https://bitbucket-assetroot.s3.amazonaws.com/c/photos/2010/Apr/27/n620925694_5342_avatar.jpg",
+      "resource_uri": "/1.0/users/sherif"
+    }
+  ]
+}

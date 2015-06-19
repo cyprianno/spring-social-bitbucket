@@ -11,8 +11,18 @@ import static org.junit.Assert.assertTrue;
 public class UsersAccountTemplateTest {
 
     @Test
-    public void testGetProfile() throws Exception {
+    public void testGetProfileUnauthenticated() throws Exception {
         assertTrue(false);
+        //get-profile-unauthenticated
+        //given
+        //when
+        //then
+    }
+
+    @Test
+    public void testGetProfileAuthenticated() throws Exception {
+        assertTrue(false);
+        //get-profile-authenticated
         //given
         //when
         //then
@@ -21,6 +31,7 @@ public class UsersAccountTemplateTest {
     @Test
     public void testGetPlan() throws Exception {
         assertTrue(false);
+        //get-plan
         //given
         //when
         //then
@@ -29,6 +40,7 @@ public class UsersAccountTemplateTest {
     @Test
     public void testGetFollowers() throws Exception {
         assertTrue(false);
+        //get-followers
         //given
         //when
         //then
@@ -37,6 +49,7 @@ public class UsersAccountTemplateTest {
     @Test
     public void testGetEvents() throws Exception {
         assertTrue(false);
+        //get-events
         //given
         //when
         //then
