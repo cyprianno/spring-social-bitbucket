@@ -1,12 +1,9 @@
 /**
  * Copyright (C) 2012 Eric Bottard / Guillaume Lederrey (eric.bottard+ghpublic@gmail.com / guillaume.lederrey@gmail.com)
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *         http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -42,33 +39,33 @@ public class UsersTemplate extends AbstractBitBucketOperations implements UsersO
         usersEmailsOperations = new UsersEmailsTemplate(getRestTemplate(), isAuthorized());
         usersAccountOperations = new UsersAccountTemplate(getRestTemplate(), isAuthorized());
         usersConsumersOperations = new UsersConsumersTemplate(getRestTemplate(), isAuthorized());
-       usersInvitationsOperations = new UsersInvitationsTemplate(getRestTemplate(), isAuthorized());
+        usersInvitationsOperations = new UsersInvitationsTemplate(getRestTemplate(), isAuthorized());
         usersPrivilegesOperations = new UsersPrivilegesTemplate(getRestTemplate(), isAuthorized());
         usersSshKeysOperations = new UsersSshKeysTemplate(getRestTemplate(), isAuthorized());
     }
 
     @Override
-    public UsersAccountOperations usersAccountOperations() {
+    public final UsersAccountOperations usersAccountOperations() {
         return usersAccountOperations;
     }
 
     @Override
-    public UsersConsumersOperations usersConsumersOperations() {
+    public final UsersConsumersOperations usersConsumersOperations() {
         return usersConsumersOperations;
     }
 
     @Override
-    public UsersInvitationsOperations usersInvitationsOperations() {
+    public final UsersInvitationsOperations usersInvitationsOperations() {
         return usersInvitationsOperations;
     }
 
     @Override
-    public UsersPrivilegesOperations usersPrivilegesOperations() {
+    public final UsersPrivilegesOperations usersPrivilegesOperations() {
         return usersPrivilegesOperations;
     }
 
     @Override
-    public UsersSshKeysOperations usersSshKeysOperations() {
+    public final UsersSshKeysOperations usersSshKeysOperations() {
         return usersSshKeysOperations;
     }
 

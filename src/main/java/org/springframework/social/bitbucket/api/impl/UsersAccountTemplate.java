@@ -18,22 +18,22 @@ public class UsersAccountTemplate extends AbstractBitBucketOperations implements
     }
 
     @Override
-    public UserWithRepositories getProfile(String accountName) {
+    public final UserWithRepositories getProfile(String accountName) {
         return null;
     }
 
     @Override
-    public Long getPlan(String accountName) {
+    public final Long getPlan(String accountName) {
         return null;
     }
 
     @Override
-    public List<BitBucketUser> getFollowers(String accountName) {
+    public final List<BitBucketUser> getFollowers(String accountName) {
         return null;
     }
 
     @Override
-    public List<BitBucketEvent> getEvents(String accountName) {
+    public final List<BitBucketEvent> getEvents(String accountName) {
         return null;
     }
 }

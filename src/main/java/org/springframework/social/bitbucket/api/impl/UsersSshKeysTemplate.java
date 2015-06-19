@@ -16,22 +16,22 @@ public class UsersSshKeysTemplate extends AbstractBitBucketOperations implements
     }
 
     @Override
-    public List<BitBucketSshKey> getKeys(String accountName) {
+    public final List<BitBucketSshKey> getKeys(String accountName) {
         return null;
     }
 
     @Override
-    public BitBucketSshKey postKey(String accountName, String label, String key) {
+    public final BitBucketSshKey postKey(String accountName, String label, String key) {
         return null;
     }
 
     @Override
-    public BitBucketSshKey getKey(String accountName, String keyId, String label) {
+    public final BitBucketSshKey getKey(String accountName, String keyId, String label) {
         return null;
     }
 
     @Override
-    public void removeKey(String accountName, String keyId) {
+    public final void removeKey(String accountName, String keyId) {
 
     }
 }

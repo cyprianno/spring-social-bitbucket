@@ -16,22 +16,22 @@ public class UsersConsumersTemplate extends AbstractBitBucketOperations implemen
     }
 
     @Override
-    public List<BitBucketConsumer> getConsumers(String accountName) {
+    public final List<BitBucketConsumer> getConsumers(String accountName) {
         return null;
     }
 
     @Override
-    public BitBucketConsumer getConsumer(String accountName, String id) {
+    public final BitBucketConsumer getConsumer(String accountName, String id) {
         return null;
     }
 
     @Override
-    public BitBucketConsumer updateConsumer(String accountName, String id, String name, String description, String url) {
+    public final BitBucketConsumer updateConsumer(String accountName, String id, String name, String description, String url) {
         return null;
     }
 
     @Override
-    public void removeConsumer(String accountName, String id) {
+    public final void removeConsumer(String accountName, String id) {
 
     }
 }

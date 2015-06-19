@@ -16,27 +16,27 @@ public class UsersPrivilegesTemplate extends AbstractBitBucketOperations impleme
     }
 
     @Override
-    public Map<String, BitBucketTeamPrivilege> getPrigilegeGroupOnTeamAccount(String accountName, String groupSlug) {
+    public final Map<String, BitBucketTeamPrivilege> getPrigilegeGroupOnTeamAccount(String accountName, String groupSlug) {
         return null;
     }
 
     @Override
-    public BitBucketTeamPrivilege getPrivilegesAssociatedWithGroup(String accountName, String owner, String groupSlug) {
+    public final BitBucketTeamPrivilege getPrivilegesAssociatedWithGroup(String accountName, String owner, String groupSlug) {
         return null;
     }
 
     @Override
-    public Map<String, BitBucketTeamPrivilege> updateGroupPrivilegesOnTeamAccount(String accountName, String owner, String groupSlug, String privilege) {
+    public final Map<String, BitBucketTeamPrivilege> updateGroupPrivilegesOnTeamAccount(String accountName, String owner, String groupSlug, String privilege) {
         return null;
     }
 
     @Override
-    public Map<String, BitBucketTeamPrivilege> postNewPrivilege(String accountName, String owner, String groupSlug, String privilege) {
+    public final Map<String, BitBucketTeamPrivilege> postNewPrivilege(String accountName, String owner, String groupSlug, String privilege) {
         return null;
     }
 
     @Override
-    public void removePrivilegeGroup(String accountName, String owner, String groupSlug) {
+    public final void removePrivilegeGroup(String accountName, String owner, String groupSlug) {
 
     }
 }

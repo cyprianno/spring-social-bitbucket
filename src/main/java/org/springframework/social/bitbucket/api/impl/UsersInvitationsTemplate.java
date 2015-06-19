@@ -16,32 +16,32 @@ public class UsersInvitationsTemplate extends AbstractBitBucketOperations implem
     }
 
     @Override
-    public List<BitBucketInvitation> getPendingInvitations(String accountName) {
+    public final List<BitBucketInvitation> getPendingInvitations(String accountName) {
         return null;
     }
 
     @Override
-    public List<BitBucketInvitation> getPendingInvitationsForEmail(String accountName, String emailAddress) {
+    public final List<BitBucketInvitation> getPendingInvitationsForEmail(String accountName, String emailAddress) {
         return null;
     }
 
     @Override
-    public boolean getPendingInvitationForGroupMembership(String accountName, String groupOwner, String groupSlug, String emailAddress) {
+    public final boolean getPendingInvitationForGroupMembership(String accountName, String groupOwner, String groupSlug, String emailAddress) {
         return false;
     }
 
     @Override
-    public boolean issueInvitationToGroup(String accountName, String groupOwner, String groupSlug, String emailAddress) {
+    public final boolean issueInvitationToGroup(String accountName, String groupOwner, String groupSlug, String emailAddress) {
         return false;
     }
 
     @Override
-    public void removeInitationByEmail(String accountName, String emailAddress) {
+    public final void removeInitationByEmail(String accountName, String emailAddress) {
 
     }
 
     @Override
-    public void removeInvitationByGroup(String accountName, String groupOwner, String groupSlug, String emailAddress) {
+    public final void removeInvitationByGroup(String accountName, String groupOwner, String groupSlug, String emailAddress) {
 
     }
 }
