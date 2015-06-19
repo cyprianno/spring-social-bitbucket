@@ -1,10 +1,13 @@
 package org.springframework.social.bitbucket.api.impl;
 
+import org.springframework.social.bitbucket.api.BitBucketConsumer;
 import org.springframework.social.bitbucket.api.BitBucketSshKey;
 import org.springframework.social.bitbucket.api.UsersSshKeysOperations;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
+
+import static java.util.Arrays.asList;
 
 /**
  * @author Cyprian Śniegota
@@ -17,7 +20,7 @@ public class UsersSshKeysTemplate extends AbstractBitBucketOperations implements
 
     @Override
     public final List<BitBucketSshKey> getKeys(String accountName) {
-        return null;
+        return asList(getRestTemplate().getForObject(buildUrl("/users/{accountname}/ssh-keys"), BitBucketSshKey[].class, accountName));
     }
 
     @Override
@@ -27,7 +30,10 @@ public class UsersSshKeysTemplate extends AbstractBitBucketOperations implements
 
     @Override
     public final BitBucketSshKey getKey(String accountName, long keyId, String label) {
-        return null;
+        String queryKey = label != null ? label : String.valueOf(keyId);
+        List<BitBucketSshKey> result = asList(
+                getRestTemplate().getForObject(buildUrl("/users/{accountname}/ssh-keys/{key_id}"), BitBucketSshKey[].class, accountName, queryKey));
+        return result.isEmpty() ? null : result.iterator().next();
     }
 
     @Override

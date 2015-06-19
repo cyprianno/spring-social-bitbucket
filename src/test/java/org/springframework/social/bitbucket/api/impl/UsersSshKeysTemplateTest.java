@@ -24,7 +24,7 @@ public class UsersSshKeysTemplateTest extends BaseTemplateTest {
     private static final String TEST_ACCOUNTNAME = "testaccount";
     private static final long TEST_KEYID = 171052L;
     private static final String TEST_KEY = "123123123";
-    private static final String TEST_LABEL = "testgroupslug";
+    private static final String TEST_LABEL = "testlabel";
     @Test
     public void testGetKeys() throws Exception {
         //given
@@ -57,9 +57,9 @@ public class UsersSshKeysTemplateTest extends BaseTemplateTest {
     }
 
     @Test
-    public void testGetKey() throws Exception {
+    public void testGetKeyWithLabel() throws Exception {
         //given
-        mockServer.expect(requestTo("https://api.bitbucket.org/1.0/users/testaccount/ssh-keys/171052")).andExpect(method(GET)).andRespond(
+        mockServer.expect(requestTo("https://api.bitbucket.org/1.0/users/testaccount/ssh-keys/testlabel")).andExpect(method(GET)).andRespond(
                 withSuccess(jsonResource("get-key"), MediaType.APPLICATION_JSON));
         //when
         BitBucketSshKey result = bitBucket.usersOperations().usersSshKeysOperations().getKey(TEST_ACCOUNTNAME, TEST_KEYID, TEST_LABEL);
@@ -70,6 +70,22 @@ public class UsersSshKeysTemplateTest extends BaseTemplateTest {
         assertEquals("home", result.getLabel());
         assertNotNull(result.getKey());
     }
+
+    @Test
+    public void testGetKeyWithId() throws Exception {
+        //given
+        mockServer.expect(requestTo("https://api.bitbucket.org/1.0/users/testaccount/ssh-keys/171052")).andExpect(method(GET)).andRespond(
+                withSuccess(jsonResource("get-key"), MediaType.APPLICATION_JSON));
+        //when
+        BitBucketSshKey result = bitBucket.usersOperations().usersSshKeysOperations().getKey(TEST_ACCOUNTNAME, TEST_KEYID, null);
+        //then
+        mockServer.verify();
+        assertNotNull(result);
+        assertEquals(171052L, result.getPk());
+        assertEquals("home", result.getLabel());
+        assertNotNull(result.getKey());
+    }
+
 
     @Test
     public void testRemoveKey() throws Exception {

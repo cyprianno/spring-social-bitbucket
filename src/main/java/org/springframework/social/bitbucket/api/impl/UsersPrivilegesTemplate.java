@@ -1,9 +1,11 @@
 package org.springframework.social.bitbucket.api.impl;
 
+import org.springframework.social.bitbucket.api.BitBucketInvitation;
 import org.springframework.social.bitbucket.api.BitBucketTeamPrivilege;
 import org.springframework.social.bitbucket.api.UsersPrivilegesOperations;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -17,12 +19,13 @@ public class UsersPrivilegesTemplate extends AbstractBitBucketOperations impleme
 
     @Override
     public final Map<String, BitBucketTeamPrivilege> getPrigilegeGroupOnTeamAccount(String accountName, String groupSlug) {
-        return null;
+        return getRestTemplate().getForObject(buildUrl("/users/{accountname}/privileges"), TeamPrivilegeHolder.class, accountName);
     }
 
     @Override
     public final BitBucketTeamPrivilege getPrivilegesAssociatedWithGroup(String accountName, String owner, String groupSlug) {
-        return null;
+        return getRestTemplate()
+                .getForObject(buildUrl("/users/{accountname}/privileges/{owner}/{group_slug}"), TeamPrivilegeHolder.class, accountName, owner, groupSlug).get("privilege");
     }
 
     @Override
@@ -38,5 +41,8 @@ public class UsersPrivilegesTemplate extends AbstractBitBucketOperations impleme
     @Override
     public final void removePrivilegeGroup(String accountName, String owner, String groupSlug) {
 
+    }
+
+    private static final class TeamPrivilegeHolder extends HashMap<String, BitBucketTeamPrivilege> {
     }
 }
