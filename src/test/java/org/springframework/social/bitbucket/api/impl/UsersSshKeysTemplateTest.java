@@ -13,6 +13,7 @@ public class UsersSshKeysTemplateTest {
     @Test
     public void testGetKeys() throws Exception {
         assertTrue(false);
+        //get-keys
         //given
         //when
         //then
@@ -21,6 +22,7 @@ public class UsersSshKeysTemplateTest {
     @Test
     public void testPostKey() throws Exception {
         assertTrue(false);
+        //post-key
         //given
         //when
         //then
@@ -29,6 +31,7 @@ public class UsersSshKeysTemplateTest {
     @Test
     public void testGetKey() throws Exception {
         assertTrue(false);
+        //get-key
         //given
         //when
         //then
