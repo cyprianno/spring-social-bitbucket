@@ -145,7 +145,7 @@ public class GroupsTemplateTest extends BaseTemplateTest {
         //then
         mockServer.verify();
         assertEquals("atlassian_tutorial", result.getUsername());
-        assertEquals(true, result.isTeam());
+        assertEquals(true, result.getIsTeam());
         assertEquals("Atlassian Tutorials", result.getFirstName());
     }
 

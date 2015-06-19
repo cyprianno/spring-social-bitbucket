@@ -41,7 +41,7 @@ public class BitBucketUser implements Serializable {
     private String lastName;
 
     @JsonProperty("is_team") @Getter
-    private boolean team;
+    private Boolean isTeam;
 
     @JsonProperty("avatar") @Getter
     private String avatarImageUrl;

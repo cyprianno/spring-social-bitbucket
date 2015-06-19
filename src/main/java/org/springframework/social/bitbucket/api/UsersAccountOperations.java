@@ -31,7 +31,7 @@ public interface UsersAccountOperations {
      * @param accountName The name of an individual or team account. You can also use a validated email address in place of the accountname value.
      * @return The number of users.
      */
-    Long getPlan(String accountName);
+    long getPlan(String accountName);
 
     /**
      * Gets a count and the list of accounts following an account.

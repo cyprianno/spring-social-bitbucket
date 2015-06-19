@@ -23,8 +23,8 @@ public class UsersAccountTemplate extends AbstractBitBucketOperations implements
     }
 
     @Override
-    public final Long getPlan(String accountName) {
-        return null;
+    public final long getPlan(String accountName) {
+        return 0L;
     }
 
     @Override

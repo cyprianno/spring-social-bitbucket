@@ -77,6 +77,7 @@ public class UsersEmailsTemplateTest extends BaseTemplateTest {
         List<BitBucketEmailAddress> result = bitBucket.usersOperations().usersEmailsOperations()
                 .postNewEmailAddress(TEST_ACCOUNTNAME, TEST_EMAIL);
         //then
+        mockServer.verify();
     }
 
     @Test
@@ -87,5 +88,6 @@ public class UsersEmailsTemplateTest extends BaseTemplateTest {
         //when
         BitBucketEmailAddress result = bitBucket.usersOperations().usersEmailsOperations().updateEmailAddress(TEST_ACCOUNTNAME, TEST_EMAIL);
         //then
+        mockServer.verify();
     }
 }

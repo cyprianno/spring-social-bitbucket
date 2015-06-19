@@ -1,13 +1,24 @@
 package org.springframework.social.bitbucket.api.impl;
 
 import org.junit.Test;
+import org.springframework.format.datetime.DateFormatter;
+import org.springframework.http.MediaType;
 import org.springframework.social.bitbucket.api.BitBucketEvent;
 import org.springframework.social.bitbucket.api.BitBucketUser;
 import org.springframework.social.bitbucket.api.UserWithRepositories;
 
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
+import static org.springframework.http.HttpMethod.GET;
+import static org.springframework.test.web.client.match.MockRestRequestMatchers.method;
+import static org.springframework.test.web.client.match.MockRestRequestMatchers.requestTo;
+import static org.springframework.test.web.client.response.MockRestResponseCreators.withSuccess;
 
 /**
  * @author Cyprian Śniegota
@@ -15,55 +26,87 @@ import static org.junit.Assert.assertTrue;
  */
 public class UsersAccountTemplateTest extends BaseTemplateTest {
 
-    private static final String TEST_USERNAME = "username";
+    private static final String TEST_USERNAME = "testusername";
 
     @Test
     public void testGetProfileUnauthenticated() throws Exception {
-        assertTrue(false);
-        //get-profile-unauthenticated
         //given
+        mockServer.expect(requestTo("https://api.bitbucket.org/1.0/users/testusername")).andExpect(method(GET))
+                .andRespond(withSuccess(jsonResource("get-profile-unauthenticated"), MediaType.APPLICATION_JSON));
         //when
         UserWithRepositories result = bitBucket.usersOperations().usersAccountOperations().getProfile(TEST_USERNAME);
         //then
+        mockServer.verify();
+        assertNotNull(result);
+        assertEquals(1, result.getRepositories().size());
+        assertEquals("User", result.getUser().getLastName());
+        assertNull(result.getUser().getIsTeam());
     }
 
     @Test
     public void testGetProfileAuthenticated() throws Exception {
-        assertTrue(false);
-        //get-profile-authenticated
         //given
+        mockServer.expect(requestTo("https://api.bitbucket.org/1.0/users/testusername")).andExpect(method(GET)).andRespond(
+                withSuccess(jsonResource("get-profile-authenticated"), MediaType.APPLICATION_JSON));
         //when
         UserWithRepositories result = bitBucket.usersOperations().usersAccountOperations().getProfile(TEST_USERNAME);
         //then
+        mockServer.verify();
+        assertNotNull(result);
+        assertEquals(2, result.getRepositories().size());
+        assertEquals("User", result.getUser().getLastName());
+        assertNotNull(result.getUser().getIsTeam());
     }
 
     @Test
     public void testGetPlan() throws Exception {
-        assertTrue(false);
-        //get-plan
         //given
+        mockServer.expect(requestTo("https://api.bitbucket.org/1.0/users/testusername/plan")).andExpect(method(GET)).andRespond(
+                withSuccess(jsonResource("get-plan"), MediaType.APPLICATION_JSON));
         //when
-        Long result = bitBucket.usersOperations().usersAccountOperations().getPlan(TEST_USERNAME);
+        long result = bitBucket.usersOperations().usersAccountOperations().getPlan(TEST_USERNAME);
         //then
+        mockServer.verify();
+        assertEquals(3L, result);
     }
 
     @Test
     public void testGetFollowers() throws Exception {
         assertTrue(false);
-        //get-followers
         //given
+        mockServer.expect(requestTo("https://api.bitbucket.org/1.0/users/testusername/followers")).andExpect(method(GET)).andRespond(
+                withSuccess(jsonResource("get-followers"), MediaType.APPLICATION_JSON));
         //when
         List<BitBucketUser> result = bitBucket.usersOperations().usersAccountOperations().getFollowers(TEST_USERNAME);
         //then
+        mockServer.verify();
+        assertNotNull(result);
+        assertEquals(3, result.size());
+
     }
 
     @Test
     public void testGetEvents() throws Exception {
-        assertTrue(false);
-        //get-events
         //given
+        mockServer.expect(requestTo("https://api.bitbucket.org/1.0/users/testusername/events")).andExpect(method(GET)).andRespond(
+                withSuccess(jsonResource("get-events"), MediaType.APPLICATION_JSON));
         //when
         List<BitBucketEvent> result = bitBucket.usersOperations().usersAccountOperations().getEvents(TEST_USERNAME);
         //then
+        mockServer.verify();
+        assertNotNull(result);
+        assertEquals(2, result.size());
+        BitBucketEvent firstEvent = result.iterator().next();
+        assertNull(firstEvent.getNode());
+        assertNull(firstEvent.getDescription());
+        assertNull(firstEvent.getUser());
+        assertNull(firstEvent.getRepository());
+        assertEquals("pullrequest_fulfilled", firstEvent.getEvent());
+        //dates
+        DateFormatter dateFormatter = new DateFormatter("yyyy-MM-dd HH:mm:ssZ");
+        Date expectedDate = dateFormatter.parse("2013-02-20 00:15:53", Locale.getDefault());
+        assertEquals(expectedDate, firstEvent.getCreatedOn());
+        Date expectedDateUtc = dateFormatter.parse("2013-02-20 00:15:53", Locale.getDefault());
+        assertEquals(expectedDateUtc, firstEvent.getUtcCreatedOn());
     }
 }
