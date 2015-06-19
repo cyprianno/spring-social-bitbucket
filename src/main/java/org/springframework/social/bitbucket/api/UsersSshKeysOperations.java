@@ -43,7 +43,7 @@ public interface UsersSshKeysOperations {
      * @param label       A label for the key.
      * @return Ssh key.
      */
-    BitBucketSshKey getKey(String accountName, String keyId, String label);
+    BitBucketSshKey getKey(String accountName, long keyId, String label);
 
     /**
      * Deletes the key specified by the key_id value. This call requires authentication.
@@ -52,6 +52,6 @@ public interface UsersSshKeysOperations {
      * @param accountName The name of an individual or team account.
      * @param keyId       The key identifier. This is an internal value created by Bitbucket when the key is added.
      */
-    void removeKey(String accountName, String keyId);
+    void removeKey(String accountName, long keyId);
 }
 

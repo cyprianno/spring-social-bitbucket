@@ -16,7 +16,7 @@ public class BitBucketSshKey {
      */
     @JsonProperty
     @Getter
-    private String pk;
+    private long pk;
 
     /**
      * Public key value.

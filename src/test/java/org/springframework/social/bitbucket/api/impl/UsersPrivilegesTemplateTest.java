@@ -6,6 +6,7 @@ import org.springframework.social.bitbucket.api.BitBucketTeamPrivilege;
 
 import java.util.Map;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.springframework.http.HttpMethod.DELETE;
 import static org.springframework.http.HttpMethod.GET;
@@ -24,36 +25,32 @@ public class UsersPrivilegesTemplateTest extends BaseTemplateTest {
     private static final String TEST_GROUPSLUG = "testgroupslug";
     @Test
     public void testGetPrigilegeGroupOnTeamAccount() throws Exception {
-        assertTrue(false);
         //given
-        mockServer
-                .expect(requestTo("https://api.bitbucket.org/1.0/repositories/tortoisehg/thg/followers/"))
-                .andExpect(method(GET))
-                .andRespond(
-                        withSuccess(jsonResource("get-privilege-group-on-team-account"),
-                                MediaType.APPLICATION_JSON));
+        mockServer.expect(requestTo("https://api.bitbucket.org/1.0/users/testaccount/privileges")).andExpect(method(GET)).andRespond(
+                withSuccess(jsonResource("get-privilege-group-on-team-account"), MediaType.APPLICATION_JSON));
         //when
         Map<String, BitBucketTeamPrivilege> result = bitBucket.usersOperations().usersPrivilegesOperations()
                 .getPrigilegeGroupOnTeamAccount(TEST_ACCOUNTNAME, TEST_GROUPSLUG);
         //then
         mockServer.verify();
+        assertEquals(2, result.size());
+        assertTrue(result.containsKey("2team/administrators"));
+        assertTrue(result.containsKey("2team/developers"));
+        assertEquals(BitBucketTeamPrivilege.admin, result.get("2team/administrators"));
+        assertEquals(BitBucketTeamPrivilege.collaborator, result.get("2team/developers"));
     }
 
     @Test
     public void testGetPrivilegesAssociatedWithGroup() throws Exception {
-        assertTrue(false);
         //given
-        mockServer
-                .expect(requestTo("https://api.bitbucket.org/1.0/repositories/tortoisehg/thg/followers/"))
-                .andExpect(method(GET))
-                .andRespond(
-                        withSuccess(jsonResource("get-privilege-group-associated-with-group"),
-                                MediaType.APPLICATION_JSON));
+        mockServer.expect(requestTo("https://api.bitbucket.org/1.0/users/testaccount/privileges/testowner/testgroupslug")).andExpect(method(GET)).andRespond(
+                withSuccess(jsonResource("get-privilege-group-associated-with-group"), MediaType.APPLICATION_JSON));
         //when
         BitBucketTeamPrivilege result = bitBucket.usersOperations().usersPrivilegesOperations()
                 .getPrivilegesAssociatedWithGroup(TEST_ACCOUNTNAME, TEST_OWNER, TEST_GROUPSLUG);
         //then
         mockServer.verify();
+        assertEquals(BitBucketTeamPrivilege.collaborator, result);
     }
 
     @Test
@@ -82,11 +79,9 @@ public class UsersPrivilegesTemplateTest extends BaseTemplateTest {
 
     @Test
     public void testRemovePrivilegeGroup() throws Exception {
-        assertTrue(false);
         //given
-        mockServer
-                .expect(requestTo("https://api.bitbucket.org/1.0/privileges/evzijst/test/jespern"))
-                .andExpect(method(DELETE)).andRespond(withNoContent());
+        mockServer.expect(requestTo("https://api.bitbucket.org/1.0/users/testaccount/privileges/testowner/testgroupslug")).andExpect(method(DELETE))
+                .andRespond(withNoContent());
         //when
         bitBucket.usersOperations().usersPrivilegesOperations().removePrivilegeGroup(TEST_ACCOUNTNAME, TEST_OWNER, TEST_GROUPSLUG);
         //then
