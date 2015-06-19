@@ -72,7 +72,6 @@ public class UsersAccountTemplateTest extends BaseTemplateTest {
 
     @Test
     public void testGetFollowers() throws Exception {
-        assertTrue(false);
         //given
         mockServer.expect(requestTo("https://api.bitbucket.org/1.0/users/testusername/followers")).andExpect(method(GET)).andRespond(
                 withSuccess(jsonResource("get-followers"), MediaType.APPLICATION_JSON));
@@ -99,13 +98,13 @@ public class UsersAccountTemplateTest extends BaseTemplateTest {
         BitBucketEvent firstEvent = result.iterator().next();
         assertNull(firstEvent.getNode());
         assertNull(firstEvent.getDescription());
-        assertNull(firstEvent.getUser());
-        assertNull(firstEvent.getRepository());
+        assertNotNull(firstEvent.getUser());
+        assertNotNull(firstEvent.getRepository());
         assertEquals("pullrequest_fulfilled", firstEvent.getEvent());
         DateFormatter dateFormatter = new DateFormatter("yyyy-MM-dd HH:mm:ssZ");
         Date expectedDate = dateFormatter.parse("2013-02-20 00:15:53+0000", Locale.getDefault());
         assertEquals(expectedDate, firstEvent.getCreatedOn());
-        Date expectedDateUtc = dateFormatter.parse("2013-02-19 23:15:08+0000", Locale.getDefault());
+        Date expectedDateUtc = dateFormatter.parse("2013-02-19 23:15:53+0000", Locale.getDefault());
         assertEquals(expectedDateUtc, firstEvent.getUtcCreatedOn());
     }
 }

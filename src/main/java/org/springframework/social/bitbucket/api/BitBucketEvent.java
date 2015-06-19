@@ -2,7 +2,9 @@ package org.springframework.social.bitbucket.api;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import lombok.Getter;
+import org.springframework.social.bitbucket.api.impl.UTCDateDeserializer;
 
 import java.util.Date;
 
@@ -40,7 +42,7 @@ public class BitBucketEvent {
      * The time the event occurred. If the event was a commit, this is the time from the raw commit.
      */
     @JsonProperty("created_on")
-    @Getter
+    @JsonDeserialize(using = UTCDateDeserializer.class)
     private Date createdOn;
 
     /**
@@ -54,7 +56,7 @@ public class BitBucketEvent {
      * Universal time clock time of the event.
      */
     @JsonProperty("utc_created_on")
-    @Getter
+    @JsonDeserialize(using = UTCDateDeserializer.class)
     private Date utcCreatedOn;
 
     /**
@@ -63,4 +65,18 @@ public class BitBucketEvent {
     @JsonProperty
     @Getter
     private String event;
+
+    public final Date getCreatedOn() {
+        if (createdOn == null) {
+            return null;
+        }
+        return (Date) createdOn.clone();
+    }
+
+    public final Date getUtcCreatedOn() {
+        if (utcCreatedOn == null) {
+            return null;
+        }
+        return (Date) utcCreatedOn.clone();
+    }
 }
