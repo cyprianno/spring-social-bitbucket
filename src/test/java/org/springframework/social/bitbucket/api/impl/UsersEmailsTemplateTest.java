@@ -31,7 +31,7 @@ import static org.springframework.test.web.client.response.MockRestResponseCreat
  * @author Cyprian Śniegota
  * @since 2.0.0
  */
-public class EmailsTemplateTest extends BaseTemplateTest {
+public class UsersEmailsTemplateTest extends BaseTemplateTest {
 
     @Test
     public void testGetListOfUserEmailAddresses() throws Exception {
@@ -43,6 +43,7 @@ public class EmailsTemplateTest extends BaseTemplateTest {
         List<BitBucketEmailAddress> listOfUserEmailAddresses = bitBucket.usersOperations().emailsOperations()
                 .getEmailAddresses("sampleuser");
         //then
+        mockServer.verify();
         assertEquals(2, listOfUserEmailAddresses.size());
         BitBucketEmailAddress firstEmailAddress = listOfUserEmailAddresses.iterator().next();
         assertEquals("2team.bb@gmail.com", firstEmailAddress.getEmail());
@@ -60,6 +61,7 @@ public class EmailsTemplateTest extends BaseTemplateTest {
         BitBucketEmailAddress sampleuser = bitBucket.usersOperations().emailsOperations()
                 .getEmailAddress("sampleuser", "ourteam@gmail.com");
         //then
+        mockServer.verify();
         assertEquals("ourteam@gmail.com", sampleuser.getEmail());
         assertEquals(false, sampleuser.getActive());
         assertEquals(false, sampleuser.getPrimary());
