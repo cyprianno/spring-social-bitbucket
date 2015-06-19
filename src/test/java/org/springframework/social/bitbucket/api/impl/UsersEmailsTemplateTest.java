@@ -66,16 +66,18 @@ public class UsersEmailsTemplateTest extends BaseTemplateTest {
     }
 
     @Test
-    public void testPostANewEmailAddress() throws Exception {
+    public void testPostNewEmailAddress() throws Exception {
         assertTrue(false);
+        //post-new-email-address
         //given
         //when
         //then
     }
 
     @Test
-    public void testUpdateAnEmailAddress() throws Exception {
+    public void testUpdateEmailAddress() throws Exception {
         assertTrue(false);
+        //update-email-address
         //given
         //when
         //then
