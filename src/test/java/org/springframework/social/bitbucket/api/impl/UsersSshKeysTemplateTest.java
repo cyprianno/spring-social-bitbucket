@@ -74,7 +74,7 @@ public class UsersSshKeysTemplateTest extends BaseTemplateTest {
     @Test
     public void testRemoveKey() throws Exception {
         //given
-        mockServer.expect(requestTo("https://api.bitbucket.org/1.0/privileges/evzijst/test/jespern")).andExpect(method(DELETE)).andRespond(withNoContent());
+        mockServer.expect(requestTo("https://api.bitbucket.org/1.0/users/testaccount/ssh-keys/171052")).andExpect(method(DELETE)).andRespond(withNoContent());
         //when
         bitBucket.usersOperations().usersSshKeysOperations().removeKey(TEST_ACCOUNTNAME, TEST_KEYID);
         //then
