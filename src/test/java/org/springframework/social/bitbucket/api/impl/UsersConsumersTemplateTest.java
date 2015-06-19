@@ -41,7 +41,7 @@ public class UsersConsumersTemplateTest extends BaseTemplateTest {
         assertEquals(2, result.size());
         BitBucketConsumer firstConsumer = result.iterator().next();
         assertEquals("", firstConsumer.getDescription());
-        assertEquals(227799L, firstConsumer.getId());
+        assertEquals(22779L, firstConsumer.getId());
         assertEquals("y9spXwJKNcygKdWBH2", firstConsumer.getKey());
         assertEquals("TestDVCS", firstConsumer.getName());
         assertEquals("bQWTaGRpT9RhB24TQWYP9M2LcvZy9Pkw", firstConsumer.getSecret());
@@ -59,7 +59,7 @@ public class UsersConsumersTemplateTest extends BaseTemplateTest {
         mockServer.verify();
         assertNotNull(result);
         assertEquals("", result.getDescription());
-        assertEquals(227799L, result.getId());
+        assertEquals(22779L, result.getId());
         assertEquals("y9spXwJKNcygKdWBH2", result.getKey());
         assertEquals("TestDVCS", result.getName());
         assertEquals("bQWTaGRpT9RhB24TQWYP9M2LcvZy9Pkw", result.getSecret());

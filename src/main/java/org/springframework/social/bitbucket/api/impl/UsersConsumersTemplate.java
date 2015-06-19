@@ -1,10 +1,13 @@
 package org.springframework.social.bitbucket.api.impl;
 
 import org.springframework.social.bitbucket.api.BitBucketConsumer;
+import org.springframework.social.bitbucket.api.UserWithRepositories;
 import org.springframework.social.bitbucket.api.UsersConsumersOperations;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
+
+import static java.util.Arrays.asList;
 
 /**
  * @author Cyprian Śniegota
@@ -17,12 +20,12 @@ public class UsersConsumersTemplate extends AbstractBitBucketOperations implemen
 
     @Override
     public final List<BitBucketConsumer> getConsumers(String accountName) {
-        return null;
+        return asList(getRestTemplate().getForObject(buildUrl("/users/{accountname}/consumers"), BitBucketConsumer[].class, accountName));
     }
 
     @Override
     public final BitBucketConsumer getConsumer(String accountName, long id) {
-        return null;
+        return getRestTemplate().getForObject(buildUrl("/users/{accountname}/consumers/{id}"), BitBucketConsumer.class, accountName, id);
     }
 
     @Override

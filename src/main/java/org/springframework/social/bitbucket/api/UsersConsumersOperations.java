@@ -25,7 +25,7 @@ public interface UsersConsumersOperations {
 
     /**
      * Gets an individual consumer for an account.
-     * GET https://api.bitbucket.org/1.0/users/{accountname}/{id}
+     * GET https://api.bitbucket.org/1.0/users/{accountname}/consumers/{id}
      *
      * @param accountName The team or individual account name.
      * @param id          Identifier for the key
