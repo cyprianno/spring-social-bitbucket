@@ -16,7 +16,7 @@
 package org.springframework.social.bitbucket.api.impl;
 
 import org.springframework.social.bitbucket.api.BitBucketEmailAddress;
-import org.springframework.social.bitbucket.api.EmailsOperations;
+import org.springframework.social.bitbucket.api.UsersEmailsOperations;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
@@ -27,9 +27,9 @@ import static java.util.Arrays.asList;
  * @author Cyprian Śniegota
  * @since 2.0.0
  */
-public class EmailsTemplate extends AbstractBitBucketOperations implements EmailsOperations {
+public class UsersEmailsTemplate extends AbstractBitBucketOperations implements UsersEmailsOperations {
 
-    public EmailsTemplate(RestTemplate restTemplate, boolean authorized) {
+    public UsersEmailsTemplate(RestTemplate restTemplate, boolean authorized) {
         super(restTemplate, authorized, V1);
     }
 

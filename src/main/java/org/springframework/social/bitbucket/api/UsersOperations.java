@@ -30,5 +30,5 @@ public interface UsersOperations {
      *
      * @return emails management API template
      */
-    EmailsOperations emailsOperations();
+    UsersEmailsOperations emailsOperations();
 }

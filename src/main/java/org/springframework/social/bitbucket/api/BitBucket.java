@@ -68,5 +68,5 @@ public interface BitBucket extends ApiBinding {
      *
      * @return invitations API
      */
-    InvitationOperations invitationOperations();
+    InvitationsOperations invitationsOperations();
 }

@@ -15,7 +15,7 @@
  */
 package org.springframework.social.bitbucket.api.impl;
 
-import org.springframework.social.bitbucket.api.EmailsOperations;
+import org.springframework.social.bitbucket.api.UsersEmailsOperations;
 import org.springframework.social.bitbucket.api.UsersOperations;
 import org.springframework.web.client.RestTemplate;
 
@@ -25,15 +25,15 @@ import org.springframework.web.client.RestTemplate;
  */
 public class UsersTemplate extends AbstractBitBucketOperations implements UsersOperations {
 
-    private final EmailsOperations emailsOperations;
+    private final UsersEmailsOperations usersEmailsOperations;
 
     public UsersTemplate(RestTemplate restTemplate, boolean authorized) {
         super(restTemplate, authorized, V1);
-        emailsOperations = new EmailsTemplate(getRestTemplate(), isAuthorized());
+        usersEmailsOperations = new UsersEmailsTemplate(getRestTemplate(), isAuthorized());
     }
 
     @Override
-    public final EmailsOperations emailsOperations() {
-        return emailsOperations;
+    public final UsersEmailsOperations emailsOperations() {
+        return usersEmailsOperations;
     }
 }
