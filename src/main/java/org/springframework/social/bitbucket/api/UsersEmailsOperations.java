@@ -26,11 +26,12 @@ public interface UsersEmailsOperations {
 
     /**
      * Gets the email addresses associated with the account.
+     * GET https://bitbucket.org/api/1.0/users/{accountname}/emails
      *
      * @param accountName The name of an individual or team account.
      * @return list of email addresses
      */
-    List<BitBucketEmailAddress> getListOfUserEmailAddresses(String accountName);
+    List<BitBucketEmailAddress> getEmailAddresses(String accountName);
 
     /**
      * Gets an individual email address associated with an account.
@@ -39,7 +40,7 @@ public interface UsersEmailsOperations {
      * @param emailAddress The email address to get.
      * @return email address
      */
-    BitBucketEmailAddress getAnEmailAddress(String accountName, String emailAddress);
+    BitBucketEmailAddress getEmailAddress(String accountName, String emailAddress);
 
     /**
      * Adds additional email addresses to an account.
@@ -48,7 +49,7 @@ public interface UsersEmailsOperations {
      * @param emailAddress The email address to post.
      * @return list of email addresses
      */
-    List<BitBucketEmailAddress> postANewEmailAddress(String accountName, String emailAddress);
+    List<BitBucketEmailAddress> postNewEmailAddress(String accountName, String emailAddress);
 
     /**
      * Sets an individual email address associated with an account to primary.
@@ -60,26 +61,6 @@ public interface UsersEmailsOperations {
      * @param emailAddress The email address to modify.
      * @return modified email address
      */
-    BitBucketEmailAddress updateAnEmailAddress(String accountName, String emailAddress);
+    BitBucketEmailAddress updateEmailAddress(String accountName, String emailAddress);
 
 }
-
-/*- GET a list of user's email addresses
-GET https://bitbucket.org/api/1.0/users/{accountname}/emails
-- GET an email address
-GET https://bitbucket.org/api/1.0/users/{accountname}/emails/{email_address}
-- POST a new email address
-POST https://bitbucket.org/api/1.0/users/{accountname}/emails/{email_address} --data"email=value"
-- Update an email address
-PUT https://bitbucket.org/api/1.0/users/{accountname}/emails/{email_address} --data "primary=true"
-
-X1. create interface
-X2. update javadoc (description + url from docs)
-X3. model (if necessary)
-X4. create empty implementation
-X5. optional - connect new operations class to base template
-6. create tests
-7. template implementation
-8. file headers
-9. real test (on connection with all permissions)
-*/

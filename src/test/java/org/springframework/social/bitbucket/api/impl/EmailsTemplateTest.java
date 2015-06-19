@@ -18,8 +18,6 @@ package org.springframework.social.bitbucket.api.impl;
 import org.junit.Test;
 import org.springframework.http.MediaType;
 import org.springframework.social.bitbucket.api.BitBucketEmailAddress;
-import org.springframework.social.bitbucket.api.BitBucketRepository;
-import org.springframework.social.bitbucket.api.BitBucketSCM;
 
 import java.util.List;
 
@@ -43,7 +41,7 @@ public class EmailsTemplateTest extends BaseTemplateTest {
                 MediaType.APPLICATION_JSON));
         //when
         List<BitBucketEmailAddress> listOfUserEmailAddresses = bitBucket.usersOperations().emailsOperations()
-                .getListOfUserEmailAddresses("sampleuser");
+                .getEmailAddresses("sampleuser");
         //then
         assertEquals(2, listOfUserEmailAddresses.size());
         BitBucketEmailAddress firstEmailAddress = listOfUserEmailAddresses.iterator().next();
@@ -60,7 +58,7 @@ public class EmailsTemplateTest extends BaseTemplateTest {
                 MediaType.APPLICATION_JSON));
         //when
         BitBucketEmailAddress sampleuser = bitBucket.usersOperations().emailsOperations()
-                .getAnEmailAddress("sampleuser", "ourteam@gmail.com");
+                .getEmailAddress("sampleuser", "ourteam@gmail.com");
         //then
         assertEquals("ourteam@gmail.com", sampleuser.getEmail());
         assertEquals(false, sampleuser.getActive());
@@ -71,7 +69,7 @@ public class EmailsTemplateTest extends BaseTemplateTest {
     public void testPostANewEmailAddress() throws Exception {
         //given
         //when
-        bitBucket.usersOperations().emailsOperations().postANewEmailAddress("sampleuser", "ourteam@gmail.com");
+        bitBucket.usersOperations().emailsOperations().postNewEmailAddress("sampleuser", "ourteam@gmail.com");
         //then
     }
 
@@ -79,7 +77,7 @@ public class EmailsTemplateTest extends BaseTemplateTest {
     public void testUpdateAnEmailAddress() throws Exception {
         //given
         //when
-        bitBucket.usersOperations().emailsOperations().updateAnEmailAddress("sampleuser", "ourteam@gmail.com");
+        bitBucket.usersOperations().emailsOperations().updateEmailAddress("sampleuser", "ourteam@gmail.com");
         //then
     }
 }

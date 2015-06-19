@@ -11,13 +11,70 @@ package org.springframework.social.bitbucket.api;
  * @since 2.0.0
  */
 public interface UsersPrivilegesOperations {
+    /**
+     * Gets the groups with account privileges defined for a team account.
+     * Administer rights automatically include collaborator rights.
+     * If you have a group without either option set, it is omitted from the results.
+     * The caller must authenticate.
+     * The access credentials must come from an account with owner or administrative privileges — either the team account
+     * access credentials or a member who can administer the team account.
+     * GET https://bitbucket.org/api/1.0/users/{accountname}/privileges
+     *
+     * @param accountName The team or individual account name.
+     * @param groupSlug   The group's slug.
+     */
     void getPrigilegeGroupOnTeamAccount(String accountName, String groupSlug);
 
+    /**
+     * Gets the privilege associated with the specified groupname.
+     * The privilege is can be either collaborator or admin. The caller must authenticate.
+     * The access credentials must come from an account with owner or administrative privileges — either the team account
+     * access credentials or a member who can administer the team account.
+     * GET https://bitbucket.org/api/1.0/users/{accountname}/privileges/{owner}/{group_slug}
+     *
+     * @param accountName The team or individual account name.
+     * @param owner       The account that owns the group.
+     * @param groupSlug   The group's slug.
+     */
     void getPrivilegesAssociatedWithGroup(String accountName, String owner, String groupSlug);
 
+    /**
+     * Updates an existing group's privileges for a team account.
+     * You can set a group's privileges to admin or collaborator.
+     * This call returns the changed group. The caller must authenticate.
+     * The access credentials must come from an account with owner or administrative privileges — either the team account
+     * access credentials or a member who can administer the team account.
+     * PUT https://bitbucket.org/api/1.0/users/{accountname}/privileges/{owner}/{group_slug} --data "privileges=admin"
+     *
+     * @param accountName The team or individual account name.
+     * @param owner       The account that owns the group.
+     * @param groupSlug   The group's slug.
+     * @param privilege   Either admin or collaborator.
+     */
     void updateGroupPrivilegesOnTeamAccount(String accountName, String owner, String groupSlug, String privilege);
 
+    /**
+     * Adds a privilege to a group without any. The caller must authenticate.
+     * The access credentials must come from an account with owner or administrative privileges — either the team account
+     * access credentials or a member who can administer the team account.
+     * POST https://bitbucket.org/api/1.0/users/{accountname}/privileges/{owner}/{group_slug} --data "privileges=admin"
+     *
+     * @param accountName The team or individual account name.
+     * @param owner       The account that owns the group.
+     * @param groupSlug   The group's slug.
+     * @param privilege   Either admin or collaborator.
+     */
     void postNewPrivilege(String accountName, String owner, String groupSlug, String privilege);
 
+    /**
+     * Deletes a privilege. The caller must authenticate.
+     * The access credentials must come from an account with owner or administrative privileges — either the team account
+     * access credentials or a member who can administer the team account.
+     * DELETE https://bitbucket.org/api/1.0/users/{accountname}/privileges/{owner}/{group_slug}
+     *
+     * @param accountName The team or individual account name.
+     * @param owner       The account that owns the group.
+     * @param groupSlug   The group's slug.
+     */
     void removePrivilegeGroup(String accountName, String owner, String groupSlug);
 }

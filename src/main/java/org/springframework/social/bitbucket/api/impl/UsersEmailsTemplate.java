@@ -34,24 +34,24 @@ public class UsersEmailsTemplate extends AbstractBitBucketOperations implements 
     }
 
     @Override
-    public final List<BitBucketEmailAddress> getListOfUserEmailAddresses(String accountName) {
+    public final List<BitBucketEmailAddress> getEmailAddresses(String accountName) {
         return asList(getRestTemplate().getForObject(buildUrl("/users/{accountname}/emails"),
                 BitBucketEmailAddress[].class, accountName));
     }
 
     @Override
-    public final BitBucketEmailAddress getAnEmailAddress(String accountName, String emailAddress) {
+    public final BitBucketEmailAddress getEmailAddress(String accountName, String emailAddress) {
         return getRestTemplate().getForObject(buildUrl("/users/{accountname}/emails/{email_address}"),
                 BitBucketEmailAddress.class, accountName, emailAddress);
     }
 
     @Override
-    public final List<BitBucketEmailAddress> postANewEmailAddress(String accountName, String emailAddress) {
+    public final List<BitBucketEmailAddress> postNewEmailAddress(String accountName, String emailAddress) {
         throw new UnsupportedOperationException("Not implemented yet");
     }
 
     @Override
-    public final BitBucketEmailAddress updateAnEmailAddress(String accountName, String emailAddress) {
+    public final BitBucketEmailAddress updateEmailAddress(String accountName, String emailAddress) {
         throw new UnsupportedOperationException("Not implemented yet");
     }
 }
