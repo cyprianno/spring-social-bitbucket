@@ -11,6 +11,8 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import static org.springframework.http.HttpMethod.DELETE;
 import static org.springframework.http.HttpMethod.GET;
+import static org.springframework.http.HttpMethod.PUT;
+import static org.springframework.test.web.client.match.MockRestRequestMatchers.content;
 import static org.springframework.test.web.client.match.MockRestRequestMatchers.method;
 import static org.springframework.test.web.client.match.MockRestRequestMatchers.requestTo;
 import static org.springframework.test.web.client.response.MockRestResponseCreators.withNoContent;
@@ -68,14 +70,16 @@ public class UsersConsumersTemplateTest extends BaseTemplateTest {
 
     @Test
     public void testUpdateConsumer() throws Exception {
-        assertTrue(false);
-        //update-consumer
         //given
+        mockServer.expect(requestTo("https://api.bitbucket.org/1.0/users/testusername/2976")).andExpect(method(PUT)).andExpect(
+                content().string("name=testname&description=testdesc&url=testurl")).andRespond(
+                withSuccess(jsonResource("update-consumer"), MediaType.APPLICATION_JSON));
         //when
         BitBucketConsumer result = bitBucket.usersOperations().usersConsumersOperations()
                 .updateConsumer(TEST_USERNAME, TEST_ID, TEST_NAME, TEST_DESCRIPTION, TEST_URL);
         //then
         mockServer.verify();
+        assertEquals("here", result.getDescription());
     }
 
     @Test

@@ -10,6 +10,9 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.springframework.http.HttpMethod.DELETE;
 import static org.springframework.http.HttpMethod.GET;
+import static org.springframework.http.HttpMethod.POST;
+import static org.springframework.http.HttpMethod.PUT;
+import static org.springframework.test.web.client.match.MockRestRequestMatchers.content;
 import static org.springframework.test.web.client.match.MockRestRequestMatchers.method;
 import static org.springframework.test.web.client.match.MockRestRequestMatchers.requestTo;
 import static org.springframework.test.web.client.response.MockRestResponseCreators.withNoContent;
@@ -55,26 +58,37 @@ public class UsersPrivilegesTemplateTest extends BaseTemplateTest {
 
     @Test
     public void testUpdateGroupPrivilegesOnTeamAccount() throws Exception {
-        assertTrue(false);
-        //update-group-privileges-on-team-account
         //given
+        mockServer
+                .expect(requestTo("https://api.bitbucket.org/1.0/users/{accountname}/privileges/{owner}/{group_slug}"))
+                .andExpect(method(PUT))
+                .andExpect(content().string("privileges=collaborator"))
+                .andRespond(
+                        withSuccess(jsonResource("update-group-privileges-on-team-account"),
+                                MediaType.APPLICATION_JSON));
         //when
         Map<String, BitBucketTeamPrivilege> result = bitBucket.usersOperations().usersPrivilegesOperations()
                 .updateGroupPrivilegesOnTeamAccount(TEST_ACCOUNTNAME, TEST_OWNER, TEST_GROUPSLUG, BitBucketTeamPrivilege.collaborator);
         //then
         mockServer.verify();
+        assertEquals(1, result.size());
+        assertTrue(result.containsKey("2team/contractors"));
+        assertEquals(BitBucketTeamPrivilege.admin, result.get("2team/contractors"));
     }
 
     @Test
     public void testPostNewPrivilege() throws Exception {
-        assertTrue(false);
-        //post-new-privilege
         //given
+        mockServer.expect(requestTo("https://api.bitbucket.org/1.0/users/testaccount/privileges/testowner/testgroupslug")).andExpect(method(POST)).andExpect(
+                content().string("privileges=admin")).andRespond(withSuccess(jsonResource("post-new-privilege"), MediaType.APPLICATION_JSON));
         //when
         Map<String, BitBucketTeamPrivilege> result = bitBucket.usersOperations().usersPrivilegesOperations()
                 .postNewPrivilege(TEST_ACCOUNTNAME, TEST_OWNER, TEST_GROUPSLUG, BitBucketTeamPrivilege.admin);
         //then
         mockServer.verify();
+        assertEquals(1, result.size());
+        assertTrue(result.containsKey("2team/contractors"));
+        assertEquals(BitBucketTeamPrivilege.admin, result.get("2team/contractors"));
     }
 
     @Test

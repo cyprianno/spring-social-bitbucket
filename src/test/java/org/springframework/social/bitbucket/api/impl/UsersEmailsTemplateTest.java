@@ -21,6 +21,9 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.springframework.http.HttpMethod.GET;
+import static org.springframework.http.HttpMethod.POST;
+import static org.springframework.http.HttpMethod.PUT;
+import static org.springframework.test.web.client.match.MockRestRequestMatchers.content;
 import static org.springframework.test.web.client.match.MockRestRequestMatchers.method;
 import static org.springframework.test.web.client.match.MockRestRequestMatchers.requestTo;
 import static org.springframework.test.web.client.response.MockRestResponseCreators.withSuccess;
@@ -70,24 +73,32 @@ public class UsersEmailsTemplateTest extends BaseTemplateTest {
 
     @Test
     public void testPostNewEmailAddress() throws Exception {
-        assertTrue(false);
-        //post-new-email-address
         //given
+        mockServer.expect(requestTo("https://api.bitbucket.org/1.0/users/sampleuser/emails/ourteam@gmail.com")).andExpect(method(PUT)).andExpect(
+                content().string("email=ourteam@gmail.com")).andRespond(withSuccess(jsonResource("post-new-email-address"), MediaType.APPLICATION_JSON));
         //when
         List<BitBucketEmailAddress> result = bitBucket.usersOperations().usersEmailsOperations()
                 .postNewEmailAddress(TEST_ACCOUNTNAME, TEST_EMAIL);
         //then
         mockServer.verify();
+        assertEquals(2, result.size());
+        BitBucketEmailAddress firstEmailAddress = result.iterator().next();
+        assertTrue(firstEmailAddress.getActive());
+        assertTrue(firstEmailAddress.getPrimary());
+        assertEquals("2team.bb@gmail.com", firstEmailAddress.getEmail());
     }
 
     @Test
     public void testUpdateEmailAddress() throws Exception {
-        assertTrue(false);
-        //update-email-address
         //given
+        mockServer.expect(requestTo("https://api.bitbucket.org/1.0/users/sampleuser/emails/ourteam@gmail.com")).andExpect(method(PUT))
+                .andExpect(content().string("primary=true")).andRespond(withSuccess(jsonResource("update-email-address"), MediaType.APPLICATION_JSON));
         //when
         BitBucketEmailAddress result = bitBucket.usersOperations().usersEmailsOperations().updateEmailAddress(TEST_ACCOUNTNAME, TEST_EMAIL);
         //then
         mockServer.verify();
+        assertTrue(result.getActive());
+        assertTrue(result.getPrimary());
+        assertEquals("2team.bb@gmail.com", result.getEmail());
     }
 }
