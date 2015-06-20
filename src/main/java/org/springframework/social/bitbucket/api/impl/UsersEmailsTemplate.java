@@ -18,8 +18,8 @@ package org.springframework.social.bitbucket.api.impl;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.social.bitbucket.api.BitBucketEmailAddress;
-import org.springframework.social.bitbucket.api.RepoPrivilege;
 import org.springframework.social.bitbucket.api.UsersEmailsOperations;
+import org.springframework.social.support.ParameterMap;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
@@ -50,12 +50,28 @@ public class UsersEmailsTemplate extends AbstractBitBucketOperations implements 
 
     @Override
     public final List<BitBucketEmailAddress> postNewEmailAddress(String accountName, String emailAddress) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        return asList(getRestTemplate()
+                .postForObject(buildUrl("/users/{accountname}/emails/{email_address}"), new EmailAddressCreate(emailAddress), BitBucketEmailAddress[].class, accountName, emailAddress));
+//        HttpHeaders httpHeaders = new HttpHeaders();
+//        httpHeaders.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
+//        HttpEntity<Map<String, String>> requestEntity = new HttpEntity<>(Collections.singletonMap("x", "y"));
+//        return asList(getRestTemplate().postForObject(
+//                buildUrl("/users/{accountname}/emails/{email_address}"), Collections.singletonMap("x", "y")
+//                ,
+//                BitBucketEmailAddress[].class, accountName, emailAddress));
     }
 
     @Override
     public final BitBucketEmailAddress updateEmailAddress(String accountName, String emailAddress) {
         return getRestTemplate().exchange(buildUrl("/users/{accountname}/emails/{email_address}"), HttpMethod.PUT, new HttpEntity<>("primary=true"),
                 BitBucketEmailAddress.class, accountName, emailAddress).getBody();
+    }
+
+    private static final class EmailAddressCreate extends ParameterMap {
+
+        public EmailAddressCreate(String name) {
+            set("name", name);
+        }
+
     }
 }
