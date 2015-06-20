@@ -26,6 +26,7 @@ public class UsersPrivilegesTemplateTest extends BaseTemplateTest {
     private static final String TEST_ACCOUNTNAME = "testaccount";
     private static final String TEST_OWNER = "testowner";
     private static final String TEST_GROUPSLUG = "testgroupslug";
+
     @Test
     public void testGetPrigilegeGroupOnTeamAccount() throws Exception {
         //given

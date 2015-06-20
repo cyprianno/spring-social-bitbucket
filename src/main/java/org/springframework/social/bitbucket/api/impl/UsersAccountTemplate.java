@@ -11,8 +11,6 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 
-import static java.util.Arrays.asList;
-
 /**
  * @author Cyprian Śniegota
  * @since 2.0.0
@@ -44,21 +42,24 @@ public class UsersAccountTemplate extends AbstractBitBucketOperations implements
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     private static class GetPlanResponseHolder {
-        @JsonProperty @Getter
+        @JsonProperty
+        @Getter
         private long count;
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     private static class FollowersResponseHolder {
 
-        @JsonProperty @Getter
+        @JsonProperty
+        @Getter
         private List<BitBucketUser> followers;
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     private static class EventsResponseHolder {
 
-        @JsonProperty @Getter
+        @JsonProperty
+        @Getter
         private List<BitBucketEvent> events;
     }
 }

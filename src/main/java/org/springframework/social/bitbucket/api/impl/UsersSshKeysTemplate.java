@@ -1,7 +1,5 @@
 package org.springframework.social.bitbucket.api.impl;
 
-import org.springframework.http.HttpEntity;
-import org.springframework.social.bitbucket.api.BitBucketConsumer;
 import org.springframework.social.bitbucket.api.BitBucketSshKey;
 import org.springframework.social.bitbucket.api.UsersSshKeysOperations;
 import org.springframework.social.support.ParameterMap;
@@ -27,7 +25,8 @@ public class UsersSshKeysTemplate extends AbstractBitBucketOperations implements
 
     @Override
     public final BitBucketSshKey postKey(String accountName, String label, String key) {
-        return getRestTemplate().postForObject(buildUrl("/users/{accountname}/ssh-keys"), new CreateKeyParameters(key),BitBucketSshKey[].class, accountName)[0];
+        return getRestTemplate()
+                .postForObject(buildUrl("/users/{accountname}/ssh-keys"), new CreateKeyParameters(key), BitBucketSshKey[].class, accountName)[0];
     }
 
     @Override

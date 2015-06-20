@@ -4,8 +4,6 @@ import com.google.common.base.Joiner;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.social.bitbucket.api.BitBucketConsumer;
-import org.springframework.social.bitbucket.api.RepoPrivilege;
-import org.springframework.social.bitbucket.api.UserWithRepositories;
 import org.springframework.social.bitbucket.api.UsersConsumersOperations;
 import org.springframework.social.support.ParameterMap;
 import org.springframework.web.client.RestTemplate;
@@ -52,6 +50,7 @@ public class UsersConsumersTemplate extends AbstractBitBucketOperations implemen
             this.add("description", description);
             this.add("url", url);
         }
+
         public String toStringParameters() {
             List<String> paramList = new ArrayList<>();
             for (String s : this.keySet()) {

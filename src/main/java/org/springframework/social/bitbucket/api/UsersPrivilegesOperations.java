@@ -56,7 +56,8 @@ public interface UsersPrivilegesOperations {
      * @param privilege   Either admin or collaborator.
      * @return upated privilege as key: group, value: privilege
      */
-    Map<String, BitBucketTeamPrivilege> updateGroupPrivilegesOnTeamAccount(String accountName, String owner, String groupSlug, BitBucketTeamPrivilege privilege);
+    Map<String, BitBucketTeamPrivilege> updateGroupPrivilegesOnTeamAccount(String accountName, String owner, String groupSlug,
+            BitBucketTeamPrivilege privilege);
 
     /**
      * Adds a privilege to a group without any. The caller must authenticate.

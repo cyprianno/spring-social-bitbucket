@@ -8,7 +8,6 @@ import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
 import static org.springframework.http.HttpMethod.DELETE;
 import static org.springframework.http.HttpMethod.GET;
 import static org.springframework.http.HttpMethod.POST;
@@ -27,6 +26,7 @@ public class UsersSshKeysTemplateTest extends BaseTemplateTest {
     private static final long TEST_KEYID = 171052L;
     private static final String TEST_KEY = "123123123";
     private static final String TEST_LABEL = "testlabel";
+
     @Test
     public void testGetKeys() throws Exception {
         //given
@@ -88,7 +88,6 @@ public class UsersSshKeysTemplateTest extends BaseTemplateTest {
         assertEquals("home", result.getLabel());
         assertNotNull(result.getKey());
     }
-
 
     @Test
     public void testRemoveKey() throws Exception {

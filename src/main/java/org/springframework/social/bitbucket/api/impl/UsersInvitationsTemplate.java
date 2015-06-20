@@ -1,7 +1,6 @@
 package org.springframework.social.bitbucket.api.impl;
 
 import org.springframework.http.HttpMethod;
-import org.springframework.social.bitbucket.api.BitBucketConsumer;
 import org.springframework.social.bitbucket.api.BitBucketInvitation;
 import org.springframework.social.bitbucket.api.UsersInvitationsOperations;
 import org.springframework.web.client.RestTemplate;
