@@ -15,7 +15,10 @@
  */
 package org.springframework.social.bitbucket.api.impl;
 
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpMethod;
 import org.springframework.social.bitbucket.api.BitBucketEmailAddress;
+import org.springframework.social.bitbucket.api.RepoPrivilege;
 import org.springframework.social.bitbucket.api.UsersEmailsOperations;
 import org.springframework.web.client.RestTemplate;
 
@@ -52,6 +55,7 @@ public class UsersEmailsTemplate extends AbstractBitBucketOperations implements 
 
     @Override
     public final BitBucketEmailAddress updateEmailAddress(String accountName, String emailAddress) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        return getRestTemplate().exchange(buildUrl("/users/{accountname}/emails/{email_address}"), HttpMethod.PUT, new HttpEntity<>("primary=true"),
+                BitBucketEmailAddress.class, accountName, emailAddress).getBody();
     }
 }
