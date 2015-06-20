@@ -26,9 +26,44 @@ package org.springframework.social.bitbucket.api;
 public interface UsersOperations {
 
     /**
+     * Account management API
+     *
+     * @return users account template
+     */
+    UsersAccountOperations usersAccountOperations();
+
+    /**
+     * Consumers management API
+     *
+     * @return users consumers template
+     */
+    UsersConsumersOperations usersConsumersOperations();
+
+    /**
+     * Invitations management API
+     *
+     * @return users initations template
+     */
+    UsersInvitationsOperations usersInvitationsOperations();
+
+    /**
+     * Privileges management API
+     *
+     * @return users privileges template
+     */
+    UsersPrivilegesOperations usersPrivilegesOperations();
+
+    /**
+     * Ssh keys management API
+     *
+     * @return users ssh keys template
+     */
+    UsersSshKeysOperations usersSshKeysOperations();
+
+    /**
      * Emails managemet API
      *
      * @return emails management API template
      */
-    EmailsOperations emailsOperations();
+    UsersEmailsOperations usersEmailsOperations();
 }

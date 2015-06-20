@@ -19,31 +19,31 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 
-import java.io.Serializable;
-
 /**
- * A BitBucket user account.
- *
- * @author Eric Bottard
+ * @author Cyprian Śniegota
+ * @since 2.0.0
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class BitBucketUser implements Serializable {
+public class BitBucketSshKey {
 
-    private static final long serialVersionUID = 1L;
+    /**
+     * The key identifier (ID).
+     */
+    @JsonProperty
+    @Getter
+    private long pk;
 
-    @JsonProperty @Getter
-    private String username;
+    /**
+     * Public key value.
+     */
+    @JsonProperty
+    @Getter
+    private String key;
 
-    @JsonProperty("first_name") @Getter
-    private String firstName;
-
-    @JsonProperty("last_name") @Getter
-    private String lastName;
-
-    @JsonProperty("is_team") @Getter
-    private Boolean isTeam;
-
-    @JsonProperty("avatar") @Getter
-    private String avatarImageUrl;
-
+    /**
+     * The user-visible label on the key.
+     */
+    @JsonProperty
+    @Getter
+    private String label;
 }

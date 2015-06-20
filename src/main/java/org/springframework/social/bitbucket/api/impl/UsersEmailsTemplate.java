@@ -15,8 +15,11 @@
  */
 package org.springframework.social.bitbucket.api.impl;
 
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpMethod;
 import org.springframework.social.bitbucket.api.BitBucketEmailAddress;
-import org.springframework.social.bitbucket.api.EmailsOperations;
+import org.springframework.social.bitbucket.api.UsersEmailsOperations;
+import org.springframework.social.support.ParameterMap;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
@@ -27,31 +30,42 @@ import static java.util.Arrays.asList;
  * @author Cyprian Śniegota
  * @since 2.0.0
  */
-public class EmailsTemplate extends AbstractBitBucketOperations implements EmailsOperations {
+public class UsersEmailsTemplate extends AbstractBitBucketOperations implements UsersEmailsOperations {
 
-    public EmailsTemplate(RestTemplate restTemplate, boolean authorized) {
+    public UsersEmailsTemplate(RestTemplate restTemplate, boolean authorized) {
         super(restTemplate, authorized, V1);
     }
 
     @Override
-    public final List<BitBucketEmailAddress> getListOfUserEmailAddresses(String accountName) {
+    public final List<BitBucketEmailAddress> getEmailAddresses(String accountName) {
         return asList(getRestTemplate().getForObject(buildUrl("/users/{accountname}/emails"),
                 BitBucketEmailAddress[].class, accountName));
     }
 
     @Override
-    public final BitBucketEmailAddress getAnEmailAddress(String accountName, String emailAddress) {
+    public final BitBucketEmailAddress getEmailAddress(String accountName, String emailAddress) {
         return getRestTemplate().getForObject(buildUrl("/users/{accountname}/emails/{email_address}"),
                 BitBucketEmailAddress.class, accountName, emailAddress);
     }
 
     @Override
-    public final List<BitBucketEmailAddress> postANewEmailAddress(String accountName, String emailAddress) {
-        throw new UnsupportedOperationException("Not implemented yet");
+    public final List<BitBucketEmailAddress> postNewEmailAddress(String accountName, String emailAddress) {
+        return asList(getRestTemplate()
+                .postForObject(buildUrl("/users/{accountname}/emails/{email_address}"), new EmailAddressCreate(emailAddress), BitBucketEmailAddress[].class,
+                        accountName, emailAddress));
     }
 
     @Override
-    public final BitBucketEmailAddress updateAnEmailAddress(String accountName, String emailAddress) {
-        throw new UnsupportedOperationException("Not implemented yet");
+    public final BitBucketEmailAddress updateEmailAddress(String accountName, String emailAddress) {
+        return getRestTemplate().exchange(buildUrl("/users/{accountname}/emails/{email_address}"), HttpMethod.PUT, new HttpEntity<>("primary=true"),
+                BitBucketEmailAddress.class, accountName, emailAddress).getBody();
+    }
+
+    private static final class EmailAddressCreate extends ParameterMap {
+
+        public EmailAddressCreate(String name) {
+            set("email", name);
+        }
+
     }
 }

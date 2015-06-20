@@ -18,13 +18,15 @@ package org.springframework.social.bitbucket.api.impl;
 import org.junit.Test;
 import org.springframework.http.MediaType;
 import org.springframework.social.bitbucket.api.BitBucketEmailAddress;
-import org.springframework.social.bitbucket.api.BitBucketRepository;
-import org.springframework.social.bitbucket.api.BitBucketSCM;
 
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import static org.springframework.http.HttpMethod.GET;
+import static org.springframework.http.HttpMethod.POST;
+import static org.springframework.http.HttpMethod.PUT;
+import static org.springframework.test.web.client.match.MockRestRequestMatchers.content;
 import static org.springframework.test.web.client.match.MockRestRequestMatchers.method;
 import static org.springframework.test.web.client.match.MockRestRequestMatchers.requestTo;
 import static org.springframework.test.web.client.response.MockRestResponseCreators.withSuccess;
@@ -33,7 +35,10 @@ import static org.springframework.test.web.client.response.MockRestResponseCreat
  * @author Cyprian Śniegota
  * @since 2.0.0
  */
-public class EmailsTemplateTest extends BaseTemplateTest {
+public class UsersEmailsTemplateTest extends BaseTemplateTest {
+
+    private static final String TEST_ACCOUNTNAME = "testaccount";
+    private static final String TEST_EMAIL = "test@email.tld";
 
     @Test
     public void testGetListOfUserEmailAddresses() throws Exception {
@@ -42,9 +47,10 @@ public class EmailsTemplateTest extends BaseTemplateTest {
                 .andExpect(method(GET)).andRespond(withSuccess(jsonResource("get-list-of-users-email-addresses"),
                 MediaType.APPLICATION_JSON));
         //when
-        List<BitBucketEmailAddress> listOfUserEmailAddresses = bitBucket.usersOperations().emailsOperations()
-                .getListOfUserEmailAddresses("sampleuser");
+        List<BitBucketEmailAddress> listOfUserEmailAddresses = bitBucket.usersOperations().usersEmailsOperations()
+                .getEmailAddresses("sampleuser");
         //then
+        mockServer.verify();
         assertEquals(2, listOfUserEmailAddresses.size());
         BitBucketEmailAddress firstEmailAddress = listOfUserEmailAddresses.iterator().next();
         assertEquals("2team.bb@gmail.com", firstEmailAddress.getEmail());
@@ -59,27 +65,43 @@ public class EmailsTemplateTest extends BaseTemplateTest {
                 .andExpect(method(GET)).andRespond(withSuccess(jsonResource("get-an-email-address"),
                 MediaType.APPLICATION_JSON));
         //when
-        BitBucketEmailAddress sampleuser = bitBucket.usersOperations().emailsOperations()
-                .getAnEmailAddress("sampleuser", "ourteam@gmail.com");
+        BitBucketEmailAddress sampleuser = bitBucket.usersOperations().usersEmailsOperations()
+                .getEmailAddress("sampleuser", "ourteam@gmail.com");
         //then
+        mockServer.verify();
         assertEquals("ourteam@gmail.com", sampleuser.getEmail());
         assertEquals(false, sampleuser.getActive());
         assertEquals(false, sampleuser.getPrimary());
     }
 
-    @Test(expected = UnsupportedOperationException.class)
-    public void testPostANewEmailAddress() throws Exception {
+    @Test
+    public void testPostNewEmailAddress() throws Exception {
         //given
+        mockServer.expect(requestTo("https://api.bitbucket.org/1.0/users/testaccount/emails/test@email.tld")).andExpect(method(POST)).andExpect(
+                content().string("email=test%40email.tld")).andRespond(withSuccess(jsonResource("post-new-email-address"), MediaType.APPLICATION_JSON));
         //when
-        bitBucket.usersOperations().emailsOperations().postANewEmailAddress("sampleuser", "ourteam@gmail.com");
+        List<BitBucketEmailAddress> result = bitBucket.usersOperations().usersEmailsOperations()
+                .postNewEmailAddress(TEST_ACCOUNTNAME, TEST_EMAIL);
         //then
+        mockServer.verify();
+        assertEquals(2, result.size());
+        BitBucketEmailAddress firstEmailAddress = result.iterator().next();
+        assertTrue(firstEmailAddress.getActive());
+        assertTrue(firstEmailAddress.getPrimary());
+        assertEquals("2team.bb@gmail.com", firstEmailAddress.getEmail());
     }
 
-    @Test(expected = UnsupportedOperationException.class)
-    public void testUpdateAnEmailAddress() throws Exception {
+    @Test
+    public void testUpdateEmailAddress() throws Exception {
         //given
+        mockServer.expect(requestTo("https://api.bitbucket.org/1.0/users/testaccount/emails/test@email.tld")).andExpect(method(PUT))
+                .andExpect(content().string("primary=true")).andRespond(withSuccess(jsonResource("update-email-address"), MediaType.APPLICATION_JSON));
         //when
-        bitBucket.usersOperations().emailsOperations().updateAnEmailAddress("sampleuser", "ourteam@gmail.com");
+        BitBucketEmailAddress result = bitBucket.usersOperations().usersEmailsOperations().updateEmailAddress(TEST_ACCOUNTNAME, TEST_EMAIL);
         //then
+        mockServer.verify();
+        assertTrue(result.getActive());
+        assertTrue(result.getPrimary());
+        assertEquals("ourteam@gmail.com", result.getEmail());
     }
 }

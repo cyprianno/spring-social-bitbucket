@@ -87,7 +87,7 @@ public class GroupPrivilegesTemplateTest extends BaseTemplateTest {
         assertNotNull(firstPrivilegeGroup.getGroup().getMembers());
         assertTrue(firstPrivilegeGroup.getGroup().getMembers().isEmpty());
         assertEquals("Contractors", firstPrivilegeGroup.getGroup().getName());
-        assertTrue(firstPrivilegeGroup.getRepository().getOwner().isTeam());
+        assertTrue(firstPrivilegeGroup.getRepository().getOwner().getIsTeam());
         assertEquals("grouptest", firstPrivilegeGroup.getRepository().getName());
     }
 
@@ -110,7 +110,7 @@ public class GroupPrivilegesTemplateTest extends BaseTemplateTest {
         assertNotNull(firstPrivilegeGroup.getGroup().getMembers());
         assertEquals(1, firstPrivilegeGroup.getGroup().getMembers().size());
         assertEquals("Developers", firstPrivilegeGroup.getGroup().getName());
-        assertTrue(firstPrivilegeGroup.getRepository().getOwner().isTeam());
+        assertTrue(firstPrivilegeGroup.getRepository().getOwner().getIsTeam());
         assertEquals("grouptest", firstPrivilegeGroup.getRepository().getName());
     }
 
@@ -133,7 +133,7 @@ public class GroupPrivilegesTemplateTest extends BaseTemplateTest {
         assertNotNull(firstPrivilegeGroup.getGroup().getMembers());
         assertEquals(1, firstPrivilegeGroup.getGroup().getMembers().size());
         assertEquals("Developers", firstPrivilegeGroup.getGroup().getName());
-        assertTrue(firstPrivilegeGroup.getRepository().getOwner().isTeam());
+        assertTrue(firstPrivilegeGroup.getRepository().getOwner().getIsTeam());
         assertEquals("public2teamrepo", firstPrivilegeGroup.getRepository().getName());
     }
 
@@ -157,9 +157,9 @@ public class GroupPrivilegesTemplateTest extends BaseTemplateTest {
         assertNotNull(firstPrivilegeGroup.getGroup().getOwner());
         assertNotNull(firstPrivilegeGroup.getGroup().getMembers());
         assertEquals(1, firstPrivilegeGroup.getGroup().getMembers().size());
-        assertFalse(firstPrivilegeGroup.getGroup().getMembers().iterator().next().isTeam());
+        assertFalse(firstPrivilegeGroup.getGroup().getMembers().iterator().next().getIsTeam());
         assertEquals("Developers", firstPrivilegeGroup.getGroup().getName());
-        assertTrue(firstPrivilegeGroup.getRepository().getOwner().isTeam());
+        assertTrue(firstPrivilegeGroup.getRepository().getOwner().getIsTeam());
         assertEquals("grouptest", firstPrivilegeGroup.getRepository().getName());
     }
 

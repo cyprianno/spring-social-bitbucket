@@ -15,35 +15,12 @@
  */
 package org.springframework.social.bitbucket.api;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.Getter;
-
-import java.io.Serializable;
-
 /**
- * A BitBucket user account.
+ * Privileges available for the team
  *
- * @author Eric Bottard
+ * @author Cyprian Śniegota
+ * @since 2.0.0
  */
-@JsonIgnoreProperties(ignoreUnknown = true)
-public class BitBucketUser implements Serializable {
-
-    private static final long serialVersionUID = 1L;
-
-    @JsonProperty @Getter
-    private String username;
-
-    @JsonProperty("first_name") @Getter
-    private String firstName;
-
-    @JsonProperty("last_name") @Getter
-    private String lastName;
-
-    @JsonProperty("is_team") @Getter
-    private Boolean isTeam;
-
-    @JsonProperty("avatar") @Getter
-    private String avatarImageUrl;
-
+public enum BitBucketTeamPrivilege {
+    admin, collaborator;
 }

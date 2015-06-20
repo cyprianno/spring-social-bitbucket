@@ -106,7 +106,7 @@ public class UserTemplateTest extends BaseTemplateTest {
         assertEquals("auserbb", result.getUsername());
         assertEquals("foo", result.getFirstName());
         assertEquals("User", result.getLastName());
-        assertFalse(result.isTeam());
+        assertFalse(result.getIsTeam());
         assertEquals("https://secure.gravatar.com/avatar/49bd0ee69e520e8bc250adb95710bbb8?d=identicon&s=32", result.getAvatarImageUrl());
 //        assertEquals("/1.0/users/auserbb", result.getResourceURI());
     }

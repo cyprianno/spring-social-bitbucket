@@ -65,7 +65,7 @@ public class BitBucketAdapter implements ApiAdapter<BitBucket> {
     private String fetchPrimaryEmailIfAvailableForUserProfile(BitBucket api, BitBucketUser user) {
         try {
             List<BitBucketEmailAddress> emailAddresses = api.usersOperations()
-                    .emailsOperations().getListOfUserEmailAddresses(user.getUsername());
+                    .usersEmailsOperations().getEmailAddresses(user.getUsername());
             for (BitBucketEmailAddress emailAddress : emailAddresses) {
                 if (emailAddress.getPrimary()) {
                     return emailAddress.getEmail();

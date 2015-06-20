@@ -18,50 +18,55 @@ package org.springframework.social.bitbucket.api;
 import java.util.List;
 
 /**
- * emails Resource
- * @see "https://confluence.atlassian.com/display/BITBUCKET/emails+Resource"
+ * An account can have one or more email addresses associated with it.
+ * Use this end point to list, change, or create an email address.
  *
  * @author Cyprian Śniegota
+ * @see "https://confluence.atlassian.com/display/BITBUCKET/emails+Resource"
  * @since 2.0.0
  */
-public interface EmailsOperations {
+public interface UsersEmailsOperations {
 
     /**
      * Gets the email addresses associated with the account.
+     * GET https://bitbucket.org/api/1.0/users/{accountname}/emails
      *
      * @param accountName The name of an individual or team account.
      * @return list of email addresses
      */
-    List<BitBucketEmailAddress> getListOfUserEmailAddresses(String accountName);
+    List<BitBucketEmailAddress> getEmailAddresses(String accountName);
 
     /**
      * Gets an individual email address associated with an account.
+     * GET https://bitbucket.org/api/1.0/users/{accountname}/emails/{email_address}
      *
-     * @param accountName The name of an individual or team account.
+     * @param accountName  The name of an individual or team account.
      * @param emailAddress The email address to get.
      * @return email address
      */
-    BitBucketEmailAddress getAnEmailAddress(String accountName, String emailAddress);
+    BitBucketEmailAddress getEmailAddress(String accountName, String emailAddress);
 
     /**
      * Adds additional email addresses to an account.
+     * POST https://bitbucket.org/api/1.0/users/{accountname}/emails/{email_address} --data"email=value"
      *
-     * @param accountName The name of an individual or team account.
+     * @param accountName  The name of an individual or team account.
      * @param emailAddress The email address to post.
      * @return list of email addresses
      */
-    List<BitBucketEmailAddress> postANewEmailAddress(String accountName, String emailAddress);
+    List<BitBucketEmailAddress> postNewEmailAddress(String accountName, String emailAddress);
 
     /**
      * Sets an individual email address associated with an account to primary.
      * The primary email address is the main email contact for the account.
      * Only a single address on an account can be primary.
      * If another address had primary set prior to this call, after it is no longer primary.
+     * PUT https://bitbucket.org/api/1.0/users/{accountname}/emails/{email_address} --data "primary=true"
      *
-     * @param accountName The name of an individual or team account.
+     * @param accountName  The name of an individual or team account.
      * @param emailAddress The email address to modify.
      * @return modified email address
      */
-    BitBucketEmailAddress updateAnEmailAddress(String accountName, String emailAddress);
+    BitBucketEmailAddress updateEmailAddress(String accountName, String emailAddress);
 
 }
