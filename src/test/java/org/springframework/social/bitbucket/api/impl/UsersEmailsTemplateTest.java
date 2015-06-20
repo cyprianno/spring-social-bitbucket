@@ -74,7 +74,7 @@ public class UsersEmailsTemplateTest extends BaseTemplateTest {
     @Test
     public void testPostNewEmailAddress() throws Exception {
         //given
-        mockServer.expect(requestTo("https://api.bitbucket.org/1.0/users/sampleuser/emails/ourteam@gmail.com")).andExpect(method(PUT)).andExpect(
+        mockServer.expect(requestTo("https://api.bitbucket.org/1.0/users/testaccount/emails/test@email.tld")).andExpect(method(PUT)).andExpect(
                 content().string("email=ourteam@gmail.com")).andRespond(withSuccess(jsonResource("post-new-email-address"), MediaType.APPLICATION_JSON));
         //when
         List<BitBucketEmailAddress> result = bitBucket.usersOperations().usersEmailsOperations()
@@ -91,7 +91,7 @@ public class UsersEmailsTemplateTest extends BaseTemplateTest {
     @Test
     public void testUpdateEmailAddress() throws Exception {
         //given
-        mockServer.expect(requestTo("https://api.bitbucket.org/1.0/users/sampleuser/emails/ourteam@gmail.com")).andExpect(method(PUT))
+        mockServer.expect(requestTo("https://api.bitbucket.org/1.0/users/testaccount/emails/test@email.tld")).andExpect(method(PUT))
                 .andExpect(content().string("primary=true")).andRespond(withSuccess(jsonResource("update-email-address"), MediaType.APPLICATION_JSON));
         //when
         BitBucketEmailAddress result = bitBucket.usersOperations().usersEmailsOperations().updateEmailAddress(TEST_ACCOUNTNAME, TEST_EMAIL);
@@ -99,6 +99,6 @@ public class UsersEmailsTemplateTest extends BaseTemplateTest {
         mockServer.verify();
         assertTrue(result.getActive());
         assertTrue(result.getPrimary());
-        assertEquals("2team.bb@gmail.com", result.getEmail());
+        assertEquals("ourteam@gmail.com", result.getEmail());
     }
 }

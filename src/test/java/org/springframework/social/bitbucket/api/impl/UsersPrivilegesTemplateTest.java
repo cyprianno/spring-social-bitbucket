@@ -60,7 +60,7 @@ public class UsersPrivilegesTemplateTest extends BaseTemplateTest {
     public void testUpdateGroupPrivilegesOnTeamAccount() throws Exception {
         //given
         mockServer
-                .expect(requestTo("https://api.bitbucket.org/1.0/users/{accountname}/privileges/{owner}/{group_slug}"))
+                .expect(requestTo("https://api.bitbucket.org/1.0/users/testaccount/privileges/testowner/testgroupslug"))
                 .andExpect(method(PUT))
                 .andExpect(content().string("privileges=collaborator"))
                 .andRespond(
