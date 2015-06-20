@@ -48,7 +48,7 @@ public interface UsersConsumersOperations {
 
     /**
      * Deletes an individual consumer from an account.
-     * DELETE https://api.bitbucket.org/1.0/users/{accountname}/{id}
+     * DELETE https://api.bitbucket.org/1.0/users/{accountname}/consumers/{id}
      *
      * @param accountName The team or individual account name.
      * @param id          Identifier for the key

@@ -121,7 +121,7 @@ public class PrivilegeTemplateTest extends BaseTemplateTest {
 		//when
 		bitBucket.privelegesOperations().removeAllPrivilegesFromARepository("evzijst", "test");
 		//then
-		// no content
+		mockServer.verify();
 	}
 
 	@Test
@@ -133,6 +133,6 @@ public class PrivilegeTemplateTest extends BaseTemplateTest {
 		//when
 		bitBucket.privelegesOperations().removeAllPrivilegesFromAllRepositories("evzijst");
 		//then
-		// no content
+		mockServer.verify();
 	}
 }

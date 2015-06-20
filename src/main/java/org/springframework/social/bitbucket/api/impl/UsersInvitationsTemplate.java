@@ -44,11 +44,12 @@ public class UsersInvitationsTemplate extends AbstractBitBucketOperations implem
 
     @Override
     public final void removeInitationByEmail(String accountName, String emailAddress) {
-
+        getRestTemplate().delete(buildUrl("/users/{accountname}/invitations/{email_address}"), accountName, emailAddress);
     }
 
     @Override
     public final void removeInvitationByGroup(String accountName, String groupOwner, String groupSlug, String emailAddress) {
-
+        getRestTemplate().delete(buildUrl("/users/{accountname}/invitations/{email_address}/{group_owner}/{group_slug}"), accountName, emailAddress, groupOwner,
+                groupSlug);
     }
 }

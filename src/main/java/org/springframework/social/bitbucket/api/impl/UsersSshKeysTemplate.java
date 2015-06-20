@@ -38,6 +38,6 @@ public class UsersSshKeysTemplate extends AbstractBitBucketOperations implements
 
     @Override
     public final void removeKey(String accountName, long keyId) {
-
+        getRestTemplate().delete(buildUrl("/users/{accountname}/ssh-keys/{key_id}"), accountName, keyId);
     }
 }

@@ -40,7 +40,7 @@ public class UsersPrivilegesTemplate extends AbstractBitBucketOperations impleme
 
     @Override
     public final void removePrivilegeGroup(String accountName, String owner, String groupSlug) {
-
+        getRestTemplate().delete(buildUrl("/users/{accountname}/privileges/{owner}/{group_slug}"), accountName, owner, groupSlug);
     }
 
     private static final class TeamPrivilegeHolder extends HashMap<String, BitBucketTeamPrivilege> {

@@ -35,6 +35,6 @@ public class UsersConsumersTemplate extends AbstractBitBucketOperations implemen
 
     @Override
     public final void removeConsumer(String accountName, long id) {
-
+        getRestTemplate().delete(buildUrl("/users/{accountname}/consumers/{id}"), accountName, id);
     }
 }
