@@ -2,6 +2,7 @@ package org.springframework.social.bitbucket.api.impl;
 
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
+import org.springframework.social.bitbucket.api.BitBucketEmailAddress;
 import org.springframework.social.bitbucket.api.BitBucketInvitation;
 import org.springframework.social.bitbucket.api.BitBucketTeamPrivilege;
 import org.springframework.social.bitbucket.api.RepoPrivilege;
@@ -10,6 +11,8 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import static java.util.Arrays.asList;
 
 /**
  * @author Cyprian Śniegota
@@ -39,7 +42,9 @@ public class UsersPrivilegesTemplate extends AbstractBitBucketOperations impleme
 
     @Override
     public final Map<String, BitBucketTeamPrivilege> postNewPrivilege(String accountName, String owner, String groupSlug, BitBucketTeamPrivilege privilege) {
-        return null;
+        return getRestTemplate()
+                .postForObject(buildUrl("/users/{accountname}/privileges/{owner}/{group_slug}"), new HttpEntity<>("privileges=" + privilege.name()),
+                        TeamPrivilegeHolder.class, accountName, owner, groupSlug);
     }
 
     @Override

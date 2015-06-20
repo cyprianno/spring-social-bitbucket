@@ -51,14 +51,8 @@ public class UsersEmailsTemplate extends AbstractBitBucketOperations implements 
     @Override
     public final List<BitBucketEmailAddress> postNewEmailAddress(String accountName, String emailAddress) {
         return asList(getRestTemplate()
-                .postForObject(buildUrl("/users/{accountname}/emails/{email_address}"), new EmailAddressCreate(emailAddress), BitBucketEmailAddress[].class, accountName, emailAddress));
-//        HttpHeaders httpHeaders = new HttpHeaders();
-//        httpHeaders.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
-//        HttpEntity<Map<String, String>> requestEntity = new HttpEntity<>(Collections.singletonMap("x", "y"));
-//        return asList(getRestTemplate().postForObject(
-//                buildUrl("/users/{accountname}/emails/{email_address}"), Collections.singletonMap("x", "y")
-//                ,
-//                BitBucketEmailAddress[].class, accountName, emailAddress));
+                .postForObject(buildUrl("/users/{accountname}/emails/{email_address}"), new EmailAddressCreate(emailAddress), BitBucketEmailAddress[].class,
+                        accountName, emailAddress));
     }
 
     @Override
@@ -70,7 +64,7 @@ public class UsersEmailsTemplate extends AbstractBitBucketOperations implements 
     private static final class EmailAddressCreate extends ParameterMap {
 
         public EmailAddressCreate(String name) {
-            set("name", name);
+            set("email", name);
         }
 
     }

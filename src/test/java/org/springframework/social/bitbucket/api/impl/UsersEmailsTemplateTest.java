@@ -75,7 +75,7 @@ public class UsersEmailsTemplateTest extends BaseTemplateTest {
     public void testPostNewEmailAddress() throws Exception {
         //given
         mockServer.expect(requestTo("https://api.bitbucket.org/1.0/users/testaccount/emails/test@email.tld")).andExpect(method(POST)).andExpect(
-                content().string("email=ourteam@gmail.com")).andRespond(withSuccess(jsonResource("post-new-email-address"), MediaType.APPLICATION_JSON));
+                content().string("email=test%40email.tld")).andRespond(withSuccess(jsonResource("post-new-email-address"), MediaType.APPLICATION_JSON));
         //when
         List<BitBucketEmailAddress> result = bitBucket.usersOperations().usersEmailsOperations()
                 .postNewEmailAddress(TEST_ACCOUNTNAME, TEST_EMAIL);
