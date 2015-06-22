@@ -1,0 +1,188 @@
+=======================================================================================================================
+
+##repositories
+
+###changesets
+- OK GET a list of changesets
+GET https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/changesets?limit=integer?start=node
+RepoTemplate.getChangesets
+- TBD GET an individual changeset
+GET https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/changesets/{node}
+- TBD GET participants associated with an individual changeset
+GET https://bitbucket.org/api/2.0/repositories/{accountname}/{repo_slug}/commit/{sha1}
+- TBD GET statistics associated with an individual changeset
+GET https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/changesets/{node}/diffstat
+- TBD GET the diff associated with a changeset
+GET https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/changesets/{node}/diff
+- TBD GET a list of comments on a changeset
+GET https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/changesets/{node}/comments
+- TBD DELETE a comment on a changeset
+DELETE https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/changesets/{node}/comments/{comment_id}
+- TBD POST a new comment on a changeset
+POST https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/changesets/{node}/comments
+- TBD PUT an update to an existing changeset comment
+PUT https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/changesets/{node}/comments/{comment_id}
+- TBD Toggle spam flag on an existing changeset comment
+PUT  https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/changesets/{node}/comments/spam/{comment_id }
+
+###deploy-keys
+- TBD GET a list of keys
+GET https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/deploy-keys
+- TBD GET the key's content
+GET https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/deploy-keys/{pk}
+- TBD POST a new key
+POST https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/deploy-keys --data "key=value"
+- TBD DELETE a key
+DELETE https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/deploy-keys/{pk}
+
+###events
+- TBD GET a list of events
+GET https:// bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/events?limit=integer&start=integer&type=event
+
+###followers
+- OK GET the repository followers
+GET https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/followers
+RepoTemplate.getFollowers
+
+###issues
+- TBD GET a list of issues in a repository's tracker
+GET https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/issues?parameter=value&parameter=value&...
+- TBD GET an individual issue
+GET https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/issues/{issue_id}
+- TBD GET a list of an issue's followers
+GET https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/issues/{issue_id}/followers
+- TBD POST a new issue
+POST https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/issues  --data "title=value&content=value"
+- TBD Update an existing issue
+PUT https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/issues/{issue_id}  --data "parameter=value&parameter=value"
+- TBD DELETE an issue
+DELETE https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/issues/{issue_id}
+- TBD GET the comments for an issue
+GET https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/issues/{issue_id}/comments
+- TBD GET an individual comment
+GET https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/issues/{issue_id}/comments/{comment_id}
+- TBD POST a new comment on the issue
+POST https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/issues/{issue_id}/comments --data "content=string"
+- TBD Update a comment
+PUT https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/issues/{issue_id}/comments/{comment_id} --data "content=string"
+- TBD GET the components defined on an issue tracker
+GET https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/issues/components
+- TBD GET an individual component
+GET https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/issues/components/{object_id}
+- TBD POST a new component in an issue tracker
+POST https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/issues/components --data "name=String"
+- TBD Update an existing component
+PUT https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/issues/components/{object_id} --data "name=String"
+- TBD DELETE a component from the issue tracker
+DELETE https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/issues/components/{object_id}
+- TBD GET a list of versions
+GET https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/issues/versions
+- TBD GET an individual version
+GET https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/issues/versions/{object_id}
+- TBD POST a new version
+POST https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/issues/versions --data "name=String"
+- TBD PUT an update to a version
+PUT https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/issues/versions/{object_id} --data "name=String"
+- TBD DELETE a version
+DELETE https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/issues/versions/{object_id}
+- TBD GET the defined milestones
+GET https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/issues/milestones
+- TBD GET an individual milestone
+GET https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/issues/milestones/{object_id}
+- TBD POST a new milestone
+POST https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/issues/milestones --data "name=String"
+- TBD PUT an update to milestones
+PUT https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/issues/milestones/{object_id} --data "name=String"
+- TBD DELETE a milestone
+DELETE https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/issues/milestones/{object_id}
+
+###links
+- TBD GET list of links
+GET https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/links
+- TBD GET a link
+GET https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/links/{object_id}
+- TBD POST a new link
+POST https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/links --data "handler=value" --data "link_url= http://somesite.com "
+–data "link_key=value"
+- TBD PUT an update to a link
+PUT https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/links/{object_id} --data "link_key=value" --data "link_url= http://somesite.com "
+- TBD DELETE a link
+DELETE https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/links/{object_id}
+
+###pullrequests
+- DEPRECATED GET a list of a pull request comments DEPRECATED
+GET https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/pullrequests/{pull_request_id}/comments
+- DEPRECATED GET an individual pull request comment DEPRECATED
+GET https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/pullrequests/{pull_request_id}/comments/{comment_id}
+- TBD POST a new comment
+POST https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/pullrequests/{pull_request_id}/comments --data "content=string"
+- TBD PUT an update on a comment
+PUT  https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/pullrequests/{pull_request_id}/comments/{comment_id} --data "content=string"
+- TBD DELETE a pull request comment
+DELETE  https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/pullrequests/{pull_request_id}/comments/{comment_id}
+- TBD Toggle spam flag on an existing pull request comment
+PUT https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/pullrequests/{pull_request_id}/comments/spam/{comment_id}
+
+###repository
+- DEPRECATED POST a new repository
+ https://bitbucket.org/api/1.0/repositories  --data "name=mynewrepo"
+- TBD POST a new fork
+https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/fork  --data "name=mynewrepo"
+- PUT a repository update
+https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug} --data "description=long description"
+- DEPRECATED DELETE an existing repository
+https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}
+- GET list of branches
+https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/branches
+- GET the repository's main branch
+https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/main-branch
+- GET list of branches-tags
+https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/branches-tags
+- GET the repository manifest
+https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/{revision}
+- GET a list of the tags
+https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/tags
+- GET the raw source
+https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/raw/{revision}/{path}
+- GETs the history of a file in a changeset
+https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/filehistory/{node}/{path}
+
+###services
+- GET a list of services on a repository
+GET https://api.bitbucket.org/1.0/repositories/{accountname}/{repo_slug}/services
+- GET a single service attached to your repository
+GET https://api.bitbucket.org/1.0/repositories/{accountname}/{repo_slug}/services/{id}
+- POST a new service
+POST https://api.bitbucket.org/1.0/repositories/{accountname}/{repo_slug}/services/ --data "type=value&parameter=value&..."
+- PUT a change to a service
+PUT https://api.bitbucket.org/1.0/repositories/{accountname}/{repo_slug}/services/{id} --data "parameter=value"  --data "parameter=value" ...
+- DELETE a service
+DELETE https://api.bitbucket.org/1.0/repositories/{accountname}/{repo_slug}/services/{id}
+
+###src
+- GET a list of repo source
+https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/src/{revision}/{path}
+- GET raw content of an individual file
+https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/raw/{revision}/{path}
+
+###wiki
+- GET the raw content of a Wiki page
+GET https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/wiki/{page}
+- POST a new page
+POST https://bitbucket.org/api/1.0/repositories/ {accountname}/{repo_slug}/wiki/{page} --data "content=string"
+- PUT a page update
+PUT https://bitbucket.org/api/1.0/repositories/ accountname/repo_name/wiki/{page} --data "path={path}&data=string" --data "rev=value"
+=======================================================================================================================
+
+
+1. create interface
+2. check duplicates
+3. update javadoc (description + url from docs)
+4. model (if necessary)
+5. create empty implementation
+6. optional - connect new operations class to base template
+7. create tests
+8. template implementation
+9. reformat code
+10. file headers
+11. real test (on connection with all permissio
