@@ -11,3 +11,17 @@ package org.springframework.social.bitbucket.api;
  */
 public interface RepositoriesLinksOperations {
 }
+/*
+* ###links
+- TBD GET list of links
+GET https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/links
+- TBD GET a link
+GET https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/links/{object_id}
+- TBD POST a new link
+POST https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/links --data "handler=value" --data "link_url= http://somesite.com "
+–data "link_key=value"
+- TBD PUT an update to a link
+PUT https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/links/{object_id} --data "link_key=value" --data "link_url= http://somesite.com "
+- TBD DELETE a link
+DELETE https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/links/{object_id}
+*/

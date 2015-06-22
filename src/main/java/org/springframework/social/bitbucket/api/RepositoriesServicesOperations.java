@@ -14,3 +14,15 @@ package org.springframework.social.bitbucket.api;
  */
 public interface RepositoriesServicesOperations {
 }
+/*
+###services
+- GET a list of services on a repository
+GET https://api.bitbucket.org/1.0/repositories/{accountname}/{repo_slug}/services
+- GET a single service attached to your repository
+GET https://api.bitbucket.org/1.0/repositories/{accountname}/{repo_slug}/services/{id}
+- POST a new service
+POST https://api.bitbucket.org/1.0/repositories/{accountname}/{repo_slug}/services/ --data "type=value&parameter=value&..."
+- PUT a change to a service
+PUT https://api.bitbucket.org/1.0/repositories/{accountname}/{repo_slug}/services/{id} --data "parameter=value"  --data "parameter=value" ...
+- DELETE a service
+DELETE https://api.bitbucket.org/1.0/repositories/{accountname}/{repo_slug}/services/{id}*/

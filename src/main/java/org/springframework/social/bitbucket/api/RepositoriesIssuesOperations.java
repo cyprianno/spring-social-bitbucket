@@ -14,3 +14,54 @@ package org.springframework.social.bitbucket.api;
  */
 public interface RepositoriesIssuesOperations {
 }
+/*###issues XXXX
+- TBD GET a list of issues in a repository's tracker
+GET https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/issues?parameter=value&parameter=value&...
+- TBD GET an individual issue
+GET https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/issues/{issue_id}
+- TBD GET a list of an issue's followers
+GET https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/issues/{issue_id}/followers
+- TBD POST a new issue
+POST https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/issues  --data "title=value&content=value"
+- TBD Update an existing issue
+PUT https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/issues/{issue_id}  --data "parameter=value&parameter=value"
+- TBD DELETE an issue
+DELETE https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/issues/{issue_id}
+- TBD GET the comments for an issue
+GET https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/issues/{issue_id}/comments
+- TBD GET an individual comment
+GET https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/issues/{issue_id}/comments/{comment_id}
+- TBD POST a new comment on the issue
+POST https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/issues/{issue_id}/comments --data "content=string"
+- TBD Update a comment
+PUT https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/issues/{issue_id}/comments/{comment_id} --data "content=string"
+- TBD GET the components defined on an issue tracker
+GET https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/issues/components
+- TBD GET an individual component
+GET https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/issues/components/{object_id}
+- TBD POST a new component in an issue tracker
+POST https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/issues/components --data "name=String"
+- TBD Update an existing component
+PUT https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/issues/components/{object_id} --data "name=String"
+- TBD DELETE a component from the issue tracker
+DELETE https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/issues/components/{object_id}
+- TBD GET a list of versions
+GET https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/issues/versions
+- TBD GET an individual version
+GET https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/issues/versions/{object_id}
+- TBD POST a new version
+POST https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/issues/versions --data "name=String"
+- TBD PUT an update to a version
+PUT https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/issues/versions/{object_id} --data "name=String"
+- TBD DELETE a version
+DELETE https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/issues/versions/{object_id}
+- TBD GET the defined milestones
+GET https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/issues/milestones
+- TBD GET an individual milestone
+GET https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/issues/milestones/{object_id}
+- TBD POST a new milestone
+POST https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/issues/milestones --data "name=String"
+- TBD PUT an update to milestones
+PUT https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/issues/milestones/{object_id} --data "name=String"
+- TBD DELETE a milestone
+DELETE https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/issues/milestones/{object_id}*/

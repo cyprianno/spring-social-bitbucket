@@ -44,7 +44,7 @@ GET https:// bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/events
 GET https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/followers
 RepoTemplate.getFollowers
 
-###issues
+###issues XXXX
 - TBD GET a list of issues in a repository's tracker
 GET https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/issues?parameter=value&parameter=value&...
 - TBD GET an individual issue
@@ -123,7 +123,7 @@ DELETE  https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/pul
 - TBD Toggle spam flag on an existing pull request comment
 PUT https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/pullrequests/{pull_request_id}/comments/spam/{comment_id}
 
-###repository
+###repository XXXX
 - DEPRECATED POST a new repository
  https://bitbucket.org/api/1.0/repositories  --data "name=mynewrepo"
 - TBD POST a new fork

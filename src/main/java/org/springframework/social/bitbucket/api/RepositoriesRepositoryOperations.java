@@ -14,3 +14,26 @@ package org.springframework.social.bitbucket.api;
  */
 public interface RepositoriesRepositoryOperations {
 }
+/*###repository XXXX
+- DEPRECATED POST a new repository
+ https://bitbucket.org/api/1.0/repositories  --data "name=mynewrepo"
+- TBD POST a new fork
+https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/fork  --data "name=mynewrepo"
+- PUT a repository update
+https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug} --data "description=long description"
+- DEPRECATED DELETE an existing repository
+https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}
+- GET list of branches
+https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/branches
+- GET the repository's main branch
+https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/main-branch
+- GET list of branches-tags
+https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/branches-tags
+- GET the repository manifest
+https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/{revision}
+- GET a list of the tags
+https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/tags
+- GET the raw source
+https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/raw/{revision}/{path}
+- GETs the history of a file in a changeset
+https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/filehistory/{node}/{path}*/

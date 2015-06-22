@@ -55,12 +55,16 @@ public interface RepoOperations {
     /**
      * Returns the last changesets on a repository, as well as information about
      * how many are available totally.
+     *
+     * @deprecated duplicate of Repositories->Changesets
      */
     BitBucketChangesets getChangesets(String user, String repoSlug);
 
     /**
      * Returns some changesets on a repository, as well as information about how
      * many are available totally.
+     *
+     * @deprecated duplicate of Repositories->Changesets
      */
     BitBucketChangesets getChangesets(String user, String repoSlug,
                                       String start, int limit);

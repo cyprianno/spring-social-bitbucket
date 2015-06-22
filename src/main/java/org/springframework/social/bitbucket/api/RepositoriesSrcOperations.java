@@ -9,3 +9,8 @@ package org.springframework.social.bitbucket.api;
  */
 public interface RepositoriesSrcOperations {
 }
+/*###src
+- GET a list of repo source
+https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/src/{revision}/{path}
+- GET raw content of an individual file
+https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/raw/{revision}/{path}*/
