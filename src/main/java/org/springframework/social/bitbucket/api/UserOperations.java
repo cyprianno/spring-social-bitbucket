@@ -29,7 +29,7 @@ public interface UserOperations {
     /**
      * Returns information about the current user, as well as the list of
      * repositories he/she owns.
-     * GET https://bitbucket.org/api/1.0/user
+     * API call: GET https://bitbucket.org/api/1.0/user
      *
      * @return user profile
      */
@@ -40,7 +40,7 @@ public interface UserOperations {
      * It operates on the currently authenticated user.
      * Specify one or more fields with the exception of the username field.
      * This call ignores changes to the username field. Omitted fields retain their existing values.
-     * PUT https://bitbucket.org/api/1.0/user --data "field=value&field=value&..."
+     * API call: PUT https://bitbucket.org/api/1.0/user --data "field=value&field=value&..."
      *
      * @param userProfileDataToUpdate user data to update
      * @return user profile
@@ -52,7 +52,7 @@ public interface UserOperations {
      * Use this call to locate the accounts that the currently authenticated  accountname has access to.
      * An account can have admin or collaborator (member) privileges.
      * The accountname always has admin privileges on itself.
-     * GET   https://bitbucket.org/api/1.0/user/privileges
+     * API call: GET   https://bitbucket.org/api/1.0/user/privileges
      *
      * @return map {accountname, privilege string}
      */
@@ -63,7 +63,7 @@ public interface UserOperations {
      * This call returns the full data about the repositories
      * including if the repository is a fork of another repository.
      * An account always "follows" its own repositories.
-     * GET https://bitbucket.org/api/1.0/user/follows
+     * API call: GET https://bitbucket.org/api/1.0/user/follows
      *
      * @return list of repositories
      */
@@ -72,7 +72,7 @@ public interface UserOperations {
     /**
      * Gets the details of the repositories that the user owns or has at least read access to.
      * Use this if you're looking for a full list of all of the repositories associated with a user.
-     * GET https://bitbucket.org/api/1.0/user/repositories
+     * API call: GET https://bitbucket.org/api/1.0/user/repositories
      *
      * @return list of repositories
      */
@@ -81,7 +81,7 @@ public interface UserOperations {
     /**
      * Gets a list of the repositories the account follows.
      * This is the same list that appears on the Following tab on your account dashboard.
-     * GET https://bitbucket.org/api/1.0/user/repositories/overview
+     * API call: GET https://bitbucket.org/api/1.0/user/repositories/overview
      *
      * @return list of repositories
      */
@@ -90,7 +90,7 @@ public interface UserOperations {
     /**
      * NOT IMPLEMENTED due to bad json format in response.
      * Gets the repositories list from the account's dashboard.
-     * GET https://bitbucket.org/api/1.0/user/repositories/dashboard
+     * API call: GET https://bitbucket.org/api/1.0/user/repositories/dashboard
      *
      * @return list of repositories
      */

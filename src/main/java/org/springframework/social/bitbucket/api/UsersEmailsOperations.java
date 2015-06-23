@@ -29,7 +29,7 @@ public interface UsersEmailsOperations {
 
     /**
      * Gets the email addresses associated with the account.
-     * GET https://bitbucket.org/api/1.0/users/{accountname}/emails
+     * API call: GET https://bitbucket.org/api/1.0/users/{accountname}/emails
      *
      * @param accountName The name of an individual or team account.
      * @return list of email addresses
@@ -38,7 +38,7 @@ public interface UsersEmailsOperations {
 
     /**
      * Gets an individual email address associated with an account.
-     * GET https://bitbucket.org/api/1.0/users/{accountname}/emails/{email_address}
+     * API call: GET https://bitbucket.org/api/1.0/users/{accountname}/emails/{email_address}
      *
      * @param accountName  The name of an individual or team account.
      * @param emailAddress The email address to get.
@@ -48,7 +48,7 @@ public interface UsersEmailsOperations {
 
     /**
      * Adds additional email addresses to an account.
-     * POST https://bitbucket.org/api/1.0/users/{accountname}/emails/{email_address} --data"email=value"
+     * API call: POST https://bitbucket.org/api/1.0/users/{accountname}/emails/{email_address} --data"email=value"
      *
      * @param accountName  The name of an individual or team account.
      * @param emailAddress The email address to post.
@@ -61,7 +61,7 @@ public interface UsersEmailsOperations {
      * The primary email address is the main email contact for the account.
      * Only a single address on an account can be primary.
      * If another address had primary set prior to this call, after it is no longer primary.
-     * PUT https://bitbucket.org/api/1.0/users/{accountname}/emails/{email_address} --data "primary=true"
+     * API call: PUT https://bitbucket.org/api/1.0/users/{accountname}/emails/{email_address} --data "primary=true"
      *
      * @param accountName  The name of an individual or team account.
      * @param emailAddress The email address to modify.

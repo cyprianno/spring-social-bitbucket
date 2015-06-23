@@ -29,7 +29,6 @@ import java.util.List;
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class BitBucketGroup implements Serializable {
-    private static final long serialVersionUID = 1L;
 
     @JsonProperty @Getter
     private String name;

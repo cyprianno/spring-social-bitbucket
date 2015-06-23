@@ -20,6 +20,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import lombok.Getter;
 import org.springframework.social.bitbucket.api.impl.UTCDateDeserializer;
+import org.springframework.social.bitbucket.utils.DateUtils;
 
 import java.util.Date;
 
@@ -82,16 +83,10 @@ public class BitBucketEvent {
     private String event;
 
     public final Date getCreatedOn() {
-        if (createdOn == null) {
-            return null;
-        }
-        return (Date) createdOn.clone();
+        return DateUtils.copyNullable(createdOn);
     }
 
     public final Date getUtcCreatedOn() {
-        if (utcCreatedOn == null) {
-            return null;
-        }
-        return (Date) utcCreatedOn.clone();
+        return DateUtils.copyNullable(utcCreatedOn);
     }
 }

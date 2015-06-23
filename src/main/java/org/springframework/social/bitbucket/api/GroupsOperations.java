@@ -34,7 +34,7 @@ public interface GroupsOperations {
 
     /**
      * Get a list of an account's groups.  The caller must authenticate with administrative rights on the account or as a group member to view a group.
-     * GET https://bitbucket.org/api/1.0/groups/{accountname}/
+     * API call: GET https://bitbucket.org/api/1.0/groups/{accountname}/
      *
      * @param accountName The team or individual account name. You can supply a user name or a valid email address.
      * @return list of groups
@@ -43,7 +43,7 @@ public interface GroupsOperations {
 
     /**
      * Creates a new group.  The caller must authenticate with administrative rights on an account to access its groups.
-     * POST https://bitbucket.org/api/1.0/groups/{accountname}  --data "name=string"
+     * API call: POST https://bitbucket.org/api/1.0/groups/{accountname}  --data "name=string"
      *
      * @param accountName The team or individual account name. You can supply a user name or a valid email address.
      * @param name The name of the group.
@@ -53,7 +53,7 @@ public interface GroupsOperations {
 
     /**
      * Updates an existing group resource. The caller must authenticate with administrative rights on the account.
-     * PUT https://bitbucket.org/api/1.0/groups/{accountname}/{group_slug}/  --header "Accept: application/json"
+     * API call: PUT https://bitbucket.org/api/1.0/groups/{accountname}/{group_slug}/  --header "Accept: application/json"
      * --data '{"name":"developers","permission":"write","auto_add":true}'
      *
      * @param accountName The team or individual account name. You can supply an account name or the primary email address for the account.
@@ -67,7 +67,7 @@ public interface GroupsOperations {
 
     /**
      * Deletes a group.  The caller must authenticate with administrative rights on the account.
-     * DELETE  https://bitbucket.org/api/1.0/groups/{accountname}/{group_slug}/
+     * API call: DELETE https://bitbucket.org/api/1.0/groups/{accountname}/{group_slug}/
      *
      * @param accountName The team or individual account name. You can supply an account name or the primary email address for the account.
      * @param groupSlug The group's slug.
@@ -76,7 +76,7 @@ public interface GroupsOperations {
 
     /**
      * Gets the membership for a group. The caller must authenticate with administrative rights on the account.
-     * GET https://bitbucket.org/api/1.0/groups/{accountname}/{group_slug}/members
+     * API call: GET https://bitbucket.org/api/1.0/groups/{accountname}/{group_slug}/members
      *
      * @param accountName The team or individual account name. You can supply an account name or the primary email address for the account.
      * @param groupSlug The group's slug.
@@ -86,7 +86,7 @@ public interface GroupsOperations {
 
     /**
      * Adds a member to a group. Finally, the caller must authenticate with administrative rights on an account to access its groups.
-     * PUT https://bitbucket.org/api/1.0/groups/{accountname}/{group_slug}/members/{membername}
+     * API call: PUT https://bitbucket.org/api/1.0/groups/{accountname}/{group_slug}/members/{membername}
      *
      * @param accountName The team or individual account name. You can supply an account name or the primary email address for the account.
      * @param groupSlug The slug of the group.
@@ -97,7 +97,7 @@ public interface GroupsOperations {
 
     /**
      * Deletes a member from a group.  The caller must authenticate with administrative rights on the account.
-     * DELETE  https://bitbucket.org/api/1.0/groups/{accountname}/{group_slug}/members/{membername}
+     * API call: DELETE https://bitbucket.org/api/1.0/groups/{accountname}/{group_slug}/members/{membername}
      *
      * @param accountName The team or individual account name. You can supply an account name or the primary email address for the account.
      * @param groupSlug The group's slug.

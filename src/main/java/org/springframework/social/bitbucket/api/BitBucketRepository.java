@@ -20,6 +20,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import lombok.Getter;
 import org.springframework.social.bitbucket.api.impl.UTCDateDeserializer;
+import org.springframework.social.bitbucket.utils.DateUtils;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -31,8 +32,6 @@ import java.util.Date;
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class BitBucketRepository implements Serializable {
-
-    private static final long serialVersionUID = 1L;
 
     @JsonProperty("is_private")
     private boolean isPrivate;
@@ -119,18 +118,12 @@ public class BitBucketRepository implements Serializable {
 
     /** The date when the repository was created. */
     public final Date getCreatedAt() {
-        if (createdAt == null) {
-            return null;
-        }
-        return (Date) createdAt.clone();
+        return DateUtils.copyNullable(createdAt);
     }
 
     /** When this repository was last updated. */
     public final Date getLastUpdatedOn() {
-        if (lastUpdatedOn == null) {
-            return null;
-        }
-        return (Date) lastUpdatedOn.clone();
+        return DateUtils.copyNullable(lastUpdatedOn);
     }
 
     /**

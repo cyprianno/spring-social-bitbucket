@@ -21,7 +21,7 @@ public interface PrivilegeOperations {
 
     /**
      * Get the privileges on a given repository.
-     * GET https://bitbucket.org/api/1.0/privileges/{accountname}/{repo_slug}
+     * API call: GET https://bitbucket.org/api/1.0/privileges/{accountname}/{repo_slug}
      *
      * @param accountName     repository owner
      * @param repoSlug name of the repository
@@ -31,7 +31,7 @@ public interface PrivilegeOperations {
     /**
      * Get a list of privileges for an individual account.
      * Only the repository owner, a team account administrator, or an account with administrative rights on the repository can make this call.
-     * GET https://api.bitbucket.org/1.0/privileges/{accountname}/{repo_slug}/{privilege_account}
+     * API call: GET https://api.bitbucket.org/1.0/privileges/{accountname}/{repo_slug}/{privilege_account}
      *
      * @param accountName  username
      * @param repoSlug repo_slug
@@ -44,8 +44,8 @@ public interface PrivilegeOperations {
      * Gets a list of all the privilege across all an account's repositories.
      * If a repository has no individual users with privileges, it does not appear in this list.
      * Only the repository owner, a team account administrator, or an account with administrative rights on the repository can make this call.
-     * GET https://api.bitbucket.org/1.0/privileges/{accountname}
-     * GET https://api.bitbucket.org/1.0/privileges/{accountname}?filter={filter}
+     * API call: GET https://api.bitbucket.org/1.0/privileges/{accountname}
+     * API call: GET https://api.bitbucket.org/1.0/privileges/{accountname}?filter={filter} (not implemented)
      *
      * @param accountName account_name
      * @return list of privileges
@@ -54,7 +54,7 @@ public interface PrivilegeOperations {
 
     /**
      * Set or change the privilege for the given recipient on some repository.
-     * PUT  https://api.bitbucket.org/1.0/privileges/{accountname}/{repo_slug}/{privilege_account} --data {read}
+     * API call: PUT https://api.bitbucket.org/1.0/privileges/{accountname}/{repo_slug}/{privilege_account} --data {read}
      *
      * @param accountName     the repository owner
      * @param repoSlug  the repository name
@@ -66,7 +66,7 @@ public interface PrivilegeOperations {
     /**
      * Removes the current privilege of the given recipient from some
      * repository.
-     * DELETE  https://bitbucket.org/api/1.0/privileges/{accountname}/{repo_slug}/{privilege_account}
+     * API call: DELETE https://bitbucket.org/api/1.0/privileges/{accountname}/{repo_slug}/{privilege_account}
      *
      * @param accountName     the repository owner
      * @param repoSlug  the repository name
@@ -77,7 +77,7 @@ public interface PrivilegeOperations {
     /**
      * Delete all privileges from a repository.
      * Only the repository owner, a team account administrator, or an account with administrative rights on the repository can make this call.
-     * DELETE  https://bitbucket.org/api/1.0/privileges/{accountname}/{repo_slug}
+     * API call: DELETE https://bitbucket.org/api/1.0/privileges/{accountname}/{repo_slug}
      *
      * @param accountName Owner of the repository.
      * @param repoSlug Repository identifier.
@@ -87,7 +87,7 @@ public interface PrivilegeOperations {
     /**
      * DELETE an privileges from all repositories.
      * Only the repository owner, a team account administrator, or an account with administrative rights on the repository can make this call.
-     * DELETE  https://bitbucket.org/api/1.0/privileges/{accountname}
+     * API call: DELETE https://bitbucket.org/api/1.0/privileges/{accountname}
      *
      * @param accountName Owner of the repositories.
      */

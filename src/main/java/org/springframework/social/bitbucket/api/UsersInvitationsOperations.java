@@ -29,7 +29,7 @@ public interface UsersInvitationsOperations {
     /**
      * Gets a list of pending invitations on a team or individual account.
      * This call requires authorization and the caller must have administrative rights on the account.
-     * GET https://bitbucket.org/api/1.0/users/{accountname}/invitations
+     * API call: GET https://bitbucket.org/api/1.0/users/{accountname}/invitations
      *
      * @param accountName The name of an individual or team account.
      */
@@ -42,7 +42,7 @@ public interface UsersInvitationsOperations {
      * Gets any pending invitations on a team or individual account for a particular email address.
      * Any user with admin access to the account can invite someone to a group.
      * This call requires authorization and the caller must have administrative rights on the account.
-     * GET https://bitbucket.org/api/1.0/users/{accountname}/invitations/{email_address}
+     * API call: GET https://bitbucket.org/api/1.0/users/{accountname}/invitations/{email_address}
      *
      * @param accountName  The name of an individual or team account.
      * @param emailAddress The email address to get.
@@ -55,7 +55,7 @@ public interface UsersInvitationsOperations {
      * An invitation is a request sent to an external email address to participate one or more of an account's groups.
      * Any user with admin access to the account can invite someone to a group.
      * This call requires authorization and the caller must have administrative rights on the account.
-     * GET https://bitbucket.org/api/1.0/users/{accountname}/invitations/{email_address}/{group_owner}/{group_slug}
+     * API call: GET https://bitbucket.org/api/1.0/users/{accountname}/invitations/{email_address}/{group_owner}/{group_slug}
      *
      * @param accountName  The name of an individual or team account.
      * @param groupOwner   The name of an individual or team account that owns the group.
@@ -73,7 +73,7 @@ public interface UsersInvitationsOperations {
      * This call requires authorization and the caller must have administrative rights on the account.
      * This call does not check validate the email address.
      * When making this call, you must provide a Content-Length header even if the length is 0 (zero).
-     * PUT https://bitbucket.org/api/1.0/users/{accountname}/invitations/{email_address}/{group_owner}/{group_slug}
+     * API call: PUT https://bitbucket.org/api/1.0/users/{accountname}/invitations/{email_address}/{group_owner}/{group_slug}
      *
      * @param accountName  The name of an individual or team account.
      * @param groupOwner   The name of an individual or team account that owns the group.
@@ -89,7 +89,7 @@ public interface UsersInvitationsOperations {
      * An invitation is a request sent to an external email address to participate one or more of an account's groups.
      * If a email is invited on multiple groups, the invitation is removed from all groups.
      * This call requires authorization and the caller must have administrative rights on the account.
-     * DELETE https://bitbucket.org/api/1.0/users/{accountname}/invitations/{email_address}
+     * API call: DELETE https://bitbucket.org/api/1.0/users/{accountname}/invitations/{email_address}
      *
      * @param accountName  The name of an individual or team account.
      * @param emailAddress Name of the email address to delete.
@@ -101,7 +101,7 @@ public interface UsersInvitationsOperations {
      * An invitation is a request sent to an external email address to participate one or more of an account's groups.
      * Any user with admin access to the account can invite someone to a group.
      * This call requires authorization and the caller must have administrative rights on the account.
-     * DELETE   https://bitbucket.org/api/1.0/users/{accountname}/invitations/{email_address}/{group_owner}/{group_slug}
+     * API call: DELETE https://bitbucket.org/api/1.0/users/{accountname}/invitations/{email_address}/{group_owner}/{group_slug}
      *
      * @param accountName  The name of an individual or team account.
      * @param groupOwner   The name of an individual or team account that owns the group.

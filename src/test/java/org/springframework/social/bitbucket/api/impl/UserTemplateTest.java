@@ -15,7 +15,6 @@
  */
 package org.springframework.social.bitbucket.api.impl;
 
-import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Test;
 import org.springframework.format.datetime.DateFormatter;
@@ -106,7 +105,7 @@ public class UserTemplateTest extends BaseTemplateTest {
         assertEquals("auserbb", result.getUsername());
         assertEquals("foo", result.getFirstName());
         assertEquals("User", result.getLastName());
-        assertFalse(result.getIsTeam());
+        assertFalse(result.getTeam());
         assertEquals("https://secure.gravatar.com/avatar/49bd0ee69e520e8bc250adb95710bbb8?d=identicon&s=32", result.getAvatarImageUrl());
 //        assertEquals("/1.0/users/auserbb", result.getResourceURI());
     }

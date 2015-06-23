@@ -19,6 +19,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 
+import javax.annotation.Nullable;
 import java.io.Serializable;
 
 /**
@@ -29,20 +30,35 @@ import java.io.Serializable;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class BitBucketUser implements Serializable {
 
-    private static final long serialVersionUID = 1L;
-
+    /**
+     * User name
+     */
     @JsonProperty @Getter
     private String username;
 
+    /**
+     * First name
+     */
     @JsonProperty("first_name") @Getter
     private String firstName;
 
+    /**
+     * Last name
+     */
     @JsonProperty("last_name") @Getter
     private String lastName;
 
+    /**
+     * Is a Team?
+     * Could be null if data was fetched by unauthorized user.
+     */
     @JsonProperty("is_team") @Getter
-    private Boolean isTeam;
+    @Nullable
+    private Boolean team;
 
+    /**
+     * Avatar url (by default Gravatar is used)
+     */
     @JsonProperty("avatar") @Getter
     private String avatarImageUrl;
 
