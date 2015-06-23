@@ -1,5 +1,7 @@
 package org.springframework.social.bitbucket.api;
 
+import java.util.List;
+
 /**
  * The issues resource provides functionality for getting information on issues in an issue tracker,
  * creating new issues, updating them and deleting them.
@@ -13,6 +15,19 @@ package org.springframework.social.bitbucket.api;
  * @since 2.0.0
  */
 public interface RepositoriesIssuesOperations {
+
+    List<String> getIssues(String accountName, String repoSlug);
+
+    String getIssue(String accountName, String repoSlug, String issueId);
+
+    String getFollowers(String accountName, String repoSlug, String issueId);
+
+    String postNewIssue(String accountName, String repoSlug, String issueId);
+
+    String updateIssue(String accountName, String repoSlug, String issueId);
+
+
+
 }
 /*###issues XXXX
 - TBD GET a list of issues in a repository's tracker
