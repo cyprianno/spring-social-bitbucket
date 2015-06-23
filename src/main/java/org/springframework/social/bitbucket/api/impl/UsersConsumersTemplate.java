@@ -15,15 +15,15 @@
  */
 package org.springframework.social.bitbucket.api.impl;
 
-import com.google.common.base.Joiner;
 import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
+import org.springframework.http.MediaType;
 import org.springframework.social.bitbucket.api.BitBucketConsumer;
 import org.springframework.social.bitbucket.api.UsersConsumersOperations;
 import org.springframework.social.support.ParameterMap;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static java.util.Arrays.asList;
@@ -49,9 +49,10 @@ public class UsersConsumersTemplate extends AbstractBitBucketOperations implemen
 
     @Override
     public final BitBucketConsumer updateConsumer(String accountName, long id, String name, String description, String url) {
+        HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
         return getRestTemplate().exchange(buildUrl("/users/{accountname}/{id}"), HttpMethod.PUT,
-                new HttpEntity<>(new UpdateConsumerParameters(name, description, url).toStringParameters()), BitBucketConsumer.class, accountName, id)
-                .getBody();
+                new HttpEntity<>(new UpdateConsumerParameters(name, description, url), httpHeaders), BitBucketConsumer.class, accountName, id).getBody();
     }
 
     @Override
@@ -64,14 +65,6 @@ public class UsersConsumersTemplate extends AbstractBitBucketOperations implemen
             this.add("name", name);
             this.add("description", description);
             this.add("url", url);
-        }
-
-        public String toStringParameters() {
-            List<String> paramList = new ArrayList<>();
-            for (String s : this.keySet()) {
-                paramList.add(s + "=" + this.getFirst(s));
-            }
-            return Joiner.on('&').join(paramList);
         }
     }
 }

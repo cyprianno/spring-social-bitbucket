@@ -20,6 +20,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import lombok.Getter;
 import org.springframework.social.bitbucket.api.impl.UTCDateDeserializer;
+import org.springframework.social.bitbucket.utils.DateUtils;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -34,7 +35,6 @@ import java.util.List;
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class BitBucketInvitation implements Serializable {
-    private static final long serialVersionUID = 1L;
 
     @JsonProperty("sent_on")
     @JsonDeserialize(using = UTCDateDeserializer.class)
@@ -65,17 +65,11 @@ public class BitBucketInvitation implements Serializable {
     private List<String> groups = new ArrayList<>();
 
     public final Date getSentOn() {
-        if (sentOn == null) {
-            return null;
-        }
-        return (Date) sentOn.clone();
+        return DateUtils.copyNullable(sentOn);
     }
 
     public final Date getUtcSentOn() {
-        if (utcSentOn == null) {
-            return null;
-        }
-        return (Date) utcSentOn.clone();
+        return DateUtils.copyNullable(utcSentOn);
     }
 
 }

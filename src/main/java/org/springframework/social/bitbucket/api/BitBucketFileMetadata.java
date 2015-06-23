@@ -20,6 +20,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import lombok.Getter;
 import org.springframework.social.bitbucket.api.impl.UTCDateDeserializer;
+import org.springframework.social.bitbucket.utils.DateUtils;
 
 import java.util.Date;
 
@@ -45,9 +46,6 @@ public class BitBucketFileMetadata {
     private int size;
 
     public final Date getTimestamp() {
-        if (timestamp == null) {
-            return null;
-        }
-        return (Date) timestamp.clone();
+        return DateUtils.copyNullable(timestamp);
     }
 }

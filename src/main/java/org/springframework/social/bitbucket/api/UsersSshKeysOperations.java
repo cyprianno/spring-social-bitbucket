@@ -28,7 +28,7 @@ public interface UsersSshKeysOperations {
 
     /**
      * Gets a list of the keys associated with an account. This call requires authentication.
-     * GET https://bitbucket.org/api/1.0/users/{accountname}/ssh-keys
+     * API call: GET https://bitbucket.org/api/1.0/users/{accountname}/ssh-keys
      *
      * @param accountName The name of an individual or team account.
      * @return A list of ssh keys.
@@ -40,7 +40,7 @@ public interface UsersSshKeysOperations {
      * You must supply a valid key that is unique across the Bitbucket service.
      * A public key contains characters need to be escaped before sending it as a POST data.
      * So, use the proper escaping ( urlencode ), if you are testing to add a key via your terminal.
-     * POST https://bitbucket.org/api/1.0/users/{accountname}/ssh-keys --data "key=value"
+     * API call: POST https://bitbucket.org/api/1.0/users/{accountname}/ssh-keys --data "key=value"
      *
      * @param accountName The name of an individual or team account.
      * @param label       A label for the key.
@@ -51,7 +51,7 @@ public interface UsersSshKeysOperations {
 
     /**
      * Gets the content of the specified key_id. This call requires authentication. This call requires authentication.
-     * GET https://bitbucket.org/api/1.0/users/{accountname}/ssh-keys/{key_id}
+     * API call: GET https://bitbucket.org/api/1.0/users/{accountname}/ssh-keys/{key_id}
      *
      * @param accountName The name of an individual or team account.
      * @param keyId       The key identifier. This is an internal value created by Bitbucket when the key is added.
@@ -62,7 +62,7 @@ public interface UsersSshKeysOperations {
 
     /**
      * Deletes the key specified by the key_id value. This call requires authentication.
-     * DELETE https://bitbucket.org/api/1.0/users/{accountname}/ssh-keys/{key_id}
+     * API call: DELETE https://bitbucket.org/api/1.0/users/{accountname}/ssh-keys/{key_id}
      *
      * @param accountName The name of an individual or team account.
      * @param keyId       The key identifier. This is an internal value created by Bitbucket when the key is added.

@@ -31,7 +31,7 @@ public interface GroupPrivilegesOperations {
     /**
      * Gets an array of all the groups granted access to an account's repositories.
      * The caller must authenticate as a user with administrative rights on the account.
-     * GET https://bitbucket.org/api/1.0/group-privileges/{accountname}
+     * API call: GET https://bitbucket.org/api/1.0/group-privileges/{accountname}
      *
      * @param accountName The team or individual account.
      * @return a list of privileged groups
@@ -39,9 +39,9 @@ public interface GroupPrivilegesOperations {
     List<BitBucketPrivilegeGroup> getPrivilegedGroups(String accountName);
 
     /**
-     * GET a list of the privilege groups for a specific repository.
+     * Get a list of the privilege groups for a specific repository.
      * The caller must authenticate successfully and have administrative rights on the account.
-     * GET https://bitbucket.org/api/1.0/group-privileges/{accountname}/{repo_slug}
+     * API call: GET https://bitbucket.org/api/1.0/group-privileges/{accountname}/{repo_slug}
      *
      * @param accountName The team or individual account.
      * @param repoSlug    A repository belonging to the account.
@@ -52,7 +52,7 @@ public interface GroupPrivilegesOperations {
     /**
      * Gets the privileges of a group on a repository.
      * The caller must authenticate as a user with administrative rights on the account.
-     * GET  https://bitbucket.org/api/1.0/group-privileges/{accountname}/{repo_slug}/{group_owner}/{group_slug}
+     * API call: GET  https://bitbucket.org/api/1.0/group-privileges/{accountname}/{repo_slug}/{group_owner}/{group_slug}
      *
      * @param accountName The team or individual account.
      * @param repoSlug    A repository belonging to the account.
@@ -66,7 +66,7 @@ public interface GroupPrivilegesOperations {
      * Get a list of the repositories on which a particular privilege group appears.
      * This method operates on a single account, it does not list across acounts.
      * The caller must authenticate as a user with administrative rights on the account.
-     * GET https://bitbucket.org/api/1.0/group-privileges/{accountname}/{group_owner}/{group_slug}
+     * API call: GET https://bitbucket.org/api/1.0/group-privileges/{accountname}/{group_owner}/{group_slug}
      *
      * @param accountName The team or individual account.
      * @param groupOwner  The account that owns the group.
@@ -78,7 +78,7 @@ public interface GroupPrivilegesOperations {
     /**
      * Grant group privileges on a repository with a PUT method.
      * The caller must authenticate as a user with administrative rights on the account.
-     * PUT https://bitbucket.org/api/1.0/group-privileges/{accountname}/{repo_slug}/{group_owner}/{group_slug}
+     * API call: PUT https://bitbucket.org/api/1.0/group-privileges/{accountname}/{repo_slug}/{group_owner}/{group_slug}
      * --data "{privilege}"
      *
      * @param accountName The team or individual account.
@@ -92,7 +92,7 @@ public interface GroupPrivilegesOperations {
 
     /**
      * DELETE a privilege group from a repository.  The caller must authenticate as a user with administrative rights on the account.
-     * DELETE https://bitbucket.org/api/1.0/group-privileges/{accountname}/{repo_slug}/{group_owner}/{group_slug}
+     * API call: DELETE https://bitbucket.org/api/1.0/group-privileges/{accountname}/{repo_slug}/{group_owner}/{group_slug}
      *
      * @param accountName The team or individual account.
      * @param repoSlug    The repository to grant privileges on.
@@ -103,7 +103,7 @@ public interface GroupPrivilegesOperations {
 
     /**
      * Deletes the privileges for a group on every repository where it appears.  The caller must authenticate as a user with administrative rights on the account.
-     * DELETE https://bitbucket.org/api/1.0/group-privileges/{accountname}/group_owner}/{group_slug}
+     * API call: DELETE https://bitbucket.org/api/1.0/group-privileges/{accountname}/group_owner}/{group_slug}
      *
      * @param accountName The team or individual account.
      * @param groupOwner  The account that owns the group.

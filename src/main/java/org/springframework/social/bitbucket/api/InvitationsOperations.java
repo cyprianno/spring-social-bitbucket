@@ -30,7 +30,7 @@ public interface InvitationsOperations {
 
     /**
      * Invites a user to a repository.
-     * POST https://bitbucket.org/api/1.0/invitations/{accountname}/{repo_slug}/{emailaddress} --data permission={perm}
+     * API call: POST https://bitbucket.org/api/1.0/invitations/{accountname}/{repo_slug}/{emailaddress} --data permission={perm}
      *
      * @param accountName  The team or individual account.
      * @param repoSlug     A repository belonging to the account.

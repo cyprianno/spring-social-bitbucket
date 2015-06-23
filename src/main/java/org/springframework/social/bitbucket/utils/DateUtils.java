@@ -13,30 +13,27 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.springframework.social.bitbucket.api;
+package org.springframework.social.bitbucket.utils;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.Getter;
-
-import java.io.Serializable;
+import java.util.Date;
 
 /**
- * BitBucket email address structure
+ * Shared code to manipulate Date objects
  *
  * @author Cyprian Śniegota
  * @since 2.0.0
  */
-@JsonIgnoreProperties(ignoreUnknown = true)
-public final class BitBucketEmailAddress implements Serializable {
+public final class DateUtils {
 
-    @JsonProperty("active") @Getter
-    private Boolean active;
+    private DateUtils() { }
 
-    @JsonProperty("email") @Getter
-    private String email;
-
-    @JsonProperty("primary") @Getter
-    private Boolean primary;
-
+    /**
+     * Clone Date object
+     *
+     * @param dateToCopy A date to copy (could be null)
+     * @return null or copy of the given Date object
+     */
+    public static Date copyNullable(Date dateToCopy) {
+        return dateToCopy == null ? null : new Date(dateToCopy.getTime());
+    }
 }

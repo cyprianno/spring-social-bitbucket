@@ -65,6 +65,5 @@ public class UsersPrivilegesTemplate extends AbstractBitBucketOperations impleme
     }
 
     private static final class TeamPrivilegeHolder extends HashMap<String, BitBucketTeamPrivilege> {
-        private static final long serialVersionUID = 1L;
     }
 }

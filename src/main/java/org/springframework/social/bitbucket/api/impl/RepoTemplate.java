@@ -113,7 +113,6 @@ public class RepoTemplate extends AbstractBitBucketOperations implements
      * Exists for the sole purpose of having a strongly typed Map for Jackson.
      */
     private static class Tags extends HashMap<String, BitBucketChangeset> {
-        private static final long serialVersionUID = 1L;
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)

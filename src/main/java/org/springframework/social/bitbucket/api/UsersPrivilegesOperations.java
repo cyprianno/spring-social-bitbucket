@@ -35,7 +35,7 @@ public interface UsersPrivilegesOperations {
      * The caller must authenticate.
      * The access credentials must come from an account with owner or administrative privileges — either the team account
      * access credentials or a member who can administer the team account.
-     * GET https://bitbucket.org/api/1.0/users/{accountname}/privileges
+     * API call: GET https://bitbucket.org/api/1.0/users/{accountname}/privileges
      *
      * @param accountName The team or individual account name.
      * @param groupSlug   The group's slug.
@@ -48,7 +48,7 @@ public interface UsersPrivilegesOperations {
      * The privilege is can be either collaborator or admin. The caller must authenticate.
      * The access credentials must come from an account with owner or administrative privileges — either the team account
      * access credentials or a member who can administer the team account.
-     * GET https://bitbucket.org/api/1.0/users/{accountname}/privileges/{owner}/{group_slug}
+     * API call: GET https://bitbucket.org/api/1.0/users/{accountname}/privileges/{owner}/{group_slug}
      *
      * @param accountName The team or individual account name.
      * @param owner       The account that owns the group.
@@ -63,7 +63,7 @@ public interface UsersPrivilegesOperations {
      * This call returns the changed group. The caller must authenticate.
      * The access credentials must come from an account with owner or administrative privileges — either the team account
      * access credentials or a member who can administer the team account.
-     * PUT https://bitbucket.org/api/1.0/users/{accountname}/privileges/{owner}/{group_slug} --data "privileges=admin"
+     * API call: PUT https://bitbucket.org/api/1.0/users/{accountname}/privileges/{owner}/{group_slug} --data "privileges=admin"
      *
      * @param accountName The team or individual account name.
      * @param owner       The account that owns the group.
@@ -78,7 +78,7 @@ public interface UsersPrivilegesOperations {
      * Adds a privilege to a group without any. The caller must authenticate.
      * The access credentials must come from an account with owner or administrative privileges — either the team account
      * access credentials or a member who can administer the team account.
-     * POST https://bitbucket.org/api/1.0/users/{accountname}/privileges/{owner}/{group_slug} --data "privileges=admin"
+     * API call: POST https://bitbucket.org/api/1.0/users/{accountname}/privileges/{owner}/{group_slug} --data "privileges=admin"
      *
      * @param accountName The team or individual account name.
      * @param owner       The account that owns the group.
@@ -92,7 +92,7 @@ public interface UsersPrivilegesOperations {
      * Deletes a privilege. The caller must authenticate.
      * The access credentials must come from an account with owner or administrative privileges — either the team account
      * access credentials or a member who can administer the team account.
-     * DELETE https://bitbucket.org/api/1.0/users/{accountname}/privileges/{owner}/{group_slug}
+     * API call: DELETE https://bitbucket.org/api/1.0/users/{accountname}/privileges/{owner}/{group_slug}
      *
      * @param accountName The team or individual account name.
      * @param owner       The account that owns the group.

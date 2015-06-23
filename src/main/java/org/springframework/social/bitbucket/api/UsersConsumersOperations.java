@@ -31,7 +31,7 @@ import java.util.List;
 public interface UsersConsumersOperations {
     /**
      * Returns an array of consumers integrated with the account.
-     * GET https://api.bitbucket.org/1.0/users/{accountname}/consumers
+     * API call: GET https://api.bitbucket.org/1.0/users/{accountname}/consumers
      *
      * @param accountName The team or individual account name.
      * @return list of Consumers
@@ -40,7 +40,7 @@ public interface UsersConsumersOperations {
 
     /**
      * Gets an individual consumer for an account.
-     * GET https://api.bitbucket.org/1.0/users/{accountname}/consumers/{id}
+     * API call: GET https://api.bitbucket.org/1.0/users/{accountname}/consumers/{id}
      *
      * @param accountName The team or individual account name.
      * @param id          Identifier for the key
@@ -50,7 +50,7 @@ public interface UsersConsumersOperations {
 
     /**
      * Updates an individual consumer for an account.  You must supply the consumer's name parameter.
-     * PUT https://api.bitbucket.org/1.0/users/{accountname}/{id} -d"name={name}&description={string}&url={url}"
+     * API call: PUT https://api.bitbucket.org/1.0/users/{accountname}/{id} -d"name={name}&description={string}&url={url}"
      *
      * @param accountName The team or individual account name.
      * @param id          Identifier for the key
@@ -63,7 +63,7 @@ public interface UsersConsumersOperations {
 
     /**
      * Deletes an individual consumer from an account.
-     * DELETE https://api.bitbucket.org/1.0/users/{accountname}/consumers/{id}
+     * API call: DELETE https://api.bitbucket.org/1.0/users/{accountname}/consumers/{id}
      *
      * @param accountName The team or individual account name.
      * @param id          Identifier for the key

@@ -54,7 +54,7 @@ public class UsersAccountTemplateTest extends BaseTemplateTest {
         assertNotNull(result);
         assertEquals(1, result.getRepositories().size());
         assertEquals("User", result.getUser().getLastName());
-        assertNull(result.getUser().getIsTeam());
+        assertNull(result.getUser().getTeam());
     }
 
     @Test
@@ -69,7 +69,7 @@ public class UsersAccountTemplateTest extends BaseTemplateTest {
         assertNotNull(result);
         assertEquals(2, result.getRepositories().size());
         assertEquals("User", result.getUser().getLastName());
-        assertNotNull(result.getUser().getIsTeam());
+        assertNotNull(result.getUser().getTeam());
     }
 
     @Test

@@ -17,14 +17,15 @@ package org.springframework.social.bitbucket.api.impl;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.google.common.base.Joiner;
 import lombok.Getter;
 import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
+import org.springframework.http.MediaType;
 import org.springframework.social.bitbucket.api.*;
+import org.springframework.social.support.ParameterMap;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -50,8 +51,11 @@ class UserTemplate extends AbstractBitBucketOperations implements
 
     @Override
     public BitBucketUser updateUser(BitBucketUser userProfileDataToUpdate) {
-        return getRestTemplate().exchange(buildUrl("/user"), HttpMethod.PUT,
-                createUpdateUserEntityfromBitBucketUser(userProfileDataToUpdate), BitBucketUser.class).getBody();
+        HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
+        return getRestTemplate().exchange(buildUrl("/user"), HttpMethod.PUT, new HttpEntity<>(
+                new UpdateUserParameters(userProfileDataToUpdate.getFirstName(), userProfileDataToUpdate.getLastName(),
+                        userProfileDataToUpdate.getAvatarImageUrl()), httpHeaders), BitBucketUser.class).getBody();
     }
 
     @Override
@@ -86,31 +90,31 @@ class UserTemplate extends AbstractBitBucketOperations implements
     @Override
     public List<BitBucketUser> getFollowers(String user) {
         return getRestTemplate().getForObject(buildUrl("/users/{user}/followers"),
-                FollowersHolder.class, user).followers;
+                FollowersHolder.class, user).getFollowers();
     }
 
-    private HttpEntity<String> createUpdateUserEntityfromBitBucketUser(BitBucketUser user) {
-        List<String> params = new ArrayList<>();
-        if (user.getAvatarImageUrl() != null) {
-            params.add("avatar_image_url=" + user.getAvatarImageUrl());
+    private static final class UpdateUserParameters extends ParameterMap {
+        public UpdateUserParameters(String firstName, String lastName, String avatarImageUrl) {
+            if (avatarImageUrl != null) {
+                add("avatar_image_url", avatarImageUrl);
+            }
+            if (firstName != null) {
+                add("first_name", firstName);
+            }
+            if (lastName != null) {
+                add("last_name", lastName);
+            }
         }
-        if (user.getFirstName() != null) {
-            params.add("first_name=" + user.getFirstName());
-        }
-        if (user.getLastName() != null) {
-            params.add("last_name=" + user.getLastName());
-        }
-        return new HttpEntity<>(Joiner.on('&').join(params));
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
-    private static class FollowersHolder {
-        @JsonProperty
+    private static final class FollowersHolder {
+        @JsonProperty @Getter
         private List<BitBucketUser> followers;
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
-    private static class PrivilegesHolder {
+    private static final class PrivilegesHolder {
         @JsonProperty @Getter
         private Map<String, String> teams = new HashMap<>();
     }
