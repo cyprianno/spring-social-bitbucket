@@ -12,15 +12,40 @@ import java.util.List;
  * @since 2.0.0
  */
 public interface RepositoriesLinksOperations {
-    List<String> getLinks(String accountName, String repoSlug);
 
-    String getLink(String accountName, String repoSlug, String linkId);
+    /**
+     * Gets an array containing the links associated with a repository.
+     * The caller must authenticate as a user with administrative access to the repository.
+     * API call: GET https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/links
+     *
+     * @param accountName
+     * @param repoSlug
+     * @return
+     */
+    List<BitBucketLink> getLinks(String accountName, String repoSlug);
 
-    String postNewLink(String accountName, String repoSlug);
+    /**
+     * Gets an individual link on a repository. The caller must authenticate as a user with administrative access to the repository.
+     * API call: GET https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/links/{object_id}
+     *
+     * @param accountName
+     * @param repoSlug
+     * @param linkId
+     * @return
+     */
+    BitBucketLink getLink(String accountName, String repoSlug, Long linkId);
 
-    String updateLink(String accountName, String repoSlug, String linkId);
+    /**
+     *
+     * @param accountName
+     * @param repoSlug
+     * @return
+     */
+    BitBucketLink postNewLink(String accountName, String repoSlug);
 
-    void removeLink(String accountName, String repoSlug, String linkId);
+    BitBucketLink updateLink(String accountName, String repoSlug, Long linkId);
+
+    void removeLink(String accountName, String repoSlug, Long linkId);
 }
 /*
 * ###links
