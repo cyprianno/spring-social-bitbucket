@@ -1,5 +1,7 @@
 package org.springframework.social.bitbucket.api;
 
+import java.util.List;
+
 /**
  * Bitbucket integrates with external services (hooks) through a set of brokers that run in response to certain events.
  * Brokers are Python scripts that receive information about an event and then take one or more actions.
@@ -13,6 +15,15 @@ package org.springframework.social.bitbucket.api;
  * @since 2.0.0
  */
 public interface RepositoriesServicesOperations {
+    List<String> getServices(String accountName, String repoSlug, String serviceId);
+
+    String getService(String accountName, String repoSlug, String serviceId);
+
+    String postNewService(String accountName, String repoSlug);
+
+    String updateService(String accountName, String repoSlug, String serviceId);
+
+    void removeService(String accountName, String repoSlug, String serviceId);
 }
 /*
 ###services

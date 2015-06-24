@@ -1,5 +1,7 @@
 package org.springframework.social.bitbucket.api;
 
+import java.util.List;
+
 /**
  * The wiki resource provides functionality for getting information from pages in a Bitbucket wiki, creating new pages, and updating them.
  *
@@ -8,6 +10,12 @@ package org.springframework.social.bitbucket.api;
  * @since 2.0.0
  */
 public interface RepositoriesWikiOperations {
+
+    String getContent(String accountName, String repoSlug, String page);
+
+    String postNewPage(String accountName, String repoSlug, String page);
+
+    String updatePage(String accountName, String repoSlug, String page);
 }
 /*###wiki
 - GET the raw content of a Wiki page

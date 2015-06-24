@@ -1,5 +1,7 @@
 package org.springframework.social.bitbucket.api;
 
+import java.util.List;
+
 /**
  * Links connect your commit messages and code comments directly to your JIRA issue tracker or Bamboo build server.
  * You can also create custom link resources.
@@ -10,6 +12,15 @@ package org.springframework.social.bitbucket.api;
  * @since 2.0.0
  */
 public interface RepositoriesLinksOperations {
+    List<String> getLinks(String accountName, String repoSlug);
+
+    String getLink(String accountName, String repoSlug, String linkId);
+
+    String postNewLink(String accountName, String repoSlug);
+
+    String updateLink(String accountName, String repoSlug, String linkId);
+
+    void removeLink(String accountName, String repoSlug, String linkId);
 }
 /*
 * ###links

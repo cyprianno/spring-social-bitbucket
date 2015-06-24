@@ -1,5 +1,7 @@
 package org.springframework.social.bitbucket.api;
 
+import java.util.List;
+
 /**
  * Manage the comments on pull requests. Other users can reply to them. This allows for the construction of a thread of comments.
  *
@@ -9,6 +11,13 @@ package org.springframework.social.bitbucket.api;
  */
 public interface RepositoriesPullRequestsOperations {
 
+    String postNewComment(String accountName, String repoSlug, String pullRequestId);
+
+    String updateComment(String accountName, String repoSlug, String issueId, String pullRequestId, String commentId);
+
+    void removeComment(String accountName, String repoSlug, String pullRequestId, String commentId);
+
+    void toggleSpam(String accountName, String repoSlug, String pullRequestId, String commentId);
 }
 /*###pullrequests
 - DEPRECATED GET a list of a pull request comments DEPRECATED

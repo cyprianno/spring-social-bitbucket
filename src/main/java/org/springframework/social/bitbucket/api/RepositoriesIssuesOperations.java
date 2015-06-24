@@ -26,6 +26,48 @@ public interface RepositoriesIssuesOperations {
 
     String updateIssue(String accountName, String repoSlug, String issueId);
 
+    void removeIssue(String accountName, String repoSlug, String issueId);
+
+    List<String> getComments(String accountName, String repoSlug, String issueId);
+
+    String getComment(String accountName, String repoSlug, String issueId, String commentId);
+
+    String postNewComment(String accountName, String repoSlug, String issueId);
+
+    String updateComment(String accountName, String repoSlug, String issueId, String commentId);
+
+    void removeComment(String accountName, String repoSlug, String commentId);
+
+    List<String> getComponents(String accountName, String repoSlug, String issueId);
+
+    String getComponent(String accountName, String repoSlug, String issueId, String componentId);
+
+    String postNewComponent(String accountName, String repoSlug, String issueId);
+
+    String updateComponent(String accountName, String repoSlug, String issueId, String componentId);
+
+    void removeComponent(String accountName, String repoSlug, String componentId);
+
+    List<String> getVersions(String accountName, String repoSlug, String issueId);
+
+    String getVersion(String accountName, String repoSlug, String issueId, String versionId);
+
+    String postNewVersion(String accountName, String repoSlug, String issueId);
+
+    String updateVersion(String accountName, String repoSlug, String issueId, String versionId);
+
+    void removeVersion(String accountName, String repoSlug, String versionId);
+
+    List<String> getMilestones(String accountName, String repoSlug, String issueId);
+
+    String getMilestone(String accountName, String repoSlug, String issueId, String milestoneId);
+
+    String postNewMilestone(String accountName, String repoSlug, String issueId);
+
+    String updateMilestone(String accountName, String repoSlug, String issueId, String milestoneId);
+
+    void removeMilestone(String accountName, String repoSlug, String milestoneId);
+
 
 
 }
