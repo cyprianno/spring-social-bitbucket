@@ -56,7 +56,7 @@ public interface UsersConsumersOperations {
      * @param id          Identifier for the key
      * @param name        Name of the consumer.
      * @param description Description for the consumer.
-     * @param url         The url
+     * @param url         The URL for the consumer. This can be null.
      * @return Updated Consumer.
      */
     BitBucketConsumer updateConsumer(String accountName, long id, String name, String description, String url);
