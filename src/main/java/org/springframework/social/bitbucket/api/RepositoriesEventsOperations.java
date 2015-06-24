@@ -16,6 +16,7 @@ public interface RepositoriesEventsOperations {
     /**
      * Gets a list of a repository's events associated with the specified repo_slug.
      * By default, this call returns the top 25 events.
+     * API call: GET https:// bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/events?limit=integer&start=integer&type=event
      *
      * @param accountName The team or individual account owning the repo.
      * @param repoSlug The repo identifier.
