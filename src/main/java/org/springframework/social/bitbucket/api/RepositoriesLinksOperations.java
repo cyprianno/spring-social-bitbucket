@@ -18,9 +18,9 @@ public interface RepositoriesLinksOperations {
      * The caller must authenticate as a user with administrative access to the repository.
      * API call: GET https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/links
      *
-     * @param accountName
-     * @param repoSlug
-     * @return
+     * @param accountName The team or individual account owning the repository.
+     * @param repoSlug The repository identifier.
+     * @return List of links.
      */
     List<BitBucketLink> getLinks(String accountName, String repoSlug);
 
@@ -28,36 +28,44 @@ public interface RepositoriesLinksOperations {
      * Gets an individual link on a repository. The caller must authenticate as a user with administrative access to the repository.
      * API call: GET https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/links/{object_id}
      *
-     * @param accountName
-     * @param repoSlug
-     * @param linkId
-     * @return
+     * @param accountName The team or individual account owning the repository.
+     * @param repoSlug The repository identifier.
+     * @param linkId The component identifier.
+     * @return Specified link object.
      */
     BitBucketLink getLink(String accountName, String repoSlug, Long linkId);
 
     /**
+     * Creates a new link on the repository.
+     * API call: POST https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/links --data "handler=value"
+     * --data "link_url= http://somesite.com " –data "link_key=value"
      *
-     * @param accountName
-     * @param repoSlug
-     * @return
+     * @param accountName The team or individual account owning the repository.
+     * @param repoSlug The repository identifier.
+     * @param link Object to post.
+     * @return Created object.
      */
-    BitBucketLink postNewLink(String accountName, String repoSlug);
+    BitBucketLink postNewLink(String accountName, String repoSlug, BitBucketLink link);
 
-    BitBucketLink updateLink(String accountName, String repoSlug, Long linkId);
+    /**
+     * Update a repository link.
+     * API call: PUT https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/links/{object_id} --data "link_key=value" --data "link_url= http://somesite.com "
+     *
+     * @param accountName The team or individual account owning the repository.
+     * @param repoSlug The repository identifier.
+     * @param linkId The component identifier.
+     * @param link Object to post.
+     * @return Updated object.
+     */
+    BitBucketLink updateLink(String accountName, String repoSlug, Long linkId, BitBucketLink link);
 
+    /**
+     * Deletes the repository link identified by the object_id. The caller must authenticate as a user with administrative access to the repository.
+     * API call: DELETE https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/links/{object_id}
+     *
+     * @param accountName The team or individual account owning the repository.
+     * @param repoSlug The repository identifier.
+     * @param linkId The component identifier.
+     */
     void removeLink(String accountName, String repoSlug, Long linkId);
 }
-/*
-* ###links
-- TBD GET list of links
-GET https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/links
-- TBD GET a link
-GET https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/links/{object_id}
-- TBD POST a new link
-POST https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/links --data "handler=value" --data "link_url= http://somesite.com "
-–data "link_key=value"
-- TBD PUT an update to a link
-PUT https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/links/{object_id} --data "link_key=value" --data "link_url= http://somesite.com "
-- TBD DELETE a link
-DELETE https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/links/{object_id}
-*/
