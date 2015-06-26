@@ -21,6 +21,9 @@ public class BitBucketComment {
     @JsonProperty("comment_id") @Getter
     private Long commentId;
 
+    @JsonProperty("pull_request_id") @Getter
+    private Long pullRequestId;
+
     @JsonProperty("display_name") @Getter
     private String displayName;
 
