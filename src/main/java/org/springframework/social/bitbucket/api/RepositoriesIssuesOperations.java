@@ -16,57 +16,172 @@ import java.util.List;
  */
 public interface RepositoriesIssuesOperations {
 
-    List<String> getIssues(String accountName, String repoSlug);
+    /**
+     * Gets the list of issues in the repository.
+     * If you issue this call without filtering parameters, the count value contains the total number of issues in the repository's tracker.
+     * If you filter this call, the count value contains the total number of issues that meet the filter criteria.
+     * Authorization is not required for public repositories with a public issue tracker.
+     * Private repositories or private issue trackers require the caller to authenticate with an account that has appropriate authorisation.
+     * By default, this call returns 15 issues. If necessary you can specify the sort parameter to order the output.
+     * API call:  GET https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/issues?parameter=value&parameter=value&...
+     *
+     * @param accountName
+     * @param repoSlug
+     * @param start
+     * @param limit
+     * @param sort
+     * @return List of issues.
+     */
+    List<BitBucketIssue> getIssues(String accountName, String repoSlug, Integer start, Integer limit, String sort);
 
-    String getIssue(String accountName, String repoSlug, String issueId);
+    /**
+     * Gets in individual issue from a repository.
+     * Authorisation is not required for public repositories with a public issue tracker.
+     * Private repositories or private issue trackers require the caller to authenticate  with an account that has appropriate access.
+     * API call: GET https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/issues/{issue_id}
+     *
+     * @param accountName
+     * @param repoSlug
+     * @param issueId
+     * @return
+     */
+    BitBucketIssue getIssue(String accountName, String repoSlug, Long issueId);
 
-    String getFollowers(String accountName, String repoSlug, String issueId);
+    /**
+     * Gets the followers for an individual issue from a repository.
+     * Authorisation is not required for public repositories with a public issue tracker.
+     * Private repositories or private issue trackers require the caller to authenticate with an account that has appropriate access.
+     * API call: GET https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/issues/{issue_id}/followers
+     *
+     * @param accountName
+     * @param repoSlug
+     * @param issueId
+     * @return
+     */
+    List<BitBucketUser> getFollowers(String accountName, String repoSlug, Long issueId);
 
-    String postNewIssue(String accountName, String repoSlug, String issueId);
+    /**
+     * Creates a new issue in a repository. This call requires authentication.
+     * Private repositories or private issue trackers require the caller to authenticate with an account that has appropriate authorisation.
+     * The authenticated user is used for the issue's reported_by field.
+     * API call: POST https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/issues  --data "title=value&content=value"
+     *
+     * @param accountName
+     * @param repoSlug
+     * @param issue
+     * @return
+     */
+    BitBucketIssue postNewIssue(String accountName, String repoSlug, BitBucketIssue issue);
 
-    String updateIssue(String accountName, String repoSlug, String issueId);
+    /**
+     * Updates an existing issue.
+     * Updating the title or content fields requires that the caller authenticate as a user with write access.
+     * For other fields, the caller must authenticate as a user with read access.
+     * Private repositories or private issue trackers require the caller to authenticate with an account that has appropriate access.
+     * API call: PUT https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/issues/{issue_id}  --data "parameter=value&parameter=value"
+     *
+     * @param accountName
+     * @param repoSlug
+     * @param issueId
+     * @param issue
+     * @return
+     */
+    BitBucketIssue updateIssue(String accountName, String repoSlug, Long issueId, BitBucketIssue issue);
 
-    void removeIssue(String accountName, String repoSlug, String issueId);
+    /**
+     * Deletes the specified issue_id.
+     * Private repositories or private issue trackers require the caller to authenticate with an account that has appropriate access.
+     * API call: DELETE https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/issues/{issue_id}
+     *
+     * @param accountName
+     * @param repoSlug
+     * @param issueId
+     */
+    void removeIssue(String accountName, String repoSlug, Long issueId);
 
-    List<String> getComments(String accountName, String repoSlug, String issueId);
+    /**
+     * Gets the array of comments on the specified issue.
+     * API call: GET https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/issues/{issue_id}/comments
+     *
+     * @param accountName
+     * @param repoSlug
+     * @param issueId
+     * @return
+     */
+    List<BitBucketComment> getComments(String accountName, String repoSlug, Long issueId);
 
-    String getComment(String accountName, String repoSlug, String issueId, String commentId);
+    /**
+     * Gets an individual comment on an issue.
+     * Private repositories or private issue trackers require the caller to authenticate  with an account that has appropriate access.
+     * API call: GET https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/issues/{issue_id}/comments/{comment_id}
+     *
+     * @param accountName
+     * @param repoSlug
+     * @param issueId
+     * @param commentId
+     * @return
+     */
+    BitBucketComment getComment(String accountName, String repoSlug, Long issueId, Long commentId);
 
-    String postNewComment(String accountName, String repoSlug, String issueId);
+    /**
+     * Creates a new comment on an issue using the specified contentdata.
+     * The caller must be authenticated and have access to the issue tracker to create an issue.
+     * API call: POST https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/issues/{issue_id}/comments --data "content=string"
+     *
+     * @param accountName
+     * @param repoSlug
+     * @param issueId
+     * @param content
+     * @return
+     */
+    BitBucketComment postNewComment(String accountName, String repoSlug, Long issueId, String content);
 
-    String updateComment(String accountName, String repoSlug, String issueId, String commentId);
+    /**
+     * Updates a comment on an issue using the specified content data.
+     * The caller must be authenticated as a user that created the comment or as a user with administrative rights on the repository.
+     * API call: PUT https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/issues/{issue_id}/comments/{comment_id} --data "content=string"
+     *
+     * @param accountName
+     * @param repoSlug
+     * @param issueId
+     * @param commentId
+     * @param content
+     * @return
+     */
+    BitBucketComment updateComment(String accountName, String repoSlug, Long issueId, String commentId, String content);
 
-    void removeComment(String accountName, String repoSlug, String commentId);
+//    void removeComment(String accountName, String repoSlug, Long commentId);
 
-    List<String> getComponents(String accountName, String repoSlug, String issueId);
 
-    String getComponent(String accountName, String repoSlug, String issueId, String componentId);
+    List<BitBucketComponent> getComponents(String accountName, String repoSlug, Long issueId);
 
-    String postNewComponent(String accountName, String repoSlug, String issueId);
+    BitBucketComponent getComponent(String accountName, String repoSlug, String issueId, Long componentId);
 
-    String updateComponent(String accountName, String repoSlug, String issueId, String componentId);
+    BitBucketComponent postNewComponent(String accountName, String repoSlug, Long issueId);
 
-    void removeComponent(String accountName, String repoSlug, String componentId);
+    BitBucketComponent updateComponent(String accountName, String repoSlug, Long issueId, Long componentId);
 
-    List<String> getVersions(String accountName, String repoSlug, String issueId);
+    void removeComponent(String accountName, String repoSlug, Long componentId);
 
-    String getVersion(String accountName, String repoSlug, String issueId, String versionId);
+    List<String> getVersions(String accountName, String repoSlug, Long issueId);
 
-    String postNewVersion(String accountName, String repoSlug, String issueId);
+    String getVersion(String accountName, String repoSlug, Long issueId, Long versionId);
 
-    String updateVersion(String accountName, String repoSlug, String issueId, String versionId);
+    String postNewVersion(String accountName, String repoSlug, Long issueId);
 
-    void removeVersion(String accountName, String repoSlug, String versionId);
+    String updateVersion(String accountName, String repoSlug, Long issueId, Long versionId);
 
-    List<String> getMilestones(String accountName, String repoSlug, String issueId);
+    void removeVersion(String accountName, String repoSlug, Long versionId);
 
-    String getMilestone(String accountName, String repoSlug, String issueId, String milestoneId);
+    List<String> getMilestones(String accountName, String repoSlug, Long issueId);
 
-    String postNewMilestone(String accountName, String repoSlug, String issueId);
+    String getMilestone(String accountName, String repoSlug, Long issueId, Long milestoneId);
 
-    String updateMilestone(String accountName, String repoSlug, String issueId, String milestoneId);
+    String postNewMilestone(String accountName, String repoSlug, Long issueId);
 
-    void removeMilestone(String accountName, String repoSlug, String milestoneId);
+    String updateMilestone(String accountName, String repoSlug, Long issueId, Long milestoneId);
+
+    void removeMilestone(String accountName, String repoSlug, Long milestoneId);
 
 
 
