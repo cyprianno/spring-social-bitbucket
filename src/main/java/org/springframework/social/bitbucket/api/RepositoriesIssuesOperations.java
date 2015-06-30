@@ -25,11 +25,11 @@ public interface RepositoriesIssuesOperations {
      * By default, this call returns 15 issues. If necessary you can specify the sort parameter to order the output.
      * API call:  GET https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/issues?parameter=value&parameter=value&...
      *
-     * @param accountName
-     * @param repoSlug
-     * @param start
-     * @param limit
-     * @param sort
+     * @param accountName The team or individual account owning the repository.
+     * @param repoSlug The repository identifier.
+     * @param start Start offset.
+     * @param limit Number of elements to return.
+     * @param sort Sort field
      * @return List of issues.
      */
     List<BitBucketIssue> getIssues(String accountName, String repoSlug, Integer start, Integer limit, String sort);
@@ -40,10 +40,10 @@ public interface RepositoriesIssuesOperations {
      * Private repositories or private issue trackers require the caller to authenticate  with an account that has appropriate access.
      * API call: GET https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/issues/{issue_id}
      *
-     * @param accountName
-     * @param repoSlug
-     * @param issueId
-     * @return
+     * @param accountName The team or individual account owning the repository.
+     * @param repoSlug The repository identifier.
+     * @param issueId The issue identifier.
+     * @return Requested issue.
      */
     BitBucketIssue getIssue(String accountName, String repoSlug, Long issueId);
 
@@ -53,10 +53,10 @@ public interface RepositoriesIssuesOperations {
      * Private repositories or private issue trackers require the caller to authenticate with an account that has appropriate access.
      * API call: GET https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/issues/{issue_id}/followers
      *
-     * @param accountName
-     * @param repoSlug
-     * @param issueId
-     * @return
+     * @param accountName The team or individual account owning the repository.
+     * @param repoSlug The repository identifier.
+     * @param issueId The issue identifier.
+     * @return List of followers.
      */
     List<BitBucketUser> getFollowers(String accountName, String repoSlug, Long issueId);
 
@@ -66,10 +66,10 @@ public interface RepositoriesIssuesOperations {
      * The authenticated user is used for the issue's reported_by field.
      * API call: POST https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/issues  --data "title=value&content=value"
      *
-     * @param accountName
-     * @param repoSlug
-     * @param issue
-     * @return
+     * @param accountName The team or individual account owning the repository.
+     * @param repoSlug The repository identifier.
+     * @param issue The issue data.
+     * @return Created object.
      */
     BitBucketIssue postNewIssue(String accountName, String repoSlug, BitBucketIssue issue);
 
@@ -80,11 +80,11 @@ public interface RepositoriesIssuesOperations {
      * Private repositories or private issue trackers require the caller to authenticate with an account that has appropriate access.
      * API call: PUT https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/issues/{issue_id}  --data "parameter=value&parameter=value"
      *
-     * @param accountName
-     * @param repoSlug
-     * @param issueId
-     * @param issue
-     * @return
+     * @param accountName The team or individual account owning the repository.
+     * @param repoSlug The repository identifier.
+     * @param issueId The issue identifier.
+     * @param issue The issue data.
+     * @return Updated object.
      */
     BitBucketIssue updateIssue(String accountName, String repoSlug, Long issueId, BitBucketIssue issue);
 
@@ -93,9 +93,9 @@ public interface RepositoriesIssuesOperations {
      * Private repositories or private issue trackers require the caller to authenticate with an account that has appropriate access.
      * API call: DELETE https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/issues/{issue_id}
      *
-     * @param accountName
-     * @param repoSlug
-     * @param issueId
+     * @param accountName The team or individual account owning the repository.
+     * @param repoSlug The repository identifier.
+     * @param issueId The issue identifier.
      */
     void removeIssue(String accountName, String repoSlug, Long issueId);
 
@@ -103,10 +103,10 @@ public interface RepositoriesIssuesOperations {
      * Gets the array of comments on the specified issue.
      * API call: GET https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/issues/{issue_id}/comments
      *
-     * @param accountName
-     * @param repoSlug
-     * @param issueId
-     * @return
+     * @param accountName The team or individual account owning the repository.
+     * @param repoSlug The repository identifier.
+     * @param issueId The issue identifier.
+     * @return List of comments.
      */
     List<BitBucketComment> getComments(String accountName, String repoSlug, Long issueId);
 
@@ -115,11 +115,11 @@ public interface RepositoriesIssuesOperations {
      * Private repositories or private issue trackers require the caller to authenticate  with an account that has appropriate access.
      * API call: GET https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/issues/{issue_id}/comments/{comment_id}
      *
-     * @param accountName
-     * @param repoSlug
-     * @param issueId
-     * @param commentId
-     * @return
+     * @param accountName The team or individual account owning the repository.
+     * @param repoSlug The repository identifier.
+     * @param issueId The issue identifier.
+     * @param commentId An integer representing an id for the comment. This is created by Bitbucket.
+     * @return Requested comment.
      */
     BitBucketComment getComment(String accountName, String repoSlug, Long issueId, Long commentId);
 
@@ -128,11 +128,11 @@ public interface RepositoriesIssuesOperations {
      * The caller must be authenticated and have access to the issue tracker to create an issue.
      * API call: POST https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/issues/{issue_id}/comments --data "content=string"
      *
-     * @param accountName
-     * @param repoSlug
-     * @param issueId
-     * @param content
-     * @return
+     * @param accountName The team or individual account owning the repository.
+     * @param repoSlug The repository identifier.
+     * @param issueId The issue identifier.
+     * @param content The content of the comment.
+     * @return Created object.
      */
     BitBucketComment postNewComment(String accountName, String repoSlug, Long issueId, String content);
 
@@ -141,99 +141,211 @@ public interface RepositoriesIssuesOperations {
      * The caller must be authenticated as a user that created the comment or as a user with administrative rights on the repository.
      * API call: PUT https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/issues/{issue_id}/comments/{comment_id} --data "content=string"
      *
-     * @param accountName
-     * @param repoSlug
-     * @param issueId
-     * @param commentId
-     * @param content
-     * @return
+     * @param accountName The team or individual account owning the repository.
+     * @param repoSlug The repository identifier.
+     * @param issueId The issue identifier.
+     * @param commentId An integer representing an id for the comment. This is created by Bitbucket.
+     * @param content The content of the comment.
+     * @return Updated object.
      */
     BitBucketComment updateComment(String accountName, String repoSlug, Long issueId, String commentId, String content);
 
-//    void removeComment(String accountName, String repoSlug, Long commentId);
+    /**
+     * Gets an array of the components associated with the issue tracker.
+     * API call: GET https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/issues/components
+     *
+     * @param accountName The team or individual account owning the repository.
+     * @param repoSlug The repository identifier.
+     * @return List of components.
+     */
+    List<BitBucketComponent> getComponents(String accountName, String repoSlug);
 
+    /**
+     * Gets an individual component in an issue tracker.
+     * To get a component, private issue trackers require the caller to authenticate with an account that has appropriate authorisation.
+     * API call: GET https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/issues/components/{object_id}
+     *
+     * @param accountName The team or individual account owning the repository.
+     * @param repoSlug The repository identifier.
+     * @param objectId The element identifier to delete.
+     * @return Requested component.
+     */
+    BitBucketComponent getComponent(String accountName, String repoSlug, Long objectId);
 
-    List<BitBucketComponent> getComponents(String accountName, String repoSlug, Long issueId);
+    /**
+     * Creates a new component in an issue tracker.
+     * You must supply a namevalue in the form of a string.
+     * The server creates the id for you and it appears in the return value.
+     * Public and private issue trackers require the caller to authenticate with an account that has appropriate authorisation.
+     * API call: POST https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/issues/components --data "name=String"
+     *
+     * @param accountName The team or individual account owning the repository.
+     * @param repoSlug The repository identifier.
+     * @param name The element name. A name cannot exceed 128 characters and must be unique.
+     * @return Created object.
+     */
+    BitBucketComponent postNewComponent(String accountName, String repoSlug, String name);
 
-    BitBucketComponent getComponent(String accountName, String repoSlug, String issueId, Long componentId);
+    /**
+     * Updates an existing component in an issue tracker.
+     * You must supply a name value in the form of a string.
+     * Public and private issue trackers require the caller to authenticate with an account that has appropriate authorisation.
+     * API call: PUT https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/issues/components/{object_id} --data "name=String"
+     *
+     * @param accountName The team or individual account owning the repository.
+     * @param repoSlug The repository identifier.
+     * @param objectId The element identifier to delete.
+     * @param name The element name. A name cannot exceed 128 characters and must be unique.
+     * @return Updated object.
+     */
+    BitBucketComponent updateComponent(String accountName, String repoSlug, Long objectId, String name);
 
-    BitBucketComponent postNewComponent(String accountName, String repoSlug, Long issueId);
+    /**
+     * Deletes a component in an issue tracker.
+     * To delete a component, public and private issue trackers require the caller to authenticate with an account that has appropriate authorisation.
+     * Keep in mind that the component can be in use on existing issues.
+     * When you delete a component, the system updates the issues and does the following:
+     * - remove the component type
+     * - leaves the issue's component value empty
+     * - adds a comment to the issue explaining the change
+     * API call: DELETE https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/issues/components/{object_id}
+     *
+     * @param accountName The team or individual account owning the repository.
+     * @param repoSlug The repository identifier.
+     * @param objectId The element identifier to delete.
+     */
+    void removeComponent(String accountName, String repoSlug, Long objectId);
 
-    BitBucketComponent updateComponent(String accountName, String repoSlug, Long issueId, Long componentId);
+    /**
+     * Gets an array of the versions associated with the issue tracker.
+     * API call: GET https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/issues/versions
+     *
+     * @param accountName The team or individual account owning the repository.
+     * @param repoSlug The repository identifier.
+     * @return List of versions.
+     */
+    List<BitBucketVersion> getVersions(String accountName, String repoSlug);
 
-    void removeComponent(String accountName, String repoSlug, Long componentId);
+    /**
+     * Gets an individual version in an issue tracker.
+     * Public and private issue trackers require the caller to authenticate with an account that has appropriate authorisation.
+     * API call: GET https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/issues/versions/{object_id}
+     *
+     * @param accountName The team or individual account owning the repository.
+     * @param repoSlug The repository identifier.
+     * @param objectId The element identifier to delete.
+     * @return Requested version.
+     */
+    BitBucketVersion getVersion(String accountName, String repoSlug, Long objectId);
 
-    List<String> getVersions(String accountName, String repoSlug, Long issueId);
+    /**
+     * Creates a new version in an issue tracker.
+     * You must supply a name value in the form of a string.
+     * The server creates the id for you and it appears in the return value.
+     * Public and private issue trackers require the caller to authenticate with an account that has appropriate authorisation.
+     * API call: POST https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/issues/versions --data "name=String"
+     *
+     * @param accountName The team or individual account owning the repository.
+     * @param repoSlug The repository identifier.
+     * @param name The element name. A name cannot exceed 128 characters and must be unique.
+     * @return Created object.
+     */
+    BitBucketVersion postNewVersion(String accountName, String repoSlug, String name);
 
-    String getVersion(String accountName, String repoSlug, Long issueId, Long versionId);
+    /**
+     * Updates an existing version in an issue tracker.
+     * You must supply a name value in the form of a string.
+     * Public and private issue trackers require the caller to authenticate with an account that has appropriate authorisation.
+     * API call: PUT https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/issues/versions/{object_id} --data "name=String"
+     *
+     * @param accountName The team or individual account owning the repository.
+     * @param repoSlug The repository identifier.
+     * @param objectId The element identifier to delete.
+     * @param name The element name. A name cannot exceed 128 characters and must be unique.
+     * @return Updated object.
+     */
+    BitBucketVersion updateVersion(String accountName, String repoSlug, Long objectId, String name);
 
-    String postNewVersion(String accountName, String repoSlug, Long issueId);
+    /**
+     * Deletes a version in an issue tracker.
+     * To delete a version, public and private issue trackers require the caller to authenticate with an account that has appropriate authorisation.
+     * Keep in mind that the version can be in use on existing issues.
+     * When you delete a version, the system updates the issues and does the following:
+     * - remove the version type
+     * - leaves the issue's version value empty
+     * - adds a comment to the issue explaining the change
+     * API call: DELETE https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/issues/versions/{object_id}
+     *
+     * @param accountName The team or individual account owning the repository.
+     * @param repoSlug The repository identifier.
+     * @param objectId The element identifier to delete.
+     */
+    void removeVersion(String accountName, String repoSlug, Long objectId);
 
-    String updateVersion(String accountName, String repoSlug, Long issueId, Long versionId);
+    /**
+     * Gets an array of the milestones associated with the issue tracker.
+     * API call: GET https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/issues/milestones
+     *
+     * @param accountName The team or individual account owning the repository.
+     * @param repoSlug The repository identifier.
+     * @return List of milestones.
+     */
+    List<BitBucketMilestone> getMilestones(String accountName, String repoSlug);
 
-    void removeVersion(String accountName, String repoSlug, Long versionId);
+    /**
+     * Gets an individual milestone in an issue tracker.
+     * Public and private issue trackers require the caller to authenticate with an account that has appropriate authorisation.
+     * API call: GET https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/issues/milestones/{object_id}
+     *
+     * @param accountName The team or individual account owning the repository.
+     * @param repoSlug The repository identifier.
+     * @param objectId The element identifier to delete.
+     * @return Requested milestone.
+     */
+    BitBucketMilestone getMilestone(String accountName, String repoSlug, Long objectId);
 
-    List<String> getMilestones(String accountName, String repoSlug, Long issueId);
+    /**
+     * Creates a new milestone in an issue tracker.
+     * You must supply a name value in the form of a string.
+     * The server creates the id for you and it appears in the return value.
+     * Public and private issue trackers require the caller to authenticate with an account that has appropriate authorisation.
+     * API call: POST https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/issues/milestones --data "name=String"
+     *
+     * @param accountName The team or individual account owning the repository.
+     * @param repoSlug The repository identifier.
+     * @param name The element name. A name cannot exceed 128 characters and must be unique.
+     * @return Created object.
+     */
+    BitBucketMilestone postNewMilestone(String accountName, String repoSlug, String name);
 
-    String getMilestone(String accountName, String repoSlug, Long issueId, Long milestoneId);
+    /**
+     * Updates an existing milestone in an issue tracker.
+     * You must supply a name value in the form of a string.
+     * Public and private issue trackers require the caller to authenticate with an account that has appropriate authorisation.
+     * API call: PUT https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/issues/milestones/{object_id} --data "name=String"
+     *
+     * @param accountName The team or individual account owning the repository.
+     * @param repoSlug The repository identifier.
+     * @param objectId The element identifier to delete.
+     * @param name The element name. A name cannot exceed 128 characters and must be unique.
+     * @return Updated object.
+     */
+    BitBucketMilestone updateMilestone(String accountName, String repoSlug, Long objectId, String name);
 
-    String postNewMilestone(String accountName, String repoSlug, Long issueId);
-
-    String updateMilestone(String accountName, String repoSlug, Long issueId, Long milestoneId);
-
-    void removeMilestone(String accountName, String repoSlug, Long milestoneId);
-
-
+    /**
+     * Deletes a milestone in an issue tracker.
+     * To delete a milestone, public and private issue trackers require the caller to authenticate with an account that has appropriate authorisation.
+     * Keep in mind that the milestone can be in use on existing issues.
+     * When you delete a milestone, the system updates the issues and does the following:
+     * - remove the milestone type
+     * - leaves the issue's milestone value empty
+     * - adds a comment to the issue explaining the change
+     * API call: DELETE https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/issues/milestones/{object_id}
+     *
+     * @param accountName The team or individual account owning the repository.
+     * @param repoSlug The repository identifier.
+     * @param objectId The element identifier to delete.
+     */
+    void removeMilestone(String accountName, String repoSlug, Long objectId);
 
 }
-/*###issues XXXX
-- TBD GET a list of issues in a repository's tracker
-GET https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/issues?parameter=value&parameter=value&...
-- TBD GET an individual issue
-GET https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/issues/{issue_id}
-- TBD GET a list of an issue's followers
-GET https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/issues/{issue_id}/followers
-- TBD POST a new issue
-POST https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/issues  --data "title=value&content=value"
-- TBD Update an existing issue
-PUT https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/issues/{issue_id}  --data "parameter=value&parameter=value"
-- TBD DELETE an issue
-DELETE https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/issues/{issue_id}
-- TBD GET the comments for an issue
-GET https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/issues/{issue_id}/comments
-- TBD GET an individual comment
-GET https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/issues/{issue_id}/comments/{comment_id}
-- TBD POST a new comment on the issue
-POST https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/issues/{issue_id}/comments --data "content=string"
-- TBD Update a comment
-PUT https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/issues/{issue_id}/comments/{comment_id} --data "content=string"
-- TBD GET the components defined on an issue tracker
-GET https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/issues/components
-- TBD GET an individual component
-GET https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/issues/components/{object_id}
-- TBD POST a new component in an issue tracker
-POST https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/issues/components --data "name=String"
-- TBD Update an existing component
-PUT https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/issues/components/{object_id} --data "name=String"
-- TBD DELETE a component from the issue tracker
-DELETE https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/issues/components/{object_id}
-- TBD GET a list of versions
-GET https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/issues/versions
-- TBD GET an individual version
-GET https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/issues/versions/{object_id}
-- TBD POST a new version
-POST https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/issues/versions --data "name=String"
-- TBD PUT an update to a version
-PUT https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/issues/versions/{object_id} --data "name=String"
-- TBD DELETE a version
-DELETE https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/issues/versions/{object_id}
-- TBD GET the defined milestones
-GET https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/issues/milestones
-- TBD GET an individual milestone
-GET https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/issues/milestones/{object_id}
-- TBD POST a new milestone
-POST https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/issues/milestones --data "name=String"
-- TBD PUT an update to milestones
-PUT https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/issues/milestones/{object_id} --data "name=String"
-- TBD DELETE a milestone
-DELETE https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/issues/milestones/{object_id}*/
