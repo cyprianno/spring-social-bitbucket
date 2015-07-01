@@ -6,6 +6,7 @@ import org.springframework.social.bitbucket.api.BitBucketComment;
 import org.springframework.social.bitbucket.api.BitBucketDiff;
 import org.springframework.social.bitbucket.api.BitBucketRepositoryStatistics;
 import org.springframework.social.bitbucket.api.RepositoriesChangesetsOperations;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 
@@ -13,7 +14,11 @@ import java.util.List;
  * @author Cyprian Śniegota
  * @since 2.0.0
  */
-public class RepositoriesChangesetsTemplate implements RepositoriesChangesetsOperations {
+public class RepositoriesChangesetsTemplate extends AbstractBitBucketOperations implements RepositoriesChangesetsOperations {
+    public RepositoriesChangesetsTemplate(RestTemplate restTemplate, boolean authorized) {
+        super(restTemplate, authorized, V1);
+    }
+
     @Override
     public List<BitBucketChangesets> getChangesets(String accountName, String repoSlug, String start, int limit) {
         return null;

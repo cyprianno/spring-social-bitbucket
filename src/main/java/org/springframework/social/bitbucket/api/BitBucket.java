@@ -64,6 +64,13 @@ public interface BitBucket extends ApiBinding {
     UsersOperations usersOperations();
 
     /**
+     * Repositories management API
+     *
+     * @return repositories management API
+     */
+    RepositoriesOperations repositoriesOperations();
+
+    /**
      * Invitations management API
      *
      * @return invitations API

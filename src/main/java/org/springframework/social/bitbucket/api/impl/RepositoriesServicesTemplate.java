@@ -2,6 +2,7 @@ package org.springframework.social.bitbucket.api.impl;
 
 import org.springframework.social.bitbucket.api.BitBucketService;
 import org.springframework.social.bitbucket.api.RepositoriesServicesOperations;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 
@@ -9,7 +10,11 @@ import java.util.List;
  * @author Cyprian Śniegota
  * @since 2.0.0
  */
-public class RepositoriesServicesTemplate implements RepositoriesServicesOperations {
+public class RepositoriesServicesTemplate extends AbstractBitBucketOperations implements RepositoriesServicesOperations {
+    public RepositoriesServicesTemplate(RestTemplate restTemplate, boolean authorized) {
+        super(restTemplate, authorized, V1);
+    }
+
     @Override
     public List<BitBucketService> getServices(String accountName, String repoSlug) {
         return null;

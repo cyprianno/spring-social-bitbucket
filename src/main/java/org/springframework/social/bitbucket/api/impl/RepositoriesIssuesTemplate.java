@@ -7,6 +7,7 @@ import org.springframework.social.bitbucket.api.BitBucketMilestone;
 import org.springframework.social.bitbucket.api.BitBucketUser;
 import org.springframework.social.bitbucket.api.BitBucketVersion;
 import org.springframework.social.bitbucket.api.RepositoriesIssuesOperations;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 
@@ -14,7 +15,11 @@ import java.util.List;
  * @author Cyprian Śniegota
  * @since 2.0.0
  */
-public class RepositoriesIssuesTemplate implements RepositoriesIssuesOperations {
+public class RepositoriesIssuesTemplate extends AbstractBitBucketOperations implements RepositoriesIssuesOperations {
+    public RepositoriesIssuesTemplate(RestTemplate restTemplate, boolean authorized) {
+        super(restTemplate, authorized, V1);
+    }
+
     @Override
     public List<BitBucketIssue> getIssues(String accountName, String repoSlug, Integer start, Integer limit, String sort) {
         return null;

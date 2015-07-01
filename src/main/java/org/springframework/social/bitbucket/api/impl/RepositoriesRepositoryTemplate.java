@@ -4,6 +4,7 @@ import org.springframework.social.bitbucket.api.BitBucketBranch;
 import org.springframework.social.bitbucket.api.BitBucketBranchesTags;
 import org.springframework.social.bitbucket.api.BitBucketRepository;
 import org.springframework.social.bitbucket.api.RepositoriesRepositoryOperations;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 import java.util.Map;
@@ -12,7 +13,11 @@ import java.util.Map;
  * @author Cyprian Śniegota
  * @since 2.0.0
  */
-public class RepositoriesRepositoryTemplate implements RepositoriesRepositoryOperations {
+public class RepositoriesRepositoryTemplate extends AbstractBitBucketOperations implements RepositoriesRepositoryOperations {
+    public RepositoriesRepositoryTemplate(RestTemplate restTemplate, boolean authorized) {
+        super(restTemplate, authorized, V1);
+    }
+
     @Override
     public BitBucketRepository createNewFork(String accountName, String repositorySlug, String name, String description, String language, Boolean isPrivate) {
         return null;

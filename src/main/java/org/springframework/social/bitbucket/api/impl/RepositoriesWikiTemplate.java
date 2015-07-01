@@ -2,12 +2,17 @@ package org.springframework.social.bitbucket.api.impl;
 
 import org.springframework.social.bitbucket.api.BitBucketWikipage;
 import org.springframework.social.bitbucket.api.RepositoriesWikiOperations;
+import org.springframework.web.client.RestTemplate;
 
 /**
  * @author Cyprian Śniegota
  * @since 2.0.0
  */
-public class RepositoriesWikiTemplate implements RepositoriesWikiOperations {
+public class RepositoriesWikiTemplate extends AbstractBitBucketOperations implements RepositoriesWikiOperations {
+    public RepositoriesWikiTemplate(RestTemplate restTemplate, boolean authorized) {
+        super(restTemplate, authorized, V1);
+    }
+
     @Override
     public BitBucketWikipage getContent(String accountName, String repoSlug, String page) {
         return null;
