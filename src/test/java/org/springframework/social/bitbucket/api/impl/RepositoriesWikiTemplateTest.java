@@ -13,6 +13,7 @@ public class RepositoriesWikiTemplateTest extends BaseTemplateTest {
     @Test
     public void testGetContent() throws Exception {
         assertTrue(false);
+        //get-wiki-raw-content
         //given
         //when
         //then
@@ -23,6 +24,7 @@ public class RepositoriesWikiTemplateTest extends BaseTemplateTest {
     @Test
     public void testPostNewPage() throws Exception {
         assertTrue(false);
+        //OK
         //given
         //when
         //then
@@ -33,6 +35,7 @@ public class RepositoriesWikiTemplateTest extends BaseTemplateTest {
     @Test
     public void testUpdatePage() throws Exception {
         assertTrue(false);
+        //OK
         //given
         //when
         //then
