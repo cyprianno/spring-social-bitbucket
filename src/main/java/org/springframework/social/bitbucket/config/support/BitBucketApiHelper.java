@@ -35,10 +35,10 @@ public final class BitBucketApiHelper implements ApiHelper<BitBucket> {
     private final UserIdSource userIdSource;
 
     private BitBucketApiHelper(
-            UsersConnectionRepository usersConnectionRepository,
-            UserIdSource userIdSource) {
-        this.usersConnectionRepository = usersConnectionRepository;
-        this.userIdSource = userIdSource;
+            UsersConnectionRepository usersConnectionRepositoryParam,
+            UserIdSource userIdSourceParam) {
+        this.usersConnectionRepository = usersConnectionRepositoryParam;
+        this.userIdSource = userIdSourceParam;
     }
 
     @Override

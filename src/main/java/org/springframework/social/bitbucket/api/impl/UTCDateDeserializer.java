@@ -17,7 +17,6 @@ package org.springframework.social.bitbucket.api.impl;
 
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.JsonParser;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
 
@@ -32,7 +31,7 @@ public class UTCDateDeserializer extends JsonDeserializer<Date> {
 
     @Override
     public final Date deserialize(JsonParser jp, DeserializationContext ctxt)
-            throws IOException, JsonProcessingException {
+            throws IOException {
         try {
             SimpleDateFormat dateFormat = new SimpleDateFormat(DATE_FORMAT,
                     Locale.ENGLISH);

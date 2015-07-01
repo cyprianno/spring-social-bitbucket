@@ -1,7 +1,5 @@
 package org.springframework.social.bitbucket.api;
 
-import java.util.List;
-
 /**
  * The wiki resource provides functionality for getting information from pages in a Bitbucket wiki, creating new pages, and updating them.
  *

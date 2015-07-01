@@ -30,11 +30,11 @@ public class AbstractBitBucketOperations {
 
     private static final String BASE_API_URL = "https://api.bitbucket.org/";
 
-    public AbstractBitBucketOperations(RestTemplate restTemplate,
-                                       boolean authorized, String version) {
-        this.restTemplate = restTemplate;
-        this.authorized = authorized;
-        this.version = version;
+    public AbstractBitBucketOperations(RestTemplate restTemplateParam,
+                                       boolean authorizedParam, String versionParam) {
+        this.restTemplate = restTemplateParam;
+        this.authorized = authorizedParam;
+        this.version = versionParam;
     }
 
     protected final String buildUrl(String string) {
