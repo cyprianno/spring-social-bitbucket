@@ -13,6 +13,7 @@ public class RepositoriesPullRequestsTemplateTest extends BaseTemplateTest {
     @Test
     public void testPostNewComment() throws Exception {
         assertTrue(false);
+        //post-pullrequest-comment
         //given
         //when
         //then
@@ -23,6 +24,7 @@ public class RepositoriesPullRequestsTemplateTest extends BaseTemplateTest {
     @Test
     public void testUpdateComment() throws Exception {
         assertTrue(false);
+        //put-pullrequest-comment
         //given
         //when
         //then
@@ -43,6 +45,7 @@ public class RepositoriesPullRequestsTemplateTest extends BaseTemplateTest {
     @Test
     public void testToggleSpam() throws Exception {
         assertTrue(false);
+        //toggle-pullrequest-comment-spam
         //given
         //when
         //then

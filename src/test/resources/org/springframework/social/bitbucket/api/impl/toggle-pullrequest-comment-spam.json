@@ -1,0 +1,18 @@
+{
+  "username": "auserbb",
+  "node": "abdeaf1b2b4a",
+  "comment_id": 25720,
+  "display_name": "A User",
+  "parent_id": 25711,
+  "deleted": false,
+  "utc_last_updated": "2012-07-24 21:39:12+00:00",
+  "filename_hash": "36e1237b957fa2002d264c5fd031c547",
+  "filename": "Readme",
+  "content": "what the eff",
+  "content_rendered": "<p>what the eff</p>\n",
+  "user_avatar_url": "https://secure.gravatar.com/avatar/49bd0ee69e520e8bc250adb95710bbb8?d=identicon&s=32",
+  "line_from": 3,
+  "line_to": 6,
+  "utc_created_on": "2012-07-24 21:06:33+00:00",
+  "is_spam": false
+}
