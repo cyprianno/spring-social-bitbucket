@@ -13,6 +13,7 @@ public class RepositoriesSrcTemplateTest extends BaseTemplateTest {
     @Test
     public void testGetElements() throws Exception {
         assertTrue(false);
+        //get-list-repo-source
         //given
         //when
         //then
@@ -23,6 +24,7 @@ public class RepositoriesSrcTemplateTest extends BaseTemplateTest {
     @Test
     public void testGetContent() throws Exception {
         assertTrue(false);
+        //get-raw-content
         //given
         //when
         //then
