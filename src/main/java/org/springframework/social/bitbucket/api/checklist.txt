@@ -175,11 +175,11 @@ PUT https://bitbucket.org/api/1.0/repositories/ accountname/repo_name/wiki/{page
 =======================================================================================================================
 
 
-1. create interface
+X1. create interface
 2. check duplicates
-3. update javadoc (description + url from docs)
-4. model (if necessary)
-5. create empty implementation
+X3. update javadoc (description + url from docs)
+X4. model (if necessary)
+X5. create empty implementation
 6. optional - connect new operations class to base template
 7. create tests
 8. template implementation
