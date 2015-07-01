@@ -13,6 +13,7 @@ public class RepositoriesDeployKeysTemplateTest extends BaseTemplateTest {
     @Test
     public void testGetDeployKeys() throws Exception {
         assertTrue(false);
+        //get-keys
         //given
         //when
         //then
@@ -23,6 +24,7 @@ public class RepositoriesDeployKeysTemplateTest extends BaseTemplateTest {
     @Test
     public void testGetDeployKey() throws Exception {
         assertTrue(false);
+        //get-key
         //given
         //when
         //then
@@ -33,6 +35,7 @@ public class RepositoriesDeployKeysTemplateTest extends BaseTemplateTest {
     @Test
     public void testPostDeployKey() throws Exception {
         assertTrue(false);
+        //post-key
         //given
         //when
         //then
