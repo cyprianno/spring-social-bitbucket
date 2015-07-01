@@ -1,0 +1,37 @@
+{
+  "count": 4,
+  "followers": [
+    {
+      "username": "Saage",
+      "first_name": "Rodrigo",
+      "last_name": "",
+      "is_team": false,
+      "avatar": "https://secure.gravatar.com/avatar/f9c6710cefefb1eb9903d5a076135dc6?d=identicon&s=32",
+      "resource_uri": "/1.0/users/Saage"
+    },
+    {
+      "username": "vjanicek",
+      "first_name": "Juan ",
+      "last_name": "Hernandez",
+      "is_team": false,
+      "avatar": "https://secure.gravatar.com/avatar/f1210b66e760b4d04c5bf3b1dc4f0877?d=identicon&s=32",
+      "resource_uri": "/1.0/users/vjanicek"
+    },
+    {
+      "username": "amarsahinovic",
+      "first_name": "Amar",
+      "last_name": "Šahinović",
+      "is_team": false,
+      "avatar": "https://secure.gravatar.com/avatar/6766b33a697b6f0720ca5a0a2cd69196?d=identicon&s=32",
+      "resource_uri": "/1.0/users/amarsahinovic"
+    },
+    {
+      "username": "clbray",
+      "first_name": "Curtis",
+      "last_name": "Bray",
+      "is_team": false,
+      "avatar": "https://secure.gravatar.com/avatar/a1cea357df8bbcfd0a108129db97e636?d=identicon&s=32",
+      "resource_uri": "/1.0/users/clbray"
+    }
+  ]
+}

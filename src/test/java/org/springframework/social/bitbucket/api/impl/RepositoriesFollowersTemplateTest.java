@@ -13,6 +13,7 @@ public class RepositoriesFollowersTemplateTest extends BaseTemplateTest {
     @Test
     public void testGetFollowers() throws Exception {
         assertTrue(false);
+        //get-list-repo-followers
         //given
         //when
         //then
