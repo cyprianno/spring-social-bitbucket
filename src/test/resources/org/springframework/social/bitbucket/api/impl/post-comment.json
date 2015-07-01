@@ -1,0 +1,18 @@
+{
+"username": "buserbb",
+"node": "abdeaf1b2b4a",
+"comment_id": 25728,
+"display_name": "B userbb",
+"parent_id": null,
+"deleted": false,
+"utc_last_updated": "2012-07-24 21:20:23+00:00",
+"filename_hash": "3858f62230ac3c915f300c664312c63f",
+"filename": "foobar",
+"content": "this is my new comment",
+"content_rendered": "<p>this is my new comment</p>\n",
+"user_avatar_url": "https://secure.gravatar.com/avatar/b677e1e3bf1c781f852b288fd4b68480?d=identicon&s=32",
+"line_from": null,
+"line_to": null,
+"utc_created_on": "2012-07-24 21:20:23+00:00",
+"is_spam": false
+}

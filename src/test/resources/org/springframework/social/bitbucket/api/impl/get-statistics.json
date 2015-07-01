@@ -1,0 +1,26 @@
+[
+  {
+    "type": "added",
+    "file": "AnotherFile.txt",
+    "diffstat": {
+      "removed": 0,
+      "added": 0
+    }
+  },
+  {
+    "type": "modified",
+    "file": "Readme",
+    "diffstat": {
+      "removed": 0,
+      "added": 3
+    }
+  },
+  {
+    "type": "modified",
+    "file": "LICENSE",
+    "diffstat": {
+      "removed": null,
+      "added": null
+    }
+  }
+]

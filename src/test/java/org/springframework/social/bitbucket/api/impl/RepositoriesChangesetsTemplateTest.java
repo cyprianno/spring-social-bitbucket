@@ -13,6 +13,7 @@ public class RepositoriesChangesetsTemplateTest extends BaseTemplateTest {
     @Test
     public void testGetChangesets() throws Exception {
         assertTrue(false);
+        //get-changesets
         //given
         //when
         //then
@@ -23,6 +24,7 @@ public class RepositoriesChangesetsTemplateTest extends BaseTemplateTest {
     @Test
     public void testGetChangeset() throws Exception {
         assertTrue(false);
+        //get-changeset
         //given
         //when
         //then
@@ -33,6 +35,7 @@ public class RepositoriesChangesetsTemplateTest extends BaseTemplateTest {
     @Test
     public void testGetStatistics() throws Exception {
         assertTrue(false);
+        //get-statistics
         //given
         //when
         //then
@@ -43,6 +46,7 @@ public class RepositoriesChangesetsTemplateTest extends BaseTemplateTest {
     @Test
     public void testGetDiff() throws Exception {
         assertTrue(false);
+        //get-diff
         //given
         //when
         //then
@@ -53,6 +57,7 @@ public class RepositoriesChangesetsTemplateTest extends BaseTemplateTest {
     @Test
     public void testGetComments() throws Exception {
         assertTrue(false);
+        //get-comments
         //given
         //when
         //then
@@ -73,6 +78,7 @@ public class RepositoriesChangesetsTemplateTest extends BaseTemplateTest {
     @Test
     public void testPostComment() throws Exception {
         assertTrue(false);
+        //post comment
         //given
         //when
         //then
@@ -83,6 +89,7 @@ public class RepositoriesChangesetsTemplateTest extends BaseTemplateTest {
     @Test
     public void testUpdateComment() throws Exception {
         assertTrue(false);
+        //put-comment-update
         //given
         //when
         //then
@@ -93,6 +100,7 @@ public class RepositoriesChangesetsTemplateTest extends BaseTemplateTest {
     @Test
     public void testToogleSpamComment() throws Exception {
         assertTrue(false);
+        //toggle-changeset-comment-spam
         //given
         //when
         //then
