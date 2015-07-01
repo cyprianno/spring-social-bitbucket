@@ -1,0 +1,35 @@
+{
+  "master": {
+    "node": "0b64d6000dad",
+    "files": [
+      {
+        "type": "modified",
+        "file": "atlassian-docco-cli/pom.xml"
+      },
+      {
+        "type": "modified",
+        "file": "atlassian-docco-maven/pom.xml"
+      },
+      {
+        "type": "modified",
+        "file": "atlassian-docco/pom.xml"
+      },
+      {
+        "type": "modified",
+        "file": "pom.xml"
+      }
+    ],
+    "raw_author": "Jonathan Doklovic <doklovic@atlassian.com>",
+    "utctimestamp": "2012-05-07 22:35:02+00:00",
+    "author": "doklovic_atlassian",
+    "timestamp": "2012-05-08 00:35:02",
+    "raw_node": "0b64d6000dad15bb8cc520d4cc6da7a6bf2c5b99",
+    "parents": [
+      "94aff5071793"
+    ],
+    "branch": "master",
+    "message": "[maven-release-plugin] prepare for next development iteration\n",
+    "revision": null,
+    "size": -1
+  }
+}

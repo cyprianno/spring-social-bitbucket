@@ -1,0 +1,17 @@
+{
+  "branches": [{
+    "changeset": "a2e42cc621de6f596687389b8a9bed7f476b1007",
+    "heads": ["a2e42cc621de6f596687389b8a9bed7f476b1007"],
+    "name": "bb101repo-branch",
+    "mainbranch": false
+  }, {
+    "changeset": "9ccfbab51780e0ca31e2738e1b91f5efa0bb46d0",
+    "heads": ["9ccfbab51780e0ca31e2738e1b91f5efa0bb46d0"],
+    "name": "master",
+    "mainbranch": true
+  }],
+  "tags": [{
+    "changeset": "a2e42cc621de6f596687389b8a9bed7f476b1007",
+    "name": "bb101repo-branch"
+  }]
+}

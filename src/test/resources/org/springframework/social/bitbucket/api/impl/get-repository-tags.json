@@ -1,0 +1,23 @@
+{
+  "tip": {
+    "node": "562344e0ae10",
+    "files": [
+      {
+        "type": "modified",
+        "file": "index.html"
+      }
+    ],
+    "raw_author": "Stephen Imhoff <clockwork-muse@hotmail.com>",
+    "utctimestamp": "2012-08-12 02:06:43+00:00",
+    "author": "clockwork_muse",
+    "timestamp": "2012-08-12 04:06:43",
+    "raw_node": "562344e0ae1016dee08679d84d687a8a6615d230",
+    "parents": [
+      "101f16a95c13"
+    ],
+    "branch": "default",
+    "message": "Add tutorial quote.",
+    "revision": 1185,
+    "size": -1
+  }
+}
