@@ -1,0 +1,21 @@
+{
+  "count": 2,
+  "followers": [
+    {
+      "username": "tutorials",
+      "first_name": "",
+      "last_name": "",
+      "is_team": false,
+      "avatar": "https://secure.gravatar.com/avatar/0bc5bd490000b8e63c35c0f54e667b9e?d=identicon&s=32",
+      "resource_uri": "/1.0/users/tutorials"
+    },
+    {
+      "username": "buserbb",
+      "first_name": "B",
+      "last_name": "userbb",
+      "is_team": false,
+      "avatar": "https://secure.gravatar.com/avatar/b677e1e3bf1c781f852b288fd4b68480?d=identicon&s=32",
+      "resource_uri": "/1.0/users/buserbb"
+    }
+  ]
+}

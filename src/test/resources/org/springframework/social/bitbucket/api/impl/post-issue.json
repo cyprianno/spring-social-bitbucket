@@ -1,0 +1,28 @@
+{
+  "status": "new",
+  "priority": "trivial",
+  "title": "This\\ is\\ a title",
+  "reported_by": {
+    "username": "tutorials",
+    "first_name": "",
+    "last_name": "",
+    "is_team": false,
+    "avatar": "https://secure.gravatar.com/avatar/0bc5bd490000b8e63c35c0f54e667b9e?d=identicon&s=32",
+    "resource_uri": "/1.0/users/tutorials"
+  },
+  "utc_last_updated": "2012-07-29 02:35:38+00:00",
+  "comment_count": 0,
+  "metadata": {
+    "kind": "bug",
+    "version": null,
+    "component": null,
+    "milestone": null
+  },
+  "content": "This is the content",
+  "created_on": "2012-07-29 04:35:38",
+  "local_id": 3,
+  "follower_count": 0,
+  "utc_created_on": "2012-07-29 02:35:38+00:00",
+  "resource_uri": "/1.0/repositories/tutorials/mydvcsproject/issues/3",
+  "is_spam": false
+}

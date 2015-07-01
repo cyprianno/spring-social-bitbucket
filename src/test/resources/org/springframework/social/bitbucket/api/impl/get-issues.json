@@ -1,0 +1,56 @@
+{
+  "count": 1,
+  "filter": {
+    "status": [
+      [
+        "!",
+        "open"
+      ]
+    ],
+    "title": [
+      [
+        "~",
+        "work"
+      ]
+    ]
+  },
+  "search": null,
+  "issues": [
+    {
+      "status": "new",
+      "priority": "major",
+      "title": "get_absolute_url not working anymore in tip version",
+      "reported_by": {
+        "username": "jonozzz",
+        "first_name": "",
+        "last_name": "",
+        "is_team": false,
+        "avatar": "https://secure.gravatar.com/avatar/88b5a7f246ee417f64ec75151f2507af?d=identicon&s=32",
+        "resource_uri": "/1.0/users/jonozzz"
+      },
+      "utc_last_updated": "2011-03-02 19:45:16+00:00",
+      "responsible": {
+        "username": "jespern",
+        "first_name": "Jesper",
+        "last_name": "Noehr",
+        "is_team": false,
+        "avatar": "https://secure.gravatar.com/avatar/b658715b9635ef057daf2a22d4a8f36e?d=identicon&s=32",
+        "resource_uri": "/1.0/users/jespern"
+      },
+      "comment_count": 1,
+      "metadata": {
+        "kind": "bug",
+        "version": null,
+        "component": null,
+        "milestone": null
+      },
+      "content": "From what I've seen so far the following code in emitters.py is never executed. This used to work fine in 0.2.2 and 0.2.3rc1.\r\n\r\n{{{\r\n#!python\r\n\r\n                    if 'absolute_uri' in get_fields:\r\n                        get_absolute_uri = True\r\n\r\n}}}\r\n\r\nAs a result if you have the special field 'absolute_uri' in your fields list it will be ignored by the emitter.",
+      "created_on": "2010-07-29 05:01:02",
+      "local_id": 141,
+      "follower_count": 1,
+      "utc_created_on": "2010-07-29 03:01:02+00:00",
+      "resource_uri": "/1.0/repositories/jespern/django-piston/issues/141",
+      "is_spam": false
+    }
+  ]
+}

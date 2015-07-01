@@ -13,6 +13,7 @@ public class RepositoriesIssuesTemplateTest extends BaseTemplateTest {
     @Test
     public void testGetIssues() throws Exception {
         assertTrue(false);
+        //get-issues
         //given
         //when
         //then
@@ -23,6 +24,7 @@ public class RepositoriesIssuesTemplateTest extends BaseTemplateTest {
     @Test
     public void testGetIssue() throws Exception {
         assertTrue(false);
+        //get-issue
         //given
         //when
         //then
@@ -33,6 +35,7 @@ public class RepositoriesIssuesTemplateTest extends BaseTemplateTest {
     @Test
     public void testGetFollowers() throws Exception {
         assertTrue(false);
+        //get-issue-followers
         //given
         //when
         //then
@@ -43,6 +46,7 @@ public class RepositoriesIssuesTemplateTest extends BaseTemplateTest {
     @Test
     public void testPostNewIssue() throws Exception {
         assertTrue(false);
+        //post-issue
         //given
         //when
         //then
@@ -53,6 +57,7 @@ public class RepositoriesIssuesTemplateTest extends BaseTemplateTest {
     @Test
     public void testUpdateIssue() throws Exception {
         assertTrue(false);
+        //put-issue
         //given
         //when
         //then
@@ -73,6 +78,7 @@ public class RepositoriesIssuesTemplateTest extends BaseTemplateTest {
     @Test
     public void testGetComments() throws Exception {
         assertTrue(false);
+        //get-issue-comments
         //given
         //when
         //then
@@ -83,6 +89,7 @@ public class RepositoriesIssuesTemplateTest extends BaseTemplateTest {
     @Test
     public void testGetComment() throws Exception {
         assertTrue(false);
+        //get-issue-comment
         //given
         //when
         //then
@@ -93,6 +100,7 @@ public class RepositoriesIssuesTemplateTest extends BaseTemplateTest {
     @Test
     public void testPostNewComment() throws Exception {
         assertTrue(false);
+        //post-issue-comment
         //given
         //when
         //then
@@ -103,6 +111,7 @@ public class RepositoriesIssuesTemplateTest extends BaseTemplateTest {
     @Test
     public void testUpdateComment() throws Exception {
         assertTrue(false);
+        //put-issue-comment
         //given
         //when
         //then
@@ -113,6 +122,7 @@ public class RepositoriesIssuesTemplateTest extends BaseTemplateTest {
     @Test
     public void testGetComponents() throws Exception {
         assertTrue(false);
+        //get-components
         //given
         //when
         //then
@@ -123,6 +133,7 @@ public class RepositoriesIssuesTemplateTest extends BaseTemplateTest {
     @Test
     public void testGetComponent() throws Exception {
         assertTrue(false);
+        //get-component
         //given
         //when
         //then
@@ -133,6 +144,7 @@ public class RepositoriesIssuesTemplateTest extends BaseTemplateTest {
     @Test
     public void testPostNewComponent() throws Exception {
         assertTrue(false);
+        //post-component
         //given
         //when
         //then
@@ -143,6 +155,7 @@ public class RepositoriesIssuesTemplateTest extends BaseTemplateTest {
     @Test
     public void testUpdateComponent() throws Exception {
         assertTrue(false);
+        //put-components
         //given
         //when
         //then
@@ -163,6 +176,7 @@ public class RepositoriesIssuesTemplateTest extends BaseTemplateTest {
     @Test
     public void testGetVersions() throws Exception {
         assertTrue(false);
+        //get-versions
         //given
         //when
         //then
@@ -173,6 +187,7 @@ public class RepositoriesIssuesTemplateTest extends BaseTemplateTest {
     @Test
     public void testGetVersion() throws Exception {
         assertTrue(false);
+        //get-version
         //given
         //when
         //then
@@ -183,6 +198,7 @@ public class RepositoriesIssuesTemplateTest extends BaseTemplateTest {
     @Test
     public void testPostNewVersion() throws Exception {
         assertTrue(false);
+        //post-version
         //given
         //when
         //then
@@ -193,6 +209,7 @@ public class RepositoriesIssuesTemplateTest extends BaseTemplateTest {
     @Test
     public void testUpdateVersion() throws Exception {
         assertTrue(false);
+        //put-version
         //given
         //when
         //then
@@ -213,6 +230,7 @@ public class RepositoriesIssuesTemplateTest extends BaseTemplateTest {
     @Test
     public void testGetMilestones() throws Exception {
         assertTrue(false);
+        //get-milestones
         //given
         //when
         //then
@@ -223,6 +241,7 @@ public class RepositoriesIssuesTemplateTest extends BaseTemplateTest {
     @Test
     public void testGetMilestone() throws Exception {
         assertTrue(false);
+        //get-milestone
         //given
         //when
         //then
@@ -233,6 +252,7 @@ public class RepositoriesIssuesTemplateTest extends BaseTemplateTest {
     @Test
     public void testPostNewMilestone() throws Exception {
         assertTrue(false);
+        //post-milestone
         //given
         //when
         //then
@@ -243,6 +263,7 @@ public class RepositoriesIssuesTemplateTest extends BaseTemplateTest {
     @Test
     public void testUpdateMilestone() throws Exception {
         assertTrue(false);
+        //put-milestone
         //given
         //when
         //then

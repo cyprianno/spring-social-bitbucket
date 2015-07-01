@@ -1,0 +1,20 @@
+{
+  "status": "duplicate",
+  "priority": "major",
+  "title": "Why  the FORBIDDEN code is 401?",
+  "utc_last_updated": "2012-05-29 14:38:42+00:00",
+  "comment_count": 1,
+  "metadata": {
+    "kind": "bug",
+    "version": null,
+    "component": null,
+    "milestone": null
+  },
+  "content": "The class rc_factory in the utils model has a dictionary with the http-codes.\r\n\r\nThe standard code for forbidden is 403.\r\n401 is used for unauthorized.\r\n\r\n",
+  "created_on": "2011-10-04 23:37:00",
+  "local_id": 198,
+  "follower_count": 0,
+  "utc_created_on": "2011-10-04 21:37:00+00:00",
+  "resource_uri": "/1.0/repositories/jespern/django-piston/issues/198",
+  "is_spam": false
+}
