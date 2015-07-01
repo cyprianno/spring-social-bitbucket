@@ -1,0 +1,10 @@
+{
+  "handler": {
+    "url": "http://yourjira.com/",
+    "display_from": "JIRA (PROJ)",
+    "name": "jira",
+    "key": "PROJ",
+    "display_to": "http://yourjira.com/"
+  },
+  "id": 87
+}

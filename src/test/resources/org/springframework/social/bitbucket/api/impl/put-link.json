@@ -1,0 +1,10 @@
+{
+  "handler": {
+    "url": "http://yourjira.com/",
+    "display_from": "JIRA (BB)",
+    "name": "jira",
+    "key": "BB",
+    "display_to": "http://yourjira.com/"
+  },
+  "id": 87
+}

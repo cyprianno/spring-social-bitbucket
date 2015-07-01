@@ -1,0 +1,22 @@
+[
+  {
+    "handler": {
+      "display_to": "http://172-28-13-105.staff.sf.atlassian.com:2990/jira/browse/\\1",
+      "replacement_url": "http://172-28-13-105.staff.sf.atlassian.com:2990/jira/browse/\\1",
+      "raw_regex": "(?<!\\w)([A-Z|a-z]{2,}-\\d+)(?!\\w)",
+      "name": "custom",
+      "display_from": "Custom ((?<!\\w)([A-Z|a-z]{2,}-\\d+)(?!\\w))"
+    },
+    "id": 25991
+  },
+  {
+    "handler": {
+      "url": "http://172-28-13-105.staff.sf.atlassian.com:2990/jira/browse",
+      "display_from": "JIRA (PROJ)",
+      "name": "jira",
+      "key": "PROJ",
+      "display_to": "http://172-28-13-105.staff.sf.atlassian.com:2990/jira/browse"
+    },
+    "id": 34053
+  }
+]
