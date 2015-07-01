@@ -14,17 +14,17 @@ public class RepositoriesWikiTemplate extends AbstractBitBucketOperations implem
     }
 
     @Override
-    public BitBucketWikipage getContent(String accountName, String repoSlug, String page) {
+    public final BitBucketWikipage getContent(String accountName, String repoSlug, String page) {
         return null;
     }
 
     @Override
-    public boolean postNewPage(String accountName, String repoSlug, String page, String content) {
+    public final boolean postNewPage(String accountName, String repoSlug, String page, String content) {
         return false;
     }
 
     @Override
-    public boolean updatePage(String accountName, String repoSlug, String page, String content) {
+    public final boolean updatePage(String accountName, String repoSlug, String page, String content) {
         return false;
     }
 }

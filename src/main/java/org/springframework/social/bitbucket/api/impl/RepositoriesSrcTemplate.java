@@ -16,12 +16,12 @@ public class RepositoriesSrcTemplate extends AbstractBitBucketOperations impleme
     }
 
     @Override
-    public List<BitBucketFile> getElements(String accountName, String repoSlug, String revision, String path) {
+    public final List<BitBucketFile> getElements(String accountName, String repoSlug, String revision, String path) {
         return null;
     }
 
     @Override
-    public String getContent(String accountName, String repoSlug, String revision, String path) {
+    public final String getContent(String accountName, String repoSlug, String revision, String path) {
         return null;
     }
 }

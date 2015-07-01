@@ -14,22 +14,22 @@ public class RepositoriesPullRequestsTemplate extends AbstractBitBucketOperation
     }
 
     @Override
-    public BitBucketComment postNewComment(String accountName, String repoSlug, Long pullRequestId) {
+    public  final BitBucketComment postNewComment(String accountName, String repoSlug, Long pullRequestId) {
         return null;
     }
 
     @Override
-    public BitBucketComment updateComment(String accountName, String repoSlug, Long pullRequestId, Long commentId) {
+    public  final BitBucketComment updateComment(String accountName, String repoSlug, Long pullRequestId, Long commentId) {
         return null;
     }
 
     @Override
-    public void removeComment(String accountName, String repoSlug, Long pullRequestId, Long commentId) {
+    public  final void removeComment(String accountName, String repoSlug, Long pullRequestId, Long commentId) {
 
     }
 
     @Override
-    public BitBucketComment toggleSpam(String accountName, String repoSlug, Long pullRequestId, Long commentId) {
+    public  final BitBucketComment toggleSpam(String accountName, String repoSlug, Long pullRequestId, Long commentId) {
         return null;
     }
 }

@@ -16,7 +16,7 @@ public class RepositoriesEventsTemplate extends AbstractBitBucketOperations impl
     }
 
     @Override
-    public List<BitBucketEvent> getEvents(String accountName, String repoSlug, Integer start, Integer limit, String type) {
+    public final List<BitBucketEvent> getEvents(String accountName, String repoSlug, Integer start, Integer limit, String type) {
         return null;
     }
 }

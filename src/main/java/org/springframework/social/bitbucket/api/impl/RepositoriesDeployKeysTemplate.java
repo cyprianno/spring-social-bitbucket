@@ -16,22 +16,22 @@ public class RepositoriesDeployKeysTemplate extends AbstractBitBucketOperations 
     }
 
     @Override
-    public List<BitBucketDeployKey> getDeployKeys(String accountName, String repoSlug) {
+    public  final List<BitBucketDeployKey> getDeployKeys(String accountName, String repoSlug) {
         return null;
     }
 
     @Override
-    public BitBucketDeployKey getDeployKey(String accountName, String repoSlug, Long pk) {
+    public  final BitBucketDeployKey getDeployKey(String accountName, String repoSlug, Long pk) {
         return null;
     }
 
     @Override
-    public BitBucketDeployKey postDeployKey(String accountName, String repoSlug) {
+    public  final BitBucketDeployKey postDeployKey(String accountName, String repoSlug) {
         return null;
     }
 
     @Override
-    public void removeDeployKey(String accountName, String repoSlug, Long pk) {
+    public  final void removeDeployKey(String accountName, String repoSlug, Long pk) {
 
     }
 }

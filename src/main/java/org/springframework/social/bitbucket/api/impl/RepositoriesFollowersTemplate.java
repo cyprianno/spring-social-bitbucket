@@ -16,7 +16,7 @@ public class RepositoriesFollowersTemplate extends AbstractBitBucketOperations i
     }
 
     @Override
-    public List<BitBucketUser> getFollowers(String accountName, String repoSlug) {
+    public final List<BitBucketUser> getFollowers(String accountName, String repoSlug) {
         return null;
     }
 }

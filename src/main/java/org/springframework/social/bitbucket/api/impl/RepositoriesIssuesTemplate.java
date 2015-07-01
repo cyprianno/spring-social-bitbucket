@@ -21,127 +21,127 @@ public class RepositoriesIssuesTemplate extends AbstractBitBucketOperations impl
     }
 
     @Override
-    public List<BitBucketIssue> getIssues(String accountName, String repoSlug, Integer start, Integer limit, String sort) {
+    public  final List<BitBucketIssue> getIssues(String accountName, String repoSlug, Integer start, Integer limit, String sort) {
         return null;
     }
 
     @Override
-    public BitBucketIssue getIssue(String accountName, String repoSlug, Long issueId) {
+    public  final BitBucketIssue getIssue(String accountName, String repoSlug, Long issueId) {
         return null;
     }
 
     @Override
-    public List<BitBucketUser> getFollowers(String accountName, String repoSlug, Long issueId) {
+    public  final List<BitBucketUser> getFollowers(String accountName, String repoSlug, Long issueId) {
         return null;
     }
 
     @Override
-    public BitBucketIssue postNewIssue(String accountName, String repoSlug, BitBucketIssue issue) {
+    public  final BitBucketIssue postNewIssue(String accountName, String repoSlug, BitBucketIssue issue) {
         return null;
     }
 
     @Override
-    public BitBucketIssue updateIssue(String accountName, String repoSlug, Long issueId, BitBucketIssue issue) {
+    public  final BitBucketIssue updateIssue(String accountName, String repoSlug, Long issueId, BitBucketIssue issue) {
         return null;
     }
 
     @Override
-    public void removeIssue(String accountName, String repoSlug, Long issueId) {
+    public  final void removeIssue(String accountName, String repoSlug, Long issueId) {
 
     }
 
     @Override
-    public List<BitBucketComment> getComments(String accountName, String repoSlug, Long issueId) {
+    public  final List<BitBucketComment> getComments(String accountName, String repoSlug, Long issueId) {
         return null;
     }
 
     @Override
-    public BitBucketComment getComment(String accountName, String repoSlug, Long issueId, Long commentId) {
+    public  final BitBucketComment getComment(String accountName, String repoSlug, Long issueId, Long commentId) {
         return null;
     }
 
     @Override
-    public BitBucketComment postNewComment(String accountName, String repoSlug, Long issueId, String content) {
+    public  final BitBucketComment postNewComment(String accountName, String repoSlug, Long issueId, String content) {
         return null;
     }
 
     @Override
-    public BitBucketComment updateComment(String accountName, String repoSlug, Long issueId, String commentId, String content) {
+    public  final BitBucketComment updateComment(String accountName, String repoSlug, Long issueId, String commentId, String content) {
         return null;
     }
 
     @Override
-    public List<BitBucketComponent> getComponents(String accountName, String repoSlug) {
+    public  final List<BitBucketComponent> getComponents(String accountName, String repoSlug) {
         return null;
     }
 
     @Override
-    public BitBucketComponent getComponent(String accountName, String repoSlug, Long objectId) {
+    public  final BitBucketComponent getComponent(String accountName, String repoSlug, Long objectId) {
         return null;
     }
 
     @Override
-    public BitBucketComponent postNewComponent(String accountName, String repoSlug, String name) {
+    public  final BitBucketComponent postNewComponent(String accountName, String repoSlug, String name) {
         return null;
     }
 
     @Override
-    public BitBucketComponent updateComponent(String accountName, String repoSlug, Long objectId, String name) {
+    public  final BitBucketComponent updateComponent(String accountName, String repoSlug, Long objectId, String name) {
         return null;
     }
 
     @Override
-    public void removeComponent(String accountName, String repoSlug, Long objectId) {
+    public  final void removeComponent(String accountName, String repoSlug, Long objectId) {
 
     }
 
     @Override
-    public List<BitBucketVersion> getVersions(String accountName, String repoSlug) {
+    public  final List<BitBucketVersion> getVersions(String accountName, String repoSlug) {
         return null;
     }
 
     @Override
-    public BitBucketVersion getVersion(String accountName, String repoSlug, Long objectId) {
+    public  final BitBucketVersion getVersion(String accountName, String repoSlug, Long objectId) {
         return null;
     }
 
     @Override
-    public BitBucketVersion postNewVersion(String accountName, String repoSlug, String name) {
+    public  final BitBucketVersion postNewVersion(String accountName, String repoSlug, String name) {
         return null;
     }
 
     @Override
-    public BitBucketVersion updateVersion(String accountName, String repoSlug, Long objectId, String name) {
+    public  final BitBucketVersion updateVersion(String accountName, String repoSlug, Long objectId, String name) {
         return null;
     }
 
     @Override
-    public void removeVersion(String accountName, String repoSlug, Long objectId) {
+    public  final void removeVersion(String accountName, String repoSlug, Long objectId) {
 
     }
 
     @Override
-    public List<BitBucketMilestone> getMilestones(String accountName, String repoSlug) {
+    public  final List<BitBucketMilestone> getMilestones(String accountName, String repoSlug) {
         return null;
     }
 
     @Override
-    public BitBucketMilestone getMilestone(String accountName, String repoSlug, Long objectId) {
+    public  final BitBucketMilestone getMilestone(String accountName, String repoSlug, Long objectId) {
         return null;
     }
 
     @Override
-    public BitBucketMilestone postNewMilestone(String accountName, String repoSlug, String name) {
+    public  final BitBucketMilestone postNewMilestone(String accountName, String repoSlug, String name) {
         return null;
     }
 
     @Override
-    public BitBucketMilestone updateMilestone(String accountName, String repoSlug, Long objectId, String name) {
+    public  final BitBucketMilestone updateMilestone(String accountName, String repoSlug, Long objectId, String name) {
         return null;
     }
 
     @Override
-    public void removeMilestone(String accountName, String repoSlug, Long objectId) {
+    public  final void removeMilestone(String accountName, String repoSlug, Long objectId) {
 
     }
 }

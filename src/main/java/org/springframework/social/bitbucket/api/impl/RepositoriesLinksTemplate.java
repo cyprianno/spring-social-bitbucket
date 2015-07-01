@@ -16,27 +16,27 @@ public class RepositoriesLinksTemplate extends AbstractBitBucketOperations imple
     }
 
     @Override
-    public List<BitBucketLink> getLinks(String accountName, String repoSlug) {
+    public  final List<BitBucketLink> getLinks(String accountName, String repoSlug) {
         return null;
     }
 
     @Override
-    public BitBucketLink getLink(String accountName, String repoSlug, Long linkId) {
+    public  final BitBucketLink getLink(String accountName, String repoSlug, Long linkId) {
         return null;
     }
 
     @Override
-    public BitBucketLink postNewLink(String accountName, String repoSlug, BitBucketLink link) {
+    public  final BitBucketLink postNewLink(String accountName, String repoSlug, BitBucketLink link) {
         return null;
     }
 
     @Override
-    public BitBucketLink updateLink(String accountName, String repoSlug, Long linkId, BitBucketLink link) {
+    public  final BitBucketLink updateLink(String accountName, String repoSlug, Long linkId, BitBucketLink link) {
         return null;
     }
 
     @Override
-    public void removeLink(String accountName, String repoSlug, Long linkId) {
+    public  final void removeLink(String accountName, String repoSlug, Long linkId) {
 
     }
 }

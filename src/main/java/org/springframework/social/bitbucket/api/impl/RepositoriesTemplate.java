@@ -48,57 +48,57 @@ public class RepositoriesTemplate extends AbstractBitBucketOperations implements
     }
 
     @Override
-    public RepositoriesChangesetsOperations repositoriesChangesetsOperations() {
+    public  final RepositoriesChangesetsOperations repositoriesChangesetsOperations() {
         return repositoriesChangesetsOperations;
     }
 
     @Override
-    public RepositoriesDeployKeysOperations repositoriesDeployKeysOperations() {
+    public  final RepositoriesDeployKeysOperations repositoriesDeployKeysOperations() {
         return repositoriesDeployKeysOperations;
     }
 
     @Override
-    public RepositoriesEventsOperations repositoriesEventsOperations() {
+    public  final RepositoriesEventsOperations repositoriesEventsOperations() {
         return repositoriesEventsOperations;
     }
 
     @Override
-    public RepositoriesFollowersOperations repositoriesFollowersOperations() {
+    public  final RepositoriesFollowersOperations repositoriesFollowersOperations() {
         return repositoriesFollowersOperations;
     }
 
     @Override
-    public RepositoriesIssuesOperations repositoriesIssuesOperations() {
+    public  final RepositoriesIssuesOperations repositoriesIssuesOperations() {
         return repositoriesIssuesOperations;
     }
 
     @Override
-    public RepositoriesLinksOperations repositoriesLinksOperations() {
+    public  final RepositoriesLinksOperations repositoriesLinksOperations() {
         return repositoriesLinksOperations;
     }
 
     @Override
-    public RepositoriesPullRequestsOperations repositoriesPullRequestsOperations() {
+    public  final RepositoriesPullRequestsOperations repositoriesPullRequestsOperations() {
         return repositoriesPullRequestsOperations;
     }
 
     @Override
-    public RepositoriesRepositoryOperations repositoriesRepositoryOperations() {
+    public  final RepositoriesRepositoryOperations repositoriesRepositoryOperations() {
         return repositoriesRepositoryOperations;
     }
 
     @Override
-    public RepositoriesServicesOperations repositoriesServicesOperations() {
+    public  final RepositoriesServicesOperations repositoriesServicesOperations() {
         return repositoriesServicesOperations;
     }
 
     @Override
-    public RepositoriesSrcOperations repositoriesSrcOperations() {
+    public  final RepositoriesSrcOperations repositoriesSrcOperations() {
         return repositoriesSrcOperations;
     }
 
     @Override
-    public RepositoriesWikiOperations repositoriesWikiOperations() {
+    public  final RepositoriesWikiOperations repositoriesWikiOperations() {
         return repositoriesWikiOperations;
     }
 }

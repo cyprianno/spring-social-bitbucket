@@ -86,7 +86,7 @@ public class BitBucketTemplate extends AbstractOAuth1ApiBinding implements
     }
 
     @Override
-    public RepositoriesOperations repositoriesOperations() {
+    public final RepositoriesOperations repositoriesOperations() {
         return repositoriesOperations;
     }
 

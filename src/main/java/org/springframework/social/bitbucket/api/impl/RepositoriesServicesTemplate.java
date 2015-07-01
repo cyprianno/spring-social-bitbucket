@@ -16,27 +16,27 @@ public class RepositoriesServicesTemplate extends AbstractBitBucketOperations im
     }
 
     @Override
-    public List<BitBucketService> getServices(String accountName, String repoSlug) {
+    public  final List<BitBucketService> getServices(String accountName, String repoSlug) {
         return null;
     }
 
     @Override
-    public BitBucketService getService(String accountName, String repoSlug, Long serviceId) {
+    public  final BitBucketService getService(String accountName, String repoSlug, Long serviceId) {
         return null;
     }
 
     @Override
-    public BitBucketService postNewService(String accountName, String repoSlug, String type, List<BitBucketService.BitBucketServiceProfileField> fields) {
+    public  final BitBucketService postNewService(String accountName, String repoSlug, String type, List<BitBucketService.BitBucketServiceProfileField> fields) {
         return null;
     }
 
     @Override
-    public BitBucketService updateService(String accountName, String repoSlug, String serviceId, List<BitBucketService.BitBucketServiceProfileField> fields) {
+    public  final BitBucketService updateService(String accountName, String repoSlug, String serviceId, List<BitBucketService.BitBucketServiceProfileField> fields) {
         return null;
     }
 
     @Override
-    public void removeService(String accountName, String repoSlug, String serviceId) {
+    public  final void removeService(String accountName, String repoSlug, String serviceId) {
 
     }
 }
