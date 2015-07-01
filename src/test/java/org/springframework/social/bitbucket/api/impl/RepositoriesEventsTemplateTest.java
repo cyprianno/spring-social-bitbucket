@@ -13,7 +13,7 @@ public class RepositoriesEventsTemplateTest extends BaseTemplateTest {
     @Test
     public void testGetEvents() throws Exception {
         assertTrue(false);
-        //get-events
+        //get-list-repo-events
         //given
         //when
         //then
