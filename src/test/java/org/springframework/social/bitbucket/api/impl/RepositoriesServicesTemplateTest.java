@@ -13,6 +13,7 @@ public class RepositoriesServicesTemplateTest extends BaseTemplateTest {
     @Test
     public void testGetServices() throws Exception {
         assertTrue(false);
+        //get-services
         //given
         //when
         //then
@@ -23,6 +24,7 @@ public class RepositoriesServicesTemplateTest extends BaseTemplateTest {
     @Test
     public void testGetService() throws Exception {
         assertTrue(false);
+        //get-service
         //given
         //when
         //then
@@ -33,6 +35,7 @@ public class RepositoriesServicesTemplateTest extends BaseTemplateTest {
     @Test
     public void testPostNewService() throws Exception {
         assertTrue(false);
+        //post-service
         //given
         //when
         //then
@@ -43,6 +46,7 @@ public class RepositoriesServicesTemplateTest extends BaseTemplateTest {
     @Test
     public void testUpdateService() throws Exception {
         assertTrue(false);
+        //put-service
         //given
         //when
         //then

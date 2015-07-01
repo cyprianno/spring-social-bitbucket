@@ -1,0 +1,26 @@
+[
+  {
+    "id": 3,
+    "service": {
+      "fields": [
+        {
+          "name": "Email",
+          "value": "mcatalbas@atlassian.com"
+        }
+      ],
+      "type": "Email"
+    }
+  },
+  {
+    "id": 4,
+    "service": {
+      "fields": [
+        {
+          "name": "URL",
+          "value": "http://example.com/post"
+        }
+      ],
+      "type": "POST"
+    }
+  }
+]
