@@ -180,7 +180,7 @@ X1. create interface
 X3. update javadoc (description + url from docs)
 X4. model (if necessary)
 X5. create empty implementation
-6. optional - connect new operations class to base template
+X6. optional - connect new operations class to base template
 7. create tests
 8. template implementation
 9. reformat code
