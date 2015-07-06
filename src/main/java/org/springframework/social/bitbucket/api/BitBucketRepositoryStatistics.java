@@ -39,7 +39,7 @@ public class BitBucketRepositoryStatistics implements Serializable {
      * added, modified
      */
     @JsonProperty @Getter
-    private String type;
+    private BitBucketFileModificationType type;
 
     /**
      * Changed file name.

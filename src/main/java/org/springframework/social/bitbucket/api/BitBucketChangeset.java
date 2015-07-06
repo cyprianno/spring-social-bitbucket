@@ -19,6 +19,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 
+import javax.annotation.Nullable;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -28,11 +30,6 @@ import java.util.List;
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class BitBucketChangeset {
-
-    /** The kind of modification on a file path. */
-    public enum FileModificationType {
-        modified, added, removed
-    }
 
     /** The username of the {@link BitBucketUser} that made the change. */
     @JsonProperty @Getter
@@ -66,8 +63,14 @@ public class BitBucketChangeset {
     @JsonProperty("raw_node") @Getter
     private String rawNode;
 
+    @JsonProperty("utctimestamp") @Getter
+    private Date utcTimestamp;
+
+    @JsonProperty @Getter @Nullable
+    private Long revision;
+
     @JsonProperty @Getter
-    private long revision;
+    private long size;
 
     @Override
     public final String toString() {
@@ -88,7 +91,7 @@ public class BitBucketChangeset {
 
         /** The kind of modification. */
         @JsonProperty @Getter
-        private FileModificationType type;
+        private BitBucketFileModificationType type;
 
     }
 

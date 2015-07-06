@@ -31,7 +31,7 @@ public interface RepositoriesChangesetsOperations {
      *              The Bitbucket GUI lists the nodes on the Commit tab. The default start value is the tip.
      * @return List of changesets
      */
-    List<BitBucketChangesets> getChangesets(String accountName, String repoSlug, String start, int limit);
+    List<BitBucketChangeset> getChangesets(String accountName, String repoSlug, String start, int limit);
 
     /**
      * Gets a specific changeset  node. Private repositories require the caller to authenticate.

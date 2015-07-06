@@ -18,9 +18,8 @@ package org.springframework.social.bitbucket.api.impl;
 import org.junit.Test;
 import org.springframework.http.MediaType;
 import org.springframework.social.bitbucket.api.*;
-import org.springframework.social.bitbucket.api.BitBucketChangeset.FileModificationType;
 
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -123,11 +122,11 @@ public class RepoTemplateTest extends BaseTemplateTest {
         assertEquals("stable", tag.getBranch());
         assertEquals("i18n: pull final Ukranian translation for 0.9",
                 tag.getMessage());
-        assertEquals(4922, tag.getRevision());
-        assertEquals(Arrays.asList("e6bec1d7925b"), tag.getParents());
+        assertEquals((Long) 4922L, tag.getRevision());
+        assertEquals(Collections.singletonList("e6bec1d7925b"), tag.getParents());
         assertEquals(1, tag.getFiles().size());
         assertEquals("i18n/tortoisehg/uk.po", tag.getFiles().get(0).getFile());
-        assertEquals(FileModificationType.modified, tag.getFiles().get(0)
+        assertEquals(BitBucketFileModificationType.modified, tag.getFiles().get(0)
                 .getType());
 
     }
@@ -182,12 +181,12 @@ public class RepoTemplateTest extends BaseTemplateTest {
         assertEquals(
                 "manifestmodel: suppress extra _buildrootentry on initial setNameFilter('')",
                 changeset.getMessage());
-        assertEquals(12579, changeset.getRevision());
-        assertEquals(Arrays.asList("4230823499de"), changeset.getParents());
+        assertEquals((Long) 12579L, changeset.getRevision());
+        assertEquals(Collections.singletonList("4230823499de"), changeset.getParents());
         assertEquals(1, changeset.getFiles().size());
         assertEquals("tortoisehg/hgqt/manifestmodel.py", changeset.getFiles()
                 .get(0).getFile());
-        assertEquals(FileModificationType.modified, changeset.getFiles().get(0)
+        assertEquals(BitBucketFileModificationType.modified, changeset.getFiles().get(0)
                 .getType());
 
     }

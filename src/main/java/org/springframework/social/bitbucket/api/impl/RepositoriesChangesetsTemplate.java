@@ -20,7 +20,7 @@ public class RepositoriesChangesetsTemplate extends AbstractBitBucketOperations 
     }
 
     @Override
-    public final List<BitBucketChangesets> getChangesets(String accountName, String repoSlug, String start, int limit) {
+    public final List<BitBucketChangeset> getChangesets(String accountName, String repoSlug, String start, int limit) {
         return null;
     }
 
