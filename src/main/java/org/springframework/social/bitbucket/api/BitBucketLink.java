@@ -20,7 +20,7 @@ public class BitBucketLink {
      * The content of the handler profile depends on whether the handler is a known type or a custom type.
      */
     @Builder
-    public class BitBucketLinkHandler {
+    public static class BitBucketLinkHandler {
         /**
          * The location of the service.
          * For known types.

@@ -17,7 +17,7 @@ import java.util.List;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class BitBucketService {
 
-    public class BitBucketServiceProfile {
+    public static class BitBucketServiceProfile {
         @JsonProperty @Getter
         private List<BitBucketServiceProfileField> fields = new ArrayList<>();
         @JsonProperty @Getter
@@ -25,7 +25,7 @@ public class BitBucketService {
     }
 
     @Builder
-    public class BitBucketServiceProfileField {
+    public static class BitBucketServiceProfileField {
         @JsonProperty @Getter
         private String name;
         @JsonProperty @Getter
