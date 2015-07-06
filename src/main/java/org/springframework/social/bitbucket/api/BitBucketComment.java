@@ -1,6 +1,8 @@
 package org.springframework.social.bitbucket.api;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Builder;
 import lombok.Getter;
 
 import java.util.Date;
@@ -11,6 +13,8 @@ import java.util.Date;
  * @author Cyprian Śniegota
  * @since 2.0.0
  */
+@JsonIgnoreProperties(ignoreUnknown = true)
+@Builder
 public class BitBucketComment {
     @JsonProperty @Getter
     private String username;

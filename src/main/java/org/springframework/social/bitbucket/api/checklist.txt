@@ -183,6 +183,7 @@ X5. create empty implementation
 X6. optional - connect new operations class to base template
 7. create tests
 X- json files
+X- execute tested method
 - get operations
 - put operations
 - post operations

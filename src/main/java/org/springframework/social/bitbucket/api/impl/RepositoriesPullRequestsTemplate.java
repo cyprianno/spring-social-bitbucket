@@ -14,12 +14,12 @@ public class RepositoriesPullRequestsTemplate extends AbstractBitBucketOperation
     }
 
     @Override
-    public  final BitBucketComment postNewComment(String accountName, String repoSlug, Long pullRequestId) {
+    public  final BitBucketComment postNewComment(String accountName, String repoSlug, Long pullRequestId, String content) {
         return null;
     }
 
     @Override
-    public  final BitBucketComment updateComment(String accountName, String repoSlug, Long pullRequestId, Long commentId) {
+    public  final BitBucketComment updateComment(String accountName, String repoSlug, Long pullRequestId, Long commentId, String content) {
         return null;
     }
 

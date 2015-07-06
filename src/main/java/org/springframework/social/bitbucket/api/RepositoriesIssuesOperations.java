@@ -148,7 +148,7 @@ public interface RepositoriesIssuesOperations {
      * @param content The content of the comment.
      * @return Updated object.
      */
-    BitBucketComment updateComment(String accountName, String repoSlug, Long issueId, String commentId, String content);
+    BitBucketComment updateComment(String accountName, String repoSlug, Long issueId, Long commentId, String content);
 
     /**
      * Gets an array of the components associated with the issue tracker.

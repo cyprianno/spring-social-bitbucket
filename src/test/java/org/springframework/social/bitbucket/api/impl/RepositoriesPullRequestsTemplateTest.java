@@ -10,12 +10,16 @@ import static org.junit.Assert.*;
  */
 public class RepositoriesPullRequestsTemplateTest extends BaseTemplateTest {
 
+    private static final String TEST_USERNAME = "testusername";
+    private static final String TEST_REPOSLUG = "testreposlug";
+
     @Test
     public void testPostNewComment() throws Exception {
         assertTrue(false);
         //post-pullrequest-comment
         //given
         //when
+        bitBucket.repositoriesOperations().repositoriesPullRequestsOperations().postNewComment(TEST_USERNAME, TEST_REPOSLUG, 1L, "ccontent");
         //then
         mockServer.verify();
 
@@ -27,6 +31,7 @@ public class RepositoriesPullRequestsTemplateTest extends BaseTemplateTest {
         //put-pullrequest-comment
         //given
         //when
+        bitBucket.repositoriesOperations().repositoriesPullRequestsOperations().updateComment(TEST_USERNAME, TEST_REPOSLUG, 1L, 2L, "ucontent");
         //then
         mockServer.verify();
 
@@ -37,6 +42,7 @@ public class RepositoriesPullRequestsTemplateTest extends BaseTemplateTest {
         assertTrue(false);
         //given
         //when
+        bitBucket.repositoriesOperations().repositoriesPullRequestsOperations().removeComment(TEST_USERNAME, TEST_REPOSLUG, 1L, 2L);
         //then
         mockServer.verify();
 
@@ -48,6 +54,7 @@ public class RepositoriesPullRequestsTemplateTest extends BaseTemplateTest {
         //toggle-pullrequest-comment-spam
         //given
         //when
+        bitBucket.repositoriesOperations().repositoriesPullRequestsOperations().toggleSpam(TEST_USERNAME, TEST_REPOSLUG, 1L, 2L);
         //then
         mockServer.verify();
 

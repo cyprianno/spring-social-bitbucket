@@ -63,7 +63,7 @@ public interface RepositoriesServicesOperations {
      * @param fields A parameter array containing a name and value pair for each parameter associated with the service.
      * @return Updated service.
      */
-    BitBucketService updateService(String accountName, String repoSlug, String serviceId, List<BitBucketService.BitBucketServiceProfileField> fields);
+    BitBucketService updateService(String accountName, String repoSlug, Long serviceId, List<BitBucketService.BitBucketServiceProfileField> fields);
 
     /**
      * Removes a service. The caller must supply the id of the service to remove.
@@ -73,5 +73,5 @@ public interface RepositoriesServicesOperations {
      * @param repoSlug The repository's name.
      * @param serviceId A Bitbucket assigned integer representing a unique identifier for the service.
      */
-    void removeService(String accountName, String repoSlug, String serviceId);
+    void removeService(String accountName, String repoSlug, Long serviceId);
 }

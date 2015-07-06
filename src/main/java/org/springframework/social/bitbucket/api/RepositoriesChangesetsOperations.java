@@ -137,6 +137,6 @@ public interface RepositoriesChangesetsOperations {
      * @param commentId The comment identifier.
      * @return Updated comment.
      */
-    BitBucketChangeset toogleSpamComment(String accountName, String repoSlug, String node, Long commentId);
+    BitBucketChangeset toggleSpamComment(String accountName, String repoSlug, String node, Long commentId);
 
 }

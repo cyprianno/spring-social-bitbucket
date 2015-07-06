@@ -18,6 +18,7 @@ package org.springframework.social.bitbucket.api;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import lombok.Builder;
 import lombok.Getter;
 import org.springframework.social.bitbucket.api.impl.UTCDateDeserializer;
 import org.springframework.social.bitbucket.utils.DateUtils;
@@ -31,6 +32,7 @@ import java.util.Date;
  * @author ericbottard
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
+@Builder
 public class BitBucketRepository implements Serializable {
 
     @JsonProperty("is_private")

@@ -17,9 +17,10 @@ public interface RepositoriesPullRequestsOperations {
      * @param accountName The team or individual account owning the repo.
      * @param repoSlug The repo identifier.
      * @param pullRequestId The pull_request_id changeset identifier.
+     * @param content Comment's content.
      * @return Created comment.
      */
-    BitBucketComment postNewComment(String accountName, String repoSlug, Long pullRequestId);
+    BitBucketComment postNewComment(String accountName, String repoSlug, Long pullRequestId, String content);
 
     /**
      * Updates a comment on an request using the specified content data.
@@ -30,9 +31,10 @@ public interface RepositoriesPullRequestsOperations {
      * @param repoSlug The repo identifier.
      * @param pullRequestId The pull_request_id changeset identifier.
      * @param commentId The comment identifier.
+     * @param content Comment's content.
      * @return Updated comment.
      */
-    BitBucketComment updateComment(String accountName, String repoSlug, Long pullRequestId, Long commentId);
+    BitBucketComment updateComment(String accountName, String repoSlug, Long pullRequestId, Long commentId, String content);
 
     /**
      * Delete the comment with the corresponding comment_id.

@@ -60,7 +60,7 @@ public class RepositoriesChangesetsTemplate extends AbstractBitBucketOperations 
     }
 
     @Override
-    public  final BitBucketChangeset toogleSpamComment(String accountName, String repoSlug, String node, Long commentId) {
+    public  final BitBucketChangeset toggleSpamComment(String accountName, String repoSlug, String node, Long commentId) {
         return null;
     }
 }

@@ -9,6 +9,9 @@ import static org.junit.Assert.*;
  * @since 2.0.0
  */
 public class RepositoriesDeployKeysTemplateTest extends BaseTemplateTest {
+    private static final String TEST_USERNAME = "testusername";
+    private static final String TEST_REPOSLUG = "testreposlug";
+    private static final String TEST_NODE = "testnode";
 
     @Test
     public void testGetDeployKeys() throws Exception {
@@ -16,6 +19,7 @@ public class RepositoriesDeployKeysTemplateTest extends BaseTemplateTest {
         //get-keys
         //given
         //when
+        bitBucket.repositoriesOperations().repositoriesDeployKeysOperations().getDeployKeys(TEST_USERNAME, TEST_REPOSLUG);
         //then
         mockServer.verify();
 
@@ -27,6 +31,7 @@ public class RepositoriesDeployKeysTemplateTest extends BaseTemplateTest {
         //get-key
         //given
         //when
+        bitBucket.repositoriesOperations().repositoriesDeployKeysOperations().getDeployKey(TEST_USERNAME, TEST_REPOSLUG, 1L);
         //then
         mockServer.verify();
 
@@ -38,6 +43,7 @@ public class RepositoriesDeployKeysTemplateTest extends BaseTemplateTest {
         //post-key
         //given
         //when
+        bitBucket.repositoriesOperations().repositoriesDeployKeysOperations().postDeployKey(TEST_USERNAME, TEST_REPOSLUG);
         //then
         mockServer.verify();
 
@@ -48,6 +54,7 @@ public class RepositoriesDeployKeysTemplateTest extends BaseTemplateTest {
         assertTrue(false);
         //given
         //when
+        bitBucket.repositoriesOperations().repositoriesDeployKeysOperations().removeDeployKey(TEST_USERNAME, TEST_REPOSLUG, 1L);
         //then
         mockServer.verify();
 

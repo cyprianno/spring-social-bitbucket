@@ -31,12 +31,12 @@ public class RepositoriesServicesTemplate extends AbstractBitBucketOperations im
     }
 
     @Override
-    public  final BitBucketService updateService(String accountName, String repoSlug, String serviceId, List<BitBucketService.BitBucketServiceProfileField> fields) {
+    public  final BitBucketService updateService(String accountName, String repoSlug, Long serviceId, List<BitBucketService.BitBucketServiceProfileField> fields) {
         return null;
     }
 
     @Override
-    public  final void removeService(String accountName, String repoSlug, String serviceId) {
+    public  final void removeService(String accountName, String repoSlug, Long serviceId) {
 
     }
 }

@@ -66,7 +66,7 @@ public class RepositoriesIssuesTemplate extends AbstractBitBucketOperations impl
     }
 
     @Override
-    public  final BitBucketComment updateComment(String accountName, String repoSlug, Long issueId, String commentId, String content) {
+    public  final BitBucketComment updateComment(String accountName, String repoSlug, Long issueId, Long commentId, String content) {
         return null;
     }
 

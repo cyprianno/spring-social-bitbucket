@@ -2,6 +2,7 @@ package org.springframework.social.bitbucket.api;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Builder;
 import lombok.Getter;
 
 import java.util.Date;
@@ -11,6 +12,7 @@ import java.util.Date;
  * @since 2.0.0
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
+@Builder
 public class BitBucketIssue {
 
     public class BitBucketIssueMetadata {
