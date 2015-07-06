@@ -22,7 +22,7 @@ public class RepositoriesWikiTemplateTest extends BaseTemplateTest {
         bitBucket.repositoriesOperations().repositoriesWikiOperations().getContent(TEST_USERNAME, TEST_REPOSLUG, "/home/page");
         //then
         mockServer.verify();
-
+        assertTrue(false);
     }
 
     @Test
@@ -34,7 +34,7 @@ public class RepositoriesWikiTemplateTest extends BaseTemplateTest {
         bitBucket.repositoriesOperations().repositoriesWikiOperations().postNewPage(TEST_USERNAME, TEST_REPOSLUG, "/home/newpage", "Content");
         //then
         mockServer.verify();
-
+        assertTrue(false);
     }
 
     @Test
@@ -46,6 +46,6 @@ public class RepositoriesWikiTemplateTest extends BaseTemplateTest {
         bitBucket.repositoriesOperations().repositoriesWikiOperations().updatePage(TEST_USERNAME, TEST_REPOSLUG, "/home/newpage", "new content");
         //then
         mockServer.verify();
-
+        assertTrue(false);
     }
 }

@@ -22,6 +22,6 @@ public class RepositoriesEventsTemplateTest extends BaseTemplateTest {
         bitBucket.repositoriesOperations().repositoriesEventsOperations().getEvents(TEST_USERNAME, TEST_NODE, 1, 10, "testtype");
         //then
         mockServer.verify();
-
+        assertTrue(false);
     }
 }

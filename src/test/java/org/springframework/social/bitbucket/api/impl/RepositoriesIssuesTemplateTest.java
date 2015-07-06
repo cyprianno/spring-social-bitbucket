@@ -22,7 +22,7 @@ public class RepositoriesIssuesTemplateTest extends BaseTemplateTest {
         bitBucket.repositoriesOperations().repositoriesIssuesOperations().getIssues(TEST_USERNAME, TEST_REPOSLUG, 1, 10, null);
         //then
         mockServer.verify();
-
+        assertTrue(false);
     }
 
     @Test
@@ -34,7 +34,7 @@ public class RepositoriesIssuesTemplateTest extends BaseTemplateTest {
         bitBucket.repositoriesOperations().repositoriesIssuesOperations().getIssue(TEST_USERNAME, TEST_REPOSLUG, 1L);
         //then
         mockServer.verify();
-
+        assertTrue(false);
     }
 
     @Test
@@ -46,7 +46,7 @@ public class RepositoriesIssuesTemplateTest extends BaseTemplateTest {
         bitBucket.repositoriesOperations().repositoriesIssuesOperations().getFollowers(TEST_USERNAME, TEST_REPOSLUG, 1L);
         //then
         mockServer.verify();
-
+        assertTrue(false);
     }
 
     @Test
@@ -59,7 +59,7 @@ public class RepositoriesIssuesTemplateTest extends BaseTemplateTest {
         bitBucket.repositoriesOperations().repositoriesIssuesOperations().postNewIssue(TEST_USERNAME, TEST_REPOSLUG, issue);
         //then
         mockServer.verify();
-
+        assertTrue(false);
     }
 
     @Test
@@ -72,7 +72,7 @@ public class RepositoriesIssuesTemplateTest extends BaseTemplateTest {
         bitBucket.repositoriesOperations().repositoriesIssuesOperations().updateIssue(TEST_USERNAME, TEST_REPOSLUG, 1L, issue);
         //then
         mockServer.verify();
-
+        assertTrue(false);
     }
 
     @Test
@@ -83,7 +83,7 @@ public class RepositoriesIssuesTemplateTest extends BaseTemplateTest {
         bitBucket.repositoriesOperations().repositoriesIssuesOperations().removeIssue(TEST_USERNAME, TEST_REPOSLUG, 1L);
         //then
         mockServer.verify();
-
+        assertTrue(false);
     }
 
     @Test
@@ -95,7 +95,7 @@ public class RepositoriesIssuesTemplateTest extends BaseTemplateTest {
         bitBucket.repositoriesOperations().repositoriesIssuesOperations().getComments(TEST_USERNAME, TEST_REPOSLUG, 1L);
         //then
         mockServer.verify();
-
+        assertTrue(false);
     }
 
     @Test
@@ -107,7 +107,7 @@ public class RepositoriesIssuesTemplateTest extends BaseTemplateTest {
         bitBucket.repositoriesOperations().repositoriesIssuesOperations().getComment(TEST_USERNAME, TEST_REPOSLUG, 1L, 2L);
         //then
         mockServer.verify();
-
+        assertTrue(false);
     }
 
     @Test
@@ -119,7 +119,7 @@ public class RepositoriesIssuesTemplateTest extends BaseTemplateTest {
         bitBucket.repositoriesOperations().repositoriesIssuesOperations().postNewComment(TEST_USERNAME, TEST_REPOSLUG, 1L, "comment content");
         //then
         mockServer.verify();
-
+        assertTrue(false);
     }
 
     @Test
@@ -132,7 +132,7 @@ public class RepositoriesIssuesTemplateTest extends BaseTemplateTest {
 
         //then
         mockServer.verify();
-
+        assertTrue(false);
     }
 
     @Test
@@ -144,7 +144,7 @@ public class RepositoriesIssuesTemplateTest extends BaseTemplateTest {
         bitBucket.repositoriesOperations().repositoriesIssuesOperations().getComponents(TEST_USERNAME, TEST_REPOSLUG);
         //then
         mockServer.verify();
-
+        assertTrue(false);
     }
 
     @Test
@@ -156,7 +156,7 @@ public class RepositoriesIssuesTemplateTest extends BaseTemplateTest {
         bitBucket.repositoriesOperations().repositoriesIssuesOperations().getComponent(TEST_USERNAME, TEST_REPOSLUG, 1L);
         //then
         mockServer.verify();
-
+        assertTrue(false);
     }
 
     @Test
@@ -168,7 +168,7 @@ public class RepositoriesIssuesTemplateTest extends BaseTemplateTest {
         bitBucket.repositoriesOperations().repositoriesIssuesOperations().postNewComponent(TEST_USERNAME, TEST_REPOSLUG, "componentname");
         //then
         mockServer.verify();
-
+        assertTrue(false);
     }
 
     @Test
@@ -180,7 +180,7 @@ public class RepositoriesIssuesTemplateTest extends BaseTemplateTest {
         bitBucket.repositoriesOperations().repositoriesIssuesOperations().updateComponent(TEST_USERNAME, TEST_REPOSLUG, 2L, "newname");
         //then
         mockServer.verify();
-
+        assertTrue(false);
     }
 
     @Test
@@ -191,7 +191,7 @@ public class RepositoriesIssuesTemplateTest extends BaseTemplateTest {
         bitBucket.repositoriesOperations().repositoriesIssuesOperations().removeComponent(TEST_USERNAME, TEST_REPOSLUG, 1L);
         //then
         mockServer.verify();
-
+        assertTrue(false);
     }
 
     @Test
@@ -203,7 +203,7 @@ public class RepositoriesIssuesTemplateTest extends BaseTemplateTest {
         bitBucket.repositoriesOperations().repositoriesIssuesOperations().getVersions(TEST_USERNAME, TEST_REPOSLUG);
         //then
         mockServer.verify();
-
+        assertTrue(false);
     }
 
     @Test
@@ -215,7 +215,7 @@ public class RepositoriesIssuesTemplateTest extends BaseTemplateTest {
         bitBucket.repositoriesOperations().repositoriesIssuesOperations().getVersion(TEST_USERNAME, TEST_REPOSLUG, 1L);
         //then
         mockServer.verify();
-
+        assertTrue(false);
     }
 
     @Test
@@ -227,7 +227,7 @@ public class RepositoriesIssuesTemplateTest extends BaseTemplateTest {
         bitBucket.repositoriesOperations().repositoriesIssuesOperations().postNewVersion(TEST_USERNAME, TEST_REPOSLUG, "vname");
         //then
         mockServer.verify();
-
+        assertTrue(false);
     }
 
     @Test
@@ -239,7 +239,7 @@ public class RepositoriesIssuesTemplateTest extends BaseTemplateTest {
         bitBucket.repositoriesOperations().repositoriesIssuesOperations().updateVersion(TEST_USERNAME, TEST_REPOSLUG, 1L, "newname");
         //then
         mockServer.verify();
-
+        assertTrue(false);
     }
 
     @Test
@@ -250,7 +250,7 @@ public class RepositoriesIssuesTemplateTest extends BaseTemplateTest {
         bitBucket.repositoriesOperations().repositoriesIssuesOperations().removeVersion(TEST_USERNAME, TEST_REPOSLUG, 1L);
         //then
         mockServer.verify();
-
+        assertTrue(false);
     }
 
     @Test
@@ -262,7 +262,7 @@ public class RepositoriesIssuesTemplateTest extends BaseTemplateTest {
         bitBucket.repositoriesOperations().repositoriesIssuesOperations().getMilestones(TEST_USERNAME, TEST_REPOSLUG);
         //then
         mockServer.verify();
-
+        assertTrue(false);
     }
 
     @Test
@@ -274,7 +274,7 @@ public class RepositoriesIssuesTemplateTest extends BaseTemplateTest {
         bitBucket.repositoriesOperations().repositoriesIssuesOperations().getMilestone(TEST_USERNAME, TEST_REPOSLUG, 1L);
         //then
         mockServer.verify();
-
+        assertTrue(false);
     }
 
     @Test
@@ -286,7 +286,7 @@ public class RepositoriesIssuesTemplateTest extends BaseTemplateTest {
         bitBucket.repositoriesOperations().repositoriesIssuesOperations().postNewMilestone(TEST_USERNAME, TEST_REPOSLUG, "mname");
         //then
         mockServer.verify();
-
+        assertTrue(false);
     }
 
     @Test
@@ -298,7 +298,7 @@ public class RepositoriesIssuesTemplateTest extends BaseTemplateTest {
         bitBucket.repositoriesOperations().repositoriesIssuesOperations().updateMilestone(TEST_USERNAME, TEST_REPOSLUG, 1L, "newname");
         //then
         mockServer.verify();
-
+        assertTrue(false);
     }
 
     @Test
@@ -309,6 +309,6 @@ public class RepositoriesIssuesTemplateTest extends BaseTemplateTest {
         bitBucket.repositoriesOperations().repositoriesIssuesOperations().removeMilestone(TEST_USERNAME, TEST_REPOSLUG, 1L);
         //then
         mockServer.verify();
-
+        assertTrue(false);
     }
 }

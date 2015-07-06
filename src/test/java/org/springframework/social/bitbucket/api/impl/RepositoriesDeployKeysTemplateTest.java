@@ -22,7 +22,7 @@ public class RepositoriesDeployKeysTemplateTest extends BaseTemplateTest {
         bitBucket.repositoriesOperations().repositoriesDeployKeysOperations().getDeployKeys(TEST_USERNAME, TEST_REPOSLUG);
         //then
         mockServer.verify();
-
+        assertTrue(false);
     }
 
     @Test
@@ -34,7 +34,7 @@ public class RepositoriesDeployKeysTemplateTest extends BaseTemplateTest {
         bitBucket.repositoriesOperations().repositoriesDeployKeysOperations().getDeployKey(TEST_USERNAME, TEST_REPOSLUG, 1L);
         //then
         mockServer.verify();
-
+        assertTrue(false);
     }
 
     @Test
@@ -46,7 +46,7 @@ public class RepositoriesDeployKeysTemplateTest extends BaseTemplateTest {
         bitBucket.repositoriesOperations().repositoriesDeployKeysOperations().postDeployKey(TEST_USERNAME, TEST_REPOSLUG);
         //then
         mockServer.verify();
-
+        assertTrue(false);
     }
 
     @Test
@@ -57,6 +57,6 @@ public class RepositoriesDeployKeysTemplateTest extends BaseTemplateTest {
         bitBucket.repositoriesOperations().repositoriesDeployKeysOperations().removeDeployKey(TEST_USERNAME, TEST_REPOSLUG, 1L);
         //then
         mockServer.verify();
-
+        assertTrue(false);
     }
 }

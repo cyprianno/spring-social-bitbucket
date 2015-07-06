@@ -22,7 +22,7 @@ public class RepositoriesPullRequestsTemplateTest extends BaseTemplateTest {
         bitBucket.repositoriesOperations().repositoriesPullRequestsOperations().postNewComment(TEST_USERNAME, TEST_REPOSLUG, 1L, "ccontent");
         //then
         mockServer.verify();
-
+        assertTrue(false);
     }
 
     @Test
@@ -34,7 +34,7 @@ public class RepositoriesPullRequestsTemplateTest extends BaseTemplateTest {
         bitBucket.repositoriesOperations().repositoriesPullRequestsOperations().updateComment(TEST_USERNAME, TEST_REPOSLUG, 1L, 2L, "ucontent");
         //then
         mockServer.verify();
-
+        assertTrue(false);
     }
 
     @Test
@@ -45,7 +45,7 @@ public class RepositoriesPullRequestsTemplateTest extends BaseTemplateTest {
         bitBucket.repositoriesOperations().repositoriesPullRequestsOperations().removeComment(TEST_USERNAME, TEST_REPOSLUG, 1L, 2L);
         //then
         mockServer.verify();
-
+        assertTrue(false);
     }
 
     @Test
@@ -57,6 +57,6 @@ public class RepositoriesPullRequestsTemplateTest extends BaseTemplateTest {
         bitBucket.repositoriesOperations().repositoriesPullRequestsOperations().toggleSpam(TEST_USERNAME, TEST_REPOSLUG, 1L, 2L);
         //then
         mockServer.verify();
-
+        assertTrue(false);
     }
 }

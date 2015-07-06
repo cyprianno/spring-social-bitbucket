@@ -189,6 +189,6 @@ X- execute tested method
 - post operations
 - delete operations
 8. template implementation
-9. reformat code
+9. reformat code (create branch for changed files)
 10. file headers
-11. real test (on connection with all permissio
+11. real test (on connection with all permissions)

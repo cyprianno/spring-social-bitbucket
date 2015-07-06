@@ -22,7 +22,7 @@ public class RepositoriesRepositoryTemplateTest extends BaseTemplateTest {
         bitBucket.repositoriesOperations().repositoriesRepositoryOperations().createNewFork(TEST_USERNAME, TEST_REPOSLUG, "fname", "fdesc", "php", true);
         //then
         mockServer.verify();
-
+        assertTrue(false);
     }
 
     @Test
@@ -35,7 +35,7 @@ public class RepositoriesRepositoryTemplateTest extends BaseTemplateTest {
         bitBucket.repositoriesOperations().repositoriesRepositoryOperations().updateRepository(TEST_USERNAME, TEST_REPOSLUG, repository);
         //then
         mockServer.verify();
-
+        assertTrue(false);
     }
 
     @Test
@@ -47,7 +47,7 @@ public class RepositoriesRepositoryTemplateTest extends BaseTemplateTest {
         bitBucket.repositoriesOperations().repositoriesRepositoryOperations().getBranches(TEST_USERNAME, TEST_REPOSLUG);
         //then
         mockServer.verify();
-
+        assertTrue(false);
     }
 
     @Test
@@ -59,7 +59,7 @@ public class RepositoriesRepositoryTemplateTest extends BaseTemplateTest {
         bitBucket.repositoriesOperations().repositoriesRepositoryOperations().getMainBranch(TEST_USERNAME, TEST_REPOSLUG);
         //then
         mockServer.verify();
-
+        assertTrue(false);
     }
 
     @Test
@@ -71,7 +71,7 @@ public class RepositoriesRepositoryTemplateTest extends BaseTemplateTest {
         bitBucket.repositoriesOperations().repositoriesRepositoryOperations().getBranchesTags(TEST_USERNAME, TEST_REPOSLUG);
         //then
         mockServer.verify();
-
+        assertTrue(false);
     }
 
     @Test
@@ -83,7 +83,7 @@ public class RepositoriesRepositoryTemplateTest extends BaseTemplateTest {
         bitBucket.repositoriesOperations().repositoriesRepositoryOperations().getManifest(TEST_USERNAME, TEST_REPOSLUG, "revasdf");
         //then
         mockServer.verify();
-
+        assertTrue(false);
     }
 
     @Test
@@ -95,7 +95,7 @@ public class RepositoriesRepositoryTemplateTest extends BaseTemplateTest {
         bitBucket.repositoriesOperations().repositoriesRepositoryOperations().getTags(TEST_USERNAME, TEST_REPOSLUG);
         //then
         mockServer.verify();
-
+        assertTrue(false);
     }
 
     @Test
@@ -107,7 +107,7 @@ public class RepositoriesRepositoryTemplateTest extends BaseTemplateTest {
         bitBucket.repositoriesOperations().repositoriesRepositoryOperations().getRawSource(TEST_USERNAME, TEST_REPOSLUG, "revasdf", "/src/main/file.txt");
         //then
         mockServer.verify();
-
+        assertTrue(false);
     }
 
     @Test
@@ -119,6 +119,6 @@ public class RepositoriesRepositoryTemplateTest extends BaseTemplateTest {
         bitBucket.repositoriesOperations().repositoriesRepositoryOperations().getHistoryOfFile(TEST_USERNAME, TEST_REPOSLUG, "testnode", "/src/main/file.txt");
         //then
         mockServer.verify();
-
+        assertTrue(false);
     }
 }

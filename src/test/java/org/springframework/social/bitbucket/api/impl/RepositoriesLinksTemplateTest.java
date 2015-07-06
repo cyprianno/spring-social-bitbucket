@@ -23,7 +23,7 @@ public class RepositoriesLinksTemplateTest extends BaseTemplateTest {
         bitBucket.repositoriesOperations().repositoriesLinksOperations().getLinks(TEST_USERNAME, TEST_REPOSLUG);
         //then
         mockServer.verify();
-
+        assertTrue(false);
     }
 
     @Test
@@ -35,7 +35,7 @@ public class RepositoriesLinksTemplateTest extends BaseTemplateTest {
         bitBucket.repositoriesOperations().repositoriesLinksOperations().getLink(TEST_USERNAME, TEST_REPOSLUG, 1L);
         //then
         mockServer.verify();
-
+        assertTrue(false);
     }
 
     @Test
@@ -49,7 +49,7 @@ public class RepositoriesLinksTemplateTest extends BaseTemplateTest {
         bitBucket.repositoriesOperations().repositoriesLinksOperations().postNewLink(TEST_USERNAME, TEST_REPOSLUG, link);
         //then
         mockServer.verify();
-
+        assertTrue(false);
     }
 
     @Test
@@ -63,7 +63,7 @@ public class RepositoriesLinksTemplateTest extends BaseTemplateTest {
         bitBucket.repositoriesOperations().repositoriesLinksOperations().updateLink(TEST_USERNAME, TEST_REPOSLUG, 1L, link);
         //then
         mockServer.verify();
-
+        assertTrue(false);
     }
 
     @Test
@@ -74,6 +74,6 @@ public class RepositoriesLinksTemplateTest extends BaseTemplateTest {
         bitBucket.repositoriesOperations().repositoriesLinksOperations().removeLink(TEST_USERNAME, TEST_REPOSLUG, 1L);
         //then
         mockServer.verify();
-
+        assertTrue(false);
     }
 }

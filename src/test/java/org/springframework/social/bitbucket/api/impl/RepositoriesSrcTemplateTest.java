@@ -20,7 +20,7 @@ public class RepositoriesSrcTemplateTest extends BaseTemplateTest {
         bitBucket.repositoriesOperations().repositoriesSrcOperations().getElements(TEST_USERNAME, TEST_REPOSLUG, "xrev", "/src/file.txt");
         //then
         mockServer.verify();
-
+        assertTrue(false);
     }
 
     @Test
@@ -32,6 +32,6 @@ public class RepositoriesSrcTemplateTest extends BaseTemplateTest {
         bitBucket.repositoriesOperations().repositoriesSrcOperations().getContent(TEST_USERNAME, TEST_REPOSLUG, "xrev", "/src/file.txt");
         //then
         mockServer.verify();
-
+        assertTrue(false);
     }
 }

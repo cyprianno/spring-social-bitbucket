@@ -21,6 +21,6 @@ public class RepositoriesFollowersTemplateTest extends BaseTemplateTest {
         bitBucket.repositoriesOperations().repositoriesFollowersOperations().getFollowers(TEST_USERNAME, TEST_REPOSLUG);
         //then
         mockServer.verify();
-
+        assertTrue(false);
     }
 }
