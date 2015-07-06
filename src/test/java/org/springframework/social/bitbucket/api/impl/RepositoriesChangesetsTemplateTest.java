@@ -10,9 +10,14 @@ import org.springframework.social.bitbucket.api.BitBucketRepositoryStatistics;
 import java.util.List;
 
 import static org.junit.Assert.*;
+import static org.springframework.http.HttpMethod.DELETE;
 import static org.springframework.http.HttpMethod.GET;
+import static org.springframework.http.HttpMethod.POST;
+import static org.springframework.http.HttpMethod.PUT;
+import static org.springframework.test.web.client.match.MockRestRequestMatchers.content;
 import static org.springframework.test.web.client.match.MockRestRequestMatchers.method;
 import static org.springframework.test.web.client.match.MockRestRequestMatchers.requestTo;
+import static org.springframework.test.web.client.response.MockRestResponseCreators.withNoContent;
 import static org.springframework.test.web.client.response.MockRestResponseCreators.withSuccess;
 
 /**
@@ -36,7 +41,6 @@ public class RepositoriesChangesetsTemplateTest extends BaseTemplateTest {
         //then
         mockServer.verify();
         assertNotNull(result);
-        //TODO
         assertTrue(false);
         assertEquals(10, result.size());
     }
@@ -71,9 +75,9 @@ public class RepositoriesChangesetsTemplateTest extends BaseTemplateTest {
 
     @Test
     public void testGetDiff() throws Exception {
-        assertTrue(false);
-        //get-diff
         //given
+        mockServer.expect(requestTo("https://api.bitbucket.org/1.0/repositories/testusername/testreposlug/changesets/testnode/diff"))
+                .andExpect(method(GET)).andRespond(withSuccess(jsonResource("get-diff"), MediaType.APPLICATION_JSON));
         //when
         bitBucket.repositoriesOperations().repositoriesChangesetsOperations().getDiff(TEST_USERNAME, TEST_REPOSLUG, TEST_NODE);
         //then
@@ -83,9 +87,9 @@ public class RepositoriesChangesetsTemplateTest extends BaseTemplateTest {
 
     @Test
     public void testGetComments() throws Exception {
-        assertTrue(false);
-        //get-comments
         //given
+        mockServer.expect(requestTo("https://api.bitbucket.org/1.0/repositories/testusername/testreposlug/changesets/testnode/comments"))
+                .andExpect(method(GET)).andRespond(withSuccess(jsonResource("get-comments"), MediaType.APPLICATION_JSON));
         //when
         bitBucket.repositoriesOperations().repositoriesChangesetsOperations().getComments(TEST_USERNAME, TEST_REPOSLUG, TEST_NODE);
         //then
@@ -97,6 +101,8 @@ public class RepositoriesChangesetsTemplateTest extends BaseTemplateTest {
     public void testRemoveComment() throws Exception {
         assertTrue(false);
         //given
+        mockServer.expect(requestTo("https://api.bitbucket.org/1.0/users/testaccount/invitations/test@email.tld")).andExpect(method(DELETE))
+                .andRespond(withNoContent());
         //when
         bitBucket.repositoriesOperations().repositoriesChangesetsOperations().removeComment(TEST_USERNAME, TEST_REPOSLUG, TEST_NODE, 1L);
         //then
@@ -109,6 +115,8 @@ public class RepositoriesChangesetsTemplateTest extends BaseTemplateTest {
         assertTrue(false);
         //post comment
         //given
+        mockServer.expect(requestTo("https://api.bitbucket.org/1.0/users/testaccount/ssh-keys")).andExpect(method(POST)).andExpect(
+                content().string("key=123123123")).andRespond(withSuccess(jsonResource("post-key"), MediaType.APPLICATION_JSON));
         BitBucketComment comment = BitBucketComment.builder().content("content").build();
         //when
         bitBucket.repositoriesOperations().repositoriesChangesetsOperations().postComment(TEST_USERNAME, TEST_REPOSLUG, TEST_NODE, comment);
@@ -122,6 +130,8 @@ public class RepositoriesChangesetsTemplateTest extends BaseTemplateTest {
         assertTrue(false);
         //put-comment-update
         //given
+        mockServer.expect(requestTo("https://api.bitbucket.org/1.0/users/testaccount/emails/test@email.tld")).andExpect(method(PUT))
+                .andExpect(content().string("primary=true")).andRespond(withSuccess(jsonResource("update-email-address"), MediaType.APPLICATION_JSON));
         //when
         bitBucket.repositoriesOperations().repositoriesChangesetsOperations().updateComment(TEST_USERNAME, TEST_REPOSLUG, TEST_NODE, 1L);
         //then

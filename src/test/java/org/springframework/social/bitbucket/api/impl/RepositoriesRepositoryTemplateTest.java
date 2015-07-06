@@ -1,9 +1,17 @@
 package org.springframework.social.bitbucket.api.impl;
 
 import org.junit.Test;
+import org.springframework.http.MediaType;
 import org.springframework.social.bitbucket.api.BitBucketRepository;
 
 import static org.junit.Assert.*;
+import static org.springframework.http.HttpMethod.GET;
+import static org.springframework.http.HttpMethod.POST;
+import static org.springframework.http.HttpMethod.PUT;
+import static org.springframework.test.web.client.match.MockRestRequestMatchers.content;
+import static org.springframework.test.web.client.match.MockRestRequestMatchers.method;
+import static org.springframework.test.web.client.match.MockRestRequestMatchers.requestTo;
+import static org.springframework.test.web.client.response.MockRestResponseCreators.withSuccess;
 
 /**
  * @author Cyprian Śniegota
@@ -18,6 +26,8 @@ public class RepositoriesRepositoryTemplateTest extends BaseTemplateTest {
         assertTrue(false);
         //post-repository-fork
         //given
+        mockServer.expect(requestTo("https://api.bitbucket.org/1.0/users/testaccount/ssh-keys")).andExpect(method(POST)).andExpect(
+                content().string("key=123123123")).andRespond(withSuccess(jsonResource("post-key"), MediaType.APPLICATION_JSON));
         //when
         bitBucket.repositoriesOperations().repositoriesRepositoryOperations().createNewFork(TEST_USERNAME, TEST_REPOSLUG, "fname", "fdesc", "php", true);
         //then
@@ -30,6 +40,8 @@ public class RepositoriesRepositoryTemplateTest extends BaseTemplateTest {
         assertTrue(false);
         //put-repository
         //given
+        mockServer.expect(requestTo("https://api.bitbucket.org/1.0/users/testaccount/emails/test@email.tld")).andExpect(method(PUT))
+                .andExpect(content().string("primary=true")).andRespond(withSuccess(jsonResource("update-email-address"), MediaType.APPLICATION_JSON));
         BitBucketRepository repository = BitBucketRepository.builder().description("desc").build();
         //when
         bitBucket.repositoriesOperations().repositoriesRepositoryOperations().updateRepository(TEST_USERNAME, TEST_REPOSLUG, repository);
@@ -43,6 +55,8 @@ public class RepositoriesRepositoryTemplateTest extends BaseTemplateTest {
         assertTrue(false);
         //get-branches
         //given
+        mockServer.expect(requestTo("https://api.bitbucket.org/1.0/repositories/testusername/testreposlug/changesets/testnode/comments"))
+                .andExpect(method(GET)).andRespond(withSuccess(jsonResource("get-comments"), MediaType.APPLICATION_JSON));
         //when
         bitBucket.repositoriesOperations().repositoriesRepositoryOperations().getBranches(TEST_USERNAME, TEST_REPOSLUG);
         //then
@@ -55,6 +69,8 @@ public class RepositoriesRepositoryTemplateTest extends BaseTemplateTest {
         assertTrue(false);
         //get-main-branch
         //given
+        mockServer.expect(requestTo("https://api.bitbucket.org/1.0/repositories/testusername/testreposlug/changesets/testnode/comments"))
+                .andExpect(method(GET)).andRespond(withSuccess(jsonResource("get-comments"), MediaType.APPLICATION_JSON));
         //when
         bitBucket.repositoriesOperations().repositoriesRepositoryOperations().getMainBranch(TEST_USERNAME, TEST_REPOSLUG);
         //then
@@ -67,6 +83,8 @@ public class RepositoriesRepositoryTemplateTest extends BaseTemplateTest {
         assertTrue(false);
         //get-branches-tags
         //given
+        mockServer.expect(requestTo("https://api.bitbucket.org/1.0/repositories/testusername/testreposlug/changesets/testnode/comments"))
+                .andExpect(method(GET)).andRespond(withSuccess(jsonResource("get-comments"), MediaType.APPLICATION_JSON));
         //when
         bitBucket.repositoriesOperations().repositoriesRepositoryOperations().getBranchesTags(TEST_USERNAME, TEST_REPOSLUG);
         //then
@@ -79,6 +97,8 @@ public class RepositoriesRepositoryTemplateTest extends BaseTemplateTest {
         assertTrue(false);
         //get-repository-manifest
         //given
+        mockServer.expect(requestTo("https://api.bitbucket.org/1.0/repositories/testusername/testreposlug/changesets/testnode/comments"))
+                .andExpect(method(GET)).andRespond(withSuccess(jsonResource("get-comments"), MediaType.APPLICATION_JSON));
         //when
         bitBucket.repositoriesOperations().repositoriesRepositoryOperations().getManifest(TEST_USERNAME, TEST_REPOSLUG, "revasdf");
         //then
@@ -91,6 +111,8 @@ public class RepositoriesRepositoryTemplateTest extends BaseTemplateTest {
         assertTrue(false);
         //get-repository-tags
         //given
+        mockServer.expect(requestTo("https://api.bitbucket.org/1.0/repositories/testusername/testreposlug/changesets/testnode/comments"))
+                .andExpect(method(GET)).andRespond(withSuccess(jsonResource("get-comments"), MediaType.APPLICATION_JSON));
         //when
         bitBucket.repositoriesOperations().repositoriesRepositoryOperations().getTags(TEST_USERNAME, TEST_REPOSLUG);
         //then
@@ -103,6 +125,8 @@ public class RepositoriesRepositoryTemplateTest extends BaseTemplateTest {
         assertTrue(false);
         //get-repository-raw-source
         //given
+        mockServer.expect(requestTo("https://api.bitbucket.org/1.0/repositories/testusername/testreposlug/changesets/testnode/comments"))
+                .andExpect(method(GET)).andRespond(withSuccess(jsonResource("get-comments"), MediaType.APPLICATION_JSON));
         //when
         bitBucket.repositoriesOperations().repositoriesRepositoryOperations().getRawSource(TEST_USERNAME, TEST_REPOSLUG, "revasdf", "/src/main/file.txt");
         //then
@@ -115,6 +139,8 @@ public class RepositoriesRepositoryTemplateTest extends BaseTemplateTest {
         assertTrue(false);
         //get-repository-history-file
         //given
+        mockServer.expect(requestTo("https://api.bitbucket.org/1.0/repositories/testusername/testreposlug/changesets/testnode/comments"))
+                .andExpect(method(GET)).andRespond(withSuccess(jsonResource("get-comments"), MediaType.APPLICATION_JSON));
         //when
         bitBucket.repositoriesOperations().repositoriesRepositoryOperations().getHistoryOfFile(TEST_USERNAME, TEST_REPOSLUG, "testnode", "/src/main/file.txt");
         //then

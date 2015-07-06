@@ -1,9 +1,19 @@
 package org.springframework.social.bitbucket.api.impl;
 
 import org.junit.Test;
+import org.springframework.http.MediaType;
 import org.springframework.social.bitbucket.api.BitBucketIssue;
 
 import static org.junit.Assert.*;
+import static org.springframework.http.HttpMethod.DELETE;
+import static org.springframework.http.HttpMethod.GET;
+import static org.springframework.http.HttpMethod.POST;
+import static org.springframework.http.HttpMethod.PUT;
+import static org.springframework.test.web.client.match.MockRestRequestMatchers.content;
+import static org.springframework.test.web.client.match.MockRestRequestMatchers.method;
+import static org.springframework.test.web.client.match.MockRestRequestMatchers.requestTo;
+import static org.springframework.test.web.client.response.MockRestResponseCreators.withNoContent;
+import static org.springframework.test.web.client.response.MockRestResponseCreators.withSuccess;
 
 /**
  * @author Cyprian Śniegota
@@ -18,6 +28,8 @@ public class RepositoriesIssuesTemplateTest extends BaseTemplateTest {
         assertTrue(false);
         //get-issues
         //given
+        mockServer.expect(requestTo("https://api.bitbucket.org/1.0/repositories/testusername/testreposlug/changesets/testnode/comments"))
+                .andExpect(method(GET)).andRespond(withSuccess(jsonResource("get-comments"), MediaType.APPLICATION_JSON));
         //when
         bitBucket.repositoriesOperations().repositoriesIssuesOperations().getIssues(TEST_USERNAME, TEST_REPOSLUG, 1, 10, null);
         //then
@@ -30,6 +42,8 @@ public class RepositoriesIssuesTemplateTest extends BaseTemplateTest {
         assertTrue(false);
         //get-issue
         //given
+        mockServer.expect(requestTo("https://api.bitbucket.org/1.0/repositories/testusername/testreposlug/changesets/testnode/comments"))
+                .andExpect(method(GET)).andRespond(withSuccess(jsonResource("get-comments"), MediaType.APPLICATION_JSON));
         //when
         bitBucket.repositoriesOperations().repositoriesIssuesOperations().getIssue(TEST_USERNAME, TEST_REPOSLUG, 1L);
         //then
@@ -42,6 +56,8 @@ public class RepositoriesIssuesTemplateTest extends BaseTemplateTest {
         assertTrue(false);
         //get-issue-followers
         //given
+        mockServer.expect(requestTo("https://api.bitbucket.org/1.0/repositories/testusername/testreposlug/changesets/testnode/comments"))
+                .andExpect(method(GET)).andRespond(withSuccess(jsonResource("get-comments"), MediaType.APPLICATION_JSON));
         //when
         bitBucket.repositoriesOperations().repositoriesIssuesOperations().getFollowers(TEST_USERNAME, TEST_REPOSLUG, 1L);
         //then
@@ -54,6 +70,8 @@ public class RepositoriesIssuesTemplateTest extends BaseTemplateTest {
         assertTrue(false);
         //post-issue
         //given
+        mockServer.expect(requestTo("https://api.bitbucket.org/1.0/users/testaccount/ssh-keys")).andExpect(method(POST)).andExpect(
+                content().string("key=123123123")).andRespond(withSuccess(jsonResource("post-key"), MediaType.APPLICATION_JSON));
         BitBucketIssue issue = BitBucketIssue.builder().content("issuecontent").build();
         //when
         bitBucket.repositoriesOperations().repositoriesIssuesOperations().postNewIssue(TEST_USERNAME, TEST_REPOSLUG, issue);
@@ -67,6 +85,8 @@ public class RepositoriesIssuesTemplateTest extends BaseTemplateTest {
         assertTrue(false);
         //put-issue
         //given
+        mockServer.expect(requestTo("https://api.bitbucket.org/1.0/users/testaccount/emails/test@email.tld")).andExpect(method(PUT))
+                .andExpect(content().string("primary=true")).andRespond(withSuccess(jsonResource("update-email-address"), MediaType.APPLICATION_JSON));
         BitBucketIssue issue = BitBucketIssue.builder().content("issuecontent").build();
         //when
         bitBucket.repositoriesOperations().repositoriesIssuesOperations().updateIssue(TEST_USERNAME, TEST_REPOSLUG, 1L, issue);
@@ -79,6 +99,8 @@ public class RepositoriesIssuesTemplateTest extends BaseTemplateTest {
     public void testRemoveIssue() throws Exception {
         assertTrue(false);
         //given
+        mockServer.expect(requestTo("https://api.bitbucket.org/1.0/users/testaccount/invitations/test@email.tld")).andExpect(method(DELETE))
+                .andRespond(withNoContent());
         //when
         bitBucket.repositoriesOperations().repositoriesIssuesOperations().removeIssue(TEST_USERNAME, TEST_REPOSLUG, 1L);
         //then
@@ -91,6 +113,8 @@ public class RepositoriesIssuesTemplateTest extends BaseTemplateTest {
         assertTrue(false);
         //get-issue-comments
         //given
+        mockServer.expect(requestTo("https://api.bitbucket.org/1.0/repositories/testusername/testreposlug/changesets/testnode/comments"))
+                .andExpect(method(GET)).andRespond(withSuccess(jsonResource("get-comments"), MediaType.APPLICATION_JSON));
         //when
         bitBucket.repositoriesOperations().repositoriesIssuesOperations().getComments(TEST_USERNAME, TEST_REPOSLUG, 1L);
         //then
@@ -103,6 +127,8 @@ public class RepositoriesIssuesTemplateTest extends BaseTemplateTest {
         assertTrue(false);
         //get-issue-comment
         //given
+        mockServer.expect(requestTo("https://api.bitbucket.org/1.0/repositories/testusername/testreposlug/changesets/testnode/comments"))
+                .andExpect(method(GET)).andRespond(withSuccess(jsonResource("get-comments"), MediaType.APPLICATION_JSON));
         //when
         bitBucket.repositoriesOperations().repositoriesIssuesOperations().getComment(TEST_USERNAME, TEST_REPOSLUG, 1L, 2L);
         //then
@@ -115,6 +141,8 @@ public class RepositoriesIssuesTemplateTest extends BaseTemplateTest {
         assertTrue(false);
         //post-issue-comment
         //given
+        mockServer.expect(requestTo("https://api.bitbucket.org/1.0/users/testaccount/ssh-keys")).andExpect(method(POST)).andExpect(
+                content().string("key=123123123")).andRespond(withSuccess(jsonResource("post-key"), MediaType.APPLICATION_JSON));
         //when
         bitBucket.repositoriesOperations().repositoriesIssuesOperations().postNewComment(TEST_USERNAME, TEST_REPOSLUG, 1L, "comment content");
         //then
@@ -127,6 +155,8 @@ public class RepositoriesIssuesTemplateTest extends BaseTemplateTest {
         assertTrue(false);
         //put-issue-comment
         //given
+        mockServer.expect(requestTo("https://api.bitbucket.org/1.0/users/testaccount/emails/test@email.tld")).andExpect(method(PUT))
+                .andExpect(content().string("primary=true")).andRespond(withSuccess(jsonResource("update-email-address"), MediaType.APPLICATION_JSON));
         //when
         bitBucket.repositoriesOperations().repositoriesIssuesOperations().updateComment(TEST_USERNAME, TEST_REPOSLUG, 1L, 2L, "");
 
@@ -140,6 +170,8 @@ public class RepositoriesIssuesTemplateTest extends BaseTemplateTest {
         assertTrue(false);
         //get-components
         //given
+        mockServer.expect(requestTo("https://api.bitbucket.org/1.0/repositories/testusername/testreposlug/changesets/testnode/comments"))
+                .andExpect(method(GET)).andRespond(withSuccess(jsonResource("get-comments"), MediaType.APPLICATION_JSON));
         //when
         bitBucket.repositoriesOperations().repositoriesIssuesOperations().getComponents(TEST_USERNAME, TEST_REPOSLUG);
         //then
@@ -152,6 +184,8 @@ public class RepositoriesIssuesTemplateTest extends BaseTemplateTest {
         assertTrue(false);
         //get-component
         //given
+        mockServer.expect(requestTo("https://api.bitbucket.org/1.0/repositories/testusername/testreposlug/changesets/testnode/comments"))
+                .andExpect(method(GET)).andRespond(withSuccess(jsonResource("get-comments"), MediaType.APPLICATION_JSON));
         //when
         bitBucket.repositoriesOperations().repositoriesIssuesOperations().getComponent(TEST_USERNAME, TEST_REPOSLUG, 1L);
         //then
@@ -164,6 +198,8 @@ public class RepositoriesIssuesTemplateTest extends BaseTemplateTest {
         assertTrue(false);
         //post-component
         //given
+        mockServer.expect(requestTo("https://api.bitbucket.org/1.0/users/testaccount/ssh-keys")).andExpect(method(POST)).andExpect(
+                content().string("key=123123123")).andRespond(withSuccess(jsonResource("post-key"), MediaType.APPLICATION_JSON));
         //when
         bitBucket.repositoriesOperations().repositoriesIssuesOperations().postNewComponent(TEST_USERNAME, TEST_REPOSLUG, "componentname");
         //then
@@ -176,6 +212,8 @@ public class RepositoriesIssuesTemplateTest extends BaseTemplateTest {
         assertTrue(false);
         //put-components
         //given
+        mockServer.expect(requestTo("https://api.bitbucket.org/1.0/users/testaccount/emails/test@email.tld")).andExpect(method(PUT))
+                .andExpect(content().string("primary=true")).andRespond(withSuccess(jsonResource("update-email-address"), MediaType.APPLICATION_JSON));
         //when
         bitBucket.repositoriesOperations().repositoriesIssuesOperations().updateComponent(TEST_USERNAME, TEST_REPOSLUG, 2L, "newname");
         //then
@@ -187,6 +225,8 @@ public class RepositoriesIssuesTemplateTest extends BaseTemplateTest {
     public void testRemoveComponent() throws Exception {
         assertTrue(false);
         //given
+        mockServer.expect(requestTo("https://api.bitbucket.org/1.0/users/testaccount/invitations/test@email.tld")).andExpect(method(DELETE))
+                .andRespond(withNoContent());
         //when
         bitBucket.repositoriesOperations().repositoriesIssuesOperations().removeComponent(TEST_USERNAME, TEST_REPOSLUG, 1L);
         //then
@@ -199,6 +239,8 @@ public class RepositoriesIssuesTemplateTest extends BaseTemplateTest {
         assertTrue(false);
         //get-versions
         //given
+        mockServer.expect(requestTo("https://api.bitbucket.org/1.0/repositories/testusername/testreposlug/changesets/testnode/comments"))
+                .andExpect(method(GET)).andRespond(withSuccess(jsonResource("get-comments"), MediaType.APPLICATION_JSON));
         //when
         bitBucket.repositoriesOperations().repositoriesIssuesOperations().getVersions(TEST_USERNAME, TEST_REPOSLUG);
         //then
@@ -211,6 +253,8 @@ public class RepositoriesIssuesTemplateTest extends BaseTemplateTest {
         assertTrue(false);
         //get-version
         //given
+        mockServer.expect(requestTo("https://api.bitbucket.org/1.0/repositories/testusername/testreposlug/changesets/testnode/comments"))
+                .andExpect(method(GET)).andRespond(withSuccess(jsonResource("get-comments"), MediaType.APPLICATION_JSON));
         //when
         bitBucket.repositoriesOperations().repositoriesIssuesOperations().getVersion(TEST_USERNAME, TEST_REPOSLUG, 1L);
         //then
@@ -223,6 +267,8 @@ public class RepositoriesIssuesTemplateTest extends BaseTemplateTest {
         assertTrue(false);
         //post-version
         //given
+        mockServer.expect(requestTo("https://api.bitbucket.org/1.0/users/testaccount/ssh-keys")).andExpect(method(POST)).andExpect(
+                content().string("key=123123123")).andRespond(withSuccess(jsonResource("post-key"), MediaType.APPLICATION_JSON));
         //when
         bitBucket.repositoriesOperations().repositoriesIssuesOperations().postNewVersion(TEST_USERNAME, TEST_REPOSLUG, "vname");
         //then
@@ -235,6 +281,8 @@ public class RepositoriesIssuesTemplateTest extends BaseTemplateTest {
         assertTrue(false);
         //put-version
         //given
+        mockServer.expect(requestTo("https://api.bitbucket.org/1.0/users/testaccount/emails/test@email.tld")).andExpect(method(PUT))
+                .andExpect(content().string("primary=true")).andRespond(withSuccess(jsonResource("update-email-address"), MediaType.APPLICATION_JSON));
         //when
         bitBucket.repositoriesOperations().repositoriesIssuesOperations().updateVersion(TEST_USERNAME, TEST_REPOSLUG, 1L, "newname");
         //then
@@ -246,6 +294,8 @@ public class RepositoriesIssuesTemplateTest extends BaseTemplateTest {
     public void testRemoveVersion() throws Exception {
         assertTrue(false);
         //given
+        mockServer.expect(requestTo("https://api.bitbucket.org/1.0/users/testaccount/invitations/test@email.tld")).andExpect(method(DELETE))
+                .andRespond(withNoContent());
         //when
         bitBucket.repositoriesOperations().repositoriesIssuesOperations().removeVersion(TEST_USERNAME, TEST_REPOSLUG, 1L);
         //then
@@ -258,6 +308,8 @@ public class RepositoriesIssuesTemplateTest extends BaseTemplateTest {
         assertTrue(false);
         //get-milestones
         //given
+        mockServer.expect(requestTo("https://api.bitbucket.org/1.0/repositories/testusername/testreposlug/changesets/testnode/comments"))
+                .andExpect(method(GET)).andRespond(withSuccess(jsonResource("get-comments"), MediaType.APPLICATION_JSON));
         //when
         bitBucket.repositoriesOperations().repositoriesIssuesOperations().getMilestones(TEST_USERNAME, TEST_REPOSLUG);
         //then
@@ -270,6 +322,8 @@ public class RepositoriesIssuesTemplateTest extends BaseTemplateTest {
         assertTrue(false);
         //get-milestone
         //given
+        mockServer.expect(requestTo("https://api.bitbucket.org/1.0/repositories/testusername/testreposlug/changesets/testnode/comments"))
+                .andExpect(method(GET)).andRespond(withSuccess(jsonResource("get-comments"), MediaType.APPLICATION_JSON));
         //when
         bitBucket.repositoriesOperations().repositoriesIssuesOperations().getMilestone(TEST_USERNAME, TEST_REPOSLUG, 1L);
         //then
@@ -282,6 +336,8 @@ public class RepositoriesIssuesTemplateTest extends BaseTemplateTest {
         assertTrue(false);
         //post-milestone
         //given
+        mockServer.expect(requestTo("https://api.bitbucket.org/1.0/users/testaccount/ssh-keys")).andExpect(method(POST)).andExpect(
+                content().string("key=123123123")).andRespond(withSuccess(jsonResource("post-key"), MediaType.APPLICATION_JSON));
         //when
         bitBucket.repositoriesOperations().repositoriesIssuesOperations().postNewMilestone(TEST_USERNAME, TEST_REPOSLUG, "mname");
         //then
@@ -294,6 +350,8 @@ public class RepositoriesIssuesTemplateTest extends BaseTemplateTest {
         assertTrue(false);
         //put-milestone
         //given
+        mockServer.expect(requestTo("https://api.bitbucket.org/1.0/users/testaccount/emails/test@email.tld")).andExpect(method(PUT))
+                .andExpect(content().string("primary=true")).andRespond(withSuccess(jsonResource("update-email-address"), MediaType.APPLICATION_JSON));
         //when
         bitBucket.repositoriesOperations().repositoriesIssuesOperations().updateMilestone(TEST_USERNAME, TEST_REPOSLUG, 1L, "newname");
         //then
@@ -305,6 +363,8 @@ public class RepositoriesIssuesTemplateTest extends BaseTemplateTest {
     public void testRemoveMilestone() throws Exception {
         assertTrue(false);
         //given
+        mockServer.expect(requestTo("https://api.bitbucket.org/1.0/users/testaccount/invitations/test@email.tld")).andExpect(method(DELETE))
+                .andRespond(withNoContent());
         //when
         bitBucket.repositoriesOperations().repositoriesIssuesOperations().removeMilestone(TEST_USERNAME, TEST_REPOSLUG, 1L);
         //then
