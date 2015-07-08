@@ -17,7 +17,10 @@ package org.springframework.social.bitbucket.api;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import lombok.Getter;
+import org.springframework.social.bitbucket.api.impl.UTCDateDeserializer;
+import org.springframework.social.bitbucket.utils.DateUtils;
 
 import javax.annotation.Nullable;
 import java.util.Date;
@@ -63,7 +66,7 @@ public class BitBucketChangeset {
     @JsonProperty("raw_node") @Getter
     private String rawNode;
 
-    @JsonProperty("utctimestamp") @Getter
+    @JsonProperty("utctimestamp") @JsonDeserialize(using = UTCDateDeserializer.class)
     private Date utcTimestamp;
 
     @JsonProperty @Getter @Nullable
@@ -75,6 +78,10 @@ public class BitBucketChangeset {
     @Override
     public final String toString() {
         return getNode();
+    }
+
+    public Date getUtcTimestamp() {
+        return DateUtils.copyNullable(utcTimestamp);
     }
 
     /**

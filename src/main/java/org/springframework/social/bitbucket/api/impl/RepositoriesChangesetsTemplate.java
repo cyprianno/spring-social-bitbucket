@@ -4,11 +4,15 @@ import org.springframework.social.bitbucket.api.BitBucketChangeset;
 import org.springframework.social.bitbucket.api.BitBucketChangesets;
 import org.springframework.social.bitbucket.api.BitBucketComment;
 import org.springframework.social.bitbucket.api.BitBucketDiff;
+import org.springframework.social.bitbucket.api.BitBucketRepository;
 import org.springframework.social.bitbucket.api.BitBucketRepositoryStatistics;
 import org.springframework.social.bitbucket.api.RepositoriesChangesetsOperations;
+import org.springframework.social.bitbucket.api.UserWithRepositories;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
+
+import static java.util.Arrays.asList;
 
 /**
  * @author Cyprian Śniegota
@@ -20,28 +24,39 @@ public class RepositoriesChangesetsTemplate extends AbstractBitBucketOperations 
     }
 
     @Override
-    public final List<BitBucketChangeset> getChangesets(String accountName, String repoSlug, String start, int limit) {
-        return null;
+    public final List<BitBucketChangeset> getChangesets(String accountName, String repoSlug, int limit, String start) {
+        BitBucketChangesets result = getRestTemplate()
+                .getForObject(buildUrl("/repositories/{accountname}/{repo_slug}/changesets?limit={limit}&start={start}"), BitBucketChangesets.class,
+                        accountName, repoSlug, limit, start);
+        return result.getChangesets();
     }
 
     @Override
     public  final BitBucketChangeset getChangeset(String accountName, String repoSlug, String node) {
-        return null;
+        return getRestTemplate()
+                .getForObject(buildUrl("/repositories/{accountname}/{repo_slug}/changesets/{node}"), BitBucketChangeset.class,
+                        accountName, repoSlug, node);
     }
 
     @Override
     public  final List<BitBucketRepositoryStatistics> getStatistics(String accountName, String repoSlug, String node) {
-        return null;
+        return asList(getRestTemplate()
+                .getForObject(buildUrl("/repositories/{accountname}/{repo_slug}/changesets/{node}/diffstat"), BitBucketRepositoryStatistics[].class,
+                        accountName, repoSlug, node));
     }
 
     @Override
     public  final List<BitBucketDiff> getDiff(String accountName, String repoSlug, String node) {
-        return null;
+        return asList(getRestTemplate()
+                .getForObject(buildUrl("/repositories/{accountname}/{repo_slug}/changesets/{node}/diff"), BitBucketDiff[].class,
+                        accountName, repoSlug, node));
     }
 
     @Override
     public  final List<BitBucketComment> getComments(String accountName, String repoSlug, String node) {
-        return null;
+        return asList(getRestTemplate()
+                .getForObject(buildUrl("/repositories/{accountname}/{repo_slug}/changesets/{node}/comments"), BitBucketComment[].class,
+                        accountName, repoSlug, node));
     }
 
     @Override
@@ -55,12 +70,12 @@ public class RepositoriesChangesetsTemplate extends AbstractBitBucketOperations 
     }
 
     @Override
-    public  final BitBucketComment updateComment(String accountName, String repoSlug, String node, Long commentId) {
+    public  final BitBucketComment updateComment(String accountName, String repoSlug, String node, Long commentId, BitBucketComment comment) {
         return null;
     }
 
     @Override
-    public  final BitBucketChangeset toggleSpamComment(String accountName, String repoSlug, String node, Long commentId) {
+    public  final BitBucketComment toggleSpamComment(String accountName, String repoSlug, String node, Long commentId) {
         return null;
     }
 }

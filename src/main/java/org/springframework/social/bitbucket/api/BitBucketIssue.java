@@ -2,8 +2,11 @@ package org.springframework.social.bitbucket.api;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import lombok.Builder;
 import lombok.Getter;
+import org.springframework.social.bitbucket.api.impl.UTCDateDeserializer;
+import org.springframework.social.bitbucket.utils.DateUtils;
 
 import java.util.Date;
 
@@ -35,7 +38,7 @@ public class BitBucketIssue {
     @JsonProperty @Getter
     private String title;
 
-    @JsonProperty @Getter
+    @JsonProperty @JsonDeserialize(using = UTCDateDeserializer.class)
     private Date utcLastUpdated;
 
     @JsonProperty @Getter
@@ -47,10 +50,10 @@ public class BitBucketIssue {
     @JsonProperty @Getter
     private String content;
 
-    @JsonProperty @Getter
+    @JsonProperty @JsonDeserialize(using = UTCDateDeserializer.class)
     private Date createdOn;
 
-    @JsonProperty @Getter
+    @JsonProperty @JsonDeserialize(using = UTCDateDeserializer.class)
     private Date utcCreatedOn;
 
     @JsonProperty @Getter
@@ -64,4 +67,16 @@ public class BitBucketIssue {
 
     @JsonProperty @Getter
     private boolean spam;
+
+    public Date getUtcLastUpdated() {
+        return DateUtils.copyNullable(utcLastUpdated);
+    }
+
+    public Date getCreatedOn() {
+        return DateUtils.copyNullable(createdOn);
+    }
+
+    public Date getUtcCreatedOn() {
+        return DateUtils.copyNullable(utcCreatedOn);
+    }
 }

@@ -31,7 +31,7 @@ public interface RepositoriesChangesetsOperations {
      *              The Bitbucket GUI lists the nodes on the Commit tab. The default start value is the tip.
      * @return List of changesets
      */
-    List<BitBucketChangeset> getChangesets(String accountName, String repoSlug, String start, int limit);
+    List<BitBucketChangeset> getChangesets(String accountName, String repoSlug, int limit, String start);
 
     /**
      * Gets a specific changeset  node. Private repositories require the caller to authenticate.
@@ -122,9 +122,10 @@ public interface RepositoriesChangesetsOperations {
      * @param repoSlug The repo identifier.
      * @param node The node changeset identifier.
      * @param commentId The comment identifier.
+     * @param comment The comment data to update
      * @return Updated comment.
      */
-    BitBucketComment updateComment(String accountName, String repoSlug, String node, Long commentId);
+    BitBucketComment updateComment(String accountName, String repoSlug, String node, Long commentId, BitBucketComment comment);
 
     /**
      * Toggles the spam flag on a changeset comment identified by the comment_id.
@@ -137,6 +138,6 @@ public interface RepositoriesChangesetsOperations {
      * @param commentId The comment identifier.
      * @return Updated comment.
      */
-    BitBucketChangeset toggleSpamComment(String accountName, String repoSlug, String node, Long commentId);
+    BitBucketComment toggleSpamComment(String accountName, String repoSlug, String node, Long commentId);
 
 }

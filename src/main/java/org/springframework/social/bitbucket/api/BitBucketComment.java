@@ -2,8 +2,12 @@ package org.springframework.social.bitbucket.api;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 import lombok.Builder;
 import lombok.Getter;
+import org.springframework.social.bitbucket.api.impl.UTCDateDeserializer;
+import org.springframework.social.bitbucket.utils.DateUtils;
 
 import java.util.Date;
 
@@ -13,16 +17,25 @@ import java.util.Date;
  * @author Cyprian Śniegota
  * @since 2.0.0
  */
-@JsonIgnoreProperties(ignoreUnknown = true)
 @Builder
+@JsonIgnoreProperties(ignoreUnknown = true)
+@JsonDeserialize(builder = BitBucketComment.BitBucketCommentBuilder.class)
 public class BitBucketComment {
+    @JsonPOJOBuilder(withPrefix = "")
+    public static final class BitBucketCommentBuilder {
+        @JsonProperty(value = "comment_id")
+        public BitBucketCommentBuilder commentId(Long commentId) {
+            return this;
+        }
+    }
+
     @JsonProperty @Getter
     private String username;
 
     @JsonProperty @Getter
     private String node;
 
-    @JsonProperty("comment_id") @Getter
+    @JsonProperty(value = "comment_id") @Getter
     private Long commentId;
 
     @JsonProperty("pull_request_id") @Getter
@@ -37,7 +50,7 @@ public class BitBucketComment {
     @JsonProperty @Getter
     private boolean deleted;
 
-    @JsonProperty("utc_last_updated") @Getter
+    @JsonProperty("utc_last_updated") @JsonDeserialize(using = UTCDateDeserializer.class)
     private Date utcLastUpdated;
 
     @JsonProperty("filename_hash") @Getter
@@ -61,10 +74,17 @@ public class BitBucketComment {
     @JsonProperty("line_to") @Getter
     private Long lineTo;
 
-    @JsonProperty("utc_created_on") @Getter
+    @JsonProperty("utc_created_on") @JsonDeserialize(using = UTCDateDeserializer.class)
     private Date utcCreatedOn;
 
     @JsonProperty("is_spam") @Getter
     private boolean spam;
 
+    public Date getUtcLastUpdated() {
+        return DateUtils.copyNullable(utcLastUpdated);
+    }
+
+    public Date getUtcCreatedOn() {
+        return DateUtils.copyNullable(utcCreatedOn);
+    }
 }

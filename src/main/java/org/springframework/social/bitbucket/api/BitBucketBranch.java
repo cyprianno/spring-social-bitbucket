@@ -2,7 +2,10 @@ package org.springframework.social.bitbucket.api;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import lombok.Getter;
+import org.springframework.social.bitbucket.api.impl.UTCDateDeserializer;
+import org.springframework.social.bitbucket.utils.DateUtils;
 
 import java.util.Date;
 import java.util.List;
@@ -21,11 +24,11 @@ public class BitBucketBranch {
     private List<BitBucketFile> files;
     @JsonProperty @Getter
     private String rawAuthor;
-    @JsonProperty @Getter
+    @JsonProperty @JsonDeserialize(using = UTCDateDeserializer.class)
     private Date utcTimestamp;
     @JsonProperty @Getter
     private String author;
-    @JsonProperty @Getter
+    @JsonProperty @JsonDeserialize(using = UTCDateDeserializer.class)
     private Date timestamp;
     @JsonProperty @Getter
     private String rawNode;
@@ -40,4 +43,11 @@ public class BitBucketBranch {
     @JsonProperty @Getter
     private Long size;
 
+    public Date getUtcTimestamp() {
+        return DateUtils.copyNullable(utcTimestamp);
+    }
+
+    public Date getTimestamp() {
+        return DateUtils.copyNullable(timestamp);
+    }
 }
