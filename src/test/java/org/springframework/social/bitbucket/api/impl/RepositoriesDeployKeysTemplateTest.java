@@ -2,6 +2,9 @@ package org.springframework.social.bitbucket.api.impl;
 
 import org.junit.Test;
 import org.springframework.http.MediaType;
+import org.springframework.social.bitbucket.api.BitBucketDeployKey;
+
+import java.util.List;
 
 import static org.junit.Assert.*;
 import static org.springframework.http.HttpMethod.DELETE;
@@ -15,6 +18,7 @@ import static org.springframework.test.web.client.response.MockRestResponseCreat
 
 /**
  * @author Cyprian Śniegota
+ * @author Łucja Śniegota
  * @since 2.0.0
  */
 public class RepositoriesDeployKeysTemplateTest extends BaseTemplateTest {
@@ -24,16 +28,21 @@ public class RepositoriesDeployKeysTemplateTest extends BaseTemplateTest {
 
     @Test
     public void testGetDeployKeys() throws Exception {
-        assertTrue(false);
+
         //get-keys
         //given
         mockServer.expect(requestTo("https://api.bitbucket.org/1.0/repositories/testusername/testreposlug/changesets/testnode/comments"))
                 .andExpect(method(GET)).andRespond(withSuccess(jsonResource("get-comments"), MediaType.APPLICATION_JSON));
         //when
-        bitBucket.repositoriesOperations().repositoriesDeployKeysOperations().getDeployKeys(TEST_USERNAME, TEST_REPOSLUG);
+       List<BitBucketDeployKey> result = bitBucket.repositoriesOperations().repositoriesDeployKeysOperations().getDeployKeys(TEST_USERNAME, TEST_REPOSLUG);
         //then
         mockServer.verify();
-        assertTrue(false);
+        assertNotNull(result);
+        assertEquals(2, result.size());
+        assertEquals("tutorials", result.getUsername());
+        assertEquals("abdeaf1b2b4a", result.getNode());
+        assertEquals(25570, result.CommentId());
+
     }
 
     @Test
