@@ -28,7 +28,7 @@ public class RepositoriesEventsTemplateTest extends BaseTemplateTest {
     public void testGetEvents() throws Exception {
 
         //given
-        mockServer.expect(requestTo("https://api.bitbucket.org/1.0/repositories/testusername/testreposlug/changesets/testnode/comments"))
+        mockServer.expect(requestTo("https://api.bitbucket.org/1.0/repositories/testusername/testreposlug/events?limit=integer&start=integer&type=event"))
                 .andExpect(method(GET)).andRespond(withSuccess(jsonResource("get-list-repo-events"), MediaType.APPLICATION_JSON));
         //when
         List<BitBucketEvent> result = bitBucket.repositoriesOperations().repositoriesEventsOperations().getEvents(TEST_USERNAME, TEST_NODE, 1, 10, "testtype");

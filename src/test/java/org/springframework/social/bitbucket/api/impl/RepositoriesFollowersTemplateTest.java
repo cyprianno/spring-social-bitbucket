@@ -25,7 +25,7 @@ public class RepositoriesFollowersTemplateTest extends BaseTemplateTest {
     public void testGetFollowers() throws Exception {
 
         //given
-        mockServer.expect(requestTo("https://api.bitbucket.org/1.0/repositories/testusername/testreposlug/changesets/testnode/comments"))
+        mockServer.expect(requestTo("https://api.bitbucket.org/1.0/repositories/testusername/testreposlug/followers"))
                 .andExpect(method(GET)).andRespond(withSuccess(jsonResource("get-list-repo-followers"), MediaType.APPLICATION_JSON));
         //when
         List<BitBucketUser> result = bitBucket.repositoriesOperations().repositoriesFollowersOperations().getFollowers(TEST_USERNAME, TEST_REPOSLUG);
