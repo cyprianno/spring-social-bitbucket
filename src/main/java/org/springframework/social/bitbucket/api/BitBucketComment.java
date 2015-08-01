@@ -74,6 +74,9 @@ public class BitBucketComment {
     @JsonProperty("line_to") @Getter
     private long lineTo;
 
+    @JsonProperty("author_info") @Getter
+    private BitBucketUser authorInfo;
+
     @JsonProperty("utc_created_on") @JsonDeserialize(using = UTCDateDeserializer.class)
     private Date utcCreatedOn;
 

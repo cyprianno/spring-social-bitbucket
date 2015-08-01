@@ -2,7 +2,14 @@ package org.springframework.social.bitbucket.api.impl;
 
 import org.junit.Test;
 import org.springframework.http.MediaType;
+import org.springframework.social.bitbucket.api.BitBucketBranch;
+import org.springframework.social.bitbucket.api.BitBucketBranchesTags;
 import org.springframework.social.bitbucket.api.BitBucketRepository;
+import org.springframework.social.bitbucket.api.BitBucketSCM;
+
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 
 import static org.junit.Assert.*;
 import static org.springframework.http.HttpMethod.GET;
@@ -23,128 +30,127 @@ public class RepositoriesRepositoryTemplateTest extends BaseTemplateTest {
 
     @Test
     public void testCreateNewFork() throws Exception {
-        assertTrue(false);
-        //post-repository-fork
         //given
-        mockServer.expect(requestTo("https://api.bitbucket.org/1.0/users/testaccount/ssh-keys")).andExpect(method(POST)).andExpect(
-                content().string("key=123123123")).andRespond(withSuccess(jsonResource("post-key"), MediaType.APPLICATION_JSON));
+        mockServer.expect(requestTo("https://api.bitbucket.org/1.0/repositories/testusername/testreposlug/fork")).andExpect(method(POST)).andExpect(
+                content().string("name=mynewrepo")).andRespond(withSuccess(jsonResource("post-repository-fork"), MediaType.APPLICATION_JSON));
         //when
-        bitBucket.repositoriesOperations().repositoriesRepositoryOperations().createNewFork(TEST_USERNAME, TEST_REPOSLUG, "fname", "fdesc", "php", true);
+        BitBucketRepository result = bitBucket.repositoriesOperations().repositoriesRepositoryOperations().createNewFork(TEST_USERNAME, TEST_REPOSLUG, "fname", "fdesc", "php", true);
         //then
         mockServer.verify();
-        assertTrue(false);
+        assertNotNull(result);
+        assertEquals(BitBucketSCM.hg, result.getScm());
+        assertTrue(result.isHasWiki());
     }
 
     @Test
     public void testUpdateRepository() throws Exception {
-        assertTrue(false);
-        //put-repository
         //given
-        mockServer.expect(requestTo("https://api.bitbucket.org/1.0/users/testaccount/emails/test@email.tld")).andExpect(method(PUT))
-                .andExpect(content().string("primary=true")).andRespond(withSuccess(jsonResource("update-email-address"), MediaType.APPLICATION_JSON));
+        mockServer.expect(requestTo("https://api.bitbucket.org/1.0/repositories/testusername/testreposlug")).andExpect(method(PUT))
+                .andExpect(content().string("description=long description")).andRespond(withSuccess(jsonResource("put-repository"), MediaType.APPLICATION_JSON));
         BitBucketRepository repository = BitBucketRepository.builder().description("desc").build();
         //when
-        bitBucket.repositoriesOperations().repositoriesRepositoryOperations().updateRepository(TEST_USERNAME, TEST_REPOSLUG, repository);
+        BitBucketRepository result = bitBucket.repositoriesOperations().repositoriesRepositoryOperations().updateRepository(TEST_USERNAME, TEST_REPOSLUG, repository);
         //then
         mockServer.verify();
-        assertTrue(false);
+        assertNotNull(result);
+        assertEquals(BitBucketSCM.hg, result.getScm());
+        assertTrue(result.isHasWiki());
     }
 
     @Test
     public void testGetBranches() throws Exception {
-        assertTrue(false);
-        //get-branches
         //given
-        mockServer.expect(requestTo("https://api.bitbucket.org/1.0/repositories/testusername/testreposlug/changesets/testnode/comments"))
-                .andExpect(method(GET)).andRespond(withSuccess(jsonResource("get-comments"), MediaType.APPLICATION_JSON));
+        mockServer.expect(requestTo("https://api.bitbucket.org/1.0/repositories/testusername/testreposlug/branches"))
+                .andExpect(method(GET)).andRespond(withSuccess(jsonResource("get-branches"), MediaType.APPLICATION_JSON));
         //when
-        bitBucket.repositoriesOperations().repositoriesRepositoryOperations().getBranches(TEST_USERNAME, TEST_REPOSLUG);
+        Map<String, BitBucketBranch> result = bitBucket.repositoriesOperations().repositoriesRepositoryOperations().getBranches(TEST_USERNAME, TEST_REPOSLUG);
         //then
         mockServer.verify();
-        assertTrue(false);
+        assertEquals(1, result.size());
+        assertEquals("master", result.keySet().iterator().next());
+        BitBucketBranch firstValue = result.values().iterator().next();
+        assertEquals("0b64d6000dad", firstValue.getNode());
     }
 
     @Test
     public void testGetMainBranch() throws Exception {
-        assertTrue(false);
-        //get-main-branch
         //given
-        mockServer.expect(requestTo("https://api.bitbucket.org/1.0/repositories/testusername/testreposlug/changesets/testnode/comments"))
-                .andExpect(method(GET)).andRespond(withSuccess(jsonResource("get-comments"), MediaType.APPLICATION_JSON));
+        mockServer.expect(requestTo("https://api.bitbucket.org/1.0/repositories/testusername/testreposlug/main-branch"))
+                .andExpect(method(GET)).andRespond(withSuccess(jsonResource("get-main-branch"), MediaType.APPLICATION_JSON));
         //when
-        bitBucket.repositoriesOperations().repositoriesRepositoryOperations().getMainBranch(TEST_USERNAME, TEST_REPOSLUG);
+        String result = bitBucket.repositoriesOperations().repositoriesRepositoryOperations().getMainBranch(TEST_USERNAME, TEST_REPOSLUG);
         //then
         mockServer.verify();
-        assertTrue(false);
+        assertEquals("master", result);
     }
 
     @Test
     public void testGetBranchesTags() throws Exception {
-        assertTrue(false);
-        //get-branches-tags
         //given
-        mockServer.expect(requestTo("https://api.bitbucket.org/1.0/repositories/testusername/testreposlug/changesets/testnode/comments"))
-                .andExpect(method(GET)).andRespond(withSuccess(jsonResource("get-comments"), MediaType.APPLICATION_JSON));
+        mockServer.expect(requestTo("https://api.bitbucket.org/1.0/repositories/testusername/testreposlug/branches-tags"))
+                .andExpect(method(GET)).andRespond(withSuccess(jsonResource("get-branches-tags"), MediaType.APPLICATION_JSON));
         //when
-        bitBucket.repositoriesOperations().repositoriesRepositoryOperations().getBranchesTags(TEST_USERNAME, TEST_REPOSLUG);
+        BitBucketBranchesTags result = bitBucket.repositoriesOperations().repositoriesRepositoryOperations().getBranchesTags(TEST_USERNAME, TEST_REPOSLUG);
         //then
         mockServer.verify();
-        assertTrue(false);
+        assertEquals(1, result.getTags().size());
+        assertEquals(1, result.getBranches().size());
     }
 
     @Test
     public void testGetManifest() throws Exception {
-        assertTrue(false);
-        //get-repository-manifest
         //given
-        mockServer.expect(requestTo("https://api.bitbucket.org/1.0/repositories/testusername/testreposlug/changesets/testnode/comments"))
-                .andExpect(method(GET)).andRespond(withSuccess(jsonResource("get-comments"), MediaType.APPLICATION_JSON));
+        mockServer.expect(requestTo("https://api.bitbucket.org/1.0/repositories/testusername/testreposlug/revasdf"))
+                .andExpect(method(GET)).andRespond(withSuccess(jsonResource("get-repository-manifest"), MediaType.APPLICATION_JSON));
         //when
-        bitBucket.repositoriesOperations().repositoriesRepositoryOperations().getManifest(TEST_USERNAME, TEST_REPOSLUG, "revasdf");
+        Map<String, String> result = bitBucket.repositoriesOperations().repositoriesRepositoryOperations().getManifest(TEST_USERNAME, TEST_REPOSLUG, "revasdf");
         //then
         mockServer.verify();
-        assertTrue(false);
+        assertEquals(2, result.size());
+        Iterator<String> keys = result.keySet().iterator();
+        assertEquals("Readme", keys.next());
+        assertEquals("index.html", keys.next());
+        Iterator<String> values = result.values().iterator();
+        assertEquals("cfed61d1bfe1", values.next());
+        assertEquals("2151785dae36", values.next());
     }
 
     @Test
     public void testGetTags() throws Exception {
-        assertTrue(false);
-        //get-repository-tags
         //given
-        mockServer.expect(requestTo("https://api.bitbucket.org/1.0/repositories/testusername/testreposlug/changesets/testnode/comments"))
-                .andExpect(method(GET)).andRespond(withSuccess(jsonResource("get-comments"), MediaType.APPLICATION_JSON));
+        mockServer.expect(requestTo("https://api.bitbucket.org/1.0/repositories/testusername/testreposlug/tags"))
+                .andExpect(method(GET)).andRespond(withSuccess(jsonResource("get-repository-tags"), MediaType.APPLICATION_JSON));
         //when
-        bitBucket.repositoriesOperations().repositoriesRepositoryOperations().getTags(TEST_USERNAME, TEST_REPOSLUG);
+        Map<String, BitBucketBranch> tags = bitBucket.repositoriesOperations().repositoriesRepositoryOperations().getTags(TEST_USERNAME, TEST_REPOSLUG);
         //then
         mockServer.verify();
-        assertTrue(false);
+        assertEquals(1, tags.size());
+        assertEquals("tip", tags.keySet().iterator().next());
+        BitBucketBranch firstTag = tags.values().iterator().next();
+        assertEquals("562344e0ae10", firstTag.getNode());
     }
 
     @Test
     public void testGetRawSource() throws Exception {
-        assertTrue(false);
-        //get-repository-raw-source
         //given
-        mockServer.expect(requestTo("https://api.bitbucket.org/1.0/repositories/testusername/testreposlug/changesets/testnode/comments"))
-                .andExpect(method(GET)).andRespond(withSuccess(jsonResource("get-comments"), MediaType.APPLICATION_JSON));
+        mockServer.expect(requestTo("https://api.bitbucket.org/1.0/repositories/testusername/testreposlug/raw/revasdf/src/main/file.txt"))
+                .andExpect(method(GET)).andRespond(withSuccess(jsonResource("get-repository-raw-source"), MediaType.APPLICATION_JSON));
         //when
-        bitBucket.repositoriesOperations().repositoriesRepositoryOperations().getRawSource(TEST_USERNAME, TEST_REPOSLUG, "revasdf", "/src/main/file.txt");
+        String result = bitBucket.repositoriesOperations().repositoriesRepositoryOperations().getRawSource(TEST_USERNAME, TEST_REPOSLUG, "revasdf", "/src/main/file.txt");
         //then
         mockServer.verify();
-        assertTrue(false);
+        assertEquals("xyz", result);
     }
 
     @Test
     public void testGetHistoryOfFile() throws Exception {
-        assertTrue(false);
-        //get-repository-history-file
         //given
-        mockServer.expect(requestTo("https://api.bitbucket.org/1.0/repositories/testusername/testreposlug/changesets/testnode/comments"))
-                .andExpect(method(GET)).andRespond(withSuccess(jsonResource("get-comments"), MediaType.APPLICATION_JSON));
+        mockServer.expect(requestTo("https://api.bitbucket.org/1.0/repositories/testusername/testreposlug/filehistory/testnode/src/main/file.txt"))
+                .andExpect(method(GET)).andRespond(withSuccess(jsonResource("get-repository-history-file"), MediaType.APPLICATION_JSON));
         //when
-        bitBucket.repositoriesOperations().repositoriesRepositoryOperations().getHistoryOfFile(TEST_USERNAME, TEST_REPOSLUG, "testnode", "/src/main/file.txt");
+        BitBucketBranch result = bitBucket.repositoriesOperations().repositoriesRepositoryOperations().getHistoryOfFile(TEST_USERNAME, TEST_REPOSLUG, "testnode", "/src/main/file.txt");
         //then
         mockServer.verify();
-        assertTrue(false);
+        assertEquals("1b8a451e04ec", result.getNode());
     }
 }

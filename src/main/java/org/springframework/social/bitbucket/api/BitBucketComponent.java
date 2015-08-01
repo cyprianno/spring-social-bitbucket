@@ -16,5 +16,5 @@ public class BitBucketComponent {
     private String name;
 
     @JsonProperty @Getter
-    private Long id;
+    private long id;
 }

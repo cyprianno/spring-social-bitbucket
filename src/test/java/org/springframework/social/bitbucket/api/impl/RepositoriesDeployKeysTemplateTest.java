@@ -28,9 +28,8 @@ public class RepositoriesDeployKeysTemplateTest extends BaseTemplateTest {
 
     @Test
     public void testGetDeployKeys() throws Exception {
-
         //given
-        mockServer.expect(requestTo("https://api.bitbucket.org/1.0/repositories/testusername/testreposlug/changesets/testnode/comments"))
+        mockServer.expect(requestTo("https://api.bitbucket.org/1.0/repositories/testusername/testreposlug/deploy-keys"))
                 .andExpect(method(GET)).andRespond(withSuccess(jsonResource("get-keys"), MediaType.APPLICATION_JSON));
         //when
         List<BitBucketDeployKey> result = bitBucket.repositoriesOperations().repositoriesDeployKeysOperations()
@@ -47,12 +46,11 @@ public class RepositoriesDeployKeysTemplateTest extends BaseTemplateTest {
                 + "B6JH87FhdCGS6mFyavpvOnrZdR9jGD auserbb", firstDeployKey.getKey());
         assertEquals("home", firstDeployKey.getLabel());
     }
+
     @Test
     public void testGetDeployKey() throws Exception {
-
-
         //given
-        mockServer.expect(requestTo("https://api.bitbucket.org/1.0/repositories/testusername/testreposlug/changesets/testnode/comments"))
+        mockServer.expect(requestTo("https://api.bitbucket.org/1.0/repositories/testusername/testreposlug/deploy-keys/1"))
                 .andExpect(method(GET)).andRespond(withSuccess(jsonResource("get-key"), MediaType.APPLICATION_JSON));
         //when
         BitBucketDeployKey result = bitBucket.repositoriesOperations().repositoriesDeployKeysOperations()
@@ -67,9 +65,8 @@ public class RepositoriesDeployKeysTemplateTest extends BaseTemplateTest {
 
     @Test
     public void testPostDeployKey() throws Exception {
-
         //given
-        mockServer.expect(requestTo("https://api.bitbucket.org/1.0/users/testaccount/ssh-keys")).andExpect(method(POST)).andExpect(
+        mockServer.expect(requestTo("https://api.bitbucket.org/1.0/repositories/testusername/testreposlug/deploy-keys")).andExpect(method(POST)).andExpect(
                 content().string("key=123123123")).andRespond(withSuccess(jsonResource("post-key"), MediaType.APPLICATION_JSON));
         //when
         BitBucketDeployKey result = bitBucket.repositoriesOperations().repositoriesDeployKeysOperations().postDeployKey(TEST_USERNAME, TEST_REPOSLUG);
@@ -84,7 +81,7 @@ public class RepositoriesDeployKeysTemplateTest extends BaseTemplateTest {
     @Test
     public void testRemoveDeployKey() throws Exception {
         //given
-        mockServer.expect(requestTo("https://api.bitbucket.org/1.0/users/testaccount/invitations/test@email.tld")).andExpect(method(DELETE))
+        mockServer.expect(requestTo("https://api.bitbucket.org/1.0/repositories/testusername/testreposlug/deploy-keys")).andExpect(method(DELETE))
                 .andRespond(withNoContent());
         //when
         bitBucket.repositoriesOperations().repositoriesDeployKeysOperations().removeDeployKey(TEST_USERNAME, TEST_REPOSLUG, 1L);

@@ -16,5 +16,5 @@ public class BitBucketMilestone {
     private String name;
 
     @JsonProperty @Getter
-    private Long id;
+    private long id;
 }

@@ -16,5 +16,5 @@ public class BitBucketVersion {
     private String name;
 
     @JsonProperty @Getter
-    private Long id;
+    private long id;
 }

@@ -33,7 +33,7 @@ public class BitBucketService {
     }
 
     @JsonProperty @Getter
-    private Long id;
+    private long id;
 
     @JsonProperty @Getter
     private BitBucketServiceProfile service;

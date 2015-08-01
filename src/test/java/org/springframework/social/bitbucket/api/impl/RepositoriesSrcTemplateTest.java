@@ -2,6 +2,9 @@ package org.springframework.social.bitbucket.api.impl;
 
 import org.junit.Test;
 import org.springframework.http.MediaType;
+import org.springframework.social.bitbucket.api.BitBucketFile;
+
+import java.util.List;
 
 import static org.junit.Assert.*;
 import static org.springframework.http.HttpMethod.GET;
@@ -18,29 +21,30 @@ public class RepositoriesSrcTemplateTest extends BaseTemplateTest {
     private static final String TEST_REPOSLUG = "testreposlug";
     @Test
     public void testGetElements() throws Exception {
-        assertTrue(false);
-        //get-list-repo-source
         //given
-        mockServer.expect(requestTo("https://api.bitbucket.org/1.0/repositories/testusername/testreposlug/changesets/testnode/comments"))
-                .andExpect(method(GET)).andRespond(withSuccess(jsonResource("get-comments"), MediaType.APPLICATION_JSON));
+        mockServer.expect(requestTo("https://api.bitbucket.org/1.0/repositories/testusername/testreposlug/src/xrev/src/file.txt"))
+                .andExpect(method(GET)).andRespond(withSuccess(jsonResource("get-list-repo-source"), MediaType.APPLICATION_JSON));
         //when
-        bitBucket.repositoriesOperations().repositoriesSrcOperations().getElements(TEST_USERNAME, TEST_REPOSLUG, "xrev", "/src/file.txt");
+        List<BitBucketFile> result = bitBucket.repositoriesOperations().repositoriesSrcOperations().getElements(TEST_USERNAME, TEST_REPOSLUG, "xrev", "/src/file.txt");
         //then
         mockServer.verify();
-        assertTrue(false);
+        assertEquals(1, result.size());
+        BitBucketFile firstFile = result.iterator().next();
+        assertEquals("40e232b389b9", firstFile.getNode());
+        assertEquals("Readme", firstFile.getPath());
+        assertEquals("Favorite Quotes from bitbuckians\n--------------------\n\nThis page lists \n", firstFile.getData());
+        assertEquals(571L, firstFile.getSize());
     }
 
     @Test
     public void testGetContent() throws Exception {
-        assertTrue(false);
-        //get-raw-content
         //given
-        mockServer.expect(requestTo("https://api.bitbucket.org/1.0/repositories/testusername/testreposlug/changesets/testnode/comments"))
-                .andExpect(method(GET)).andRespond(withSuccess(jsonResource("get-comments"), MediaType.APPLICATION_JSON));
+        mockServer.expect(requestTo("https://api.bitbucket.org/1.0/repositories/testusername/testreposlug/raw/xrev/src/file.txt"))
+                .andExpect(method(GET)).andRespond(withSuccess(jsonResource("get-raw-content"), MediaType.APPLICATION_JSON));
         //when
-        bitBucket.repositoriesOperations().repositoriesSrcOperations().getContent(TEST_USERNAME, TEST_REPOSLUG, "xrev", "/src/file.txt");
+        String result = bitBucket.repositoriesOperations().repositoriesSrcOperations().getContent(TEST_USERNAME, TEST_REPOSLUG, "xrev", "/src/file.txt");
         //then
         mockServer.verify();
-        assertTrue(false);
+        assertEquals("Favorite Quotes from bitbuckians\n--------------------\n\nThis page lists \n", result);
     }
 }
