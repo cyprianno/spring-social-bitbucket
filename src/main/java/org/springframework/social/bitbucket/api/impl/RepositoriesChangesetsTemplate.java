@@ -60,17 +60,18 @@ public class RepositoriesChangesetsTemplate extends AbstractBitBucketOperations 
     }
 
     @Override
-    public  final void removeComment(String accountName, String repoSlug, String node, Long commentId) {
-
+    public  final void removeComment(String accountName, String repoSlug, String node, long commentId) {
+        getRestTemplate().delete(buildUrl("/repositories/{accountname}/{repo_slug}/changesets/{node}/comments/{comment_id}"), accountName, repoSlug, node,
+                commentId);
     }
 
     @Override
-    public  final BitBucketComment postComment(String accountName, String repoSlug, String node, BitBucketComment comment) {
+    public  final BitBucketComment postComment(String accountName, String repoSlug, String node, String content, long parentId) {
         return null;
     }
 
     @Override
-    public  final BitBucketComment updateComment(String accountName, String repoSlug, String node, Long commentId, BitBucketComment comment) {
+    public  final BitBucketComment updateComment(String accountName, String repoSlug, String node, Long commentId, String content) {
         return null;
     }
 

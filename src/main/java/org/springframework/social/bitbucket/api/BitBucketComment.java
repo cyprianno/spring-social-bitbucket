@@ -17,17 +17,8 @@ import java.util.Date;
  * @author Cyprian Śniegota
  * @since 2.0.0
  */
-@Builder
 @JsonIgnoreProperties(ignoreUnknown = true)
-@JsonDeserialize(builder = BitBucketComment.BitBucketCommentBuilder.class)
 public class BitBucketComment {
-    @JsonPOJOBuilder(withPrefix = "")
-    public static final class BitBucketCommentBuilder {
-        @JsonProperty(value = "comment_id")
-        public BitBucketCommentBuilder commentId(Long commentId) {
-            return this;
-        }
-    }
 
     @JsonProperty @Getter
     private String username;

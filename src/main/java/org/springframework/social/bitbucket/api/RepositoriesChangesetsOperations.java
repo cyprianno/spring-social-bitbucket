@@ -23,12 +23,12 @@ public interface RepositoriesChangesetsOperations {
      * API call: GET https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/changesets?limit=integer?start=node
      *
      * @param accountName The team or individual account owning the repo.
-     * @param repoSlug The repo identifier.
-     * @param start An integer representing how many changesets to return. You can specify a limit between 0 and 50.
-     *              If you specify 0 (zero), the system returns the count but returns empty values for the remaining fields.
-     * @param limit A hash value representing the earliest node to start with.
-     *              The system starts with the specified node and includes the older requests that preceded it.
-     *              The Bitbucket GUI lists the nodes on the Commit tab. The default start value is the tip.
+     * @param repoSlug    The repo identifier.
+     * @param start       An integer representing how many changesets to return. You can specify a limit between 0 and 50.
+     *                    If you specify 0 (zero), the system returns the count but returns empty values for the remaining fields.
+     * @param limit       A hash value representing the earliest node to start with.
+     *                    The system starts with the specified node and includes the older requests that preceded it.
+     *                    The Bitbucket GUI lists the nodes on the Commit tab. The default start value is the tip.
      * @return List of changesets
      */
     List<BitBucketChangeset> getChangesets(String accountName, String repoSlug, int limit, String start);
@@ -38,8 +38,8 @@ public interface RepositoriesChangesetsOperations {
      * API call: GET https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/changesets/{node}
      *
      * @param accountName The team or individual account owning the repo.
-     * @param repoSlug The repo identifier.
-     * @param node The node changeset identifier.
+     * @param repoSlug    The repo identifier.
+     * @param node        The node changeset identifier.
      * @return Requested changeset.
      */
     BitBucketChangeset getChangeset(String accountName, String repoSlug, String node);
@@ -50,8 +50,8 @@ public interface RepositoriesChangesetsOperations {
      * API call: GET https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/changesets/{node}/diffstat
      *
      * @param accountName The team or individual account owning the repo.
-     * @param repoSlug The repo identifier.
-     * @param node The node changeset identifier.
+     * @param repoSlug    The repo identifier.
+     * @param node        The node changeset identifier.
      * @return List of repository statistics.
      */
     List<BitBucketRepositoryStatistics> getStatistics(String accountName, String repoSlug, String node);
@@ -62,8 +62,8 @@ public interface RepositoriesChangesetsOperations {
      * API call: GET https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/changesets/{node}/diff
      *
      * @param accountName The team or individual account owning the repo.
-     * @param repoSlug The repo identifier.
-     * @param node The node changeset identifier.
+     * @param repoSlug    The repo identifier.
+     * @param node        The node changeset identifier.
      * @return List of diffs.
      */
     List<BitBucketDiff> getDiff(String accountName, String repoSlug, String node);
@@ -75,8 +75,8 @@ public interface RepositoriesChangesetsOperations {
      * API call: GET https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/changesets/{node}/comments
      *
      * @param accountName The team or individual account owning the repo.
-     * @param repoSlug The repo identifier.
-     * @param node The node changeset identifier.
+     * @param repoSlug    The repo identifier.
+     * @param node        The node changeset identifier.
      * @return List of comments on changeset.
      */
     List<BitBucketComment> getComments(String accountName, String repoSlug, String node);
@@ -89,11 +89,11 @@ public interface RepositoriesChangesetsOperations {
      * API call: DELETE https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/changesets/{node}/comments/{comment_id}
      *
      * @param accountName The team or individual account owning the repo.
-     * @param repoSlug The repo identifier.
-     * @param node The node changeset identifier.
-     * @param commentId The comment identifier.
+     * @param repoSlug    The repo identifier.
+     * @param node        The node changeset identifier.
+     * @param commentId   The comment identifier.
      */
-    void removeComment(String accountName, String repoSlug, String node, Long commentId);
+    void removeComment(String accountName, String repoSlug, String node, long commentId);
 
     /**
      * Adds a new comment to a changeset node. This call requires authentication.
@@ -104,12 +104,13 @@ public interface RepositoriesChangesetsOperations {
      * API call: POST https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/changesets/{node}/comments
      *
      * @param accountName The team or individual account owning the repo.
-     * @param repoSlug The repo identifier.
-     * @param node The node changeset identifier.
-     * @param comment The comment metadata and content.
+     * @param repoSlug    The repo identifier.
+     * @param node        The node changeset identifier.
+     * @param content     The comment metadata and content.
+     * @param parentId    id of the parent
      * @return Created comment.
      */
-    BitBucketComment postComment(String accountName, String repoSlug, String node, BitBucketComment comment);
+    BitBucketComment postComment(String accountName, String repoSlug, String node, String content, long parentId);
 
     /**
      * Puts an update to an existing changeset comment identified by the comment_id.
@@ -119,13 +120,13 @@ public interface RepositoriesChangesetsOperations {
      * API call: PUT https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/changesets/{node}/comments/{comment_id}
      *
      * @param accountName The team or individual account owning the repo.
-     * @param repoSlug The repo identifier.
-     * @param node The node changeset identifier.
-     * @param commentId The comment identifier.
-     * @param comment The comment data to update
+     * @param repoSlug    The repo identifier.
+     * @param node        The node changeset identifier.
+     * @param commentId   The comment identifier.
+     * @param content     The comment data to update
      * @return Updated comment.
      */
-    BitBucketComment updateComment(String accountName, String repoSlug, String node, Long commentId, BitBucketComment comment);
+    BitBucketComment updateComment(String accountName, String repoSlug, String node, Long commentId, String content);
 
     /**
      * Toggles the spam flag on a changeset comment identified by the comment_id.
@@ -133,9 +134,9 @@ public interface RepositoriesChangesetsOperations {
      * API call: PUT  https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/changesets/{node}/comments/spam/{comment_id }
      *
      * @param accountName The team or individual account owning the repo.
-     * @param repoSlug The repo identifier.
-     * @param node The node changeset identifier.
-     * @param commentId The comment identifier.
+     * @param repoSlug    The repo identifier.
+     * @param node        The node changeset identifier.
+     * @param commentId   The comment identifier.
      * @return Updated comment.
      */
     BitBucketComment toggleSpamComment(String accountName, String repoSlug, String node, Long commentId);

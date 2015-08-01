@@ -147,7 +147,7 @@ public class RepositoriesChangesetsTemplateTest extends BaseTemplateTest {
     @Test
     public void testRemoveComment() throws Exception {
         //given
-        mockServer.expect(requestTo("https://api.bitbucket.org/1.0/users/testaccount/invitations/test@email.tld")).andExpect(method(DELETE))
+        mockServer.expect(requestTo("https://api.bitbucket.org/1.0/repositories/testusername/testreposlug/changesets/testnode/comments/1")).andExpect(method(DELETE))
                 .andRespond(withNoContent());
         //when
         bitBucket.repositoriesOperations().repositoriesChangesetsOperations().removeComment(TEST_USERNAME, TEST_REPOSLUG, TEST_NODE, 1L);
@@ -160,10 +160,11 @@ public class RepositoriesChangesetsTemplateTest extends BaseTemplateTest {
         //given
         mockServer.expect(requestTo("https://api.bitbucket.org/1.0/users/testaccount/ssh-keys")).andExpect(method(POST)).andExpect(
                 content().string("content=content&parent_id=1")).andRespond(withSuccess(jsonResource("post-comment"), MediaType.APPLICATION_JSON));
-        BitBucketComment comment = BitBucketComment.builder().content("content").parentId(2L).build();
+        String content = "content";
+        long parentId = 2L;
         //when
         BitBucketComment result = bitBucket.repositoriesOperations().repositoriesChangesetsOperations()
-                .postComment(TEST_USERNAME, TEST_REPOSLUG, TEST_NODE, comment);
+                .postComment(TEST_USERNAME, TEST_REPOSLUG, TEST_NODE, content, parentId);
         //then
         mockServer.verify();
         assertEquals("buserbb", result.getUsername());
@@ -174,10 +175,10 @@ public class RepositoriesChangesetsTemplateTest extends BaseTemplateTest {
         //given
         mockServer.expect(requestTo("https://api.bitbucket.org/1.0/users/testaccount/emails/test@email.tld")).andExpect(method(PUT))
                 .andExpect(content().string("content=newcontent")).andRespond(withSuccess(jsonResource("put-comment-update"), MediaType.APPLICATION_JSON));
-        BitBucketComment comment = BitBucketComment.builder().content("newcontent").build();
+        String content = "newcontent";
         //when
         BitBucketComment result = bitBucket.repositoriesOperations().repositoriesChangesetsOperations()
-                .updateComment(TEST_USERNAME, TEST_REPOSLUG, TEST_NODE, 1L, comment);
+                .updateComment(TEST_USERNAME, TEST_REPOSLUG, TEST_NODE, 1L, content);
         //then
         mockServer.verify();
         assertEquals("buserbb", result.getUsername());
