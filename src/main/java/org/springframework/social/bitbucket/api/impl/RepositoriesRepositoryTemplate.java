@@ -39,7 +39,7 @@ public class RepositoriesRepositoryTemplate extends AbstractBitBucketOperations 
     }
 
     @Override
-    public  final List<BitBucketBranchesTags> getBranchesTags(String accountName, String repositorySlug) {
+    public  final BitBucketBranchesTags getBranchesTags(String accountName, String repositorySlug) {
         return null;
     }
 

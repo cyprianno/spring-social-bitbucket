@@ -68,9 +68,9 @@ public interface RepositoriesRepositoryOperations {
      *
      * @param accountName The team or individual account.
      * @param repositorySlug A repository belonging to the account.
-     * @return List of aggregated branches and tags.
+     * @return Aggregated branches and tags.
      */
-    List<BitBucketBranchesTags> getBranchesTags(String accountName, String repositorySlug);
+    BitBucketBranchesTags getBranchesTags(String accountName, String repositorySlug);
 
     /**
      * Gets a repository's manifest for a revision.
