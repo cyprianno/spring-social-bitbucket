@@ -85,7 +85,7 @@ public class BitBucketLink {
      */
     @JsonProperty
     @Getter
-    private Long id;
+    private long id;
 
     /**
      * A profile of representing one of the following handler types:
