@@ -62,4 +62,11 @@ public class BitBucketUser implements Serializable {
     @JsonProperty("avatar") @Getter
     private String avatarImageUrl;
 
+    /**
+     * Resource Uri
+     */
+    @JsonProperty("resource_uri") @Getter
+    private String resourceUri;
+
+
 }
