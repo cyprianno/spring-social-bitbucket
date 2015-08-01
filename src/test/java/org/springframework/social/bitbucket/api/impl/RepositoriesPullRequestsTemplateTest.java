@@ -15,6 +15,7 @@ import static org.springframework.test.web.client.response.MockRestResponseCreat
 
 /**
  * @author Cyprian Śniegota
+ * @author Łucja Śniegota
  * @since 2.0.0
  */
 public class RepositoriesPullRequestsTemplateTest extends BaseTemplateTest {
@@ -44,7 +45,7 @@ public class RepositoriesPullRequestsTemplateTest extends BaseTemplateTest {
         mockServer.expect(requestTo("https://api.bitbucket.org/1.0/users/testaccount/emails/test@email.tld")).andExpect(method(PUT))
                 .andExpect(content().string("primary=true")).andRespond(withSuccess(jsonResource("update-email-address"), MediaType.APPLICATION_JSON));
         //when
-        bitBucket.repositoriesOperations().repositoriesPullRequestsOperations().updateComment(TEST_USERNAME, TEST_REPOSLUG, 1L, 2L, "ucontent");
+       bitBucket.repositoriesOperations().repositoriesPullRequestsOperations().updateComment(TEST_USERNAME, TEST_REPOSLUG, 1L, 2L, "ucontent");
         //then
         mockServer.verify();
         assertTrue(false);

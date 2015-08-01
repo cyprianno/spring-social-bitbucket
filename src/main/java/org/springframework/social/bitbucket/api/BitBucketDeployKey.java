@@ -17,7 +17,7 @@ public class BitBucketDeployKey {
      * The key identifier (ID).
      */
     @JsonProperty @Getter
-    private Long id;
+    private long pk;
 
     /**
      * Public key value.
