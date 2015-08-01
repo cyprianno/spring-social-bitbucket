@@ -24,10 +24,9 @@ public class RepositoriesRepositoryTemplateTest extends BaseTemplateTest {
     @Test
     public void testCreateNewFork() throws Exception {
         assertTrue(false);
-        //post-repository-fork
         //given
         mockServer.expect(requestTo("https://api.bitbucket.org/1.0/users/testaccount/ssh-keys")).andExpect(method(POST)).andExpect(
-                content().string("key=123123123")).andRespond(withSuccess(jsonResource("post-key"), MediaType.APPLICATION_JSON));
+                content().string("key=123123123")).andRespond(withSuccess(jsonResource("post-repository-fork"), MediaType.APPLICATION_JSON));
         //when
         bitBucket.repositoriesOperations().repositoriesRepositoryOperations().createNewFork(TEST_USERNAME, TEST_REPOSLUG, "fname", "fdesc", "php", true);
         //then
@@ -38,10 +37,9 @@ public class RepositoriesRepositoryTemplateTest extends BaseTemplateTest {
     @Test
     public void testUpdateRepository() throws Exception {
         assertTrue(false);
-        //put-repository
         //given
         mockServer.expect(requestTo("https://api.bitbucket.org/1.0/users/testaccount/emails/test@email.tld")).andExpect(method(PUT))
-                .andExpect(content().string("primary=true")).andRespond(withSuccess(jsonResource("update-email-address"), MediaType.APPLICATION_JSON));
+                .andExpect(content().string("primary=true")).andRespond(withSuccess(jsonResource("put-repository"), MediaType.APPLICATION_JSON));
         BitBucketRepository repository = BitBucketRepository.builder().description("desc").build();
         //when
         bitBucket.repositoriesOperations().repositoriesRepositoryOperations().updateRepository(TEST_USERNAME, TEST_REPOSLUG, repository);
@@ -53,10 +51,9 @@ public class RepositoriesRepositoryTemplateTest extends BaseTemplateTest {
     @Test
     public void testGetBranches() throws Exception {
         assertTrue(false);
-        //get-branches
         //given
         mockServer.expect(requestTo("https://api.bitbucket.org/1.0/repositories/testusername/testreposlug/changesets/testnode/comments"))
-                .andExpect(method(GET)).andRespond(withSuccess(jsonResource("get-comments"), MediaType.APPLICATION_JSON));
+                .andExpect(method(GET)).andRespond(withSuccess(jsonResource("get-branches"), MediaType.APPLICATION_JSON));
         //when
         bitBucket.repositoriesOperations().repositoriesRepositoryOperations().getBranches(TEST_USERNAME, TEST_REPOSLUG);
         //then
@@ -67,10 +64,9 @@ public class RepositoriesRepositoryTemplateTest extends BaseTemplateTest {
     @Test
     public void testGetMainBranch() throws Exception {
         assertTrue(false);
-        //get-main-branch
         //given
         mockServer.expect(requestTo("https://api.bitbucket.org/1.0/repositories/testusername/testreposlug/changesets/testnode/comments"))
-                .andExpect(method(GET)).andRespond(withSuccess(jsonResource("get-comments"), MediaType.APPLICATION_JSON));
+                .andExpect(method(GET)).andRespond(withSuccess(jsonResource("get-main-branch"), MediaType.APPLICATION_JSON));
         //when
         bitBucket.repositoriesOperations().repositoriesRepositoryOperations().getMainBranch(TEST_USERNAME, TEST_REPOSLUG);
         //then
@@ -81,10 +77,9 @@ public class RepositoriesRepositoryTemplateTest extends BaseTemplateTest {
     @Test
     public void testGetBranchesTags() throws Exception {
         assertTrue(false);
-        //get-branches-tags
         //given
         mockServer.expect(requestTo("https://api.bitbucket.org/1.0/repositories/testusername/testreposlug/changesets/testnode/comments"))
-                .andExpect(method(GET)).andRespond(withSuccess(jsonResource("get-comments"), MediaType.APPLICATION_JSON));
+                .andExpect(method(GET)).andRespond(withSuccess(jsonResource("get-branches-tags"), MediaType.APPLICATION_JSON));
         //when
         bitBucket.repositoriesOperations().repositoriesRepositoryOperations().getBranchesTags(TEST_USERNAME, TEST_REPOSLUG);
         //then
@@ -95,10 +90,9 @@ public class RepositoriesRepositoryTemplateTest extends BaseTemplateTest {
     @Test
     public void testGetManifest() throws Exception {
         assertTrue(false);
-        //get-repository-manifest
         //given
         mockServer.expect(requestTo("https://api.bitbucket.org/1.0/repositories/testusername/testreposlug/changesets/testnode/comments"))
-                .andExpect(method(GET)).andRespond(withSuccess(jsonResource("get-comments"), MediaType.APPLICATION_JSON));
+                .andExpect(method(GET)).andRespond(withSuccess(jsonResource("get-repository-manifest"), MediaType.APPLICATION_JSON));
         //when
         bitBucket.repositoriesOperations().repositoriesRepositoryOperations().getManifest(TEST_USERNAME, TEST_REPOSLUG, "revasdf");
         //then
@@ -109,10 +103,9 @@ public class RepositoriesRepositoryTemplateTest extends BaseTemplateTest {
     @Test
     public void testGetTags() throws Exception {
         assertTrue(false);
-        //get-repository-tags
         //given
         mockServer.expect(requestTo("https://api.bitbucket.org/1.0/repositories/testusername/testreposlug/changesets/testnode/comments"))
-                .andExpect(method(GET)).andRespond(withSuccess(jsonResource("get-comments"), MediaType.APPLICATION_JSON));
+                .andExpect(method(GET)).andRespond(withSuccess(jsonResource("get-repository-tags"), MediaType.APPLICATION_JSON));
         //when
         bitBucket.repositoriesOperations().repositoriesRepositoryOperations().getTags(TEST_USERNAME, TEST_REPOSLUG);
         //then
@@ -123,10 +116,9 @@ public class RepositoriesRepositoryTemplateTest extends BaseTemplateTest {
     @Test
     public void testGetRawSource() throws Exception {
         assertTrue(false);
-        //get-repository-raw-source
         //given
         mockServer.expect(requestTo("https://api.bitbucket.org/1.0/repositories/testusername/testreposlug/changesets/testnode/comments"))
-                .andExpect(method(GET)).andRespond(withSuccess(jsonResource("get-comments"), MediaType.APPLICATION_JSON));
+                .andExpect(method(GET)).andRespond(withSuccess(jsonResource("get-repository-raw-source"), MediaType.APPLICATION_JSON));
         //when
         bitBucket.repositoriesOperations().repositoriesRepositoryOperations().getRawSource(TEST_USERNAME, TEST_REPOSLUG, "revasdf", "/src/main/file.txt");
         //then
@@ -137,10 +129,9 @@ public class RepositoriesRepositoryTemplateTest extends BaseTemplateTest {
     @Test
     public void testGetHistoryOfFile() throws Exception {
         assertTrue(false);
-        //get-repository-history-file
         //given
         mockServer.expect(requestTo("https://api.bitbucket.org/1.0/repositories/testusername/testreposlug/changesets/testnode/comments"))
-                .andExpect(method(GET)).andRespond(withSuccess(jsonResource("get-comments"), MediaType.APPLICATION_JSON));
+                .andExpect(method(GET)).andRespond(withSuccess(jsonResource("get-repository-history-file"), MediaType.APPLICATION_JSON));
         //when
         bitBucket.repositoriesOperations().repositoriesRepositoryOperations().getHistoryOfFile(TEST_USERNAME, TEST_REPOSLUG, "testnode", "/src/main/file.txt");
         //then
