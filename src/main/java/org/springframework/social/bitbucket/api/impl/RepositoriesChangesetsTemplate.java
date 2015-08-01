@@ -1,13 +1,11 @@
 package org.springframework.social.bitbucket.api.impl;
 
-import org.springframework.social.bitbucket.api.BitBucketChangeset;
-import org.springframework.social.bitbucket.api.BitBucketChangesets;
-import org.springframework.social.bitbucket.api.BitBucketComment;
-import org.springframework.social.bitbucket.api.BitBucketDiff;
-import org.springframework.social.bitbucket.api.BitBucketRepository;
-import org.springframework.social.bitbucket.api.BitBucketRepositoryStatistics;
-import org.springframework.social.bitbucket.api.RepositoriesChangesetsOperations;
-import org.springframework.social.bitbucket.api.UserWithRepositories;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.MediaType;
+import org.springframework.social.bitbucket.api.*;
+import org.springframework.social.support.ParameterMap;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
@@ -67,16 +65,38 @@ public class RepositoriesChangesetsTemplate extends AbstractBitBucketOperations 
 
     @Override
     public  final BitBucketComment postComment(String accountName, String repoSlug, String node, String content, long parentId) {
-        return null;
+        return getRestTemplate()
+                .postForObject(buildUrl("/repositories/{accountname}/{repo_slug}/changesets/{node}/comments"), new CommentCreate(content,parentId), BitBucketComment.class,
+                        accountName, repoSlug, node);
     }
 
     @Override
     public  final BitBucketComment updateComment(String accountName, String repoSlug, String node, Long commentId, String content) {
-        return null;
+        HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
+        return getRestTemplate().exchange(buildUrl("/repositories/{accountname}/{repo_slug}/changesets/{node}/comments/{comment_id}"), HttpMethod.PUT,
+                new HttpEntity<>(new CommentUpdate(content), httpHeaders),
+                BitBucketComment.class, accountName, repoSlug, node, commentId).getBody();
     }
 
     @Override
     public  final BitBucketComment toggleSpamComment(String accountName, String repoSlug, String node, Long commentId) {
-        return null;
+        return getRestTemplate().exchange(buildUrl("/repositories/{accountname}/{repo_slug}/changesets/{node}/comments/spam/{comment_id}"), HttpMethod.PUT, null,
+                BitBucketComment.class, accountName, repoSlug, node, commentId).getBody();
+    }
+
+    private static final class CommentCreate extends ParameterMap {
+
+        public CommentCreate(String content, long parentId) {
+            set("content", content);
+            set("parent_id", String.valueOf(parentId));
+        }
+
+    }
+
+    private static final class CommentUpdate extends ParameterMap {
+        public CommentUpdate(String content) {
+            set("content", content);
+        }
     }
 }

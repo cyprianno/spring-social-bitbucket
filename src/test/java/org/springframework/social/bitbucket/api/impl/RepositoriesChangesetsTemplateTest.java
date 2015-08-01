@@ -158,8 +158,8 @@ public class RepositoriesChangesetsTemplateTest extends BaseTemplateTest {
     @Test
     public void testPostComment() throws Exception {
         //given
-        mockServer.expect(requestTo("https://api.bitbucket.org/1.0/users/testaccount/ssh-keys")).andExpect(method(POST)).andExpect(
-                content().string("content=content&parent_id=1")).andRespond(withSuccess(jsonResource("post-comment"), MediaType.APPLICATION_JSON));
+        mockServer.expect(requestTo("https://api.bitbucket.org/1.0/repositories/testusername/testreposlug/changesets/testnode/comments")).andExpect(method(POST)).andExpect(
+                content().string("content=content&parent_id=2")).andRespond(withSuccess(jsonResource("post-comment"), MediaType.APPLICATION_JSON));
         String content = "content";
         long parentId = 2L;
         //when
@@ -173,7 +173,7 @@ public class RepositoriesChangesetsTemplateTest extends BaseTemplateTest {
     @Test
     public void testUpdateComment() throws Exception {
         //given
-        mockServer.expect(requestTo("https://api.bitbucket.org/1.0/users/testaccount/emails/test@email.tld")).andExpect(method(PUT))
+        mockServer.expect(requestTo("https://api.bitbucket.org/1.0/repositories/testusername/testreposlug/changesets/testnode/comments/1")).andExpect(method(PUT))
                 .andExpect(content().string("content=newcontent")).andRespond(withSuccess(jsonResource("put-comment-update"), MediaType.APPLICATION_JSON));
         String content = "newcontent";
         //when
@@ -181,19 +181,19 @@ public class RepositoriesChangesetsTemplateTest extends BaseTemplateTest {
                 .updateComment(TEST_USERNAME, TEST_REPOSLUG, TEST_NODE, 1L, content);
         //then
         mockServer.verify();
-        assertEquals("buserbb", result.getUsername());
+        assertEquals("auserbb", result.getUsername());
     }
 
     @Test
     public void testToogleSpamComment() throws Exception {
         //given
-        mockServer.expect(requestTo("https://api.bitbucket.org/1.0/users/testaccount/emails/test@email.tld")).andExpect(method(PUT))
-                .andExpect(content().string("primary=true")).andRespond(withSuccess(jsonResource("toggle-changeset-comment-spam"), MediaType.APPLICATION_JSON));
+        mockServer.expect(requestTo("https://api.bitbucket.org/1.0/repositories/testusername/testreposlug/changesets/testnode/comments/spam/1")).andExpect(method(PUT))
+                .andRespond(withSuccess(jsonResource("toggle-changeset-comment-spam"), MediaType.APPLICATION_JSON));
         //when
         BitBucketComment result = bitBucket.repositoriesOperations().repositoriesChangesetsOperations()
                 .toggleSpamComment(TEST_USERNAME, TEST_REPOSLUG, TEST_NODE, 1L);
         //then
         mockServer.verify();
-        assertEquals("buserbb", result.getUsername());
+        assertEquals("auserbb", result.getUsername());
     }
 }
