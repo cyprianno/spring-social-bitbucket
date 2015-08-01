@@ -9,6 +9,7 @@ import lombok.Getter;
 import org.springframework.social.bitbucket.api.impl.UTCDateDeserializer;
 import org.springframework.social.bitbucket.utils.DateUtils;
 
+import javax.annotation.Nullable;
 import java.util.Date;
 
 /**
@@ -36,7 +37,7 @@ public class BitBucketComment {
     private String node;
 
     @JsonProperty(value = "comment_id") @Getter
-    private Long commentId;
+    private long commentId;
 
     @JsonProperty("pull_request_id") @Getter
     private Long pullRequestId;
@@ -45,6 +46,7 @@ public class BitBucketComment {
     private String displayName;
 
     @JsonProperty("parent_id") @Getter
+    @Nullable
     private Long parentId;
 
     @JsonProperty @Getter
@@ -73,6 +75,9 @@ public class BitBucketComment {
 
     @JsonProperty("line_to") @Getter
     private Long lineTo;
+
+    @JsonProperty("author_info") @Getter
+    private BitBucketUser authorInfo;
 
     @JsonProperty("utc_created_on") @JsonDeserialize(using = UTCDateDeserializer.class)
     private Date utcCreatedOn;

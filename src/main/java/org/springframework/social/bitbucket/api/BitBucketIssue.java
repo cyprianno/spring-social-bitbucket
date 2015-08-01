@@ -42,7 +42,7 @@ public class BitBucketIssue {
     private Date utcLastUpdated;
 
     @JsonProperty @Getter
-    private Long commentCount;
+    private long commentCount;
 
     @JsonProperty @Getter
     private BitBucketIssueMetadata metadata;
@@ -57,10 +57,10 @@ public class BitBucketIssue {
     private Date utcCreatedOn;
 
     @JsonProperty @Getter
-    private Long localId;
+    private long localId;
 
     @JsonProperty @Getter
-    private Long followerCount;
+    private long followerCount;
 
     @JsonProperty @Getter
     private String resourceUri;

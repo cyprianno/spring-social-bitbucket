@@ -141,7 +141,7 @@ public class RepositoriesChangesetsTemplateTest extends BaseTemplateTest {
         //then
         mockServer.verify();
         assertEquals(2, result.size());
-        assertEquals((Long) 25570L, result.iterator().next().getCommentId());
+        assertEquals(25570L, result.iterator().next().getCommentId());
     }
 
     @Test
