@@ -6,6 +6,7 @@ import org.springframework.social.bitbucket.api.BitBucketService;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 
 import static org.junit.Assert.*;
@@ -30,67 +31,80 @@ public class RepositoriesServicesTemplateTest extends BaseTemplateTest {
 
     @Test
     public void testGetServices() throws Exception {
-        assertTrue(false);
-        //get-services
         //given
-        mockServer.expect(requestTo("https://api.bitbucket.org/1.0/repositories/testusername/testreposlug/changesets/testnode/comments"))
-                .andExpect(method(GET)).andRespond(withSuccess(jsonResource("get-comments"), MediaType.APPLICATION_JSON));
+        mockServer.expect(requestTo("https://api.bitbucket.org/1.0/repositories/testusername/testreposlug/services"))
+                .andExpect(method(GET)).andRespond(withSuccess(jsonResource("get-services"), MediaType.APPLICATION_JSON));
         //when
-        bitBucket.repositoriesOperations().repositoriesServicesOperations().getServices(TEST_USERNAME, TEST_REPOSLUG);
+        List<BitBucketService> result = bitBucket.repositoriesOperations().repositoriesServicesOperations().getServices(TEST_USERNAME, TEST_REPOSLUG);
         //then
         mockServer.verify();
-        assertTrue(false);
+        assertEquals(2, result.size());
+        BitBucketService firstService = result.iterator().next();
+        assertEquals(3L, firstService.getId());
+        assertNotNull(firstService.getService());
+        assertEquals("email", firstService.getService().getType());
     }
 
     @Test
     public void testGetService() throws Exception {
-        assertTrue(false);
-        //get-service
         //given
-        mockServer.expect(requestTo("https://api.bitbucket.org/1.0/repositories/testusername/testreposlug/changesets/testnode/comments"))
-                .andExpect(method(GET)).andRespond(withSuccess(jsonResource("get-comments"), MediaType.APPLICATION_JSON));
+        mockServer.expect(requestTo("https://api.bitbucket.org/1.0/repositories/testusername/testreposlug/service/1"))
+                .andExpect(method(GET)).andRespond(withSuccess(jsonResource("get-service"), MediaType.APPLICATION_JSON));
         //when
-        bitBucket.repositoriesOperations().repositoriesServicesOperations().getService(TEST_USERNAME, TEST_REPOSLUG, 1L);
+        BitBucketService result = bitBucket.repositoriesOperations().repositoriesServicesOperations().getService(TEST_USERNAME, TEST_REPOSLUG, 1L);
         //then
         mockServer.verify();
-        assertTrue(false);
+        assertNotNull(result);
+        assertEquals(4L, result.getId());
+        assertEquals("POST", result.getService().getType());
+        assertEquals(1, result.getService().getFields().size());
+        BitBucketService.BitBucketServiceProfileField firstField = result.getService().getFields().iterator().next();
+        assertEquals("URL", firstField.getName());
+        assertEquals("http://example.com/post", firstField.getValue());
     }
 
     @Test
     public void testPostNewService() throws Exception {
-        assertTrue(false);
-        //post-service
         //given
-        mockServer.expect(requestTo("https://api.bitbucket.org/1.0/users/testaccount/ssh-keys")).andExpect(method(POST)).andExpect(
-                content().string("key=123123123")).andRespond(withSuccess(jsonResource("post-key"), MediaType.APPLICATION_JSON));
+        mockServer.expect(requestTo("https://api.bitbucket.org/1.0/repositories/testusername/testreposlug/services")).andExpect(method(POST)).andExpect(
+                content().string("type=POST&URL=https%3A%2F%2Fbitbucket.org/post")).andRespond(withSuccess(jsonResource("post-service"), MediaType.APPLICATION_JSON));
         List<BitBucketService.BitBucketServiceProfileField> fields = Collections.singletonList(
-                BitBucketService.BitBucketServiceProfileField.builder().name("fname").value("fval").build());
+                BitBucketService.BitBucketServiceProfileField.builder().name("URL").value("https://bitbucket.org/post").build());
         //when
-        bitBucket.repositoriesOperations().repositoriesServicesOperations().postNewService(TEST_USERNAME, TEST_REPOSLUG, "type", fields);
+        BitBucketService result = bitBucket.repositoriesOperations().repositoriesServicesOperations().postNewService(TEST_USERNAME, TEST_REPOSLUG, "POST", fields);
         //then
         mockServer.verify();
-        assertTrue(false);
+        assertNotNull(result);
+        assertEquals(5L, result.getId());
+        assertEquals("POST", result.getService().getType());
+        assertEquals(1, result.getService().getFields().size());
+        BitBucketService.BitBucketServiceProfileField firstField = result.getService().getFields().iterator().next();
+        assertEquals("URL", firstField.getName());
+        assertEquals("http://example.com/post", firstField.getValue());
     }
 
     @Test
     public void testUpdateService() throws Exception {
-        assertTrue(false);
-        //put-service
         //given
-        mockServer.expect(requestTo("https://api.bitbucket.org/1.0/users/testaccount/emails/test@email.tld")).andExpect(method(PUT))
-                .andExpect(content().string("primary=true")).andRespond(withSuccess(jsonResource("update-email-address"), MediaType.APPLICATION_JSON));
+        mockServer.expect(requestTo("https://api.bitbucket.org/1.0/repositories/testusername/testreposlug/services/1")).andExpect(method(PUT))
+                .andExpect(content().string("URL=https%3A%2F%2Fbitbucket.org/post")).andRespond(withSuccess(jsonResource("put-service"), MediaType.APPLICATION_JSON));
         List<BitBucketService.BitBucketServiceProfileField> fields = Collections.singletonList(
-                BitBucketService.BitBucketServiceProfileField.builder().name("fname").value("fval").build());
+                BitBucketService.BitBucketServiceProfileField.builder().name("URL").value("https://bitbucket.org/post").build());
         //when
-        bitBucket.repositoriesOperations().repositoriesServicesOperations().updateService(TEST_USERNAME, TEST_REPOSLUG, 1L, fields);
+        BitBucketService result = bitBucket.repositoriesOperations().repositoriesServicesOperations().updateService(TEST_USERNAME, TEST_REPOSLUG, 1L, fields);
         //then
         mockServer.verify();
-        assertTrue(false);
+        assertNotNull(result);
+        assertEquals(5L, result.getId());
+        assertEquals("POST", result.getService().getType());
+        assertEquals(1, result.getService().getFields().size());
+        BitBucketService.BitBucketServiceProfileField firstField = result.getService().getFields().iterator().next();
+        assertEquals("URL", firstField.getName());
+        assertEquals("http://example.com/new_post", firstField.getValue());
     }
 
     @Test
     public void testRemoveService() throws Exception {
-        assertTrue(false);
         //given
         mockServer.expect(requestTo("https://api.bitbucket.org/1.0/users/testaccount/invitations/test@email.tld")).andExpect(method(DELETE))
                 .andRespond(withNoContent());
@@ -98,6 +112,5 @@ public class RepositoriesServicesTemplateTest extends BaseTemplateTest {
         bitBucket.repositoriesOperations().repositoriesServicesOperations().removeService(TEST_USERNAME, TEST_REPOSLUG, 1L);
         //then
         mockServer.verify();
-        assertTrue(false);
     }
 }
