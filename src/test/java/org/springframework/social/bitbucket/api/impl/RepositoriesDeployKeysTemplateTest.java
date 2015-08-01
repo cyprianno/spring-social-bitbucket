@@ -81,7 +81,7 @@ public class RepositoriesDeployKeysTemplateTest extends BaseTemplateTest {
     @Test
     public void testRemoveDeployKey() throws Exception {
         //given
-        mockServer.expect(requestTo("https://api.bitbucket.org/1.0/repositories/testusername/testreposlug/deploy-keys")).andExpect(method(DELETE))
+        mockServer.expect(requestTo("https://api.bitbucket.org/1.0/repositories/testusername/testreposlug/deploy-keys/1")).andExpect(method(DELETE))
                 .andRespond(withNoContent());
         //when
         bitBucket.repositoriesOperations().repositoriesDeployKeysOperations().removeDeployKey(TEST_USERNAME, TEST_REPOSLUG, 1L);
