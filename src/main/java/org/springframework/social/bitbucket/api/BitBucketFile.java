@@ -38,4 +38,7 @@ public class BitBucketFile {
     @JsonProperty @Getter
     private String data;
 
+    @JsonProperty @Getter
+    private long size;
+
 }

@@ -40,8 +40,8 @@ public class RepositoriesWikiTemplateTest extends BaseTemplateTest {
     @Test
     public void testPostNewPage() throws Exception {
         //given
-        mockServer.expect(requestTo("https://api.bitbucket.org/1.0/users/testaccount/ssh-keys")).andExpect(method(POST)).andExpect(
-                content().string("key=123123123")).andRespond(withSuccess("OK", MediaType.TEXT_PLAIN));
+        mockServer.expect(requestTo("https://api.bitbucket.org/1.0/repositories/testusername/testreposlug/wiki/home/newpage")).andExpect(method(POST)).andExpect(
+                content().string("content=Content")).andRespond(withSuccess("OK", MediaType.TEXT_PLAIN));
         //when
         boolean result = bitBucket.repositoriesOperations().repositoriesWikiOperations().postNewPage(TEST_USERNAME, TEST_REPOSLUG, "/home/newpage", "Content");
         //then
@@ -52,8 +52,8 @@ public class RepositoriesWikiTemplateTest extends BaseTemplateTest {
     @Test
     public void testUpdatePage() throws Exception {
         //given
-        mockServer.expect(requestTo("https://api.bitbucket.org/1.0/users/testaccount/emails/test@email.tld")).andExpect(method(PUT))
-                .andExpect(content().string("primary=true")).andRespond(withSuccess("OK", MediaType.TEXT_PLAIN));
+        mockServer.expect(requestTo("https://api.bitbucket.org/1.0/repositories/testusername/testreposlug/wiki/home/newpage")).andExpect(method(PUT))
+                .andExpect(content().string("content=new content")).andRespond(withSuccess("OK", MediaType.TEXT_PLAIN));
         //when
         boolean result = bitBucket.repositoriesOperations().repositoriesWikiOperations().updatePage(TEST_USERNAME, TEST_REPOSLUG, "/home/newpage", "new content");
         //then
