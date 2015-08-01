@@ -9,7 +9,6 @@ import lombok.Getter;
 import org.springframework.social.bitbucket.api.impl.UTCDateDeserializer;
 import org.springframework.social.bitbucket.utils.DateUtils;
 
-import javax.annotation.Nullable;
 import java.util.Date;
 
 /**
@@ -40,14 +39,13 @@ public class BitBucketComment {
     private long commentId;
 
     @JsonProperty("pull_request_id") @Getter
-    private Long pullRequestId;
+    private long pullRequestId;
 
     @JsonProperty("display_name") @Getter
     private String displayName;
 
     @JsonProperty("parent_id") @Getter
-    @Nullable
-    private Long parentId;
+    private long parentId;
 
     @JsonProperty @Getter
     private boolean deleted;
@@ -71,10 +69,10 @@ public class BitBucketComment {
     private String userAvatarUrl;
 
     @JsonProperty("line_from") @Getter
-    private Long lineFrom;
+    private long lineFrom;
 
     @JsonProperty("line_to") @Getter
-    private Long lineTo;
+    private long lineTo;
 
     @JsonProperty("author_info") @Getter
     private BitBucketUser authorInfo;
@@ -84,6 +82,15 @@ public class BitBucketComment {
 
     @JsonProperty("is_spam") @Getter
     private boolean spam;
+
+    @JsonProperty("base_rev") @Getter
+    private String baseRev;
+
+    @JsonProperty("anchor") @Getter
+    private String anchor;
+
+    @JsonProperty("dest_rev") @Getter
+    private String destRev;
 
     public Date getUtcLastUpdated() {
         return DateUtils.copyNullable(utcLastUpdated);
