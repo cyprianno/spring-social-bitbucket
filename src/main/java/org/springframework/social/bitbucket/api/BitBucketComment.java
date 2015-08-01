@@ -36,16 +36,16 @@ public class BitBucketComment {
     private String node;
 
     @JsonProperty(value = "comment_id") @Getter
-    private Long commentId;
+    private long commentId;
 
     @JsonProperty("pull_request_id") @Getter
-    private Long pullRequestId;
+    private long pullRequestId;
 
     @JsonProperty("display_name") @Getter
     private String displayName;
 
     @JsonProperty("parent_id") @Getter
-    private Long parentId;
+    private long parentId;
 
     @JsonProperty @Getter
     private boolean deleted;
@@ -69,16 +69,25 @@ public class BitBucketComment {
     private String userAvatarUrl;
 
     @JsonProperty("line_from") @Getter
-    private Long lineFrom;
+    private long lineFrom;
 
     @JsonProperty("line_to") @Getter
-    private Long lineTo;
+    private long lineTo;
 
     @JsonProperty("utc_created_on") @JsonDeserialize(using = UTCDateDeserializer.class)
     private Date utcCreatedOn;
 
     @JsonProperty("is_spam") @Getter
     private boolean spam;
+
+    @JsonProperty("base_rev") @Getter
+    private String baseRev;
+
+    @JsonProperty("anchor") @Getter
+    private String anchor;
+
+    @JsonProperty("dest_rev") @Getter
+    private String destRev;
 
     public Date getUtcLastUpdated() {
         return DateUtils.copyNullable(utcLastUpdated);
