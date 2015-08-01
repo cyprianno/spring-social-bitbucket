@@ -16,7 +16,7 @@ public interface RepositoriesDeployKeysOperations {
      * API call: GET https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/deploy-keys
      *
      * @param accountName The team or individual account.
-     * @param repoSlug The repo identifier (not to be confused with the repo's name).
+     * @param repoSlug    The repo identifier (not to be confused with the repo's name).
      * @return List of deploy keys.
      */
     List<BitBucketDeployKey> getDeployKeys(String accountName, String repoSlug);
@@ -26,8 +26,8 @@ public interface RepositoriesDeployKeysOperations {
      * API call: GET https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/deploy-keys/{pk}
      *
      * @param accountName The team or individual account.
-     * @param repoSlug The repo identifier (not to be confused with the repo's name).
-     * @param pk The key identifier assigned by Bitbucket. Use the GET call to obtain this value.
+     * @param repoSlug    The repo identifier (not to be confused with the repo's name).
+     * @param pk          The key identifier assigned by Bitbucket. Use the GET call to obtain this value.
      * @return Specified deploy key.
      */
     BitBucketDeployKey getDeployKey(String accountName, String repoSlug, Long pk);
@@ -40,18 +40,19 @@ public interface RepositoriesDeployKeysOperations {
      * API call: POST https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/deploy-keys --data "key=value"
      *
      * @param accountName The team or individual account.
-     * @param repoSlug The repo identifier (not to be confused with the repo's name).
+     * @param repoSlug    The repo identifier (not to be confused with the repo's name).
+     * @param key         The key.
      * @return Created deploy key.
      */
-    BitBucketDeployKey postDeployKey(String accountName, String repoSlug);
+    BitBucketDeployKey postDeployKey(String accountName, String repoSlug, String key);
 
     /**
      * Deletes the key specified by the key_id value. This call requires authentication.
      * API call: DELETE https://bitbucket.org/api/1.0/repositories/{accountname}/{repo_slug}/deploy-keys/{pk}
      *
      * @param accountName The team or individual account.
-     * @param repoSlug The repo identifier (not to be confused with the repo's name).
-     * @param pk The key identifier assigned by Bitbucket. Use the GET call to obtain this value.
+     * @param repoSlug    The repo identifier (not to be confused with the repo's name).
+     * @param pk          The key identifier assigned by Bitbucket. Use the GET call to obtain this value.
      */
     void removeDeployKey(String accountName, String repoSlug, Long pk);
 }

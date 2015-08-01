@@ -24,7 +24,6 @@ import static org.springframework.test.web.client.response.MockRestResponseCreat
 public class RepositoriesDeployKeysTemplateTest extends BaseTemplateTest {
     private static final String TEST_USERNAME = "testusername";
     private static final String TEST_REPOSLUG = "testreposlug";
-    private static final String TEST_NODE = "testnode";
 
     @Test
     public void testGetDeployKeys() throws Exception {
@@ -69,7 +68,7 @@ public class RepositoriesDeployKeysTemplateTest extends BaseTemplateTest {
         mockServer.expect(requestTo("https://api.bitbucket.org/1.0/repositories/testusername/testreposlug/deploy-keys")).andExpect(method(POST)).andExpect(
                 content().string("key=123123123")).andRespond(withSuccess(jsonResource("post-key"), MediaType.APPLICATION_JSON));
         //when
-        BitBucketDeployKey result = bitBucket.repositoriesOperations().repositoriesDeployKeysOperations().postDeployKey(TEST_USERNAME, TEST_REPOSLUG);
+        BitBucketDeployKey result = bitBucket.repositoriesOperations().repositoriesDeployKeysOperations().postDeployKey(TEST_USERNAME, TEST_REPOSLUG, "123123123");
         //then
         mockServer.verify();
         assertNotNull(result);

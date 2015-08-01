@@ -1,9 +1,7 @@
 package org.springframework.social.bitbucket.api.impl;
 
-import org.springframework.social.bitbucket.api.BitBucketChangeset;
-import org.springframework.social.bitbucket.api.BitBucketDeployKey;
-import org.springframework.social.bitbucket.api.BitBucketRepositoryStatistics;
-import org.springframework.social.bitbucket.api.RepositoriesDeployKeysOperations;
+import org.springframework.social.bitbucket.api.*;
+import org.springframework.social.support.ParameterMap;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
@@ -34,13 +32,21 @@ public class RepositoriesDeployKeysTemplate extends AbstractBitBucketOperations 
     }
 
     @Override
-    public  final BitBucketDeployKey postDeployKey(String accountName, String repoSlug) {
-        return null;
+    public  final BitBucketDeployKey postDeployKey(String accountName, String repoSlug, String key) {
+        return getRestTemplate()
+                .postForObject(buildUrl("/repositories/{accountname}/{repo_slug}/deploy-keys"), new DeployKeyCreate(key), BitBucketDeployKey.class,
+                        accountName, repoSlug);
     }
 
     @Override
     public  final void removeDeployKey(String accountName, String repoSlug, Long pk) {
         getRestTemplate().delete(buildUrl("/repositories/{accountname}/{repo_slug}/deploy-keys/{pk}"), accountName, repoSlug, pk);
 
+    }
+
+    private class DeployKeyCreate extends ParameterMap {
+        public DeployKeyCreate(String key) {
+            set("key", key);
+        }
     }
 }
