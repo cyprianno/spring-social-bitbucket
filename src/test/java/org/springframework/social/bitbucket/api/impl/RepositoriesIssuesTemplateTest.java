@@ -4,6 +4,7 @@ import org.junit.Test;
 import org.springframework.format.datetime.DateFormatter;
 import org.springframework.http.MediaType;
 import org.springframework.social.bitbucket.api.*;
+import org.springframework.social.bitbucket.api.command.IssueCreateUpdate;
 
 import java.util.Date;
 import java.util.List;
@@ -89,8 +90,8 @@ public class RepositoriesIssuesTemplateTest extends BaseTemplateTest {
     public void testPostNewIssue() throws Exception {
         //given
         mockServer.expect(requestTo("https://api.bitbucket.org/1.0/repositories/testusername/testreposlug/issues")).andExpect(method(POST)).andExpect(
-                content().string("title=value&content=issuecontent")).andRespond(withSuccess(jsonResource("post-issue"), MediaType.APPLICATION_JSON));
-        BitBucketIssue issue = BitBucketIssue.builder().content("issuecontent").title("value").build();
+                content().string("content=issuecontent&title=value")).andRespond(withSuccess(jsonResource("post-issue"), MediaType.APPLICATION_JSON));
+        IssueCreateUpdate issue = new IssueCreateUpdate("value", "issuecontent", null);
         //when
         BitBucketIssue result = bitBucket.repositoriesOperations().repositoriesIssuesOperations().postNewIssue(TEST_USERNAME, TEST_REPOSLUG, issue);
         //then
@@ -104,7 +105,7 @@ public class RepositoriesIssuesTemplateTest extends BaseTemplateTest {
         //given
         mockServer.expect(requestTo("https://api.bitbucket.org/1.0/repositories/testusername/testreposlug/issues/1")).andExpect(method(PUT))
                 .andExpect(content().string("content=issuecontent")).andRespond(withSuccess(jsonResource("put-issue"), MediaType.APPLICATION_JSON));
-        BitBucketIssue issue = BitBucketIssue.builder().content("issuecontent").build();
+        IssueCreateUpdate issue = new IssueCreateUpdate(null, "issuecontent", null);
         //when
         BitBucketIssue result = bitBucket.repositoriesOperations().repositoriesIssuesOperations().updateIssue(TEST_USERNAME, TEST_REPOSLUG, 1L, issue);
         //then
@@ -152,7 +153,7 @@ public class RepositoriesIssuesTemplateTest extends BaseTemplateTest {
     public void testPostNewComment() throws Exception {
         //given
         mockServer.expect(requestTo("https://api.bitbucket.org/1.0/repositories/testusername/testreposlug/issues/1/comments")).andExpect(method(POST)).andExpect(
-                content().string("content=comment content")).andRespond(withSuccess(jsonResource("post-issue-comment"), MediaType.APPLICATION_JSON));
+                content().string("content=comment+content")).andRespond(withSuccess(jsonResource("post-issue-comment"), MediaType.APPLICATION_JSON));
         //when
         BitBucketComment result = bitBucket.repositoriesOperations().repositoriesIssuesOperations().postNewComment(TEST_USERNAME, TEST_REPOSLUG, 1L, "comment content");
         //then
@@ -344,8 +345,8 @@ public class RepositoriesIssuesTemplateTest extends BaseTemplateTest {
         BitBucketMilestone result = bitBucket.repositoriesOperations().repositoriesIssuesOperations().updateMilestone(TEST_USERNAME, TEST_REPOSLUG, 1L, "newname");
         //then
         mockServer.verify();
-        assertEquals("231", result.getName());
-        assertEquals(23L, result.getId());
+        assertEquals("23", result.getName());
+        assertEquals(231L, result.getId());
     }
 
     @Test
