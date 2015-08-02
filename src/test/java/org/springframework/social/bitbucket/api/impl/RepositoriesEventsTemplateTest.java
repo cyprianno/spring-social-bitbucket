@@ -1,5 +1,7 @@
 package org.springframework.social.bitbucket.api.impl;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Getter;
 import org.junit.Test;
 import org.springframework.http.MediaType;
 import org.springframework.social.bitbucket.api.BitBucketEvent;
@@ -28,7 +30,7 @@ public class RepositoriesEventsTemplateTest extends BaseTemplateTest {
     public void testGetEvents() throws Exception {
 
         //given
-        mockServer.expect(requestTo("https://api.bitbucket.org/1.0/repositories/testusername/testreposlug/events?limit=integer&start=integer&type=event"))
+        mockServer.expect(requestTo("https://api.bitbucket.org/1.0/repositories/testusername/testreposlug/events?limit=1&start=10&type=testtype"))
                 .andExpect(method(GET)).andRespond(withSuccess(jsonResource("get-list-repo-events"), MediaType.APPLICATION_JSON));
         //when
         List<BitBucketEvent> result = bitBucket.repositoriesOperations().repositoriesEventsOperations().getEvents(TEST_USERNAME, TEST_REPOSLUG, 1, 10, "testtype");
@@ -45,4 +47,5 @@ public class RepositoriesEventsTemplateTest extends BaseTemplateTest {
 
 
     }
+
 }

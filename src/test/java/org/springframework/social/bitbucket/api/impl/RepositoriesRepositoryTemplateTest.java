@@ -6,6 +6,7 @@ import org.springframework.social.bitbucket.api.BitBucketBranch;
 import org.springframework.social.bitbucket.api.BitBucketBranchesTags;
 import org.springframework.social.bitbucket.api.BitBucketRepository;
 import org.springframework.social.bitbucket.api.BitBucketSCM;
+import org.springframework.social.bitbucket.api.command.RepositoryCreateUpdate;
 
 import java.util.Iterator;
 import java.util.List;
@@ -47,7 +48,7 @@ public class RepositoriesRepositoryTemplateTest extends BaseTemplateTest {
         //given
         mockServer.expect(requestTo("https://api.bitbucket.org/1.0/repositories/testusername/testreposlug")).andExpect(method(PUT))
                 .andExpect(content().string("description=long description")).andRespond(withSuccess(jsonResource("put-repository"), MediaType.APPLICATION_JSON));
-        BitBucketRepository repository = BitBucketRepository.builder().description("desc").build();
+        RepositoryCreateUpdate repository = new RepositoryCreateUpdate("desc");
         //when
         BitBucketRepository result = bitBucket.repositoriesOperations().repositoriesRepositoryOperations().updateRepository(TEST_USERNAME, TEST_REPOSLUG, repository);
         //then

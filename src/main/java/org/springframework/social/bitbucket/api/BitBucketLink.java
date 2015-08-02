@@ -2,7 +2,6 @@ package org.springframework.social.bitbucket.api;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.Builder;
 import lombok.Getter;
 
 /**
@@ -13,13 +12,11 @@ import lombok.Getter;
  * @since 2.0.0
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
-@Builder
 public class BitBucketLink {
     /**
      * BitBucket link handler. Exists only as a part of Link.
      * The content of the handler profile depends on whether the handler is a known type or a custom type.
      */
-    @Builder
     public static class BitBucketLinkHandler {
         /**
          * The location of the service.

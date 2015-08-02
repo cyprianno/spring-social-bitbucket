@@ -2,6 +2,7 @@ package org.springframework.social.bitbucket.api.impl;
 
 import org.springframework.social.bitbucket.api.BitBucketLink;
 import org.springframework.social.bitbucket.api.RepositoriesLinksOperations;
+import org.springframework.social.bitbucket.api.command.LinkCreateUpdate;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
@@ -26,12 +27,12 @@ public class RepositoriesLinksTemplate extends AbstractBitBucketOperations imple
     }
 
     @Override
-    public  final BitBucketLink postNewLink(String accountName, String repoSlug, BitBucketLink link) {
+    public  final BitBucketLink postNewLink(String accountName, String repoSlug, LinkCreateUpdate link) {
         return null;
     }
 
     @Override
-    public  final BitBucketLink updateLink(String accountName, String repoSlug, Long linkId, BitBucketLink link) {
+    public  final BitBucketLink updateLink(String accountName, String repoSlug, Long linkId, LinkCreateUpdate link) {
         return null;
     }
 

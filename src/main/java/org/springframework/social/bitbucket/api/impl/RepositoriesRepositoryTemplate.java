@@ -4,9 +4,9 @@ import org.springframework.social.bitbucket.api.BitBucketBranch;
 import org.springframework.social.bitbucket.api.BitBucketBranchesTags;
 import org.springframework.social.bitbucket.api.BitBucketRepository;
 import org.springframework.social.bitbucket.api.RepositoriesRepositoryOperations;
+import org.springframework.social.bitbucket.api.command.RepositoryCreateUpdate;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -24,7 +24,7 @@ public class RepositoriesRepositoryTemplate extends AbstractBitBucketOperations 
     }
 
     @Override
-    public  final BitBucketRepository updateRepository(String accountName, String repositorySlug, BitBucketRepository respositoryData) {
+    public  final BitBucketRepository updateRepository(String accountName, String repositorySlug, RepositoryCreateUpdate respositoryData) {
         return null;
     }
 

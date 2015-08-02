@@ -1,5 +1,7 @@
 package org.springframework.social.bitbucket.api;
 
+import org.springframework.social.bitbucket.api.command.RepositoryCreateUpdate;
+
 import java.util.List;
 import java.util.Map;
 
@@ -40,7 +42,7 @@ public interface RepositoriesRepositoryOperations {
      * @param respositoryData Repository data to update.
      * @return Updated repository.
      */
-    BitBucketRepository updateRepository(String accountName, String repositorySlug, BitBucketRepository respositoryData);
+    BitBucketRepository updateRepository(String accountName, String repositorySlug, RepositoryCreateUpdate respositoryData);
 
     /**
      * Gets a list of branches associated with a repository.

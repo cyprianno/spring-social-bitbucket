@@ -2,7 +2,6 @@ package org.springframework.social.bitbucket.api;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.Builder;
 import lombok.Getter;
 
 import java.util.ArrayList;
@@ -24,8 +23,16 @@ public class BitBucketService {
         private String type;
     }
 
-    @Builder
     public static class BitBucketServiceProfileField {
+
+        public BitBucketServiceProfileField() {
+        }
+
+        public BitBucketServiceProfileField(String name, String value) {
+            this.name = name;
+            this.value = value;
+        }
+
         @JsonProperty @Getter
         private String name;
         @JsonProperty @Getter
