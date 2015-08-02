@@ -1,5 +1,6 @@
 package org.springframework.social.bitbucket.api.impl;
 
+import org.springframework.http.HttpMethod;
 import org.springframework.social.bitbucket.api.BitBucketComment;
 import org.springframework.social.bitbucket.api.RepositoriesPullRequestsOperations;
 import org.springframework.web.client.RestTemplate;
@@ -25,7 +26,8 @@ public class RepositoriesPullRequestsTemplate extends AbstractBitBucketOperation
 
     @Override
     public  final void removeComment(String accountName, String repoSlug, Long pullRequestId, Long commentId) {
-
+        getRestTemplate().delete(buildUrl("/repositories/{accountname}/{repo_slug}/pullrequests/{pull_request_id}/comments/{comment_id}"), accountName, repoSlug, pullRequestId,
+                commentId);
     }
 
     @Override
