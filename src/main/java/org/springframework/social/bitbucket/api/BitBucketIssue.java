@@ -3,7 +3,6 @@ package org.springframework.social.bitbucket.api;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import lombok.Builder;
 import lombok.Getter;
 import org.springframework.social.bitbucket.api.impl.UTCDateDeserializer;
 import org.springframework.social.bitbucket.utils.DateUtils;
@@ -15,57 +14,73 @@ import java.util.Date;
  * @since 2.0.0
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
-@Builder
 public class BitBucketIssue {
 
     public class BitBucketIssueMetadata {
-        @JsonProperty @Getter
+        @JsonProperty
+        @Getter
         private String kind;
-        @JsonProperty @Getter
+        @JsonProperty
+        @Getter
         private String version;
-        @JsonProperty @Getter
+        @JsonProperty
+        @Getter
         private String component;
-        @JsonProperty @Getter
+        @JsonProperty
+        @Getter
         private String milestone;
     }
 
-    @JsonProperty @Getter
+    @JsonProperty
+    @Getter
     private String status;
 
-    @JsonProperty @Getter
+    @JsonProperty
+    @Getter
     private String priority;
 
-    @JsonProperty @Getter
+    @JsonProperty
+    @Getter
     private String title;
 
-    @JsonProperty @JsonDeserialize(using = UTCDateDeserializer.class)
+    @JsonProperty
+    @JsonDeserialize(using = UTCDateDeserializer.class)
     private Date utcLastUpdated;
 
-    @JsonProperty @Getter
+    @JsonProperty
+    @Getter
     private long commentCount;
 
-    @JsonProperty @Getter
+    @JsonProperty
+    @Getter
     private BitBucketIssueMetadata metadata;
 
-    @JsonProperty @Getter
+    @JsonProperty
+    @Getter
     private String content;
 
-    @JsonProperty @JsonDeserialize(using = UTCDateDeserializer.class)
+    @JsonProperty
+    @JsonDeserialize(using = UTCDateDeserializer.class)
     private Date createdOn;
 
-    @JsonProperty @JsonDeserialize(using = UTCDateDeserializer.class)
+    @JsonProperty
+    @JsonDeserialize(using = UTCDateDeserializer.class)
     private Date utcCreatedOn;
 
-    @JsonProperty @Getter
+    @JsonProperty
+    @Getter
     private long localId;
 
-    @JsonProperty @Getter
+    @JsonProperty
+    @Getter
     private long followerCount;
 
-    @JsonProperty @Getter
+    @JsonProperty
+    @Getter
     private String resourceUri;
 
-    @JsonProperty @Getter
+    @JsonProperty
+    @Getter
     private boolean spam;
 
     public Date getUtcLastUpdated() {

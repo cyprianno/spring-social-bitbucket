@@ -68,8 +68,7 @@ public class RepositoriesServicesTemplateTest extends BaseTemplateTest {
         //given
         mockServer.expect(requestTo("https://api.bitbucket.org/1.0/repositories/testusername/testreposlug/services")).andExpect(method(POST)).andExpect(
                 content().string("type=POST&URL=https%3A%2F%2Fbitbucket.org/post")).andRespond(withSuccess(jsonResource("post-service"), MediaType.APPLICATION_JSON));
-        List<BitBucketService.BitBucketServiceProfileField> fields = Collections.singletonList(
-                BitBucketService.BitBucketServiceProfileField.builder().name("URL").value("https://bitbucket.org/post").build());
+        List<BitBucketService.BitBucketServiceProfileField> fields = Collections.singletonList(new BitBucketService.BitBucketServiceProfileField("URL", "https://bitbucket.org/post"));
         //when
         BitBucketService result = bitBucket.repositoriesOperations().repositoriesServicesOperations().postNewService(TEST_USERNAME, TEST_REPOSLUG, "POST", fields);
         //then
@@ -88,8 +87,7 @@ public class RepositoriesServicesTemplateTest extends BaseTemplateTest {
         //given
         mockServer.expect(requestTo("https://api.bitbucket.org/1.0/repositories/testusername/testreposlug/services/1")).andExpect(method(PUT))
                 .andExpect(content().string("URL=https%3A%2F%2Fbitbucket.org/post")).andRespond(withSuccess(jsonResource("put-service"), MediaType.APPLICATION_JSON));
-        List<BitBucketService.BitBucketServiceProfileField> fields = Collections.singletonList(
-                BitBucketService.BitBucketServiceProfileField.builder().name("URL").value("https://bitbucket.org/post").build());
+        List<BitBucketService.BitBucketServiceProfileField> fields = Collections.singletonList(new BitBucketService.BitBucketServiceProfileField("URL", "https://bitbucket.org/post"));
         //when
         BitBucketService result = bitBucket.repositoriesOperations().repositoriesServicesOperations().updateService(TEST_USERNAME, TEST_REPOSLUG, 1L, fields);
         //then

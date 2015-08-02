@@ -1,5 +1,7 @@
 package org.springframework.social.bitbucket.api;
 
+import org.springframework.social.bitbucket.api.command.LinkCreateUpdate;
+
 import java.util.List;
 
 /**
@@ -45,7 +47,7 @@ public interface RepositoriesLinksOperations {
      * @param link Object to post.
      * @return Created object.
      */
-    BitBucketLink postNewLink(String accountName, String repoSlug, BitBucketLink link);
+    BitBucketLink postNewLink(String accountName, String repoSlug, LinkCreateUpdate link);
 
     /**
      * Update a repository link.
@@ -57,7 +59,7 @@ public interface RepositoriesLinksOperations {
      * @param link Object to post.
      * @return Updated object.
      */
-    BitBucketLink updateLink(String accountName, String repoSlug, Long linkId, BitBucketLink link);
+    BitBucketLink updateLink(String accountName, String repoSlug, Long linkId, LinkCreateUpdate link);
 
     /**
      * Deletes the repository link identified by the object_id. The caller must authenticate as a user with administrative access to the repository.

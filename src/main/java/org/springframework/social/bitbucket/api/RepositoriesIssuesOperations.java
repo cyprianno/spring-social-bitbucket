@@ -1,5 +1,7 @@
 package org.springframework.social.bitbucket.api;
 
+import org.springframework.social.bitbucket.api.command.IssueCreateUpdate;
+
 import java.util.List;
 
 /**
@@ -45,7 +47,7 @@ public interface RepositoriesIssuesOperations {
      * @param issueId The issue identifier.
      * @return Requested issue.
      */
-    BitBucketIssue getIssue(String accountName, String repoSlug, Long issueId);
+    BitBucketIssue getIssue(String accountName, String repoSlug, long issueId);
 
     /**
      * Gets the followers for an individual issue from a repository.
@@ -58,7 +60,7 @@ public interface RepositoriesIssuesOperations {
      * @param issueId The issue identifier.
      * @return List of followers.
      */
-    List<BitBucketUser> getFollowers(String accountName, String repoSlug, Long issueId);
+    List<BitBucketUser> getFollowers(String accountName, String repoSlug, long issueId);
 
     /**
      * Creates a new issue in a repository. This call requires authentication.
@@ -71,7 +73,7 @@ public interface RepositoriesIssuesOperations {
      * @param issue The issue data.
      * @return Created object.
      */
-    BitBucketIssue postNewIssue(String accountName, String repoSlug, BitBucketIssue issue);
+    BitBucketIssue postNewIssue(String accountName, String repoSlug, IssueCreateUpdate issue);
 
     /**
      * Updates an existing issue.
@@ -86,7 +88,7 @@ public interface RepositoriesIssuesOperations {
      * @param issue The issue data.
      * @return Updated object.
      */
-    BitBucketIssue updateIssue(String accountName, String repoSlug, Long issueId, BitBucketIssue issue);
+    BitBucketIssue updateIssue(String accountName, String repoSlug, long issueId, IssueCreateUpdate issue);
 
     /**
      * Deletes the specified issue_id.
@@ -97,7 +99,7 @@ public interface RepositoriesIssuesOperations {
      * @param repoSlug The repository identifier.
      * @param issueId The issue identifier.
      */
-    void removeIssue(String accountName, String repoSlug, Long issueId);
+    void removeIssue(String accountName, String repoSlug, long issueId);
 
     /**
      * Gets the array of comments on the specified issue.
@@ -108,7 +110,7 @@ public interface RepositoriesIssuesOperations {
      * @param issueId The issue identifier.
      * @return List of comments.
      */
-    List<BitBucketComment> getComments(String accountName, String repoSlug, Long issueId);
+    List<BitBucketComment> getComments(String accountName, String repoSlug, long issueId);
 
     /**
      * Gets an individual comment on an issue.
@@ -121,7 +123,7 @@ public interface RepositoriesIssuesOperations {
      * @param commentId An integer representing an id for the comment. This is created by Bitbucket.
      * @return Requested comment.
      */
-    BitBucketComment getComment(String accountName, String repoSlug, Long issueId, Long commentId);
+    BitBucketComment getComment(String accountName, String repoSlug, long issueId, long commentId);
 
     /**
      * Creates a new comment on an issue using the specified contentdata.
@@ -134,7 +136,7 @@ public interface RepositoriesIssuesOperations {
      * @param content The content of the comment.
      * @return Created object.
      */
-    BitBucketComment postNewComment(String accountName, String repoSlug, Long issueId, String content);
+    BitBucketComment postNewComment(String accountName, String repoSlug, long issueId, String content);
 
     /**
      * Updates a comment on an issue using the specified content data.
@@ -148,7 +150,7 @@ public interface RepositoriesIssuesOperations {
      * @param content The content of the comment.
      * @return Updated object.
      */
-    BitBucketComment updateComment(String accountName, String repoSlug, Long issueId, Long commentId, String content);
+    BitBucketComment updateComment(String accountName, String repoSlug, long issueId, long commentId, String content);
 
     /**
      * Gets an array of the components associated with the issue tracker.
@@ -170,7 +172,7 @@ public interface RepositoriesIssuesOperations {
      * @param objectId The element identifier to delete.
      * @return Requested component.
      */
-    BitBucketComponent getComponent(String accountName, String repoSlug, Long objectId);
+    BitBucketComponent getComponent(String accountName, String repoSlug, long objectId);
 
     /**
      * Creates a new component in an issue tracker.
@@ -198,7 +200,7 @@ public interface RepositoriesIssuesOperations {
      * @param name The element name. A name cannot exceed 128 characters and must be unique.
      * @return Updated object.
      */
-    BitBucketComponent updateComponent(String accountName, String repoSlug, Long objectId, String name);
+    BitBucketComponent updateComponent(String accountName, String repoSlug, long objectId, String name);
 
     /**
      * Deletes a component in an issue tracker.
@@ -214,7 +216,7 @@ public interface RepositoriesIssuesOperations {
      * @param repoSlug The repository identifier.
      * @param objectId The element identifier to delete.
      */
-    void removeComponent(String accountName, String repoSlug, Long objectId);
+    void removeComponent(String accountName, String repoSlug, long objectId);
 
     /**
      * Gets an array of the versions associated with the issue tracker.
@@ -236,7 +238,7 @@ public interface RepositoriesIssuesOperations {
      * @param objectId The element identifier to delete.
      * @return Requested version.
      */
-    BitBucketVersion getVersion(String accountName, String repoSlug, Long objectId);
+    BitBucketVersion getVersion(String accountName, String repoSlug, long objectId);
 
     /**
      * Creates a new version in an issue tracker.
@@ -264,7 +266,7 @@ public interface RepositoriesIssuesOperations {
      * @param name The element name. A name cannot exceed 128 characters and must be unique.
      * @return Updated object.
      */
-    BitBucketVersion updateVersion(String accountName, String repoSlug, Long objectId, String name);
+    BitBucketVersion updateVersion(String accountName, String repoSlug, long objectId, String name);
 
     /**
      * Deletes a version in an issue tracker.
@@ -280,7 +282,7 @@ public interface RepositoriesIssuesOperations {
      * @param repoSlug The repository identifier.
      * @param objectId The element identifier to delete.
      */
-    void removeVersion(String accountName, String repoSlug, Long objectId);
+    void removeVersion(String accountName, String repoSlug, long objectId);
 
     /**
      * Gets an array of the milestones associated with the issue tracker.
@@ -302,7 +304,7 @@ public interface RepositoriesIssuesOperations {
      * @param objectId The element identifier to delete.
      * @return Requested milestone.
      */
-    BitBucketMilestone getMilestone(String accountName, String repoSlug, Long objectId);
+    BitBucketMilestone getMilestone(String accountName, String repoSlug, long objectId);
 
     /**
      * Creates a new milestone in an issue tracker.
@@ -330,7 +332,7 @@ public interface RepositoriesIssuesOperations {
      * @param name The element name. A name cannot exceed 128 characters and must be unique.
      * @return Updated object.
      */
-    BitBucketMilestone updateMilestone(String accountName, String repoSlug, Long objectId, String name);
+    BitBucketMilestone updateMilestone(String accountName, String repoSlug, long objectId, String name);
 
     /**
      * Deletes a milestone in an issue tracker.
@@ -346,6 +348,6 @@ public interface RepositoriesIssuesOperations {
      * @param repoSlug The repository identifier.
      * @param objectId The element identifier to delete.
      */
-    void removeMilestone(String accountName, String repoSlug, Long objectId);
+    void removeMilestone(String accountName, String repoSlug, long objectId);
 
 }

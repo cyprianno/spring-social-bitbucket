@@ -5,6 +5,7 @@ import org.springframework.http.MediaType;
 import org.springframework.social.bitbucket.api.BitBucket;
 import org.springframework.social.bitbucket.api.BitBucketLink;
 import org.springframework.social.bitbucket.api.BitBucketRepository;
+import org.springframework.social.bitbucket.api.command.LinkCreateUpdate;
 
 import java.util.List;
 
@@ -77,8 +78,7 @@ public class RepositoriesLinksTemplateTest extends BaseTemplateTest {
         //given
         mockServer.expect(requestTo("https://api.bitbucket.org/1.0/repositories/testusername/testreposlug/links")).andExpect(method(POST)).andExpect(
                 content().string("handler=handlername")).andRespond(withSuccess(jsonResource("post-link"), MediaType.APPLICATION_JSON));
-        BitBucketLink.BitBucketLinkHandler handler = BitBucketLink.BitBucketLinkHandler.builder().name("handlername").build();
-        BitBucketLink link = BitBucketLink.builder().handler(handler).build();
+        LinkCreateUpdate link = new LinkCreateUpdate(null, null, "handlername");
         //when
         BitBucketLink result = bitBucket.repositoriesOperations().repositoriesLinksOperations().postNewLink(TEST_USERNAME, TEST_REPOSLUG, link);
         //then
@@ -100,8 +100,7 @@ public class RepositoriesLinksTemplateTest extends BaseTemplateTest {
         //given
         mockServer.expect(requestTo("https://api.bitbucket.org/1.0/repositories/testusername/testreposlug/links/1")).andExpect(method(PUT))
                 .andExpect(content().string("primary=true")).andRespond(withSuccess(jsonResource("put-link"), MediaType.APPLICATION_JSON));
-        BitBucketLink.BitBucketLinkHandler handler = BitBucketLink.BitBucketLinkHandler.builder().name("handlername").build();
-        BitBucketLink link = BitBucketLink.builder().handler(handler).build();
+        LinkCreateUpdate link = new LinkCreateUpdate(null, null, "handlername");
         //when
         BitBucketLink result = bitBucket.repositoriesOperations().repositoriesLinksOperations().updateLink(TEST_USERNAME, TEST_REPOSLUG, 1L, link);
         //then
