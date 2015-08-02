@@ -71,7 +71,7 @@ public class BitBucketLink {
          * Include capture groups for use in your link url.
          * For unknown types.
          */
-        @JsonProperty
+        @JsonProperty("raw_regex")
         @Getter
         private String rawRegex;
 

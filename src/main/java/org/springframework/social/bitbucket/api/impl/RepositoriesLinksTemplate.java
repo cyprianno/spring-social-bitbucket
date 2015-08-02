@@ -3,6 +3,7 @@ package org.springframework.social.bitbucket.api.impl;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import org.springframework.social.bitbucket.api.*;
+import org.springframework.social.bitbucket.api.command.LinkCreateUpdate;
 import org.springframework.social.support.ParameterMap;
 import org.springframework.web.client.RestTemplate;
 
