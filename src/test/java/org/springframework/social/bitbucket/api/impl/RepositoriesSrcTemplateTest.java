@@ -45,6 +45,6 @@ public class RepositoriesSrcTemplateTest extends BaseTemplateTest {
         String result = bitBucket.repositoriesOperations().repositoriesSrcOperations().getContent(TEST_USERNAME, TEST_REPOSLUG, "xrev", "/src/file.txt");
         //then
         mockServer.verify();
-        assertEquals("Favorite Quotes from bitbuckians\n--------------------\n\nThis page lists \n", result);
+        assertEquals("Favorite Quotes from bitbuckians\n--------------------------------\n\nThis page lists\n", result);
     }
 }
