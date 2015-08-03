@@ -53,7 +53,7 @@ public class RepositoriesWikiTemplateTest extends BaseTemplateTest {
     public void testUpdatePage() throws Exception {
         //given
         mockServer.expect(requestTo("https://api.bitbucket.org/1.0/repositories/testusername/testreposlug/wiki/home/newpage")).andExpect(method(PUT))
-                .andExpect(content().string("content=new content")).andRespond(withSuccess("OK", MediaType.TEXT_PLAIN));
+                .andExpect(content().string("content=new+content")).andRespond(withSuccess("OK", MediaType.TEXT_PLAIN));
         //when
         boolean result = bitBucket.repositoriesOperations().repositoriesWikiOperations().updatePage(TEST_USERNAME, TEST_REPOSLUG, "/home/newpage", "new content");
         //then
