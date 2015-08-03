@@ -41,15 +41,13 @@ public class UsersSshKeysTemplate extends AbstractBitBucketOperations implements
     @Override
     public final BitBucketSshKey postKey(String accountName, String label, String key) {
         return getRestTemplate()
-                .postForObject(buildUrl("/users/{accountname}/ssh-keys"), new CreateKeyParameters(key), BitBucketSshKey[].class, accountName)[0];
+                .postForObject(buildUrl("/users/{accountname}/ssh-keys"), new CreateKeyParameters(key), BitBucketSshKey.class, accountName);
     }
 
     @Override
     public final BitBucketSshKey getKey(String accountName, long keyId, String label) {
         String queryKey = label != null ? label : String.valueOf(keyId);
-        List<BitBucketSshKey> result = asList(
-                getRestTemplate().getForObject(buildUrl("/users/{accountname}/ssh-keys/{key_id}"), BitBucketSshKey[].class, accountName, queryKey));
-        return result.isEmpty() ? null : result.iterator().next();
+        return getRestTemplate().getForObject(buildUrl("/users/{accountname}/ssh-keys/{key_id}"), BitBucketSshKey.class, accountName, queryKey);
     }
 
     @Override

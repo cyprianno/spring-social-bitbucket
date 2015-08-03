@@ -17,5 +17,4 @@ public class LinkCreateUpdate extends ParameterMap {
             set("name", handlerName);
         }
     }
-
 }
