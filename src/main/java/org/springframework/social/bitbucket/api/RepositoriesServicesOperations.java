@@ -1,6 +1,7 @@
 package org.springframework.social.bitbucket.api;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Bitbucket integrates with external services (hooks) through a set of brokers that run in response to certain events.
@@ -45,10 +46,10 @@ public interface RepositoriesServicesOperations {
      * @param accountName A team or individual account name.
      * @param repoSlug The repository's name.
      * @param type One of the supported services. The type is a case-insensitive value.
-     * @param fields A parameter array containing a name and value pair for each parameter associated with the service.
+     * @param fields A parameter map containing a name and value pair for each parameter associated with the service.
      * @return Created service.
      */
-    BitBucketService postNewService(String accountName, String repoSlug, String type, List<BitBucketService.BitBucketServiceProfileField> fields);
+    BitBucketService postNewService(String accountName, String repoSlug, String type, Map<String, String> fields);
 
     /**
      * To update a service, issue a PUT request with the id of the repository service included in the URL.
@@ -60,10 +61,10 @@ public interface RepositoriesServicesOperations {
      * @param accountName A team or individual account name.
      * @param repoSlug The repository's name.
      * @param serviceId A Bitbucket assigned integer representing a unique identifier for the service.
-     * @param fields A parameter array containing a name and value pair for each parameter associated with the service.
+     * @param fields A parameter map containing a name and value pair for each parameter associated with the service.
      * @return Updated service.
      */
-    BitBucketService updateService(String accountName, String repoSlug, Long serviceId, List<BitBucketService.BitBucketServiceProfileField> fields);
+    BitBucketService updateService(String accountName, String repoSlug, Long serviceId, Map<String, String> fields);
 
     /**
      * Removes a service. The caller must supply the id of the service to remove.

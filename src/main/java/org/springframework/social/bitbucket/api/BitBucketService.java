@@ -25,14 +25,6 @@ public class BitBucketService {
 
     public static class BitBucketServiceProfileField {
 
-        public BitBucketServiceProfileField() {
-        }
-
-        public BitBucketServiceProfileField(String name, String value) {
-            this.name = name;
-            this.value = value;
-        }
-
         @JsonProperty @Getter
         private String name;
         @JsonProperty @Getter

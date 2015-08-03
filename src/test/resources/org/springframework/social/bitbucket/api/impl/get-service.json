@@ -1,14 +1,12 @@
-[
-  {
-    "id": 4,
-    "service": {
-      "fields": [
-        {
-          "name": "URL",
-          "value": "http://example.com/post"
-        }
-      ],
-      "type": "POST"
-    }
+{
+  "id": 4,
+  "service": {
+    "fields": [
+      {
+        "name": "URL",
+        "value": "http://example.com/post"
+      }
+    ],
+    "type": "POST"
   }
-]
+}
