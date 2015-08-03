@@ -2,7 +2,12 @@ package org.springframework.social.bitbucket.api.impl;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.MediaType;
 import org.springframework.social.bitbucket.api.*;
+import org.springframework.social.bitbucket.api.command.CommentCreateUpdate;
 import org.springframework.social.bitbucket.api.command.LinkCreateUpdate;
 import org.springframework.social.support.ParameterMap;
 import org.springframework.web.client.RestTemplate;
@@ -37,13 +42,19 @@ public class RepositoriesLinksTemplate extends AbstractBitBucketOperations imple
 
     @Override
     public  final BitBucketLink postNewLink(String accountName, String repoSlug, LinkCreateUpdate link) {
-        return null;
+        return getRestTemplate()
+                .postForObject(buildUrl("/repositories/{accountname}/{repo_slug}/links"), link, BitBucketLink.class,
+                        accountName, repoSlug);
     }
 
 
     @Override
     public  final BitBucketLink updateLink(String accountName, String repoSlug, Long linkId, LinkCreateUpdate link) {
-        return null;
+        HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
+        return getRestTemplate().exchange(buildUrl("/repositories/{accountname}/{repo_slug}/links/{object_id}"), HttpMethod.PUT,
+                new HttpEntity<>(link, httpHeaders),
+                BitBucketLink.class, accountName, repoSlug, linkId).getBody();
     }
 
     @Override

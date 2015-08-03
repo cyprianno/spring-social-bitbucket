@@ -1,8 +1,12 @@
 package org.springframework.social.bitbucket.api.impl;
 
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
+import org.springframework.http.MediaType;
 import org.springframework.social.bitbucket.api.BitBucketComment;
 import org.springframework.social.bitbucket.api.RepositoriesPullRequestsOperations;
+import org.springframework.social.bitbucket.api.command.CommentCreateUpdate;
 import org.springframework.web.client.RestTemplate;
 
 /**
@@ -16,12 +20,18 @@ public class RepositoriesPullRequestsTemplate extends AbstractBitBucketOperation
 
     @Override
     public  final BitBucketComment postNewComment(String accountName, String repoSlug, Long pullRequestId, String content) {
-        return null;
+        return getRestTemplate()
+                .postForObject(buildUrl("/repositories/{accountname}/{repo_slug}/pullrequests/{pull_request_id}/comments"), new CommentCreateUpdate(content, null), BitBucketComment.class,
+                        accountName, repoSlug, pullRequestId);
     }
 
     @Override
     public  final BitBucketComment updateComment(String accountName, String repoSlug, Long pullRequestId, Long commentId, String content) {
-        return null;
+        HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
+        return getRestTemplate().exchange(buildUrl("/repositories/{accountname}/{repo_slug}/pullrequests/{pull_request_id}/comments/{comment_id}"), HttpMethod.PUT,
+                new HttpEntity<>(new CommentCreateUpdate(content, null), httpHeaders),
+                BitBucketComment.class, accountName, repoSlug, pullRequestId, commentId).getBody();
     }
 
     @Override
@@ -32,6 +42,7 @@ public class RepositoriesPullRequestsTemplate extends AbstractBitBucketOperation
 
     @Override
     public  final BitBucketComment toggleSpam(String accountName, String repoSlug, Long pullRequestId, Long commentId) {
-        return null;
+        return getRestTemplate().exchange(buildUrl("/repositories/{accountname}/{repo_slug}/pullrequests/{pull_request_id}/comments/spam/{comment_id}"), HttpMethod.PUT, null,
+                BitBucketComment.class, accountName, repoSlug, pullRequestId, commentId).getBody();
     }
 }

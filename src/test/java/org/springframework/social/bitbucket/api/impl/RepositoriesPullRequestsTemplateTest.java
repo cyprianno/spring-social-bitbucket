@@ -30,11 +30,9 @@ public class RepositoriesPullRequestsTemplateTest extends BaseTemplateTest {
 
     @Test
     public void testPostNewComment() throws Exception {
-
-
         //given
         mockServer.expect(requestTo("https://api.bitbucket.org/1.0/repositories/testusername/testreposlug/pullrequests/1/comments")).andExpect(method(POST)).andExpect(
-                content().string("key=123123123")).andRespond(withSuccess(jsonResource("post-pullrequest-comment"), MediaType.APPLICATION_JSON));
+                content().string("content=ccontent")).andRespond(withSuccess(jsonResource("post-pullrequest-comment"), MediaType.APPLICATION_JSON));
         //when
         BitBucketComment result = bitBucket.repositoriesOperations().repositoriesPullRequestsOperations().postNewComment(TEST_USERNAME, TEST_REPOSLUG, 1L, "ccontent");
         //then
@@ -70,8 +68,8 @@ public class RepositoriesPullRequestsTemplateTest extends BaseTemplateTest {
     public void testUpdateComment() throws Exception {
 
         //given
-        mockServer.expect(requestTo("https://api.bitbucket.org/1.0/repositories/testusername/testreposlug/pullrequests/2/comments/2")).andExpect(method(PUT))
-                .andExpect(content().string("primary=true")).andRespond(withSuccess(jsonResource("put-pullrequest-comment"), MediaType.APPLICATION_JSON));
+        mockServer.expect(requestTo("https://api.bitbucket.org/1.0/repositories/testusername/testreposlug/pullrequests/1/comments/2")).andExpect(method(PUT))
+                .andExpect(content().string("content=ucontent")).andRespond(withSuccess(jsonResource("put-pullrequest-comment"), MediaType.APPLICATION_JSON));
         //when
         BitBucketComment result = bitBucket.repositoriesOperations().repositoriesPullRequestsOperations().updateComment(TEST_USERNAME, TEST_REPOSLUG, 1L, 2L, "ucontent");
         //then
@@ -120,7 +118,7 @@ public class RepositoriesPullRequestsTemplateTest extends BaseTemplateTest {
     public void testToggleSpam() throws Exception {
         //given
         mockServer.expect(requestTo("https://api.bitbucket.org/1.0/repositories/testusername/testreposlug/pullrequests/1/comments/spam/2")).andExpect(method(PUT))
-                .andExpect(content().string("primary=true")).andRespond(withSuccess(jsonResource("toggle-pullrequest-comment-spam"), MediaType.APPLICATION_JSON));
+                .andRespond(withSuccess(jsonResource("toggle-pullrequest-comment-spam"), MediaType.APPLICATION_JSON));
         //when
         BitBucketComment result = bitBucket.repositoriesOperations().repositoriesPullRequestsOperations().toggleSpam(TEST_USERNAME, TEST_REPOSLUG, 1L, 2L);
         //then
@@ -130,7 +128,7 @@ public class RepositoriesPullRequestsTemplateTest extends BaseTemplateTest {
         assertEquals("abdeaf1b2b4a", result.getNode());
         assertEquals(25720L, result.getCommentId());
         assertEquals("A User", result.getDisplayName());
-        assertEquals(25711L, result.getParentId());
+        assertEquals((Long) 25711L, result.getParentId());
         assertFalse(result.isDeleted());
         DateFormatter dateFormatter = new DateFormatter("yyyy-MM-dd HH:mm:ssZ");
         String expectedStringDateAsGMT = "2012-07-24 21:39:12+0000";
@@ -139,10 +137,10 @@ public class RepositoriesPullRequestsTemplateTest extends BaseTemplateTest {
         assertEquals("36e1237b957fa2002d264c5fd031c547", result.getFilenameHash());
         assertEquals("Readme", result.getFilename());
         assertEquals("what the eff", result.getContent());
-        assertEquals("<p>what the eff</p>\\n", result.getContentRendered());
+        assertEquals("<p>what the eff</p>\n", result.getContentRendered());
         assertEquals("https://secure.gravatar.com/avatar/49bd0ee69e520e8bc250adb95710bbb8?d=identicon&s=32", result.getUserAvatarUrl());
-        assertEquals(3L, result.getLineFrom());
-        assertEquals(6L, result.getLineTo());
+        assertEquals((Long) 3L, result.getLineFrom());
+        assertEquals((Long) 6L, result.getLineTo());
         expectedStringDateAsGMT = "2012-07-24 21:06:33+0000";
         expectedDate = dateFormatter.parse(expectedStringDateAsGMT, Locale.getDefault());
         assertEquals(expectedDate, result.getUtcCreatedOn());

@@ -77,7 +77,7 @@ public class RepositoriesLinksTemplateTest extends BaseTemplateTest {
 
         //given
         mockServer.expect(requestTo("https://api.bitbucket.org/1.0/repositories/testusername/testreposlug/links")).andExpect(method(POST)).andExpect(
-                content().string("handler=handlername")).andRespond(withSuccess(jsonResource("post-link"), MediaType.APPLICATION_JSON));
+                content().string("name=handlername")).andRespond(withSuccess(jsonResource("post-link"), MediaType.APPLICATION_JSON));
         LinkCreateUpdate link = new LinkCreateUpdate(null, null, "handlername");
         //when
         BitBucketLink result = bitBucket.repositoriesOperations().repositoriesLinksOperations().postNewLink(TEST_USERNAME, TEST_REPOSLUG, link);
@@ -99,7 +99,7 @@ public class RepositoriesLinksTemplateTest extends BaseTemplateTest {
 
         //given
         mockServer.expect(requestTo("https://api.bitbucket.org/1.0/repositories/testusername/testreposlug/links/1")).andExpect(method(PUT))
-                .andExpect(content().string("primary=true")).andRespond(withSuccess(jsonResource("put-link"), MediaType.APPLICATION_JSON));
+                .andExpect(content().string("name=handlername")).andRespond(withSuccess(jsonResource("put-link"), MediaType.APPLICATION_JSON));
         LinkCreateUpdate link = new LinkCreateUpdate(null, null, "handlername");
         //when
         BitBucketLink result = bitBucket.repositoriesOperations().repositoriesLinksOperations().updateLink(TEST_USERNAME, TEST_REPOSLUG, 1L, link);

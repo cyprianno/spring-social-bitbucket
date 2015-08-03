@@ -7,6 +7,7 @@ import lombok.Getter;
 import org.springframework.social.bitbucket.api.impl.UTCDateDeserializer;
 import org.springframework.social.bitbucket.utils.DateUtils;
 
+import javax.annotation.Nullable;
 import java.util.Date;
 
 /**
@@ -34,7 +35,8 @@ public class BitBucketComment {
     private String displayName;
 
     @JsonProperty("parent_id") @Getter
-    private long parentId;
+    @Nullable
+    private Long parentId;
 
     @JsonProperty @Getter
     private boolean deleted;
@@ -58,10 +60,12 @@ public class BitBucketComment {
     private String userAvatarUrl;
 
     @JsonProperty("line_from") @Getter
-    private long lineFrom;
+    @Nullable
+    private Long lineFrom;
 
     @JsonProperty("line_to") @Getter
-    private long lineTo;
+    @Nullable
+    private Long lineTo;
 
     @JsonProperty("author_info") @Getter
     private BitBucketUser authorInfo;
