@@ -1,21 +1,20 @@
 package org.springframework.social.bitbucket.api.impl;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Getter;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
-import org.springframework.social.bitbucket.api.BitBucketComment;
-import org.springframework.social.bitbucket.api.BitBucketComponent;
-import org.springframework.social.bitbucket.api.BitBucketIssue;
-import org.springframework.social.bitbucket.api.BitBucketMilestone;
-import org.springframework.social.bitbucket.api.BitBucketUser;
-import org.springframework.social.bitbucket.api.BitBucketVersion;
-import org.springframework.social.bitbucket.api.RepositoriesIssuesOperations;
+import org.springframework.social.bitbucket.api.*;
 import org.springframework.social.bitbucket.api.command.IssueCreateUpdate;
 import org.springframework.social.support.ParameterMap;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
+
+import static java.util.Arrays.asList;
 
 /**
  * @author Cyprian Śniegota
@@ -28,17 +27,23 @@ public class RepositoriesIssuesTemplate extends AbstractBitBucketOperations impl
 
     @Override
     public  final List<BitBucketIssue> getIssues(String accountName, String repoSlug, Integer start, Integer limit, String sort) {
-        return null;
+        return getRestTemplate()
+                .getForObject(buildUrl("/repositories/{accountname}/{repo_slug}/issues"), IssuesWrapper.class,
+                        accountName, repoSlug).getIssues();
     }
 
     @Override
     public  final BitBucketIssue getIssue(String accountName, String repoSlug, long issueId) {
-        return null;
+        return getRestTemplate()
+                .getForObject(buildUrl("/repositories/{accountname}/{repo_slug}/issues/{issue_id}"), BitBucketIssue.class,
+                        accountName, repoSlug, issueId);
     }
 
     @Override
     public  final List<BitBucketUser> getFollowers(String accountName, String repoSlug, long issueId) {
-        return null;
+        return getRestTemplate()
+                .getForObject(buildUrl("/repositories/{accountname}/{repo_slug}/issues/{issue_id}/followers"), FollowersWrapper.class,
+                        accountName, repoSlug, issueId).getFollowers();
     }
 
     @Override
@@ -64,12 +69,16 @@ public class RepositoriesIssuesTemplate extends AbstractBitBucketOperations impl
 
     @Override
     public  final List<BitBucketComment> getComments(String accountName, String repoSlug, long issueId) {
-        return null;
+        return asList(getRestTemplate()
+                .getForObject(buildUrl("/repositories/{accountname}/{repo_slug}/issues/{issue_id}/comments"), BitBucketComment[].class,
+                        accountName, repoSlug, issueId));
     }
 
     @Override
     public  final BitBucketComment getComment(String accountName, String repoSlug, long issueId, long commentId) {
-        return null;
+        return getRestTemplate()
+                .getForObject(buildUrl("/repositories/{accountname}/{repo_slug}/issues/{issue_id}/comments/{comment_id}"), BitBucketComment.class,
+                        accountName, repoSlug, issueId, commentId);
     }
 
     @Override
@@ -90,12 +99,16 @@ public class RepositoriesIssuesTemplate extends AbstractBitBucketOperations impl
 
     @Override
     public  final List<BitBucketComponent> getComponents(String accountName, String repoSlug) {
-        return null;
+        return asList(getRestTemplate()
+                .getForObject(buildUrl("/repositories/{accountname}/{repo_slug}/issues/components"), BitBucketComponent[].class,
+                        accountName, repoSlug));
     }
 
     @Override
     public  final BitBucketComponent getComponent(String accountName, String repoSlug, long objectId) {
-        return null;
+        return getRestTemplate()
+                .getForObject(buildUrl("/repositories/{accountname}/{repo_slug}/issues/components/{object_id}"), BitBucketComponent.class,
+                        accountName, repoSlug, objectId);
     }
 
     @Override
@@ -121,12 +134,16 @@ public class RepositoriesIssuesTemplate extends AbstractBitBucketOperations impl
 
     @Override
     public  final List<BitBucketVersion> getVersions(String accountName, String repoSlug) {
-        return null;
+        return asList(getRestTemplate()
+                .getForObject(buildUrl("/repositories/{accountname}/{repo_slug}/issues/versions"), BitBucketVersion[].class,
+                        accountName, repoSlug));
     }
 
     @Override
     public  final BitBucketVersion getVersion(String accountName, String repoSlug, long objectId) {
-        return null;
+        return getRestTemplate()
+                .getForObject(buildUrl("/repositories/{accountname}/{repo_slug}/issues/versions/{object_id}"), BitBucketVersion.class,
+                        accountName, repoSlug, objectId);
     }
 
     @Override
@@ -152,12 +169,16 @@ public class RepositoriesIssuesTemplate extends AbstractBitBucketOperations impl
 
     @Override
     public  final List<BitBucketMilestone> getMilestones(String accountName, String repoSlug) {
-        return null;
+        return asList(getRestTemplate()
+                .getForObject(buildUrl("/repositories/{accountname}/{repo_slug}/issues/milestones"), BitBucketMilestone[].class,
+                        accountName, repoSlug));
     }
 
     @Override
     public  final BitBucketMilestone getMilestone(String accountName, String repoSlug, long objectId) {
-        return null;
+        return getRestTemplate()
+                .getForObject(buildUrl("/repositories/{accountname}/{repo_slug}/issues/milestones/{object_id}"), BitBucketMilestone.class,
+                        accountName, repoSlug, objectId);
     }
 
     @Override
@@ -203,5 +224,20 @@ public class RepositoriesIssuesTemplate extends AbstractBitBucketOperations impl
         public CommentCreateUpdate(String content) {
             set("content", content);
         }
+    }
+
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    private static class IssuesWrapper {
+
+        @JsonProperty @Getter
+        private List<BitBucketIssue> issues;
+    }
+
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    private static class FollowersWrapper {
+        @JsonProperty @Getter
+        private int count;
+        @JsonProperty @Getter
+        private List<BitBucketUser> followers;
     }
 }

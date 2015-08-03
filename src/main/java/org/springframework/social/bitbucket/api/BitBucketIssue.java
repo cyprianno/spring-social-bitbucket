@@ -43,11 +43,11 @@ public class BitBucketIssue {
     @Getter
     private String title;
 
-    @JsonProperty
+    @JsonProperty("utc_last_updated")
     @JsonDeserialize(using = UTCDateDeserializer.class)
     private Date utcLastUpdated;
 
-    @JsonProperty
+    @JsonProperty("comment_count")
     @Getter
     private long commentCount;
 
@@ -59,15 +59,15 @@ public class BitBucketIssue {
     @Getter
     private String content;
 
-    @JsonProperty
+    @JsonProperty("created_on")
     @JsonDeserialize(using = UTCDateDeserializer.class)
     private Date createdOn;
 
-    @JsonProperty
+    @JsonProperty("utc_created_on")
     @JsonDeserialize(using = UTCDateDeserializer.class)
     private Date utcCreatedOn;
 
-    @JsonProperty
+    @JsonProperty("local_id")
     @Getter
     private long localId;
 
@@ -75,7 +75,7 @@ public class BitBucketIssue {
     @Getter
     private long followerCount;
 
-    @JsonProperty
+    @JsonProperty("resource_uri")
     @Getter
     private String resourceUri;
 

@@ -43,7 +43,6 @@ public class RepositoriesIssuesTemplateTest extends BaseTemplateTest {
 
     @Test
     public void testGetIssue() throws Exception {
-        assertTrue(false);
         //given
         mockServer.expect(requestTo("https://api.bitbucket.org/1.0/repositories/testusername/testreposlug/issues/1"))
                 .andExpect(method(GET)).andRespond(withSuccess(jsonResource("get-issue"), MediaType.APPLICATION_JSON));
@@ -235,7 +234,7 @@ public class RepositoriesIssuesTemplateTest extends BaseTemplateTest {
         //then
         mockServer.verify();
     }
-//todo: here
+
     @Test
     public void testGetVersions() throws Exception {
         //given
