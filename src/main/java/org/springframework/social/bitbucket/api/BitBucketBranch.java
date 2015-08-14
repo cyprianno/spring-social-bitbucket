@@ -27,7 +27,7 @@ public class BitBucketBranch {
     @JsonProperty @JsonDeserialize(using = UTCDateDeserializer.class)
     private Date utcTimestamp;
     @JsonProperty @Getter
-    private String author;
+    private BitBucketUser author;
     @JsonProperty @JsonDeserialize(using = UTCDateDeserializer.class)
     private Date timestamp;
     @JsonProperty @Getter

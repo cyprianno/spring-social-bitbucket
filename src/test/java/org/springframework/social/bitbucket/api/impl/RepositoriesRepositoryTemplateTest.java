@@ -149,7 +149,7 @@ public class RepositoriesRepositoryTemplateTest extends BaseTemplateTest {
         mockServer.expect(requestTo("https://api.bitbucket.org/1.0/repositories/testusername/testreposlug/filehistory/testnode/src/main/file.txt"))
                 .andExpect(method(GET)).andRespond(withSuccess(jsonResource("get-repository-history-file"), MediaType.APPLICATION_JSON));
         //when
-        BitBucketBranch result = bitBucket.repositoriesOperations().repositoriesRepositoryOperations().getHistoryOfFile(TEST_USERNAME, TEST_REPOSLUG, "testnode", "/src/main/file.txt");
+        BitBucketBranch result = bitBucket.repositoriesOperations().repositoriesRepositoryOperations().getHistoryOfFile(TEST_USERNAME, TEST_REPOSLUG, "testnode", "src/main/file.txt");
         //then
         mockServer.verify();
         assertEquals("1b8a451e04ec", result.getNode());
