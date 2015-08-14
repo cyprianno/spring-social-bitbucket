@@ -2,6 +2,8 @@ package org.springframework.social.bitbucket.api.impl;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpMethod;
 import org.springframework.social.bitbucket.api.*;
 import org.springframework.social.bitbucket.api.command.RepositoryCreateUpdate;
 import org.springframework.web.client.RestTemplate;
@@ -30,9 +32,9 @@ public class RepositoriesRepositoryTemplate extends AbstractBitBucketOperations 
 
     @Override
     public  final Map<String, BitBucketBranch> getBranches(String accountName, String repositorySlug) {
-        return getRestTemplate()
-                .getForObject(buildUrl("/repositories/{accountname}/{repo_slug}/branches"), BranchWrapper.class,
-                        accountName, repositorySlug).getBranches();
+        return getRestTemplate().exchange(buildUrl("/repositories/{accountname}/{repo_slug}/branches"),
+                HttpMethod.GET, null, new ParameterizedTypeReference<Map<String, BitBucketBranch>>() {},
+                accountName, repositorySlug).getBody();
     }
 
     @Override
@@ -78,7 +80,7 @@ public class RepositoriesRepositoryTemplate extends AbstractBitBucketOperations 
 
     private static class BranchWrapper {
         @JsonProperty @Getter
-        private String master;
+        private BitBucketBranch master;
         @JsonProperty @Getter
         private Map<String, BitBucketBranch> branch;
 
