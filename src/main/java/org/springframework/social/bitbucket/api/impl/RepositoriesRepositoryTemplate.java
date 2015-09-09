@@ -7,7 +7,10 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
-import org.springframework.social.bitbucket.api.*;
+import org.springframework.social.bitbucket.api.BitBucketBranch;
+import org.springframework.social.bitbucket.api.BitBucketBranchesTags;
+import org.springframework.social.bitbucket.api.BitBucketRepository;
+import org.springframework.social.bitbucket.api.RepositoriesRepositoryOperations;
 import org.springframework.social.bitbucket.api.command.RepositoryCreateUpdate;
 import org.springframework.web.client.RestTemplate;
 
@@ -23,8 +26,13 @@ public class RepositoriesRepositoryTemplate extends AbstractBitBucketOperations 
     }
 
     @Override
-    public final BitBucketRepository createNewFork(String accountName, String repositorySlug, String name, String description, String language, Boolean isPrivate) {
-        return null;
+    public final BitBucketRepository createNewFork(String accountName, String repoSlug, String name, String description, String language, Boolean isPrivate) {
+        RepositoryCreateUpdate repositoryData = new RepositoryCreateUpdate(name, description, language, isPrivate);
+        HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
+        return getRestTemplate().exchange(buildUrl("/repositories/{accountname}/{repo_slug}/fork"), HttpMethod.POST,
+                new HttpEntity<>(repositoryData, httpHeaders),
+                BitBucketRepository.class, accountName, repoSlug).getBody();
     }
 
     @Override
@@ -40,7 +48,7 @@ public class RepositoriesRepositoryTemplate extends AbstractBitBucketOperations 
     public final Map<String, BitBucketBranch> getBranches(String accountName, String repositorySlug) {
         return getRestTemplate().exchange(buildUrl("/repositories/{accountname}/{repo_slug}/branches"),
                 HttpMethod.GET, null, new ParameterizedTypeReference<Map<String, BitBucketBranch>>() {
-        },
+                },
                 accountName, repositorySlug).getBody();
     }
 

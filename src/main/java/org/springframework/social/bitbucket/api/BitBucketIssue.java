@@ -10,12 +10,17 @@ import org.springframework.social.bitbucket.utils.DateUtils;
 import java.util.Date;
 
 /**
+ * Issue description with metadata.
+ *
  * @author Cyprian Śniegota
  * @since 2.0.0
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class BitBucketIssue {
 
+    /**
+     * Issue metadata.
+     */
     public class BitBucketIssueMetadata {
         @JsonProperty
         @Getter

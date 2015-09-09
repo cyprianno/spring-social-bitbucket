@@ -33,14 +33,13 @@ public class RepositoriesRepositoryTemplateTest extends BaseTemplateTest {
     public void testCreateNewFork() throws Exception {
         //given
         mockServer.expect(requestTo("https://api.bitbucket.org/1.0/repositories/testusername/testreposlug/fork")).andExpect(method(POST)).andExpect(
-                content().string("name=mynewrepo")).andRespond(withSuccess(jsonResource("post-repository-fork"), MediaType.APPLICATION_JSON));
+                content().string("name=mynewrepo&description=fdesc&language=php&isPrivate=true")).andRespond(withSuccess(jsonResource("post-repository-fork"), MediaType.APPLICATION_JSON));
         //when
-        BitBucketRepository result = bitBucket.repositoriesOperations().repositoriesRepositoryOperations().createNewFork(TEST_USERNAME, TEST_REPOSLUG, "fname", "fdesc", "php", true);
+        BitBucketRepository result = bitBucket.repositoriesOperations().repositoriesRepositoryOperations().createNewFork(TEST_USERNAME, TEST_REPOSLUG, "mynewrepo", "fdesc", "php", true);
         //then
         mockServer.verify();
         assertNotNull(result);
         assertEquals(BitBucketSCM.hg, result.getScm());
-        assertTrue(result.isHasWiki());
     }
 
     @Test
@@ -48,7 +47,7 @@ public class RepositoriesRepositoryTemplateTest extends BaseTemplateTest {
         //given
         mockServer.expect(requestTo("https://api.bitbucket.org/1.0/repositories/testusername/testreposlug")).andExpect(method(PUT))
                 .andExpect(content().string("description=long+description")).andRespond(withSuccess(jsonResource("put-repository"), MediaType.APPLICATION_JSON));
-        RepositoryCreateUpdate repository = new RepositoryCreateUpdate("long description");
+        RepositoryCreateUpdate repository = new RepositoryCreateUpdate(null, "long description", null, null);
         //when
         BitBucketRepository result = bitBucket.repositoriesOperations().repositoriesRepositoryOperations().updateRepository(TEST_USERNAME, TEST_REPOSLUG, repository);
         //then
