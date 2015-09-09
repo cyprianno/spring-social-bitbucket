@@ -47,15 +47,14 @@ public class RepositoriesRepositoryTemplateTest extends BaseTemplateTest {
     public void testUpdateRepository() throws Exception {
         //given
         mockServer.expect(requestTo("https://api.bitbucket.org/1.0/repositories/testusername/testreposlug")).andExpect(method(PUT))
-                .andExpect(content().string("description=long description")).andRespond(withSuccess(jsonResource("put-repository"), MediaType.APPLICATION_JSON));
-        RepositoryCreateUpdate repository = new RepositoryCreateUpdate("desc");
+                .andExpect(content().string("description=long+description")).andRespond(withSuccess(jsonResource("put-repository"), MediaType.APPLICATION_JSON));
+        RepositoryCreateUpdate repository = new RepositoryCreateUpdate("long description");
         //when
         BitBucketRepository result = bitBucket.repositoriesOperations().repositoriesRepositoryOperations().updateRepository(TEST_USERNAME, TEST_REPOSLUG, repository);
         //then
         mockServer.verify();
         assertNotNull(result);
-        assertEquals(BitBucketSCM.hg, result.getScm());
-        assertTrue(result.isHasWiki());
+        assertEquals(BitBucketSCM.git, result.getScm());
     }
 
     @Test
@@ -95,7 +94,7 @@ public class RepositoriesRepositoryTemplateTest extends BaseTemplateTest {
         //then
         mockServer.verify();
         assertEquals(1, result.getTags().size());
-        assertEquals(1, result.getBranches().size());
+        assertEquals(2, result.getBranches().size());
     }
 
     @Test
