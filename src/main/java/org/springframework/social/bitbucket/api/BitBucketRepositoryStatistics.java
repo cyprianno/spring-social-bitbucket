@@ -34,7 +34,7 @@ public class BitBucketRepositoryStatistics implements Serializable {
     /**
      * Change statistics in numbers; Instance exists only as a part of BitBucketRepositoryStatistics.
      */
-    public class BitBucketDiffstat implements Serializable {
+    public static class BitBucketDiffstat implements Serializable {
         /**
          * Number of lines removed.
          * Could be null if it is a large difference

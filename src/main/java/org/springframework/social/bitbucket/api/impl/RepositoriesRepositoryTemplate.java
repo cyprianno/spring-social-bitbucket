@@ -1,3 +1,18 @@
+/**
+ * Copyright (C) 2012 Eric Bottard / Guillaume Lederrey (eric.bottard+ghpublic@gmail.com / guillaume.lederrey@gmail.com)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package org.springframework.social.bitbucket.api.impl;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -47,8 +62,7 @@ public class RepositoriesRepositoryTemplate extends AbstractBitBucketOperations 
     @Override
     public final Map<String, BitBucketBranch> getBranches(String accountName, String repositorySlug) {
         return getRestTemplate().exchange(buildUrl("/repositories/{accountname}/{repo_slug}/branches"),
-                HttpMethod.GET, null, new ParameterizedTypeReference<Map<String, BitBucketBranch>>() {
-                },
+                HttpMethod.GET, null, new ParameterizedMapTypeReferenceBranch(),
                 accountName, repositorySlug).getBody();
     }
 
@@ -67,16 +81,14 @@ public class RepositoriesRepositoryTemplate extends AbstractBitBucketOperations 
     @Override
     public final Map<String, String> getManifest(String accountName, String repositorySlug, String revision) {
         return getRestTemplate().exchange(buildUrl("/repositories/{accountname}/{repo_slug}/{revision}"),
-                HttpMethod.GET, null, new ParameterizedTypeReference<Map<String, String>>() {
-                },
+                HttpMethod.GET, null, new ParameterizedMapTypeReference<String, String>(),
                 accountName, repositorySlug, revision).getBody();
     }
 
     @Override
     public final Map<String, BitBucketBranch> getTags(String accountName, String repositorySlug) {
         return getRestTemplate().exchange(buildUrl("/repositories/{accountname}/{repo_slug}/tags"),
-                HttpMethod.GET, null, new ParameterizedTypeReference<Map<String, BitBucketBranch>>() {
-                },
+                HttpMethod.GET, null, new ParameterizedMapTypeReferenceBranch(),
                 accountName, repositorySlug).getBody();
     }
 
@@ -97,6 +109,12 @@ public class RepositoriesRepositoryTemplate extends AbstractBitBucketOperations 
         @JsonProperty
         @Getter
         private String name;
+    }
+
+    private static class ParameterizedMapTypeReference<T,R> extends ParameterizedTypeReference<Map<T,R>> {}
+
+    public static class ParameterizedMapTypeReferenceBranch extends ParameterizedTypeReference<Map<String, BitBucketBranch>> {
+
     }
 
 }

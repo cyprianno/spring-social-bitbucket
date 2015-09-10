@@ -79,8 +79,10 @@
     </ciManagement>
 
     <properties>
-        <org.springframework.social.version>1.1.0.RELEASE</org.springframework.social.version>
-        <org.springframework.version>4.0.5.RELEASE</org.springframework.version>
+        <jackson.version>2.6.1</jackson.version>
+        <lombok.version>1.16.6</lombok.version>
+        <org.springframework.social.version>1.1.2.RELEASE</org.springframework.social.version>
+        <org.springframework.version>4.2.1.RELEASE</org.springframework.version>
         <verify.coverage.threshold>50</verify.coverage.threshold>
         <verify.mutation.threshold>40</verify.mutation.threshold>
         <verify.totalBranchRate>15</verify.totalBranchRate>
@@ -92,17 +94,17 @@
             <dependency>
                 <groupId>com.fasterxml.jackson.core</groupId>
                 <artifactId>jackson-annotations</artifactId>
-                <version>2.5.4</version>
+                <version>${jackson.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.fasterxml.jackson.core</groupId>
                 <artifactId>jackson-core</artifactId>
-                <version>2.5.4</version>
+                <version>${jackson.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.fasterxml.jackson.core</groupId>
                 <artifactId>jackson-databind</artifactId>
-                <version>2.5.4</version>
+                <version>${jackson.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.google.code.findbugs</groupId>
@@ -123,7 +125,7 @@
             <dependency>
                 <groupId>org.projectlombok</groupId>
                 <artifactId>lombok</artifactId>
-                <version>1.16.4</version>
+                <version>${lombok.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework</groupId>
@@ -174,7 +176,7 @@
             <dependency>
                 <groupId>junit</groupId>
                 <artifactId>junit</artifactId>
-                <version>4.11</version>
+                <version>4.12</version>
                 <scope>test</scope>
             </dependency>
             <dependency>
@@ -279,7 +281,7 @@
                 <configuration>
                     <suppressionsLocation>src/etc/checkstyle-suppressions.xml</suppressionsLocation>
                     <maxAllowedViolations>8</maxAllowedViolations>
-					<configLocation>src/etc/checkstyle-configuration.xml</configLocation>
+                    <configLocation>src/etc/checkstyle-configuration.xml</configLocation>
                 </configuration>
                 <executions>
                     <execution>
@@ -348,6 +350,17 @@
                 <artifactId>maven-checkstyle-plugin</artifactId>
                 <configuration>
                     <suppressionsLocation>src/etc/checkstyle-suppressions.xml</suppressionsLocation>
+                    <configLocation>src/etc/checkstyle-configuration.xml</configLocation>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>findbugs-maven-plugin</artifactId>
+                <configuration>
+                    <effort>Max</effort>
+                    <threshold>Low</threshold>
+                    <xmlOutput>true</xmlOutput>
+                    <excludeFilterFile>src/etc/findbugs-exclude.xml</excludeFilterFile>
                 </configuration>
             </plugin>
         </plugins>
